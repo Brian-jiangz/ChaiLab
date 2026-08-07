@@ -292,30 +292,46 @@ def research_tiles(lang):
 def tiles_body(lang, href_base='#'):
     if lang == EN:
         items = [
-            ('🌊', 'Marine Ecosystem and Biogeochemical Modeling', 'Development and improvement of the CESM-CoSiNE coupled marine ecosystem\u2013biogeochemistry module to simulate the spatiotemporal evolution of phytoplankton, nutrients, and the carbon cycle.'),
-            ('🌍', 'Marine Carbon Cycle and Climate Feedbacks', 'Quantifying the ocean\u2019s role in regulating atmospheric CO\u2082, biological pump efficiency, and the response of the marine carbon cycle to future climate change.'),
-            ('🌀', 'Submesoscale Processes and Ecological Effects', 'Exploring how submesoscale physical processes (fronts, eddies) regulate planktonic ecosystems and carbon export fluxes.'),
-            ('⏳', 'Paleoclimate and Paleoceanography', 'Earth system modeling of key periods such as the Last Interglacial to understand the long-term evolution of the carbon cycle.'),
-            ('🖥️', 'Ocean Digital Twin', 'Building ocean digital twin systems to empower blue-economy innovation and integrated ocean observation\u2013simulation\u2013prediction.'),
-            ('📡', 'Observation\u2013Model Integration', 'Combining in-situ observations, satellite remote sensing, and numerical models to quantify uncertainty and improve ecosystem model parameterizations.'),
+            'Marine Ecosystem and Biogeochemical Modeling',
+            'Marine Carbon Cycle and Climate Feedbacks',
+            'Submesoscale Processes and Ecological Effects',
+            'Paleoclimate and Paleoceanography',
+            'Ocean Digital Twin',
+            'Observation\u2013Model Integration',
+        ]
+        descs = [
+            'Development and improvement of the CESM-CoSiNE coupled marine ecosystem\u2013biogeochemistry module to simulate the spatiotemporal evolution of phytoplankton, nutrients, and the carbon cycle.',
+            'Quantifying the ocean\u2019s role in regulating atmospheric CO\u2082, biological pump efficiency, and the response of the marine carbon cycle to future climate change.',
+            'Exploring how submesoscale physical processes (fronts, eddies) regulate planktonic ecosystems and carbon export fluxes.',
+            'Earth system modeling of key periods such as the Last Interglacial to understand the long-term evolution of the carbon cycle.',
+            'Building ocean digital twin systems to empower blue-economy innovation and integrated ocean observation\u2013simulation\u2013prediction.',
+            'Combining in-situ observations, satellite remote sensing, and numerical models to quantify uncertainty and improve ecosystem model parameterizations.',
         ]
     else:
         items = [
-            ('🌊', '海洋生态系统与生物地球化学模拟', '发展并改进 CESM-CoSiNE 海洋生态系统—生物地球化学耦合模式，模拟浮游植物、营养盐与碳循环的时空演变。'),
-            ('🌍', '海洋碳循环与气候反馈', '研究海洋对大气 CO₂ 的调控作用、生物泵效率及海洋碳循环对未来气候变化的响应。'),
-            ('🌀', '海洋次中尺度过程与生态效应', '探索次中尺度物理过程（锋面、涡旋）对浮游生态系统与碳输出通量的调控机制。'),
-            ('⏳', '古气候与古海洋模拟', '利用地球系统模式开展末次间冰期等关键时期古气候模拟，理解碳循环的长期演化。'),
-            ('🖥️', '海洋数字孪生', '构建海洋数字孪生系统，赋能蓝色经济创新，服务海洋观测—模拟—预测一体化。'),
-            ('📡', '观测—模拟融合', '结合现场观测、卫星遥感与数值模式，量化评估模式不确定性，改进生态模型参数化。'),
+            '海洋生态系统与生物地球化学模拟',
+            '海洋碳循环与气候反馈',
+            '海洋次中尺度过程与生态效应',
+            '古气候与古海洋模拟',
+            '海洋数字孪生',
+            '观测—模拟融合',
+        ]
+        descs = [
+            '发展并改进 CESM-CoSiNE 海洋生态系统—生物地球化学耦合模式，模拟浮游植物、营养盐与碳循环的时空演变。',
+            '研究海洋对大气 CO₂ 的调控作用、生物泵效率及海洋碳循环对未来气候变化的响应。',
+            '探索次中尺度物理过程（锋面、涡旋）对浮游生态系统与碳输出通量的调控机制。',
+            '利用地球系统模式开展末次间冰期等关键时期古气候模拟，理解碳循环的长期演化。',
+            '构建海洋数字孪生系统，赋能蓝色经济创新，服务海洋观测—模拟—预测一体化。',
+            '结合现场观测、卫星遥感与数值模式，量化评估模式不确定性，改进生态模型参数化。',
         ]
     return '\n'.join(
         f'''    <a class="rtile rt-bg{i}" id="r{i}" href="{href_base}r{i}" data-reveal style="--d:{i*70}ms">
-      <div class="icon">{icon}</div>
+      <div class="rnum">0{i+1}</div>
       <h3>{title}</h3>
       <p>{desc}</p>
       <span class="rt-go">→</span>
     </a>'''
-        for i, (icon, title, desc) in enumerate(items))
+        for i, (title, desc) in enumerate(zip(items, descs)))
 
 def project_box(lang, full=True):
     if lang == EN:
@@ -640,7 +656,7 @@ def home_body(lang):
              [('Research Areas', 'research.html'), ('About Us', 'about.html')]),
         ]
         stats = [(22, '', 'Model Tracers'), (6, '', 'Research Areas'), (3, '', 'Ocean Regions'), (35, '+', 'Years of Research')]
-        news_head = ('新闻动态', 'NEWS & UPDATES', 'More')
+        news_head = ('News', 'NEWS & UPDATES', 'More')
         news = [
             ('FEB 2026', 'Prof. Chai\u2019s team reveals ocean digital twins as a new engine for blue-economy innovation',
              'The team systematically reviewed the core architecture of ocean digital twins, analyzed key application scenarios in blue-economy development, and provided forward-looking perspectives on challenges and prospects.'),
@@ -651,12 +667,12 @@ def home_body(lang):
             ('UPDATING', 'Group news continuously updated',
              'Stay tuned for the latest research progress, recruitment, and academic exchange activities.'),
         ]
-        res_head = ('研究方向', 'RESEARCH AREAS')
+        res_head = ('Research Areas', 'RESEARCH AREAS')
         res_more = 'Learn More'
         cos = ('CESM-CoSiNE', 'CESM-CoSiNE: An Ocean Ecosystem\u2013Biogeochemistry Module Embedded in CESM',
                'Developed and maintained by our group, embedded in the CESM Earth System Model (POP2), studying planktonic ecosystems and the marine carbon cycle at global and regional scales.',
                'Model Details', 'Project Report')
-        pub_head = ('代表性论文', 'SELECTED PUBLICATIONS', 'All Publications')
+        pub_head = ('Publications', 'SELECTED PUBLICATIONS', 'All Publications')
         pubs = [
             ('2026', '(To be added) Paper title', 'Authors. Journal Name, 2026.'),
             ('2025', '(To be added) Paper title', 'Authors. Journal Name, 2025.'),

@@ -174,7 +174,7 @@ html.anim .hslide.on .hcap .hero-ctas { opacity: 1; transform: none; transition-
 
 /* ===== 板块通用 ===== */
 .section { max-width: 1200px; margin: 0 auto; padding: 88px 24px; }
-.home-sec { padding: 76px 24px; }
+.home-sec { padding: 56px 24px 72px; }
 .sec-head { margin-bottom: 52px; text-align: center; }
 .sec-head .en { font-size: 11px; letter-spacing: .42em; color: var(--ink-3); text-transform: uppercase; display: block; margin-bottom: 14px; }
 .sec-head h2 { font-size: 30px; color: var(--navy); font-weight: 600; letter-spacing: .14em; position: relative; display: inline-block; }
@@ -188,7 +188,7 @@ html.anim .hslide.on .hcap .hero-ctas { opacity: 1; transform: none; transition-
 .more:hover { color: var(--navy); }
 
 /* ===== 简介 ===== */
-.pi-intro { padding: 88px 24px; }
+.pi-intro { padding: 64px 24px 72px; }
 .pi-wrap {
   display: grid; grid-template-columns: 300px 1fr; gap: 56px; align-items: center;
   border: 1px solid var(--line); padding: 48px 56px; background: var(--paper);
@@ -231,20 +231,24 @@ html.anim .hslide.on .hcap .hero-ctas { opacity: 1; transform: none; transition-
 .member .dir { font-size: 13px; color: var(--ink-3); line-height: 1.7; }
 .member .email { font-size: 12px; color: var(--navy-3); word-break: break-all; margin-top: 8px; }
 
-/* ===== 研究方向（emoji + 背景填充 + 点击跳转） ===== */
+/* ===== 研究方向（序号 + 背景填充 + 居中 + 点击跳转） ===== */
 .research { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .rtile {
-  display: block; position: relative; text-decoration: none; overflow: hidden;
-  padding: 40px 32px 44px; border: 1px solid var(--line);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  position: relative; text-decoration: none; overflow: hidden;
+  padding: 48px 32px 52px; border: 1px solid var(--line);
   transition: transform .3s, box-shadow .3s, border-color .3s;
 }
 .rtile::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--navy); transform: scaleX(0); transform-origin: left; transition: transform .35s ease; }
 .rtile:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(8, 26, 44, .12); border-color: var(--line-2); }
 .rtile:hover::before { transform: scaleX(1); }
-.rtile .icon { font-size: 38px; line-height: 1; display: block; margin-bottom: 18px; filter: saturate(.9); transition: transform .3s ease, filter .3s; }
-.rtile:hover .icon { transform: scale(1.12); filter: saturate(1.1); }
+.rtile .rnum {
+  font-size: 15px; color: var(--gold); letter-spacing: .2em; font-weight: 600;
+  display: block; margin-bottom: 16px; transition: transform .3s ease;
+}
+.rtile:hover .rnum { transform: translateY(-3px); }
 .rtile h3 { font-size: 16.5px; color: var(--navy); margin-bottom: 12px; letter-spacing: .05em; font-weight: 600; }
-.rtile p { font-size: 13.5px; color: var(--ink-2); line-height: 1.8; }
+.rtile p { font-size: 13.5px; color: var(--ink-2); line-height: 1.8; max-width: 320px; }
 .rt-go {
   position: absolute; right: 18px; bottom: 14px; font-size: 16px; color: var(--navy);
   opacity: 0; transform: translateX(-8px); transition: .3s;
@@ -352,7 +356,7 @@ html.anim .hslide.on .hcap .hero-ctas { opacity: 1; transform: none; transition-
 .nitem:hover .arr { opacity: 1; right: 8px; }
 
 /* ===== CESM-CoSiNE 首页横幅 ===== */
-.cosine-band { background: linear-gradient(135deg, #0a2138, #0d2f4f); padding: 76px 24px; }
+.cosine-band { background: linear-gradient(135deg, #0a2138, #0d2f4f); padding: 60px 24px; }
 .cosine-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 48px; }
 .cosine-txt .kicker { display: block; font-size: 11px; letter-spacing: .4em; color: var(--gold); margin-bottom: 14px; }
 .cosine-txt h2 { color: #fff; font-size: 26px; letter-spacing: .06em; font-weight: 600; max-width: 660px; line-height: 1.5; }
@@ -360,7 +364,7 @@ html.anim .hslide.on .hcap .hero-ctas { opacity: 1; transform: none; transition-
 .cosine-btns { display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; }
 
 /* ===== 招生招聘 / 合作交流 ===== */
-.join-band { background: var(--paper-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 80px 24px; }
+.join-band { background: var(--paper-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 56px 24px 64px; }
 .join-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; background: var(--paper); border: 1px solid var(--line); }
 .join-cell { padding: 52px 56px; border-left: 1px solid var(--line); }
 .join-cell:first-child { border-left: none; }
