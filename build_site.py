@@ -135,11 +135,6 @@ def nav(active, lang, subpage=False):
       </ul>
     </nav>
     <button class="nav-toggle" id="navToggle" aria-label="menu">☰</button>
-    <div class="zoom-ctl" id="zoomCtl" aria-label="zoom control">
-      <button type="button" class="zoom-btn" data-zoom="-1" aria-label="zoom out">A−</button>
-      <span class="zoom-val" id="zoomVal">100%</span>
-      <button type="button" class="zoom-btn" data-zoom="1" aria-label="zoom in">A+</button>
-    </div>
     <a class="lang-switch" href="{t['lang_url']}">{t['lang_short']}</a>
   </div>
 </header>'''
@@ -202,9 +197,7 @@ def page(fname, title, en_sub, body, lang, extra='', banner=True, scripts=''):
   <p>{en_sub}</p>
 </div>
 ''' if banner else ''
-    scripts_html = ('<script>document.documentElement.classList.add("anim");</script>\n'
-                    '<script>try{var z=parseInt(localStorage.getItem("chai_zoom")||"100",10);if(z>=75&&z<=150)document.documentElement.style.zoom=z/100;}catch(e){}</script>\n'
-                    '<script src="' + scripts + '" defer></script>') if scripts else ''
+    scripts_html = f'<script>document.documentElement.classList.add("anim");</script>\n<script src="{scripts}" defer></script>' if scripts else ''
     return f'''<!DOCTYPE html>
 <html lang="{lang}">
 <head>

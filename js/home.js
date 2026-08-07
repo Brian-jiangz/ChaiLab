@@ -259,33 +259,4 @@
       if (nav.classList.contains('open')) closeMenu();
     });
   }
-
-  /* ===== 全站缩放控件（localStorage 同步，跨页面保持比例） ===== */
-  var ZKEY = 'chai_zoom';
-  var zoomVal = document.getElementById('zoomVal');
-  var zoomCtl = document.getElementById('zoomCtl');
-  function currentZoom() {
-    var v = parseInt(localStorage.getItem(ZKEY) || '100', 10);
-    return (isNaN(v) || v < 75 || v > 150) ? 100 : v;
-  }
-  function setZoomUI(v) {
-    if (zoomVal) zoomVal.textContent = v + '%';
-  }
-  function applyZoom(v) {
-    try {
-      document.documentElement.style.zoom = v / 100;
-    } catch (e) { /* zoom 不支持时忽略 */ }
-    setZoomUI(v);
-  }
-  if (zoomCtl) {
-    setZoomUI(currentZoom());
-    zoomCtl.addEventListener('click', function (e) {
-      var btn = e.target.closest('.zoom-btn');
-      if (!btn) return;
-      var step = parseInt(btn.getAttribute('data-zoom'), 10);
-      var nv = Math.min(150, Math.max(75, currentZoom() + step * 10));
-      try { localStorage.setItem(ZKEY, String(nv)); } catch (e) {}
-      applyZoom(nv);
-    });
-  }
 })();
