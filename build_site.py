@@ -550,7 +550,8 @@ def news_body(lang):
     <div class="nf-head">
       <span class="date">FEB 2026</span>
       <h2>Prof. Chai\u2019s team reveals ocean digital twins as a new engine for blue-economy innovation</h2>
-      <p>The team systematically reviewed the core architecture of ocean digital twins, analyzed key application scenarios in blue-economy development, and provided forward-looking perspectives on challenges and prospects.</p>
+      <p>The team systematically reviewed the core architecture of ocean digital twins, analyzed key application scenarios in blue-economy development, and provided forward-looking perspectives on challenges and prospects. The review, titled \u201cDigital twin of the ocean as a catalyst for blue economy innovation\u201d, was published in National Science Review.</p>
+      <a class="btn btn-gold" href="https://mel.xmu.edu.cn/info/1012/61071.htm" target="_blank" style="margin-top:22px">Read the Original Report →</a>
     </div>
   </div>
   <div class="news-list">
@@ -576,7 +577,8 @@ def news_body(lang):
     <div class="nf-head">
       <span class="date">2026-02</span>
       <h2>柴扉教授团队揭示海洋数字孪生是赋能蓝色经济创新发展的新引擎</h2>
-      <p>团队系统梳理海洋数字孪生核心架构，解析其在蓝色经济发展中的关键应用场景，并对该领域挑战与前景作出前瞻性研判。</p>
+      <p>团队系统梳理了海洋数字孪生的核心架构，深度解析其在蓝色经济发展中的关键应用场景，并对该领域当前挑战与未来前景作出前瞻性研判。相关综述以\u201cDigital twin of the ocean as a catalyst for blue economy innovation\u201d为题发表于 National Science Review。</p>
+      <a class="btn btn-gold" href="https://mel.xmu.edu.cn/info/1012/61071.htm" target="_blank" style="margin-top:22px">阅读原报道 →</a>
     </div>
   </div>
   <div class="news-list">
@@ -650,8 +652,9 @@ def home_body(lang):
     import os
     if lang == EN:
         slides = [
-            ('Marine Biogeochemistry', 'Marine Biogeochemistry and Climate Modeling', 'Ocean Biogeochemistry and Climate Modeling',
-             [('About Us', 'about.html'), ('Research', 'research.html')]),
+            ('Ocean Digital Twin', 'Ocean digital twin as a catalyst for blue-economy innovation',
+             'Prof. Chai and international experts published a review in National Science Review',
+             [('Read More', 'news.html'), ('Research', 'research.html')]),
             ('Earth System Modeling', 'The CESM-CoSiNE Marine Ecosystem Model', 'From coupled physics\u2013chemistry\u2013biology to understanding the marine carbon cycle',
              [('CESM-CoSiNE Details', 'research.html#project'), ('Project Report', 'reports/CESM_CoSiNE16_Nature_style_draft_CN.html')]),
             ('Paleoclimate & Digital Earth', 'Paleoclimate and the Digital Earth', 'Reconstruct the past, simulate the present, foresee the future',
@@ -691,8 +694,8 @@ def home_body(lang):
               'About the Group', 'Our Team')
     else:
         slides = [
-            ('Marine Biogeochemistry', '海洋生物地球化学与气候模拟', 'Ocean Biogeochemistry and Climate Modeling',
-             [('了解课题组', 'about.html'), ('研究方向', 'research.html')]),
+            ('Ocean Digital Twin', '海洋数字孪生：赋能蓝色经济创新', '柴扉教授团队综述发表于 National Science Review',
+             [('了解更多', 'news.html'), ('研究方向', 'research.html')]),
             ('Earth System Modeling', 'CESM-CoSiNE 海洋生态系统模式', '从物理—化学—生物耦合出发，理解海洋碳循环',
              [('模式详情', 'research.html#project'), ('项目报告', 'reports/CESM_CoSiNE16_Nature_style_draft_CN.html')]),
             ('Paleoclimate & Digital Earth', '古气候与数字地球', '重建过去，模拟现在，预见未来',
@@ -772,6 +775,8 @@ def home_body(lang):
     slide_parts = []
     for i, (kicker, h, p, ctas) in enumerate(slides):
         photo = f'images/hero{i+1}.jpg' if os.path.exists(f'images/hero{i+1}.jpg') else None
+        if i == 0:
+            photo = 'images/mel_digital_twin.png'
         if i == 1:
             photo = 'images/cosine_bg.png'
         bg_style = f' style="background-image:linear-gradient(rgba(7,24,42,.5),rgba(7,24,42,.5)),url({photo});background-size:cover;background-position:center"' if photo else ''
@@ -884,7 +889,7 @@ def home_body(lang):
     <a class="more" href="news.html">{news_head[2]} ›</a>
   </div>
   <div class="news-split">
-    <a class="nfeat" href="news.html" data-reveal>
+    <a class="nfeat" href="https://mel.xmu.edu.cn/info/1012/61071.htm" target="_blank" data-reveal>
       <svg class="nfeat-deco" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
         <g stroke="rgba(255,255,255,.1)" fill="none">
           <path d="M-20,300 C120,250 240,340 380,290 S560,240 640,300"/>
