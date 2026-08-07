@@ -511,33 +511,50 @@ def project_body(lang):
   </div>
 </div>'''
 
+MONTHS_EN = ['', 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+
+def paper_timeline(rows, lang, reveal=False):
+    """论文时间线：同年份只显示一次，竖线 + 月份刻度"""
+    groups = {}
+    for year, month, title, authors, journal, doi in rows:
+        groups.setdefault(year, []).append((month, title, authors, journal, doi))
+    out = ['<ul class="papers tl">']
+    for gi, year in enumerate(sorted(groups, reverse=True)):
+        rev = f' data-reveal style="--d:{gi * 80}ms"' if reveal else ''
+        out.append(f'  <li class="tl-group"{rev}>')
+        out.append(f'    <div class="tl-year">{year}</div>')
+        out.append('    <ul class="tl-items">')
+        for month, title, authors, journal, doi in sorted(groups[year], key=lambda x: -x[0]):
+            m = f'{month}月' if lang == ZH else MONTHS_EN[month]
+            out.append(f'''      <li class="tl-item">
+        <span class="tl-dot" aria-hidden="true"></span>
+        <div class="tl-month">{m}</div>
+        <div class="t">{title}</div>
+        <div class="a">{authors}</div>
+        <div class="j">{journal}. DOI: <a href="https://doi.org/{doi}" target="_blank" style="color:var(--navy-3)">{doi}</a></div>
+      </li>''')
+        out.append('    </ul>')
+        out.append('  </li>')
+    out.append('</ul>')
+    return '\n'.join(out)
+
 PAPERS = [
-    ('2026', 'Digital twin of the ocean as a catalyst for blue economy innovation',
+    ('2026', 2, 'Digital twin of the ocean as a catalyst for blue economy innovation',
      'Chai F., Deng Q., Dai M., Wang X., Staneva J., Behera S. K., Tonani M., Liu J., Yu Z., Peng Z.',
      'National Science Review, 13(3): nwag012', '10.1093/nsr/nwag012'),
-    ('2025', 'Rising trends in winter phytoplankton blooms in the northern Arabian Sea over the last two decades',
+    ('2025', 6, 'Rising trends in winter phytoplankton blooms in the northern Arabian Sea over the last two decades',
      'Song Z., Kang D., Chai F.',
      'Geophysical Research Letters, 52', '10.1029/2025GL116509'),
-    ('2025', 'Arctic warming as a potential trigger for the warm blob in the northeast Pacific',
+    ('2025', 3, 'Arctic warming as a potential trigger for the warm blob in the northeast Pacific',
      'Chen H.-H., Wang Y., Li X., Wan L., Yuan Y., Yan Y., Hannah C., Chai F.',
      'npj Climate and Atmospheric Science, 8', '10.1038/s41612-025-00900-9'),
-    ('2024', 'Development of a total variation diminishing (TVD) sea ice transport scheme for the ocean model',
+    ('2024', 9, 'Development of a total variation diminishing (TVD) sea ice transport scheme for the ocean model',
      'Wang Q., Zhang Y., Chai F., Zhang Y. J., Zampieri L.',
      'Geoscientific Model Development, 17: 7067-7086', '10.5194/gmd-17-7067-2024'),
 ]
 
 def papers_body(lang):
-    items = []
-    for year, title, authors, journal, doi in PAPERS:
-        items.append(f'''    <li class="paper">
-      <div class="year">{year}</div>
-      <div>
-        <div class="t">{title}</div>
-        <div class="a">{authors}</div>
-        <div class="j">{journal}. DOI: <a href="https://doi.org/{doi}" target="_blank" style="color:var(--navy-3)">{doi}</a></div>
-      </div>
-    </li>''')
-    return '<div class="section">\n  <ul class="papers">\n' + '\n'.join(items) + '\n  </ul>\n</div>'
+    return '<div class="section">\n' + paper_timeline(PAPERS, lang) + '\n</div>'
 
 def news_body(lang):
     if lang == EN:
@@ -797,10 +814,10 @@ def home_body(lang):
         }
         pub_head = ('Publications', 'SELECTED PUBLICATIONS', 'All Publications')
         pubs = [
-            ('2026', 'Digital twin of the ocean as a catalyst for blue economy innovation', 'Chai F., Deng Q., Dai M., et al. National Science Review, 13(3): nwag012.'),
-            ('2025', 'Rising trends in winter phytoplankton blooms in the northern Arabian Sea over the last two decades', 'Song Z., Kang D., Chai F. Geophysical Research Letters, 52.'),
-            ('2025', 'Arctic warming as a potential trigger for the warm blob in the northeast Pacific', 'Chen H.-H., Wang Y., Li X., et al. npj Climate and Atmospheric Science, 8.'),
-            ('2024', 'Development of a total variation diminishing (TVD) sea ice transport scheme', 'Wang Q., Zhang Y., Chai F., et al. Geoscientific Model Development, 17.'),
+            ('2026', 2, 'Digital twin of the ocean as a catalyst for blue economy innovation', 'Chai F., Deng Q., Dai M., et al.', 'National Science Review, 13(3): nwag012', '10.1093/nsr/nwag012'),
+            ('2025', 6, 'Rising trends in winter phytoplankton blooms in the northern Arabian Sea over the last two decades', 'Song Z., Kang D., Chai F.', 'Geophysical Research Letters, 52', '10.1029/2025GL116509'),
+            ('2025', 3, 'Arctic warming as a potential trigger for the warm blob in the northeast Pacific', 'Chen H.-H., Wang Y., Li X., et al.', 'npj Climate and Atmospheric Science, 8', '10.1038/s41612-025-00900-9'),
+            ('2024', 9, 'Development of a total variation diminishing (TVD) sea ice transport scheme', 'Wang Q., Zhang Y., Chai F., et al.', 'Geoscientific Model Development, 17', '10.5194/gmd-17-7067-2024'),
         ]
         join = [
             ('Recruitment', 'We recruit PhD and Master\u2019s students year-round and welcome postdoctoral applicants from around the world with interests in marine biogeochemistry, climate modeling, and computational oceanography.', 'mailto:fchai@xmu.edu.cn', 'Send an Application'),
@@ -860,10 +877,10 @@ def home_body(lang):
         }
         pub_head = ('代表性论文', 'SELECTED PUBLICATIONS', '全部论文')
         pubs = [
-            ('2026', 'Digital twin of the ocean as a catalyst for blue economy innovation', 'Chai F., Deng Q., Dai M., 等. National Science Review, 13(3): nwag012.'),
-            ('2025', 'Rising trends in winter phytoplankton blooms in the northern Arabian Sea over the last two decades', 'Song Z., Kang D., Chai F. Geophysical Research Letters, 52.'),
-            ('2025', 'Arctic warming as a potential trigger for the warm blob in the northeast Pacific', 'Chen H.-H., Wang Y., Li X., 等. npj Climate and Atmospheric Science, 8.'),
-            ('2024', 'Development of a total variation diminishing (TVD) sea ice transport scheme', 'Wang Q., Zhang Y., Chai F., 等. Geoscientific Model Development, 17.'),
+            ('2026', 2, 'Digital twin of the ocean as a catalyst for blue economy innovation', 'Chai F., Deng Q., Dai M., 等.', 'National Science Review, 13(3): nwag012', '10.1093/nsr/nwag012'),
+            ('2025', 6, 'Rising trends in winter phytoplankton blooms in the northern Arabian Sea over the last two decades', 'Song Z., Kang D., Chai F.', 'Geophysical Research Letters, 52', '10.1029/2025GL116509'),
+            ('2025', 3, 'Arctic warming as a potential trigger for the warm blob in the northeast Pacific', 'Chen H.-H., Wang Y., Li X., 等.', 'npj Climate and Atmospheric Science, 8', '10.1038/s41612-025-00900-9'),
+            ('2024', 9, 'Development of a total variation diminishing (TVD) sea ice transport scheme', 'Wang Q., Zhang Y., Chai F., 等.', 'Geoscientific Model Development, 17', '10.5194/gmd-17-7067-2024'),
         ]
         join = [
             ('招生招聘', '课题组长期招收博士研究生、硕士研究生，并面向全球招聘博士后。欢迎对海洋生物地球化学、气候模拟与计算海洋学感兴趣的同学与我们联系。', 'mailto:fchai@xmu.edu.cn', '发送申请邮件'),
@@ -968,14 +985,7 @@ def home_body(lang):
         <span class="arr">→</span>
       </a>''' for i, (d, t, p) in enumerate(news[1:]))
 
-    pub_parts = '\n'.join(
-        f'''    <li class="paper" data-reveal style="--d:{i*80}ms">
-      <div class="year">{y}</div>
-      <div>
-        <div class="t">{t}</div>
-        <div class="j">{j}</div>
-      </div>
-    </li>''' for i, (y, t, j) in enumerate(pubs))
+    pub_parts = paper_timeline(pubs, lang, reveal=True)
 
     join_parts = '\n'.join(
         f'''    <div class="join-cell" data-reveal style="--d:{i*120}ms">

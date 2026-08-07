@@ -406,6 +406,32 @@ html.anim .hslide.on .hcap .hero-ctas { opacity: 1; transform: none; transition-
 .paper .a { font-size: .8125em; color: var(--ink-3); margin: 4px 0; }
 .paper .j { font-size: 13px; color: var(--navy-3); }
 
+/* ===== 论文时间线：年份合并 + 竖线月份刻度 ===== */
+.papers.tl { list-style: none; }
+.tl-group { display: grid; grid-template-columns: 84px 1fr; align-items: start; }
+.tl-year {
+  text-align: right; padding: 16px 22px 0 0; font-size: 20px; color: var(--navy);
+  font-weight: 600; letter-spacing: .1em; font-variant-numeric: tabular-nums;
+  position: relative;
+}
+.tl-year::after {
+  content: ""; position: absolute; right: 0; top: 24px; width: 10px; height: 10px;
+  border-radius: 50%; background: var(--gold); border: 2px solid var(--paper);
+  box-shadow: 0 0 0 2px var(--line-2); transform: translateX(50%);
+}
+.tl-items { list-style: none; border-left: 2px solid var(--line-2); padding: 6px 0 18px 30px; }
+.tl-item { position: relative; padding: 14px 0 16px; }
+.tl-item:not(:last-child) { border-bottom: 1px dashed var(--line); }
+.tl-dot {
+  position: absolute; left: -33px; top: 24px; width: 10px; height: 10px;
+  border-radius: 50%; background: var(--gold); border: 2px solid var(--paper);
+  box-shadow: 0 0 0 2px var(--line-2);
+}
+.tl-month { display: inline-block; font-size: 11px; color: var(--gold); letter-spacing: .2em; margin-bottom: 4px; font-weight: 600; }
+.tl-item .t { font-size: .9375em; font-weight: 600; color: var(--ink); }
+.tl-item .a { font-size: .8125em; color: var(--ink-3); margin: 4px 0; }
+.tl-item .j { font-size: 13px; color: var(--navy-3); }
+
 /* ===== 新闻动态（子页面） ===== */
 .news-page { max-width: 1200px; }
 .news-feat {
@@ -580,10 +606,8 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
   .g-nav ul {
     flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; align-items: stretch;
     height: 100%; margin: 0; padding: 0; gap: 0;
-    overflow-x: auto; overflow-y: visible;
-    -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    overflow: visible;
   }
-  .g-nav ul::-webkit-scrollbar { display: none; }
   .g-nav ul > li { display: flex; align-items: center; flex-shrink: 0; }
   .g-nav ul > li > a {
     display: flex; align-items: center; height: 100%;
@@ -610,11 +634,10 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
     background: none; transform: none; transition: transform .25s;
   }
   .g-nav .has-sub.open > a::after { transform: rotate(180deg); }
-  /* 窄屏子菜单：fixed 全宽抽屉（contain:layout 使 fixed 后代以面板为包含块，避开滚动容器裁剪） */
-  .g-nav { contain: layout; }
+  /* 窄屏子菜单：绝对定位贴住按钮左下方 */
   .g-nav .sub {
-    position: fixed; top: calc(100% + 4px); left: 16px; right: 16px;
-    min-width: 0; max-width: none;
+    position: absolute; top: 100%; left: 0;
+    min-width: 240px; max-width: none;
     background: #fff; border-top: 2px solid var(--navy);
     box-shadow: 0 16px 40px rgba(8, 26, 44, .2);
     padding: 8px 0; z-index: 70;
@@ -656,6 +679,10 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
   .project-hero, .project-body { padding: 32px 24px; }
   .paper { flex-direction: column; gap: 8px; }
   .paper .year { width: auto; text-align: left; }
+  .tl-group { grid-template-columns: 64px 1fr; }
+  .tl-year { font-size: 17px; padding: 14px 16px 0 0; }
+  .tl-items { padding-left: 22px; }
+  .tl-dot { left: -27px; top: 22px; }
   .footer .inner { grid-template-columns: 1fr 1fr; }
   .scroll-hint { display: none; }
 }
