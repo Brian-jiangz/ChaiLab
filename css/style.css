@@ -144,8 +144,6 @@ body.locked { overflow: hidden; }
   will-change: transform;
 }
 .body-main.show { transform: translateY(0); }
-.hero { height: 100vh; min-height: 620px; position: relative; overflow: hidden; background: #081a2c; padding-top: 74px; }
-.hero-slides { position: absolute; inset: 0; }
 .hslide {
   position: absolute; inset: 0; opacity: 0; background-size: cover; background-position: center;
   will-change: opacity, transform;
@@ -438,7 +436,7 @@ html.anim .hslide.on .hcap .hero-ctas { opacity: 1; transform: none; transition-
 
 /* ===== 子页面横幅 ===== */
 .page-banner {
-  margin-top: 110px; height: 300px; position: relative;
+  margin-top: 74px; height: 300px; position: relative;
   background: linear-gradient(160deg, #0a2138 0%, #0d2f4f 60%, #123a61 100%);
   color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
   overflow: hidden;
