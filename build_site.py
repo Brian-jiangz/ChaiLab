@@ -198,14 +198,15 @@ def page(fname, title, en_sub, body, lang, extra='', banner=True, scripts=''):
 </div>
 ''' if banner else ''
     scripts_html = f'<script>document.documentElement.classList.add("anim");</script>\n<script src="{scripts}" defer></script>' if scripts else ''
+    prefix = '../' if lang == EN else ''
     return f'''<!DOCTYPE html>
 <html lang="{lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="{prefix}images/favicon.svg" type="image/svg+xml">
 <title>{title} | {sitename} · Xiamen University</title>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="{prefix}css/style.css">
 {scripts_html}
 </head>
 <body>
@@ -1019,7 +1020,11 @@ def main():
         open(fname, 'w').write(html)
         print('生成', fname)
 
-    # 英文版
+    # 英文版（en/ 子目录：body 内相对资源加 ../ 前缀）
+    def _en(html):
+        return (html.replace('href="images/', 'href="../images/')
+                    .replace('src="images/', 'src="../images/')
+                    .replace('href="reports/', 'href="../reports/'))
     for fname, (title, en_sub, about_body) in specs_en.items():
         if fname == 'about.html':
             body = about_body['en']
@@ -1027,18 +1032,18 @@ def main():
             body = body_full[fname](EN)
         else:
             body = body_fn[fname](EN)
-        html = page(fname, title, en_sub, body, EN, scripts='../js/home.js')
+        html = _en(page(fname, title, en_sub, body, EN, scripts='../js/home.js'))
         open('en/' + fname, 'w').write(html)
         print('生成 en/' + fname)
 
     # 成员页
     open('members.html', 'w').write(page('members.html', '成员介绍', 'GROUP MEMBERS', members_body(ZH), ZH, scripts='js/home.js'))
-    open('en/members.html', 'w').write(page('members.html', 'Members', 'GROUP MEMBERS', members_body(EN), EN, scripts='../js/home.js'))
+    open('en/members.html', 'w').write(_en(page('members.html', 'Members', 'GROUP MEMBERS', members_body(EN), EN, scripts='../js/home.js')))
     print('生成 members.html / en/members.html')
 
     # 首页（无 page-banner，使用 home.js）
     open('index.html', 'w').write(page('index.html', '首页', 'HOME', home_body(ZH), ZH, banner=False, scripts='js/home.js'))
-    open('en/index.html', 'w').write(page('index.html', 'Home', 'HOME', home_body(EN), EN, banner=False, scripts='../js/home.js'))
+    open('en/index.html', 'w').write(_en(page('index.html', 'Home', 'HOME', home_body(EN), EN, banner=False, scripts='../js/home.js')))
     print('生成 index.html / en/index.html')
 
 if __name__ == '__main__':
