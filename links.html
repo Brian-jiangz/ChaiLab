@@ -6,12 +6,22 @@
 <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 <title>相关链接 | 柴扉教授课题组 · Xiamen University</title>
 <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
 
 <!-- 顶部导航 -->
-<header class="g-head">
-  <div class="inner">
+<header class="g-head" id="g-head">
+  <div class="topbar">
+    <div class="tb-inner">
+      <a href="about.html#join">招生招聘</a>
+      <span class="tb-sep"></span>
+      <a href="mailto:fchai@xmu.edu.cn">联系我们</a>
+      <span class="tb-sep"></span>
+      <a href="en/index.html" class="tb-lang">English</a>
+    </div>
+  </div>
+  <div class="inner main">
     <a href="index.html" class="logo">
       <img src="images/xmu_logo.png" alt="Xiamen University" class="logo-xmu">
       <img src="images/mel_logo.svg" alt="MEL" class="logo-mel">
@@ -26,14 +36,29 @@
         <li><a href="index.html">首页</a></li>
         <li><a href="about.html">课题组简介</a></li>
         <li><a href="members.html">成员介绍</a></li>
-        <li><a href="research.html">研究方向</a></li>
+        <li class="has-sub"><a href="research.html">研究方向</a>
+          <div class="sub"><dl>
+          <dd><a href="research.html#r0">生态系统与生物地球化学模拟</a></dd>
+          <dd><a href="research.html#r1">碳循环与气候反馈</a></dd>
+          <dd><a href="research.html#r2">次中尺度过程与生态效应</a></dd>
+          <dd><a href="research.html#r3">古气候与古海洋模拟</a></dd>
+          <dd><a href="research.html#r4">海洋数字孪生</a></dd>
+          <dd><a href="research.html#r5">观测—模拟融合</a></dd>
+          <dd><a href="research.html#project">CESM-CoSiNE 项目</a></dd>
+          </dl></div>
+        </li>
         <li><a href="papers.html">发表论文</a></li>
         <li><a href="news.html">新闻动态</a></li>
-        <li><a href="links.html" class="active">相关链接</a></li>
+        <li class="has-sub"><a href="links.html" class="active">相关链接</a>
+          <div class="sub"><dl>
+          <dd><a href="https://coeoa.xmu.edu.cn/t/CF/" target="_blank">柴扉教授个人主页</a></dd>
+          <dd><a href="https://meli.xmu.edu.cn/" target="_blank">MEL 实验室官网</a></dd>
+          <dd><a href="links.html">全部相关链接</a></dd>
+          </dl></div>
+        </li>
         <li class="m-lang"><a href="en/index.html">English</a></li>
       </ul>
     </nav>
-    <a class="lang-switch" href="en/index.html">English</a>
     <button class="nav-toggle" onclick="document.querySelector('.g-nav').classList.toggle('open')">☰</button>
   </div>
 </header>
@@ -68,19 +93,23 @@
 <!-- 页脚 -->
 <footer class="footer">
   <div class="inner">
-    <div>
+    <div class="f-brand">
       <h5>柴扉教授课题组</h5>
       <p>海洋生物地球化学全国重点实验室（厦门大学）</p>
       <p>厦门大学翔安校区周隆泉楼</p>
     </div>
     <div>
+      <h5>快速导航</h5>
+      <div class="f-links"><a href="about.html">课题组简介</a><a href="members.html">成员介绍</a><a href="research.html">研究方向</a><a href="papers.html">发表论文</a><a href="news.html">新闻动态</a><a href="links.html">相关链接</a></div>
+    </div>
+    <div>
+      <h5>相关链接</h5>
+      <div class="f-links"><a href="https://coeoa.xmu.edu.cn/t/CF/" target="_blank">柴扉教授个人主页</a><a href="https://meli.xmu.edu.cn/" target="_blank">海洋生物地球化学全国重点实验室</a><a href="https://www.xmu.edu.cn/" target="_blank">厦门大学</a></div>
+    </div>
+    <div>
       <h5>联系方式</h5>
       <p>邮箱：fchai@xmu.edu.cn</p>
       <p>邮编：361102</p>
-    </div>
-    <div>
-      <h5>快速导航</h5>
-      <p><a href="about.html">课题组简介</a> · <a href="members.html">成员介绍</a> · <a href="project.html">CESM-CoSiNE</a></p>
     </div>
     <div class="copy">© 2026 柴扉教授课题组 · 厦门大学海洋生物地球化学全国重点实验室</div>
   </div>

@@ -21,6 +21,8 @@ TXT = {
         'site_sub': 'Chai Group · Xiamen University',
         'lang_switch': 'English',
         'lang_url': 'en/index.html',
+        'tb_join': '招生招聘',
+        'tb_contact': '联系我们',
         'footer_name': '柴扉教授课题组',
         'footer_org': '海洋生物地球化学全国重点实验室（厦门大学）',
         'footer_addr': '厦门大学翔安校区周隆泉楼',
@@ -31,6 +33,7 @@ TXT = {
         'footer_about': '课题组简介',
         'footer_members': '成员介绍',
         'footer_project': 'CESM-CoSiNE',
+        'footer_links': '相关链接',
         'footer_copy': '© 2026 柴扉教授课题组 · 厦门大学海洋生物地球化学全国重点实验室',
     },
     'en': {
@@ -38,6 +41,8 @@ TXT = {
         'site_sub': 'Xiamen University · MEL',
         'lang_switch': '中文',
         'lang_url': '../index.html',
+        'tb_join': 'Join Us',
+        'tb_contact': 'Contact',
         'footer_name': 'Chai Group',
         'footer_org': 'State Key Laboratory of Marine Environmental Science (MEL), Xiamen University',
         'footer_addr': 'Zhoulongquan Building, Xiang\u2019an Campus, Xiamen University',
@@ -48,20 +53,82 @@ TXT = {
         'footer_about': 'About',
         'footer_members': 'Members',
         'footer_project': 'CESM-CoSiNE',
+        'footer_links': 'Related Links',
         'footer_copy': '© 2026 Chai Group · State Key Laboratory of Marine Environmental Science, Xiamen University',
     },
 }
 
+DD_ZH = {
+    'research': [
+        ('research.html#r0', '生态系统与生物地球化学模拟'),
+        ('research.html#r1', '碳循环与气候反馈'),
+        ('research.html#r2', '次中尺度过程与生态效应'),
+        ('research.html#r3', '古气候与古海洋模拟'),
+        ('research.html#r4', '海洋数字孪生'),
+        ('research.html#r5', '观测—模拟融合'),
+        ('research.html#project', 'CESM-CoSiNE 项目'),
+    ],
+    'links': [
+        ('https://coeoa.xmu.edu.cn/t/CF/', '柴扉教授个人主页', '_blank'),
+        ('https://meli.xmu.edu.cn/', 'MEL 实验室官网', '_blank'),
+        ('links.html', '全部相关链接', ''),
+    ],
+}
+DD_EN = {
+    'research': [
+        ('research.html#r0', 'Ecosystem & Biogeochemical Modeling'),
+        ('research.html#r1', 'Carbon Cycle & Climate Feedbacks'),
+        ('research.html#r2', 'Submesoscale Processes'),
+        ('research.html#r3', 'Paleoclimate Modeling'),
+        ('research.html#r4', 'Ocean Digital Twin'),
+        ('research.html#r5', 'Observation\u2013Model Integration'),
+        ('research.html#project', 'CESM-CoSiNE Project'),
+    ],
+    'links': [
+        ('https://coeoa.xmu.edu.cn/t/CF/', "Prof. Chai's Homepage", '_blank'),
+        ('https://meli.xmu.edu.cn/', 'MEL Official Site', '_blank'),
+        ('links.html', 'All Related Links', ''),
+    ],
+}
+
 def nav(active, lang):
     items = NAV_EN if lang == EN else NAV_ZH
+    dd = DD_EN if lang == EN else DD_ZH
     t = TXT[lang]
-    def _link(f, name):
+    parts = []
+    for f, name in items:
         cls = ' class="active"' if f == active else ''
-        return f'        <li><a href="{f}"{cls}>{name}</a></li>'
-    lis = '\n'.join(_link(f, name) for f, name in items)
+        if f == 'research.html':
+            subs = '\n'.join(f'          <dd><a href="{u}">{n}</a></dd>' for u, n in dd['research'])
+            parts.append(f'''        <li class="has-sub"><a href="{f}"{cls}>{name}</a>
+          <div class="sub"><dl>
+{subs}
+          </dl></div>
+        </li>''')
+        elif f == 'links.html':
+            subs = '\n'.join(
+                f'          <dd><a href="{u}"{(" target=" + chr(34) + tgt + chr(34)) if tgt else ""}>{n}</a></dd>'
+                for u, n, tgt in dd['links'])
+            parts.append(f'''        <li class="has-sub"><a href="{f}"{cls}>{name}</a>
+          <div class="sub"><dl>
+{subs}
+          </dl></div>
+        </li>''')
+        else:
+            parts.append(f'        <li><a href="{f}"{cls}>{name}</a></li>')
+    lis = '\n'.join(parts)
     return f'''<!-- 顶部导航 -->
-<header class="g-head">
-  <div class="inner">
+<header class="g-head" id="g-head">
+  <div class="topbar">
+    <div class="tb-inner">
+      <a href="about.html#join">{t['tb_join']}</a>
+      <span class="tb-sep"></span>
+      <a href="mailto:fchai@xmu.edu.cn">{t['tb_contact']}</a>
+      <span class="tb-sep"></span>
+      <a href="{t['lang_url']}" class="tb-lang">{t['lang_switch']}</a>
+    </div>
+  </div>
+  <div class="inner main">
     <a href="index.html" class="logo">
       <img src="images/xmu_logo.png" alt="Xiamen University" class="logo-xmu">
       <img src="images/mel_logo.svg" alt="MEL" class="logo-mel">
@@ -77,37 +144,69 @@ def nav(active, lang):
         <li class="m-lang"><a href="{t['lang_url']}">{t['lang_switch']}</a></li>
       </ul>
     </nav>
-    <a class="lang-switch" href="{t['lang_url']}">{t['lang_switch']}</a>
     <button class="nav-toggle" onclick="document.querySelector('.g-nav').classList.toggle('open')">☰</button>
   </div>
 </header>'''
 
 def footer(lang):
     t = TXT[lang]
+    if lang == EN:
+        qlinks = [
+            ('about.html', 'About'), ('members.html', 'Members'), ('research.html', 'Research'),
+            ('papers.html', 'Publications'), ('news.html', 'News'), ('links.html', 'Links'),
+        ]
+        rlinks = [
+            ('https://coeoa.xmu.edu.cn/t/CF/', "Prof. Chai's Homepage", ' target="_blank"'),
+            ('https://meli.xmu.edu.cn/', 'MEL, Xiamen University', ' target="_blank"'),
+            ('https://www.xmu.edu.cn/', 'Xiamen University', ' target="_blank"'),
+        ]
+    else:
+        qlinks = [
+            ('about.html', '课题组简介'), ('members.html', '成员介绍'), ('research.html', '研究方向'),
+            ('papers.html', '发表论文'), ('news.html', '新闻动态'), ('links.html', '相关链接'),
+        ]
+        rlinks = [
+            ('https://coeoa.xmu.edu.cn/t/CF/', '柴扉教授个人主页', ' target="_blank"'),
+            ('https://meli.xmu.edu.cn/', '海洋生物地球化学全国重点实验室', ' target="_blank"'),
+            ('https://www.xmu.edu.cn/', '厦门大学', ' target="_blank"'),
+        ]
+    q_html = ''.join(f'<a href="{u}">{n}</a>' for u, n in qlinks)
+    r_html = ''.join(f'<a href="{u}"{x}>{n}</a>' for u, n, x in rlinks)
     return f'''<!-- 页脚 -->
 <footer class="footer">
   <div class="inner">
-    <div>
+    <div class="f-brand">
       <h5>{t['footer_name']}</h5>
       <p>{t['footer_org']}</p>
       <p>{t['footer_addr']}</p>
+    </div>
+    <div>
+      <h5>{t['footer_nav']}</h5>
+      <div class="f-links">{q_html}</div>
+    </div>
+    <div>
+      <h5>{t['footer_links']}</h5>
+      <div class="f-links">{r_html}</div>
     </div>
     <div>
       <h5>{t['footer_contact']}</h5>
       <p>{t['footer_email']}</p>
       <p>{t['footer_zip']}</p>
     </div>
-    <div>
-      <h5>{t['footer_nav']}</h5>
-      <p><a href="about.html">{t['footer_about']}</a> · <a href="members.html">{t['footer_members']}</a> · <a href="project.html">{t['footer_project']}</a></p>
-    </div>
     <div class="copy">{t['footer_copy']}</div>
   </div>
 </footer>'''
 
-def page(fname, title, en_sub, body, lang, extra=''):
+def page(fname, title, en_sub, body, lang, extra='', banner=True, scripts=''):
     t = TXT[lang]
     sitename = t['site_name']
+    banner_html = f'''
+<div class="page-banner">
+  <h1>{title}</h1>
+  <p>{en_sub}</p>
+</div>
+''' if banner else ''
+    scripts_html = f'<script>document.documentElement.classList.add("anim");</script>\n<script src="{scripts}" defer></script>' if scripts else ''
     return f'''<!DOCTYPE html>
 <html lang="{lang}">
 <head>
@@ -116,16 +215,12 @@ def page(fname, title, en_sub, body, lang, extra=''):
 <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 <title>{title} | {sitename} · Xiamen University</title>
 <link rel="stylesheet" href="css/style.css">
+{scripts_html}
 </head>
 <body>
 
 {nav(fname, lang)}
-
-<div class="page-banner">
-  <h1>{title}</h1>
-  <p>{en_sub}</p>
-</div>
-
+{banner_html}
 {body}
 {footer(lang)}
 {extra}
@@ -150,7 +245,7 @@ ABOUT_BODY = {
     <div class="intro-card">
       <p>本课题组依托厦门大学海洋生物地球化学全国重点实验室，长期从事海洋物理—生态—生物地球化学耦合研究，聚焦海洋碳循环、营养盐循环与生态系统对气候变化的响应与反馈。</p>
       <p>课题组以自主发展的 CESM-CoSiNE 海洋生态系统—生物地球化学模块为核心工具，结合观测资料与数值模拟，研究北太平洋、南海及全球大洋中浮游生态系统与碳循环的调控机制，并拓展至古气候重建与海洋数字孪生等前沿方向。</p>
-      <p>课题组面向全球招聘博士后、博士生与硕士生，欢迎对海洋生物地球化学、气候模拟与计算海洋学感兴趣的同学加入。</p>
+      <p id="join">课题组面向全球招聘博士后、博士生与硕士生，欢迎对海洋生物地球化学、气候模拟与计算海洋学感兴趣的同学加入。</p>
       <p style="margin-top:28px"><a class="btn btn-solid" href="members.html">了解课题组成员 →</a></p>
     </div>
     <div class="pi-card">
@@ -172,7 +267,7 @@ ABOUT_BODY = {
     <div class="intro-card">
       <p>Affiliated with the State Key Laboratory of Marine Environmental Science (MEL) at Xiamen University, our group conducts research on coupled physical\u2013ecological\u2013biogeochemical oceanography, with a focus on the marine carbon cycle, nutrient cycles, and the response and feedback of marine ecosystems to climate change.</p>
       <p>Centered on the CESM-CoSiNE marine ecosystem\u2013biogeochemistry module, which we develop in-house, and combining observations with numerical simulation, the group studies the controls of planktonic ecosystems and the carbon cycle in the North Pacific, the South China Sea, and the global ocean, extending to paleoclimate reconstruction and ocean digital twins.</p>
-      <p>The group welcomes postdoctoral researchers and PhD/Master's students from around the world with interests in marine biogeochemistry, climate modeling, and computational oceanography.</p>
+      <p id="join">The group welcomes postdoctoral researchers and PhD/Master's students from around the world with interests in marine biogeochemistry, climate modeling, and computational oceanography.</p>
       <p style="margin-top:28px"><a class="btn btn-solid" href="members.html">Meet the Team →</a></p>
     </div>
     <div class="pi-card">
@@ -224,8 +319,8 @@ def tiles_body(lang):
             (SVG_SAT, '观测—模拟融合', '结合现场观测、卫星遥感与数值模式，量化评估模式不确定性，改进生态模型参数化。'),
         ]
     return '\n'.join(
-        f'    <div class="rtile">\n      <div class="icon">{icon}</div>\n      <h3>{title}</h3>\n      <p>{desc}</p>\n    </div>'
-        for icon, title, desc in items)
+        f'    <div class="rtile" id="r{i}">\n      <div class="icon">{icon}</div>\n      <h3>{title}</h3>\n      <p>{desc}</p>\n    </div>'
+        for i, (icon, title, desc) in enumerate(items))
 
 def project_box(lang, full=True):
     if lang == EN:
@@ -524,226 +619,235 @@ def links_body(lang):
 </div>'''
 
 def home_body(lang):
-    """首页（轮播 + 分区摘要）"""
+    """首页：清华式布局（Hero轮播+统计条+新闻分栏+研究方向+项目横幅+论文+招生合作）"""
+    import os
     if lang == EN:
         slides = [
-            ('Marine Biogeochemistry', 'Marine Biogeochemistry and Climate Modeling', 'Ocean Biogeochemistry and Climate Modeling', 'MARINE BIOGEOCHEMISTRY · ECOSYSTEM MODELING · PALEOCLIMATE'),
-            ('Earth System Modeling', 'The CESM-CoSiNE Marine Ecosystem Model', 'From coupled physics\u2013chemistry\u2013biology to understanding the marine carbon cycle', 'EMBEDDING CoSiNE IN THE COMMUNITY EARTH SYSTEM MODEL'),
-            ('Paleoclimate & Digital Earth', 'Paleoclimate and the Digital Earth', 'Reconstruct the past, simulate the present, foresee the future', 'FROM PALEOCLIMATE RECONSTRUCTION TO DIGITAL EARTH'),
+            ('Marine Biogeochemistry', 'Marine Biogeochemistry and Climate Modeling', 'Ocean Biogeochemistry and Climate Modeling'),
+            ('Earth System Modeling', 'The CESM-CoSiNE Marine Ecosystem Model', 'From coupled physics\u2013chemistry\u2013biology to understanding the marine carbon cycle'),
+            ('Paleoclimate & Digital Earth', 'Paleoclimate and the Digital Earth', 'Reconstruct the past, simulate the present, foresee the future'),
         ]
-        about = ('About the Group', '''<p>Affiliated with the State Key Laboratory of Marine Environmental Science (MEL) at Xiamen University, our group studies coupled physical\u2013ecological\u2013biogeochemical oceanography, with a focus on the marine carbon cycle, nutrient cycles, and the response of marine ecosystems to climate change.</p>
-      <p>Centered on the in-house CESM-CoSiNE module and combining observations with numerical simulation, we investigate planktonic ecosystems and the carbon cycle from the North Pacific to the global ocean, extending to paleoclimate reconstruction and ocean digital twins.</p>
-      <p>The group welcomes postdoctoral researchers and PhD/Master's students with interests in marine biogeochemistry, climate modeling, and computational oceanography.</p>''')
-        pi = ('Prof. Fei Chai', 'Tang Shifeng Chair Professor in Marine Sciences · PI', [
-            ('Unit', 'State Key Laboratory of Marine Environmental Science (MEL), XMU'),
-            ('Office', 'Zhoulongquan Building, Xiang\u2019an Campus, XMU'),
-            ('Email', 'fchai@xmu.edu.cn'),
-            ('Ph.D.', 'Biological Oceanography, Duke University (1991\u20131995)'),
-            ('Career', 'Former Professor (tenured), University of Maine'),
-        ])
-        research = [
-            ('Marine Ecosystem and Biogeochemical Modeling', 'Development and improvement of the CESM-CoSiNE coupled module to simulate phytoplankton, nutrients, and the carbon cycle.'),
-            ('Marine Carbon Cycle and Climate Feedbacks', 'Quantifying the ocean\u2019s role in regulating atmospheric CO\u2082 and the response of the carbon cycle to climate change.'),
-            ('Submesoscale Processes and Ecological Effects', 'How submesoscale physics (fronts, eddies) regulates planktonic ecosystems and carbon export.'),
-            ('Paleoclimate and Paleoceanography', 'Earth system modeling of key periods such as the Last Interglacial.'),
-            ('Ocean Digital Twin', 'Building ocean digital twins to empower blue-economy innovation.'),
-            ('Observation\u2013Model Integration', 'Combining observations and models to quantify uncertainty and improve parameterizations.'),
-        ]
+        stats = [(22, '', 'Model Tracers'), (6, '', 'Research Areas'), (3, '', 'Ocean Regions'), (35, '+', 'Years of Research')]
+        news_head = ('新闻动态', 'NEWS & UPDATES', 'More')
         news = [
-            ('FEB 2026', 'Prof. Chai\u2019s team reveals ocean digital twins as a new engine for blue-economy innovation', 'The team systematically reviewed the architecture of ocean digital twins and analyzed key application scenarios in blue-economy development.'),
-            ('NOV 2025', 'Lujiang Ocean Symposium concludes successfully', 'The symposium co-hosted by Lujiang Innovation Laboratory and MEL (XMU) was held successfully.'),
-            ('UPDATING', 'Group news continuously updated', 'Stay tuned for the latest research progress and recruitment.'),
+            ('FEB 2026', 'Prof. Chai\u2019s team reveals ocean digital twins as a new engine for blue-economy innovation',
+             'The team systematically reviewed the core architecture of ocean digital twins, analyzed key application scenarios in blue-economy development, and provided forward-looking perspectives on challenges and prospects.'),
+            ('NOV 2025', 'Lujiang Ocean Symposium concludes successfully',
+             'The ocean symposium co-hosted by Lujiang Innovation Laboratory and the State Key Laboratory of Marine Environmental Science (XMU) was held successfully.'),
+            ('SEP 2025', 'Group website officially launched',
+             'The official website of the Chai Group is now live, presenting our research areas, members, and achievements.'),
+            ('UPDATING', 'Group news continuously updated',
+             'Stay tuned for the latest research progress, recruitment, and academic exchange activities.'),
         ]
+        res_head = ('研究方向', 'RESEARCH AREAS')
+        res_more = 'Learn More'
+        cos = ('CESM-CoSiNE', 'CESM-CoSiNE: An Ocean Ecosystem\u2013Biogeochemistry Module Embedded in CESM',
+               'Developed and maintained by our group, embedded in the CESM Earth System Model (POP2), studying planktonic ecosystems and the marine carbon cycle at global and regional scales.',
+               'Model Details', 'Project Report')
+        pub_head = ('代表性论文', 'SELECTED PUBLICATIONS', 'All Publications')
+        pubs = [
+            ('2026', '(To be added) Paper title', 'Authors. Journal Name, 2026.'),
+            ('2025', '(To be added) Paper title', 'Authors. Journal Name, 2025.'),
+            ('2025', '(To be added) Paper title', 'Authors. Journal Name, 2025.'),
+            ('2024', '(To be added) Paper title', 'Authors. Journal Name, 2024.'),
+        ]
+        join = [
+            ('Recruitment', 'We recruit PhD and Master\u2019s students year-round and welcome postdoctoral applicants from around the world with interests in marine biogeochemistry, climate modeling, and computational oceanography.', 'mailto:fchai@xmu.edu.cn', 'Send an Application'),
+            ('Collaboration', 'The group maintains close collaborations with universities and research institutes at home and abroad. We welcome academic visits, joint training, and project cooperation.', 'links.html', 'Related Links'),
+        ]
+        scroll_hint = 'Scroll'
     else:
         slides = [
-            ('Marine Biogeochemistry', '海洋生物地球化学与气候模拟', 'Ocean Biogeochemistry and Climate Modeling', 'MARINE BIOGEOCHEMISTRY · ECOSYSTEM MODELING · PALEOCLIMATE'),
-            ('Earth System Modeling', 'CESM-CoSiNE 海洋生态系统模式', '从物理—化学—生物耦合出发，理解海洋碳循环', 'EMBEDDING CoSiNE IN THE COMMUNITY EARTH SYSTEM MODEL'),
-            ('Paleoclimate & Digital Earth', '古气候与数字地球', '重建过去，模拟现在，预见未来', 'FROM PALEOCLIMATE RECONSTRUCTION TO DIGITAL EARTH'),
+            ('Marine Biogeochemistry', '海洋生物地球化学与气候模拟', 'Ocean Biogeochemistry and Climate Modeling'),
+            ('Earth System Modeling', 'CESM-CoSiNE 海洋生态系统模式', '从物理—化学—生物耦合出发，理解海洋碳循环'),
+            ('Paleoclimate & Digital Earth', '古气候与数字地球', '重建过去，模拟现在，预见未来'),
         ]
-        about = ('课题组简介', '''<p>本课题组依托厦门大学海洋生物地球化学全国重点实验室，长期从事海洋物理—生态—生物地球化学耦合研究，聚焦海洋碳循环、营养盐循环与生态系统对气候变化的响应与反馈。</p>
-      <p>课题组以自主发展的 CESM-CoSiNE 海洋生态系统—生物地球化学模块为核心工具，结合观测资料与数值模拟，研究北太平洋、南海及全球大洋中浮游生态系统与碳循环的调控机制，并拓展至古气候重建与海洋数字孪生等前沿方向。</p>
-      <p>课题组面向全球招聘博士后、博士生与硕士生，欢迎对海洋生物地球化学、气候模拟与计算海洋学感兴趣的同学加入。</p>''')
-        pi = ('柴扉 教授', '"唐世凤"海洋学科讲席教授 · PI', [
-            ('单位', '海洋生物地球化学全国重点实验室（厦门大学）'),
-            ('地址', '厦门大学翔安校区周隆泉楼'),
-            ('邮箱', 'fchai@xmu.edu.cn'),
-            ('学历', '杜克大学 生物海洋学博士（1991–1995）'),
-            ('经历', '曾任美国缅因大学海洋学院教授（终身教职）'),
-        ])
-        research = [
-            ('海洋生态系统与生物地球化学模拟', '发展并改进 CESM-CoSiNE 海洋生态系统—生物地球化学耦合模式，模拟浮游植物、营养盐与碳循环的时空演变。'),
-            ('海洋碳循环与气候反馈', '研究海洋对大气 CO₂ 的调控作用、生物泵效率及海洋碳循环对未来气候变化的响应。'),
-            ('海洋次中尺度过程与生态效应', '探索次中尺度物理过程（锋面、涡旋）对浮游生态系统与碳输出通量的调控机制。'),
-            ('古气候与古海洋模拟', '利用地球系统模式开展末次间冰期等关键时期古气候模拟，理解碳循环的长期演化。'),
-            ('海洋数字孪生', '构建海洋数字孪生系统，赋能蓝色经济创新，服务海洋观测—模拟—预测一体化。'),
-            ('观测—模拟融合', '结合现场观测、卫星遥感与数值模式，量化评估模式不确定性，改进生态模型参数化。'),
-        ]
+        stats = [(22, '', '模式示踪物'), (6, '', '研究方向'), (3, '', '覆盖海域'), (35, '+', '年科研积累')]
+        news_head = ('新闻动态', 'NEWS & UPDATES', '更多')
         news = [
-            ('2026-02', '柴扉教授团队揭示海洋数字孪生是赋能蓝色经济创新发展的新引擎', '团队系统梳理海洋数字孪生核心架构，解析其在蓝色经济发展中的关键应用场景，并对该领域挑战与前景作出前瞻性研判。'),
-            ('2025-11', '鹭江海洋研讨会圆满落幕', '由鹭江创新实验室与海洋生物地球化学全国重点实验室（厦门大学）联合主办的海洋研讨会成功举办。'),
-            ('待更新', '课题组新闻持续更新中', '欢迎关注课题组最新科研进展、招生与学术交流动态。'),
+            ('2026-02', '柴扉教授团队揭示海洋数字孪生是赋能蓝色经济创新发展的新引擎',
+             '团队系统梳理海洋数字孪生核心架构，解析其在蓝色经济发展中的关键应用场景，并对该领域挑战与前景作出前瞻性研判。'),
+            ('2025-11', '鹭江海洋研讨会圆满落幕',
+             '由鹭江创新实验室与海洋生物地球化学全国重点实验室（厦门大学）联合主办的海洋研讨会成功举办。'),
+            ('2025-09', '课题组网站全新上线',
+             '柴扉教授课题组官方网站正式启用，全面展示课题组研究方向、成员与科研成果。'),
+            ('待更新', '课题组新闻持续更新中',
+             '欢迎关注课题组最新科研进展、招生与学术交流动态。'),
         ]
+        res_head = ('研究方向', 'RESEARCH AREAS')
+        res_more = '了解更多'
+        cos = ('CESM-CoSiNE', 'CESM-CoSiNE：嵌入 CESM 的海洋生态—生物地球化学模块',
+               '由本课题组自主发展并维护，已嵌入 CESM 地球系统模式（POP2 海洋分量），研究全球及区域尺度浮游生态系统与海洋碳循环的演变。',
+               '了解模式详情', '阅读项目报告')
+        pub_head = ('代表性论文', 'SELECTED PUBLICATIONS', '全部论文')
+        pubs = [
+            ('2026', '（待补充）论文标题', 'Authors. Journal Name, 2026.'),
+            ('2025', '（待补充）论文标题', 'Authors. Journal Name, 2025.'),
+            ('2025', '（待补充）论文标题', 'Authors. Journal Name, 2025.'),
+            ('2024', '（待补充）论文标题', 'Authors. Journal Name, 2024.'),
+        ]
+        join = [
+            ('招生招聘', '课题组长期招收博士研究生、硕士研究生，并面向全球招聘博士后。欢迎对海洋生物地球化学、气候模拟与计算海洋学感兴趣的同学与我们联系。', 'mailto:fchai@xmu.edu.cn', '发送申请邮件'),
+            ('合作交流', '课题组与国内外多所高校及研究机构保持紧密合作，欢迎就学术访问、联合培养与项目合作事宜洽谈。', 'links.html', '查看相关链接'),
+        ]
+        scroll_hint = '向下滚动'
 
-    svg_deco = '''      <svg class="bg-svg" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <g stroke="rgba(255,255,255,.05)" fill="none">
-          <path d="M-40,420 C200,360 400,470 640,410 S1080,350 1480,420"/>
-          <path d="M-40,455 C200,395 400,505 640,445 S1080,385 1480,455"/>
-          <path d="M-40,490 C200,430 400,540 640,480 S1080,420 1480,490"/>
+    wave_deco = '''      <svg class="hdeco" viewBox="0 0 1440 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g stroke="rgba(255,255,255,.07)" fill="none">
+          <path d="M-40,440 C200,380 400,490 640,430 S1080,370 1480,440"/>
+          <path d="M-40,478 C200,418 400,528 640,468 S1080,408 1480,478"/>
+          <path d="M-40,516 C200,456 400,566 640,506 S1080,446 1480,516"/>
         </g>
-        <g stroke="rgba(255,255,255,.03)">
-          <line x1="0" y1="130" x2="1440" y2="130"/><line x1="0" y1="260" x2="1440" y2="260"/>
-          <line x1="360" y1="0" x2="360" y2="520"/><line x1="720" y1="0" x2="720" y2="520"/><line x1="1080" y1="0" x2="1080" y2="520"/>
+        <g stroke="rgba(255,255,255,.04)">
+          <line x1="0" y1="140" x2="1440" y2="140"/><line x1="0" y1="280" x2="1440" y2="280"/>
+          <line x1="360" y1="0" x2="360" y2="560"/><line x1="720" y1="0" x2="720" y2="560"/><line x1="1080" y1="0" x2="1080" y2="560"/>
         </g>
       </svg>'''
 
-    slide_html = []
-    for i, (kicker, h1, p, en) in enumerate(slides):
-        slide_html.append(f'''    <div class="slide s{i+1}{' on' if i == 0 else ''}">
-{svg_deco}
-      <div class="inner-txt">
-        <div class="kicker">{kicker}</div>
-        <h1>{h1}</h1>
+    slide_parts = []
+    for i, (kicker, h, p) in enumerate(slides):
+        photo = f'images/hero{i+1}.jpg' if os.path.exists(f'images/hero{i+1}.jpg') else None
+        bg_style = f' style="background-image:linear-gradient(rgba(7,24,42,.55),rgba(7,24,42,.55)),url({photo});background-size:cover;background-position:center"' if photo else ''
+        slide_parts.append(f'''    <div class="hslide{' hs' + str(i+1) if not photo else ''}{' on' if i == 0 else ''}"{bg_style}>
+{wave_deco}
+      <div class="hcap" data-cap>
+        <span class="kicker">{kicker}</span>
+        <h2>{h}</h2>
         <p>{p}</p>
-        <p class="en">{en}</p>
       </div>
     </div>''')
 
-    sec_head = lambda en_txt, zh_txt: f'''  <div class="sec-head">
-    <span class="en">{en_txt}</span>
-    <h2>{zh_txt}</h2>
-  </div>'''
+    dots = '\n'.join(f'        <span class="{"on" if i == 0 else ""}"><i></i></span>' for i in range(len(slides)))
 
-    about_title, about_paras = about
-    pi_name, pi_title, pi_info = pi
-    pi_lis = '\n'.join(f'        <li><b>{k}：</b>{v}</li>' if lang == ZH else f'        <li><b>{k}:</b> {v}</li>' for k, v in pi_info)
+    stat_parts = '\n'.join(
+        f'''      <div class="stat" data-reveal style="--d:{i*90}ms">
+        <b><span data-count="{v}">0</span>{suf}</b>
+        <span class="stat-label">{lab}</span>
+      </div>''' for i, (v, suf, lab) in enumerate(stats))
 
-    rtiles = '\n'.join(
-        f'''    <div class="rtile">
-      <div class="icon">{ic}</div>
+    feat_d, feat_t, feat_p = news[0]
+    list_parts = '\n'.join(
+        f'''      <a class="nitem" href="news.html" data-reveal style="--d:{i*100}ms">
+        <span class="date">{d}</span>
+        <h4>{t}</h4>
+        <span class="arr">→</span>
+      </a>''' for i, (d, t, p) in enumerate(news[1:]))
+
+    pub_parts = '\n'.join(
+        f'''    <li class="paper" data-reveal style="--d:{i*80}ms">
+      <div class="year">{y}</div>
+      <div>
+        <div class="t">{t}</div>
+        <div class="j">{j}</div>
+      </div>
+    </li>''' for i, (y, t, j) in enumerate(pubs))
+
+    join_parts = '\n'.join(
+        f'''    <div class="join-cell" data-reveal style="--d:{i*120}ms">
       <h3>{t}</h3>
-      <p>{d}</p>
-    </div>''' for (ic, t, d) in [
-        (SVG_WAVE, research[0][0], research[0][1]),
-        (SVG_GLOBE, research[1][0], research[1][1]),
-        (SVG_BIO, research[2][0], research[2][1]),
-        (SVG_TIME, research[3][0], research[3][1]),
-        (SVG_DIGI, research[4][0], research[4][1]),
-        (SVG_SAT, research[5][0], research[5][1]),
-    ])
+      <p>{p}</p>
+      <a class="btn btn-ghost" href="{u}">{b} →</a>
+    </div>''' for i, (t, p, u, b) in enumerate(join))
 
-    news_cards = '\n'.join(
-        f'''    <div class="news">
-      <span class="date">{d}</span>
-      <h4>{t}</h4>
-      <p>{c}</p>
-    </div>''' for d, t, c in news)
+    tiles = tiles_body(lang)
 
-    if lang == EN:
-        more = {'about': 'Learn more →', 'research': 'More about our research →', 'project': 'View Project Details →', 'news': 'More news →'}
-        secs = {
-            'about': ('ABOUT THE GROUP', 'About the Group'),
-            'research': ('RESEARCH AREAS', 'Research Areas'),
-            'project': ('CESM-CoSiNE PROJECT', 'CESM-CoSiNE Project'),
-            'news': ('NEWS & UPDATES', 'News & Updates'),
-        }
-        lang_kw = 'EN'
-    else:
-        more = {'about': '了解课题组 →', 'research': '了解更多 →', 'project': '查看项目详情 →', 'news': '更多新闻 →'}
-        secs = {
-            'about': ('ABOUT THE GROUP', '课题组简介'),
-            'research': ('RESEARCH AREAS', '研究方向'),
-            'project': ('CESM-CoSiNE PROJECT', 'CESM-CoSiNE 项目'),
-            'news': ('NEWS & UPDATES', '新闻动态'),
-        }
-        lang_kw = 'ZH'
-
-    if lang == EN:
-        proj_title = 'CESM-CoSiNE: An Ocean Ecosystem\u2013Biogeochemistry Module Embedded in CESM'
-        proj_desc = ('CoSiNE (Carbon, Silicon, Nitrogen Ecosystem) is developed and maintained by our group '
-                     'and has been embedded in the CESM Earth System Model (POP2 ocean component) to study '
-                     'planktonic ecosystems and the marine carbon cycle at global and regional scales.')
-    else:
-        proj_title = 'CESM-CoSiNE：嵌入 CESM 的海洋生态—生物地球化学模块'
-        proj_desc = ('CoSiNE（Carbon, Silicon, Nitrogen Ecosystem）由本课题组维护发展，已嵌入 CESM 地球系统模式'
-                     '（POP2 海洋分量），用于研究浮游生态系统与海洋碳循环在全球及区域尺度上的演变。')
-
-    body = f'''<!-- 轮播 -->
-<div class="banner">
-  <div class="slides">
-{chr(10).join(slide_html)}
+    return f'''<!-- Hero 轮播 -->
+<div class="hero" id="hero">
+  <div class="hero-slides" id="heroSlides">
+{chr(10).join(slide_parts)}
   </div>
-  <div class="dots">
-    <span class="on"></span>
-    <span></span>
-    <span></span>
+  <button class="harrow prev" id="heroPrev" aria-label="prev">‹</button>
+  <button class="harrow next" id="heroNext" aria-label="next">›</button>
+  <div class="hdots" id="heroDots">
+{dots}
+  </div>
+  <div class="scroll-hint" id="scrollHint">
+    <span class="mouse"><i></i></span>
+    <span class="hint-txt">{scroll_hint}</span>
   </div>
 </div>
 
-<!-- 课题组简介 -->
-<div class="section" id="intro">
-  <div class="sec-head">
-    <span class="en">{secs['about'][0]}</span>
-    <h2>{secs['about'][1]}</h2>
+<!-- 统计条 -->
+<div class="stats-band">
+  <div class="stats">
+{stat_parts}
   </div>
-  <div class="intro-grid">
-    <div class="intro-card">
-      {about_paras}
-      <p style="margin-top:28px"><a class="btn btn-solid" href="about.html">{more['about']}</a></p>
+</div>
+
+<!-- 新闻动态 -->
+<div class="section home-sec" id="news">
+  <div class="sec-row" data-reveal>
+    <div class="sec-title">
+      <h2>{news_head[0]}</h2>
+      <span class="en">{news_head[1]}</span>
     </div>
-    <div class="pi-card">
-      <div class="pi-avatar"><img src="images/chai_fei.jpg" alt=""></div>
-      <h3>{pi_name}</h3>
-      <div class="title">{pi_title}</div>
-      <ul class="info">
-{pi_lis}
-      </ul>
+    <a class="more" href="news.html">{news_head[2]} ›</a>
+  </div>
+  <div class="news-split">
+    <a class="nfeat" href="news.html" data-reveal>
+      <svg class="nfeat-deco" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g stroke="rgba(255,255,255,.1)" fill="none">
+          <path d="M-20,300 C120,250 240,340 380,290 S560,240 640,300"/>
+          <path d="M-20,340 C120,290 240,380 380,330 S560,280 640,340"/>
+        </g>
+      </svg>
+      <span class="date">{feat_d}</span>
+      <h3>{feat_t}</h3>
+      <p>{feat_p}</p>
+    </a>
+    <div class="nlist">
+{list_parts}
     </div>
   </div>
 </div>
 
 <!-- 研究方向 -->
-<div class="section" id="research">
-  <div class="sec-head">
-    <span class="en">{secs['research'][0]}</span>
-    <h2>{secs['research'][1]}</h2>
+<div class="section home-sec" id="research">
+  <div class="sec-head" data-reveal>
+    <span class="en">{res_head[1]}</span>
+    <h2>{res_head[0]}</h2>
   </div>
-  <div class="research">
-{rtiles}
+  <div class="research home-research">
+{tiles}
   </div>
-  <p style="text-align:center;margin-top:40px"><a class="btn btn-line" href="research.html">{more['research']}</a></p>
+  <p style="text-align:center;margin-top:44px" data-reveal><a class="btn btn-line" href="research.html">{res_more} →</a></p>
 </div>
 
-<!-- 新闻动态 -->
-<div class="section" id="news">
-  <div class="sec-head">
-    <span class="en">{secs['news'][0]}</span>
-    <h2>{secs['news'][1]}</h2>
+<!-- CESM-CoSiNE 横幅 -->
+<div class="cosine-band">
+  <div class="cosine-inner" data-reveal>
+    <div class="cosine-txt">
+      <span class="kicker">{cos[0]}</span>
+      <h2>{cos[1]}</h2>
+      <p>{cos[2]}</p>
+    </div>
+    <div class="cosine-btns">
+      <a class="btn btn-gold" href="research.html#project">{cos[3]} →</a>
+      <a class="btn btn-ghost" href="reports/CESM_CoSiNE16_Nature_style_draft_CN.html" target="_blank">{cos[4]} →</a>
+    </div>
   </div>
-  <div class="news-grid">
-{news_cards}
+</div>
+
+<!-- 代表性论文 -->
+<div class="section home-sec" id="pubs">
+  <div class="sec-row" data-reveal>
+    <div class="sec-title">
+      <h2>{pub_head[0]}</h2>
+      <span class="en">{pub_head[1]}</span>
+    </div>
+    <a class="more" href="papers.html">{pub_head[2]} ›</a>
   </div>
-  <p style="text-align:center;margin-top:40px"><a class="btn btn-line" href="news.html">{more['news']}</a></p>
+  <ul class="papers">
+{pub_parts}
+  </ul>
+</div>
+
+<!-- 招生招聘 / 合作交流 -->
+<div class="join-band">
+  <div class="join-grid">
+{join_parts}
+  </div>
 </div>'''
-
-    js = '''
-<script>
-var cur = 0;
-var timer = null;
-var slides = document.querySelectorAll('.slide');
-var dots = document.querySelectorAll('.banner .dots span');
-
-function goSlide(i) {
-  cur = i;
-  slides.forEach(function (s, k) { s.classList.toggle('on', k === i); });
-  dots.forEach(function (d, k) { d.classList.toggle('on', k === i); });
-}
-function auto() {
-  timer = setInterval(function () { goSlide((cur + 1) % slides.length); }, 5000);
-}
-goSlide(0);
-auto();
-</script>'''
-    return body, js
 
 def research_with_project(lang):
     tiles = tiles_body(lang)
@@ -833,11 +937,9 @@ def main():
     open('en/members.html', 'w').write(page('members.html', 'Members', 'GROUP MEMBERS', members_body(EN), EN))
     print('生成 members.html / en/members.html')
 
-    # 首页
-    body_zh, js_zh = home_body(ZH)
-    open('index.html', 'w').write(page('index.html', '首页', 'HOME', body_zh, ZH, extra=js_zh))
-    body_en, js_en = home_body(EN)
-    open('en/index.html', 'w').write(page('index.html', 'Home', 'HOME', body_en, EN, extra=js_en))
+    # 首页（无 page-banner，使用 home.js）
+    open('index.html', 'w').write(page('index.html', '首页', 'HOME', home_body(ZH), ZH, banner=False, scripts='js/home.js'))
+    open('en/index.html', 'w').write(page('index.html', 'Home', 'HOME', home_body(EN), EN, banner=False, scripts='../js/home.js'))
     print('生成 index.html / en/index.html')
 
 if __name__ == '__main__':

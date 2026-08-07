@@ -6,12 +6,23 @@
 <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 <title>Home | Chai Group · Xiamen University</title>
 <link rel="stylesheet" href="css/style.css">
+<script>document.documentElement.classList.add("anim");</script>
+<script src="../js/home.js" defer></script>
 </head>
 <body>
 
 <!-- 顶部导航 -->
-<header class="g-head">
-  <div class="inner">
+<header class="g-head" id="g-head">
+  <div class="topbar">
+    <div class="tb-inner">
+      <a href="about.html#join">Join Us</a>
+      <span class="tb-sep"></span>
+      <a href="mailto:fchai@xmu.edu.cn">Contact</a>
+      <span class="tb-sep"></span>
+      <a href="../index.html" class="tb-lang">中文</a>
+    </div>
+  </div>
+  <div class="inner main">
     <a href="index.html" class="logo">
       <img src="images/xmu_logo.png" alt="Xiamen University" class="logo-xmu">
       <img src="images/mel_logo.svg" alt="MEL" class="logo-mel">
@@ -26,222 +37,303 @@
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="members.html">Members</a></li>
-        <li><a href="research.html">Research</a></li>
+        <li class="has-sub"><a href="research.html">Research</a>
+          <div class="sub"><dl>
+          <dd><a href="research.html#r0">Ecosystem & Biogeochemical Modeling</a></dd>
+          <dd><a href="research.html#r1">Carbon Cycle & Climate Feedbacks</a></dd>
+          <dd><a href="research.html#r2">Submesoscale Processes</a></dd>
+          <dd><a href="research.html#r3">Paleoclimate Modeling</a></dd>
+          <dd><a href="research.html#r4">Ocean Digital Twin</a></dd>
+          <dd><a href="research.html#r5">Observation–Model Integration</a></dd>
+          <dd><a href="research.html#project">CESM-CoSiNE Project</a></dd>
+          </dl></div>
+        </li>
         <li><a href="papers.html">Publications</a></li>
         <li><a href="news.html">News</a></li>
-        <li><a href="links.html">Links</a></li>
+        <li class="has-sub"><a href="links.html">Links</a>
+          <div class="sub"><dl>
+          <dd><a href="https://coeoa.xmu.edu.cn/t/CF/" target="_blank">Prof. Chai's Homepage</a></dd>
+          <dd><a href="https://meli.xmu.edu.cn/" target="_blank">MEL Official Site</a></dd>
+          <dd><a href="links.html">All Related Links</a></dd>
+          </dl></div>
+        </li>
         <li class="m-lang"><a href="../index.html">中文</a></li>
       </ul>
     </nav>
-    <a class="lang-switch" href="../index.html">中文</a>
     <button class="nav-toggle" onclick="document.querySelector('.g-nav').classList.toggle('open')">☰</button>
   </div>
 </header>
 
-<div class="page-banner">
-  <h1>Home</h1>
-  <p>HOME</p>
-</div>
-
-<!-- 轮播 -->
-<div class="banner">
-  <div class="slides">
-    <div class="slide s1 on">
-      <svg class="bg-svg" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <g stroke="rgba(255,255,255,.05)" fill="none">
-          <path d="M-40,420 C200,360 400,470 640,410 S1080,350 1480,420"/>
-          <path d="M-40,455 C200,395 400,505 640,445 S1080,385 1480,455"/>
-          <path d="M-40,490 C200,430 400,540 640,480 S1080,420 1480,490"/>
+<!-- Hero 轮播 -->
+<div class="hero" id="hero">
+  <div class="hero-slides" id="heroSlides">
+    <div class="hslide hs1 on">
+      <svg class="hdeco" viewBox="0 0 1440 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g stroke="rgba(255,255,255,.07)" fill="none">
+          <path d="M-40,440 C200,380 400,490 640,430 S1080,370 1480,440"/>
+          <path d="M-40,478 C200,418 400,528 640,468 S1080,408 1480,478"/>
+          <path d="M-40,516 C200,456 400,566 640,506 S1080,446 1480,516"/>
         </g>
-        <g stroke="rgba(255,255,255,.03)">
-          <line x1="0" y1="130" x2="1440" y2="130"/><line x1="0" y1="260" x2="1440" y2="260"/>
-          <line x1="360" y1="0" x2="360" y2="520"/><line x1="720" y1="0" x2="720" y2="520"/><line x1="1080" y1="0" x2="1080" y2="520"/>
+        <g stroke="rgba(255,255,255,.04)">
+          <line x1="0" y1="140" x2="1440" y2="140"/><line x1="0" y1="280" x2="1440" y2="280"/>
+          <line x1="360" y1="0" x2="360" y2="560"/><line x1="720" y1="0" x2="720" y2="560"/><line x1="1080" y1="0" x2="1080" y2="560"/>
         </g>
       </svg>
-      <div class="inner-txt">
-        <div class="kicker">Marine Biogeochemistry</div>
-        <h1>Marine Biogeochemistry and Climate Modeling</h1>
+      <div class="hcap" data-cap>
+        <span class="kicker">Marine Biogeochemistry</span>
+        <h2>Marine Biogeochemistry and Climate Modeling</h2>
         <p>Ocean Biogeochemistry and Climate Modeling</p>
-        <p class="en">MARINE BIOGEOCHEMISTRY · ECOSYSTEM MODELING · PALEOCLIMATE</p>
       </div>
     </div>
-    <div class="slide s2">
-      <svg class="bg-svg" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <g stroke="rgba(255,255,255,.05)" fill="none">
-          <path d="M-40,420 C200,360 400,470 640,410 S1080,350 1480,420"/>
-          <path d="M-40,455 C200,395 400,505 640,445 S1080,385 1480,455"/>
-          <path d="M-40,490 C200,430 400,540 640,480 S1080,420 1480,490"/>
+    <div class="hslide hs2">
+      <svg class="hdeco" viewBox="0 0 1440 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g stroke="rgba(255,255,255,.07)" fill="none">
+          <path d="M-40,440 C200,380 400,490 640,430 S1080,370 1480,440"/>
+          <path d="M-40,478 C200,418 400,528 640,468 S1080,408 1480,478"/>
+          <path d="M-40,516 C200,456 400,566 640,506 S1080,446 1480,516"/>
         </g>
-        <g stroke="rgba(255,255,255,.03)">
-          <line x1="0" y1="130" x2="1440" y2="130"/><line x1="0" y1="260" x2="1440" y2="260"/>
-          <line x1="360" y1="0" x2="360" y2="520"/><line x1="720" y1="0" x2="720" y2="520"/><line x1="1080" y1="0" x2="1080" y2="520"/>
+        <g stroke="rgba(255,255,255,.04)">
+          <line x1="0" y1="140" x2="1440" y2="140"/><line x1="0" y1="280" x2="1440" y2="280"/>
+          <line x1="360" y1="0" x2="360" y2="560"/><line x1="720" y1="0" x2="720" y2="560"/><line x1="1080" y1="0" x2="1080" y2="560"/>
         </g>
       </svg>
-      <div class="inner-txt">
-        <div class="kicker">Earth System Modeling</div>
-        <h1>The CESM-CoSiNE Marine Ecosystem Model</h1>
+      <div class="hcap" data-cap>
+        <span class="kicker">Earth System Modeling</span>
+        <h2>The CESM-CoSiNE Marine Ecosystem Model</h2>
         <p>From coupled physics–chemistry–biology to understanding the marine carbon cycle</p>
-        <p class="en">EMBEDDING CoSiNE IN THE COMMUNITY EARTH SYSTEM MODEL</p>
       </div>
     </div>
-    <div class="slide s3">
-      <svg class="bg-svg" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <g stroke="rgba(255,255,255,.05)" fill="none">
-          <path d="M-40,420 C200,360 400,470 640,410 S1080,350 1480,420"/>
-          <path d="M-40,455 C200,395 400,505 640,445 S1080,385 1480,455"/>
-          <path d="M-40,490 C200,430 400,540 640,480 S1080,420 1480,490"/>
+    <div class="hslide hs3">
+      <svg class="hdeco" viewBox="0 0 1440 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g stroke="rgba(255,255,255,.07)" fill="none">
+          <path d="M-40,440 C200,380 400,490 640,430 S1080,370 1480,440"/>
+          <path d="M-40,478 C200,418 400,528 640,468 S1080,408 1480,478"/>
+          <path d="M-40,516 C200,456 400,566 640,506 S1080,446 1480,516"/>
         </g>
-        <g stroke="rgba(255,255,255,.03)">
-          <line x1="0" y1="130" x2="1440" y2="130"/><line x1="0" y1="260" x2="1440" y2="260"/>
-          <line x1="360" y1="0" x2="360" y2="520"/><line x1="720" y1="0" x2="720" y2="520"/><line x1="1080" y1="0" x2="1080" y2="520"/>
+        <g stroke="rgba(255,255,255,.04)">
+          <line x1="0" y1="140" x2="1440" y2="140"/><line x1="0" y1="280" x2="1440" y2="280"/>
+          <line x1="360" y1="0" x2="360" y2="560"/><line x1="720" y1="0" x2="720" y2="560"/><line x1="1080" y1="0" x2="1080" y2="560"/>
         </g>
       </svg>
-      <div class="inner-txt">
-        <div class="kicker">Paleoclimate & Digital Earth</div>
-        <h1>Paleoclimate and the Digital Earth</h1>
+      <div class="hcap" data-cap>
+        <span class="kicker">Paleoclimate & Digital Earth</span>
+        <h2>Paleoclimate and the Digital Earth</h2>
         <p>Reconstruct the past, simulate the present, foresee the future</p>
-        <p class="en">FROM PALEOCLIMATE RECONSTRUCTION TO DIGITAL EARTH</p>
       </div>
     </div>
   </div>
-  <div class="dots">
-    <span class="on"></span>
-    <span></span>
-    <span></span>
+  <button class="harrow prev" id="heroPrev" aria-label="prev">‹</button>
+  <button class="harrow next" id="heroNext" aria-label="next">›</button>
+  <div class="hdots" id="heroDots">
+        <span class="on"><i></i></span>
+        <span class=""><i></i></span>
+        <span class=""><i></i></span>
+  </div>
+  <div class="scroll-hint" id="scrollHint">
+    <span class="mouse"><i></i></span>
+    <span class="hint-txt">Scroll</span>
   </div>
 </div>
 
-<!-- 课题组简介 -->
-<div class="section" id="intro">
-  <div class="sec-head">
-    <span class="en">ABOUT THE GROUP</span>
-    <h2>About the Group</h2>
+<!-- 统计条 -->
+<div class="stats-band">
+  <div class="stats">
+      <div class="stat" data-reveal style="--d:0ms">
+        <b><span data-count="22">0</span></b>
+        <span class="stat-label">Model Tracers</span>
+      </div>
+      <div class="stat" data-reveal style="--d:90ms">
+        <b><span data-count="6">0</span></b>
+        <span class="stat-label">Research Areas</span>
+      </div>
+      <div class="stat" data-reveal style="--d:180ms">
+        <b><span data-count="3">0</span></b>
+        <span class="stat-label">Ocean Regions</span>
+      </div>
+      <div class="stat" data-reveal style="--d:270ms">
+        <b><span data-count="35">0</span>+</b>
+        <span class="stat-label">Years of Research</span>
+      </div>
   </div>
-  <div class="intro-grid">
-    <div class="intro-card">
-      <p>Affiliated with the State Key Laboratory of Marine Environmental Science (MEL) at Xiamen University, our group studies coupled physical–ecological–biogeochemical oceanography, with a focus on the marine carbon cycle, nutrient cycles, and the response of marine ecosystems to climate change.</p>
-      <p>Centered on the in-house CESM-CoSiNE module and combining observations with numerical simulation, we investigate planktonic ecosystems and the carbon cycle from the North Pacific to the global ocean, extending to paleoclimate reconstruction and ocean digital twins.</p>
-      <p>The group welcomes postdoctoral researchers and PhD/Master's students with interests in marine biogeochemistry, climate modeling, and computational oceanography.</p>
-      <p style="margin-top:28px"><a class="btn btn-solid" href="about.html">Learn more →</a></p>
+</div>
+
+<!-- 新闻动态 -->
+<div class="section home-sec" id="news">
+  <div class="sec-row" data-reveal>
+    <div class="sec-title">
+      <h2>新闻动态</h2>
+      <span class="en">NEWS & UPDATES</span>
     </div>
-    <div class="pi-card">
-      <div class="pi-avatar"><img src="images/chai_fei.jpg" alt=""></div>
-      <h3>Prof. Fei Chai</h3>
-      <div class="title">Tang Shifeng Chair Professor in Marine Sciences · PI</div>
-      <ul class="info">
-        <li><b>Unit:</b> State Key Laboratory of Marine Environmental Science (MEL), XMU</li>
-        <li><b>Office:</b> Zhoulongquan Building, Xiang’an Campus, XMU</li>
-        <li><b>Email:</b> fchai@xmu.edu.cn</li>
-        <li><b>Ph.D.:</b> Biological Oceanography, Duke University (1991–1995)</li>
-        <li><b>Career:</b> Former Professor (tenured), University of Maine</li>
-      </ul>
+    <a class="more" href="news.html">More ›</a>
+  </div>
+  <div class="news-split">
+    <a class="nfeat" href="news.html" data-reveal>
+      <svg class="nfeat-deco" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g stroke="rgba(255,255,255,.1)" fill="none">
+          <path d="M-20,300 C120,250 240,340 380,290 S560,240 640,300"/>
+          <path d="M-20,340 C120,290 240,380 380,330 S560,280 640,340"/>
+        </g>
+      </svg>
+      <span class="date">FEB 2026</span>
+      <h3>Prof. Chai’s team reveals ocean digital twins as a new engine for blue-economy innovation</h3>
+      <p>The team systematically reviewed the core architecture of ocean digital twins, analyzed key application scenarios in blue-economy development, and provided forward-looking perspectives on challenges and prospects.</p>
+    </a>
+    <div class="nlist">
+      <a class="nitem" href="news.html" data-reveal style="--d:0ms">
+        <span class="date">NOV 2025</span>
+        <h4>Lujiang Ocean Symposium concludes successfully</h4>
+        <span class="arr">→</span>
+      </a>
+      <a class="nitem" href="news.html" data-reveal style="--d:100ms">
+        <span class="date">SEP 2025</span>
+        <h4>Group website officially launched</h4>
+        <span class="arr">→</span>
+      </a>
+      <a class="nitem" href="news.html" data-reveal style="--d:200ms">
+        <span class="date">UPDATING</span>
+        <h4>Group news continuously updated</h4>
+        <span class="arr">→</span>
+      </a>
     </div>
   </div>
 </div>
 
 <!-- 研究方向 -->
-<div class="section" id="research">
-  <div class="sec-head">
+<div class="section home-sec" id="research">
+  <div class="sec-head" data-reveal>
     <span class="en">RESEARCH AREAS</span>
-    <h2>Research Areas</h2>
+    <h2>研究方向</h2>
   </div>
-  <div class="research">
-    <div class="rtile">
+  <div class="research home-research">
+    <div class="rtile" id="r0">
       <div class="icon"><svg class="icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M2 12c1.8-2.5 3.6-2.5 5.4 0s3.6 2.5 5.4 0 3.6-2.5 5.4 0 3.6 2.5 5.4 0"/><path d="M2 17c1.8-2.5 3.6-2.5 5.4 0s3.6 2.5 5.4 0 3.6-2.5 5.4 0 3.6 2.5 5.4 0"/><path d="M2 7c1.8-2.5 3.6-2.5 5.4 0s3.6 2.5 5.4 0 3.6-2.5 5.4 0 3.6 2.5 5.4 0"/></svg></div>
       <h3>Marine Ecosystem and Biogeochemical Modeling</h3>
-      <p>Development and improvement of the CESM-CoSiNE coupled module to simulate phytoplankton, nutrients, and the carbon cycle.</p>
+      <p>Development and improvement of the CESM-CoSiNE coupled marine ecosystem–biogeochemistry module to simulate the spatiotemporal evolution of phytoplankton, nutrients, and the carbon cycle.</p>
     </div>
-    <div class="rtile">
+    <div class="rtile" id="r1">
       <div class="icon"><svg class="icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18"/></svg></div>
       <h3>Marine Carbon Cycle and Climate Feedbacks</h3>
-      <p>Quantifying the ocean’s role in regulating atmospheric CO₂ and the response of the carbon cycle to climate change.</p>
+      <p>Quantifying the ocean’s role in regulating atmospheric CO₂, biological pump efficiency, and the response of the marine carbon cycle to future climate change.</p>
     </div>
-    <div class="rtile">
+    <div class="rtile" id="r2">
       <div class="icon"><svg class="icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M12 12m-4.5 0a4.5 4.5 0 1 0 9 0a4.5 4.5 0 1 0-9 0"/><path d="M12 12l6-5"/><path d="M12 12l-7-2"/><path d="M12 12l3 6"/><path d="M12 12l-4 5"/></svg></div>
       <h3>Submesoscale Processes and Ecological Effects</h3>
-      <p>How submesoscale physics (fronts, eddies) regulates planktonic ecosystems and carbon export.</p>
+      <p>Exploring how submesoscale physical processes (fronts, eddies) regulate planktonic ecosystems and carbon export fluxes.</p>
     </div>
-    <div class="rtile">
+    <div class="rtile" id="r3">
       <div class="icon"><svg class="icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/><path d="M7 3.5C8.5 4.8 10.2 5.5 12 5.5s3.5-.7 5-2"/></svg></div>
       <h3>Paleoclimate and Paleoceanography</h3>
-      <p>Earth system modeling of key periods such as the Last Interglacial.</p>
+      <p>Earth system modeling of key periods such as the Last Interglacial to understand the long-term evolution of the carbon cycle.</p>
     </div>
-    <div class="rtile">
+    <div class="rtile" id="r4">
       <div class="icon"><svg class="icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M8 20h8"/><path d="M12 16v4"/></svg></div>
       <h3>Ocean Digital Twin</h3>
-      <p>Building ocean digital twins to empower blue-economy innovation.</p>
+      <p>Building ocean digital twin systems to empower blue-economy innovation and integrated ocean observation–simulation–prediction.</p>
     </div>
-    <div class="rtile">
+    <div class="rtile" id="r5">
       <div class="icon"><svg class="icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><circle cx="12" cy="12" r="1.5" fill="currentColor"/><path d="M9 9a4.2 4.2 0 0 1 6 0"/><path d="M6.8 6.8a8 8 0 0 1 10.4 0"/><path d="M15 15a4.2 4.2 0 0 1-6 0"/><path d="M17.2 17.2a8 8 0 0 0-10.4 0"/></svg></div>
       <h3>Observation–Model Integration</h3>
-      <p>Combining observations and models to quantify uncertainty and improve parameterizations.</p>
+      <p>Combining in-situ observations, satellite remote sensing, and numerical models to quantify uncertainty and improve ecosystem model parameterizations.</p>
     </div>
   </div>
-  <p style="text-align:center;margin-top:40px"><a class="btn btn-line" href="research.html">More about our research →</a></p>
+  <p style="text-align:center;margin-top:44px" data-reveal><a class="btn btn-line" href="research.html">Learn More →</a></p>
 </div>
 
-<!-- 新闻动态 -->
-<div class="section" id="news">
-  <div class="sec-head">
-    <span class="en">NEWS & UPDATES</span>
-    <h2>News & Updates</h2>
-  </div>
-  <div class="news-grid">
-    <div class="news">
-      <span class="date">FEB 2026</span>
-      <h4>Prof. Chai’s team reveals ocean digital twins as a new engine for blue-economy innovation</h4>
-      <p>The team systematically reviewed the architecture of ocean digital twins and analyzed key application scenarios in blue-economy development.</p>
+<!-- CESM-CoSiNE 横幅 -->
+<div class="cosine-band">
+  <div class="cosine-inner" data-reveal>
+    <div class="cosine-txt">
+      <span class="kicker">CESM-CoSiNE</span>
+      <h2>CESM-CoSiNE: An Ocean Ecosystem–Biogeochemistry Module Embedded in CESM</h2>
+      <p>Developed and maintained by our group, embedded in the CESM Earth System Model (POP2), studying planktonic ecosystems and the marine carbon cycle at global and regional scales.</p>
     </div>
-    <div class="news">
-      <span class="date">NOV 2025</span>
-      <h4>Lujiang Ocean Symposium concludes successfully</h4>
-      <p>The symposium co-hosted by Lujiang Innovation Laboratory and MEL (XMU) was held successfully.</p>
-    </div>
-    <div class="news">
-      <span class="date">UPDATING</span>
-      <h4>Group news continuously updated</h4>
-      <p>Stay tuned for the latest research progress and recruitment.</p>
+    <div class="cosine-btns">
+      <a class="btn btn-gold" href="research.html#project">Model Details →</a>
+      <a class="btn btn-ghost" href="reports/CESM_CoSiNE16_Nature_style_draft_CN.html" target="_blank">Project Report →</a>
     </div>
   </div>
-  <p style="text-align:center;margin-top:40px"><a class="btn btn-line" href="news.html">More news →</a></p>
+</div>
+
+<!-- 代表性论文 -->
+<div class="section home-sec" id="pubs">
+  <div class="sec-row" data-reveal>
+    <div class="sec-title">
+      <h2>代表性论文</h2>
+      <span class="en">SELECTED PUBLICATIONS</span>
+    </div>
+    <a class="more" href="papers.html">All Publications ›</a>
+  </div>
+  <ul class="papers">
+    <li class="paper" data-reveal style="--d:0ms">
+      <div class="year">2026</div>
+      <div>
+        <div class="t">(To be added) Paper title</div>
+        <div class="j">Authors. Journal Name, 2026.</div>
+      </div>
+    </li>
+    <li class="paper" data-reveal style="--d:80ms">
+      <div class="year">2025</div>
+      <div>
+        <div class="t">(To be added) Paper title</div>
+        <div class="j">Authors. Journal Name, 2025.</div>
+      </div>
+    </li>
+    <li class="paper" data-reveal style="--d:160ms">
+      <div class="year">2025</div>
+      <div>
+        <div class="t">(To be added) Paper title</div>
+        <div class="j">Authors. Journal Name, 2025.</div>
+      </div>
+    </li>
+    <li class="paper" data-reveal style="--d:240ms">
+      <div class="year">2024</div>
+      <div>
+        <div class="t">(To be added) Paper title</div>
+        <div class="j">Authors. Journal Name, 2024.</div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- 招生招聘 / 合作交流 -->
+<div class="join-band">
+  <div class="join-grid">
+    <div class="join-cell" data-reveal style="--d:0ms">
+      <h3>Recruitment</h3>
+      <p>We recruit PhD and Master’s students year-round and welcome postdoctoral applicants from around the world with interests in marine biogeochemistry, climate modeling, and computational oceanography.</p>
+      <a class="btn btn-ghost" href="mailto:fchai@xmu.edu.cn">Send an Application →</a>
+    </div>
+    <div class="join-cell" data-reveal style="--d:120ms">
+      <h3>Collaboration</h3>
+      <p>The group maintains close collaborations with universities and research institutes at home and abroad. We welcome academic visits, joint training, and project cooperation.</p>
+      <a class="btn btn-ghost" href="links.html">Related Links →</a>
+    </div>
+  </div>
 </div>
 <!-- 页脚 -->
 <footer class="footer">
   <div class="inner">
-    <div>
+    <div class="f-brand">
       <h5>Chai Group</h5>
       <p>State Key Laboratory of Marine Environmental Science (MEL), Xiamen University</p>
       <p>Zhoulongquan Building, Xiang’an Campus, Xiamen University</p>
+    </div>
+    <div>
+      <h5>Quick Links</h5>
+      <div class="f-links"><a href="about.html">About</a><a href="members.html">Members</a><a href="research.html">Research</a><a href="papers.html">Publications</a><a href="news.html">News</a><a href="links.html">Links</a></div>
+    </div>
+    <div>
+      <h5>Related Links</h5>
+      <div class="f-links"><a href="https://coeoa.xmu.edu.cn/t/CF/" target="_blank">Prof. Chai's Homepage</a><a href="https://meli.xmu.edu.cn/" target="_blank">MEL, Xiamen University</a><a href="https://www.xmu.edu.cn/" target="_blank">Xiamen University</a></div>
     </div>
     <div>
       <h5>Contact</h5>
       <p>Email: fchai@xmu.edu.cn</p>
       <p>Postal code: 361102</p>
     </div>
-    <div>
-      <h5>Quick Links</h5>
-      <p><a href="about.html">About</a> · <a href="members.html">Members</a> · <a href="project.html">CESM-CoSiNE</a></p>
-    </div>
     <div class="copy">© 2026 Chai Group · State Key Laboratory of Marine Environmental Science, Xiamen University</div>
   </div>
 </footer>
 
-<script>
-var cur = 0;
-var timer = null;
-var slides = document.querySelectorAll('.slide');
-var dots = document.querySelectorAll('.banner .dots span');
-
-function goSlide(i) {
-  cur = i;
-  slides.forEach(function (s, k) { s.classList.toggle('on', k === i); });
-  dots.forEach(function (d, k) { d.classList.toggle('on', k === i); });
-}
-function auto() {
-  timer = setInterval(function () { goSlide((cur + 1) % slides.length); }, 5000);
-}
-goSlide(0);
-auto();
-</script>
 </body>
 </html>
