@@ -409,6 +409,54 @@ def digital_twin_box(lang):
     </div>
   </div>'''
 
+def model_box(lang):
+    """数值模式：CESM-CoSiNE + LOVECLIM-CoSiNE v1.4"""
+    if lang == EN:
+        love = {
+            'kicker': 'LOVECLIM-CoSiNE v1.4',
+            'title': 'LOVECLIM-CoSiNE v1.4: A coupled climate\u2013ecosystem model for paleoceanography',
+            'desc': 'The LOVECLIM earth system model coupled with the CoSiNE marine ecosystem\u2013biogeochemistry module, developed for paleoclimate and paleoceanography simulations such as the Last Interglacial and long-term carbon cycle evolution.',
+            'feats': [
+                'Coupled LOVECLIM climate model with the CoSiNE ecosystem\u2013biogeochemistry module',
+                'Designed for paleoclimate simulations and long-term carbon cycle evolution',
+                'Supports key periods such as the Last Interglacial',
+                'Global ocean biogeochemistry with ecosystem dynamics',
+            ],
+            'btn': 'Documentation',
+        }
+    else:
+        love = {
+            'kicker': 'LOVECLIM-CoSiNE v1.4',
+            'title': 'LOVECLIM-CoSiNE v1.4：古海洋气候—生态耦合模式',
+            'desc': '在 LOVECLIM 地球系统模式中耦合 CoSiNE 海洋生态系统—生物地球化学模块，面向古气候与古海洋模拟，支持末次间冰期等关键时期与长期碳循环演化研究。',
+            'feats': [
+                'LOVECLIM 气候模式与 CoSiNE 生态系统—生物地球化学模块耦合',
+                '面向古气候模拟与长期碳循环演化',
+                '支持末次间冰期等关键时期研究',
+                '全球海洋生物地球化学与生态系统动力学',
+            ],
+            'btn': '使用说明',
+        }
+    feats_html = '\n'.join(f'        <li>{x}</li>' for x in love['feats'])
+    return f'''<div class="project-box" style="margin-bottom:36px">
+    <div class="project-hero" style="background:linear-gradient(160deg,#0a2138 0%,#0d2f4f 60%,#123a61 100%)">
+      <div class="kicker">{love['kicker']}</div>
+      <h3>{love['title']}</h3>
+      <p>{love['desc']}</p>
+    </div>
+    <div class="project-body">
+      <img class="model-schema" src="images/loveclim_schema.jpg" alt="LOVECLIM-CoSiNE v1.4 schema">
+      <h4>{'Model Features' if lang == EN else '模式特色'}</h4>
+      <ul>
+{feats_html}
+      </ul>
+      <div class="project-links">
+        <a class="btn btn-solid" href="reports/CESM_CoSiNE16_Nature_style_draft_CN.html" target="_blank">{love['btn']} →</a>
+      </div>
+    </div>
+  </div>
+  {project_box(lang, full=True)}'''
+
 def project_box(lang, full=True):
     if lang == EN:
         body = '''      <div class="kicker">CESM-CoSiNE</div>
@@ -1821,7 +1869,7 @@ def main():
   <div class="ov-desc"><p>西北太平洋与南海 Biogeochemical-Argo 浮标观测；CESM-CoSiNE 全球海洋、北太平洋与南海模拟输出（数据共享整理中）。</p></div>
 </div>''', ZH)))
         pages.append(('papers-model.html', '数值模式', 'NUMERICAL MODELS',
-                      with_subnav('papers', '<div class="section" id="model">' + project_box(ZH, full=True) + '</div>', ZH)))
+                      with_subnav('papers', '<div class="section" id="model">' + model_box(ZH) + '</div>', ZH)))
         # 研究方向栏
         for i in range(6):
             aid = 'r%d' % i
@@ -1923,7 +1971,7 @@ def main():
   <div class="ov-desc"><p>BGC-Argo float observations in the western North Pacific and the South China Sea; CESM-CoSiNE simulation outputs (data sharing under preparation).</p></div>
 </div>''', EN)))
         pages.append(('papers-model.html', 'Numerical Models', 'NUMERICAL MODELS',
-                      with_subnav('papers', '<div class="section" id="model">' + project_box(EN, full=True) + '</div>', EN)))
+                      with_subnav('papers', '<div class="section" id="model">' + model_box(EN) + '</div>', EN)))
         for i in range(6):
             aid = 'r%d' % i
             num = '%02d' % (i + 1)

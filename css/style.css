@@ -880,3 +880,9 @@ a:focus-visible, button:focus-visible, .hdots span:focus-visible {
 @media (max-width: 600px) {
   .news-item .news-thumb { max-height: 160px; }
 }
+
+/* ===== 数值模式宣传图 ===== */
+.model-schema {
+  width: 100%; max-width: 620px; display: block; margin: 0 auto 26px;
+  border: 1px solid var(--line); border-radius: 6px;
+}
