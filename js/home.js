@@ -92,6 +92,16 @@
     onScrollP();
   }
 
+  /* ===== 学术·科研面板轮播 ===== */
+  var acaSlides = document.querySelectorAll('#acaSlider .aca-slide');
+  if (acaSlides.length > 1) {
+    var acaCur = 0;
+    setInterval(function () {
+      acaSlides.forEach(function (s, k) { s.classList.toggle('on', k === acaCur); });
+      acaCur = (acaCur + 1) % acaSlides.length;
+    }, 4200);
+  }
+
   /* ===== 北大式整屏切换：内容层上滑盖住 Hero / 下滑退出 ===== */
   var bodyHome = document.getElementById('bodyHome');
   var bodyMain = document.getElementById('bodyMain');

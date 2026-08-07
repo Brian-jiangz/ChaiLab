@@ -674,9 +674,28 @@ def home_body(lang):
         ]
         res_head = ('Research Areas', 'RESEARCH AREAS')
         res_more = 'Learn More'
-        cos = ('CESM-CoSiNE', 'CESM-CoSiNE: An Ocean Ecosystem\u2013Biogeochemistry Module Embedded in CESM',
-               'Developed and maintained by our group, embedded in the CESM Earth System Model (POP2), studying planktonic ecosystems and the marine carbon cycle at global and regional scales.',
-               'Model Details', 'Project Report')
+        aca = {
+            'title': 'Academic & Research',
+            'en': 'ACADEMIC & RESEARCH',
+            'more': 'View All',
+            'slider': ['images/mel_digital_twin.png', 'images/cosine_bg.png'],
+            'feat_img': 'images/mel_digital_twin.png',
+            'feat_h': 'Ocean digital twin as a catalyst for blue-economy innovation',
+            'feat_p': 'Prof. Chai and international experts published a review in National Science Review, systematically reviewing the core architecture of ocean digital twins and key application scenarios in blue-economy development.',
+            'feat_date': 'FEB 2026 · National Science Review',
+            'block1': 'Research Progress',
+            'block1_items': [
+                ('2026-02', 'Ocean digital twin review published in National Science Review'),
+                ('2025-11', 'Lujiang Ocean Symposium concludes successfully'),
+                ('2025-09', 'Group website officially launched'),
+            ],
+            'block2': 'Selected Work',
+            'block2_items': [
+                ('CESM-CoSiNE16', 'An ocean ecosystem\u2013biogeochemistry module embedded in CESM', 'reports/CESM_CoSiNE16_Nature_style_draft_CN.html'),
+                ('CoSiNE22 (V2)', 'Coupling manual with carbon isotope tracers', 'reports/CESM_CoSiNE16_v2_Process_Manual.html'),
+            ],
+            'link_news': 'news.html',
+        }
         pub_head = ('Publications', 'SELECTED PUBLICATIONS', 'All Publications')
         pubs = [
             ('2026', '(To be added) Paper title', 'Authors. Journal Name, 2026.'),
@@ -715,9 +734,28 @@ def home_body(lang):
         ]
         res_head = ('研究方向', 'RESEARCH AREAS')
         res_more = '了解更多'
-        cos = ('CESM-CoSiNE', 'CESM-CoSiNE：嵌入 CESM 的海洋生态—生物地球化学模块',
-               '由本课题组自主发展并维护，已嵌入 CESM 地球系统模式（POP2 海洋分量），研究全球及区域尺度浮游生态系统与海洋碳循环的演变。',
-               '了解模式详情', '阅读项目报告')
+        aca = {
+            'title': '学术 · 科研',
+            'en': 'ACADEMIC & RESEARCH',
+            'more': '查看更多',
+            'slider': ['images/mel_digital_twin.png', 'images/cosine_bg.png'],
+            'feat_img': 'images/mel_digital_twin.png',
+            'feat_h': '海洋数字孪生综述发表于 National Science Review',
+            'feat_p': '柴扉教授团队系统梳理海洋数字孪生核心架构，解析其在蓝色经济发展中的关键应用场景，并对该领域挑战与前景作出前瞻性研判。',
+            'feat_date': '2026-02 · National Science Review',
+            'block1': '科研进展',
+            'block1_items': [
+                ('2026-02', '海洋数字孪生综述发表于 National Science Review'),
+                ('2025-11', '鹭江海洋研讨会圆满落幕'),
+                ('2025-09', '课题组网站全新上线'),
+            ],
+            'block2': '代表性工作',
+            'block2_items': [
+                ('CESM-CoSiNE16', '嵌入 CESM 的海洋生态—生物地球化学模块', 'reports/CESM_CoSiNE16_Nature_style_draft_CN.html'),
+                ('CoSiNE22 (V2)', '含碳同位素示踪物的耦合说明书', 'reports/CESM_CoSiNE16_v2_Process_Manual.html'),
+            ],
+            'link_news': 'news.html',
+        }
         pub_head = ('代表性论文', 'SELECTED PUBLICATIONS', '全部论文')
         pubs = [
             ('2026', '（待补充）论文标题', 'Authors. Journal Name, 2026.'),
@@ -925,17 +963,41 @@ def home_body(lang):
   <p style="text-align:center;margin-top:44px" data-reveal><a class="btn btn-line" href="research.html">{res_more} →</a></p>
 </div>
 
-<!-- CESM-CoSiNE 横幅 -->
-<div class="cosine-band">
-  <div class="cosine-inner" data-reveal>
-    <div class="cosine-txt">
-      <span class="kicker">{cos[0]}</span>
-      <h2>{cos[1]}</h2>
-      <p>{cos[2]}</p>
+<!-- 学术·科研面板（清华式） -->
+<div class="section home-sec academic-sec" id="academic">
+  <div class="aca-wrap" data-reveal>
+    <div class="aca-main">
+      <div class="aca-slider" id="acaSlider">
+        <div class="aca-slide on" style="background-image:url({aca['slider'][0]})"></div>
+        <div class="aca-slide" style="background-image:url({aca['slider'][1]})"></div>
+      </div>
+      <div class="aca-head">
+        <h2>{aca['title']}</h2>
+        <span class="en">{aca['en']}</span>
+        <a class="more" href="{aca['link_news']}">{aca['more']} ›</a>
+      </div>
+      <a class="aca-feat" href="https://mel.xmu.edu.cn/info/1012/61071.htm" target="_blank">
+        <span class="aca-feat-img" style="background-image:url({aca['feat_img']})"></span>
+        <span class="aca-feat-txt">
+          <span class="h">{aca['feat_h']}</span>
+          <span class="p">{aca['feat_p']}</span>
+          <span class="date">{aca['feat_date']}</span>
+        </span>
+      </a>
     </div>
-    <div class="cosine-btns">
-      <a class="btn btn-gold" href="research.html#project">{cos[3]} →</a>
-      <a class="btn btn-ghost" href="reports/CESM_CoSiNE16_Nature_style_draft_CN.html" target="_blank">{cos[4]} →</a>
+    <div class="aca-side">
+      <div class="aca-block">
+        <h3>{aca['block1']}</h3>
+        <ul>
+{''.join(f'          <li><span class="d">{d}</span><a href="{aca["link_news"]}">{t}</a></li>' for d, t in aca['block1_items'])}
+        </ul>
+      </div>
+      <div class="aca-block">
+        <h3>{aca['block2']}</h3>
+        <ul>
+{''.join(f'          <li><span class="tag">{tag}</span><a href="{u}" target="_blank">{t}</a></li>' for tag, t, u in aca['block2_items'])}
+        </ul>
+      </div>
     </div>
   </div>
 </div>
