@@ -7,12 +7,12 @@ ZH, EN = 'zh', 'en'
 NAV_ZH = [
     ('index.html', '首页'), ('about.html', '课题组简介'),
     ('research.html', '研究方向'),
-    ('papers.html', '发表论文'), ('news.html', '课题组动态'), ('links.html', '相关链接'),
+    ('papers.html', '科研成果'), ('news.html', '课题组动态'), ('links.html', '相关链接'),
 ]
 NAV_EN = [
     ('index.html', 'Home'), ('about.html', 'About'),
     ('research.html', 'Research'),
-    ('papers.html', 'Publications'), ('news.html', 'Group News'), ('links.html', 'Links'),
+    ('papers.html', 'Research Outputs'), ('news.html', 'Group News'), ('links.html', 'Links'),
 ]
 
 TXT = {
@@ -62,6 +62,12 @@ DD_ZH = {
         ('about.html#chai', '柴扉教授'),
         ('members.html', '成员介绍'),
     ],
+    'papers': [
+        ('papers.html#journal', '期刊论文'),
+        ('papers.html#digital-twin', '数字孪生'),
+        ('papers.html#data', '科研数据'),
+        ('papers.html#model', '数值模式'),
+    ],
     'research': [
         ('research.html#r0', '生态系统与生物地球化学模拟'),
         ('research.html#r1', '碳循环与气候反馈'),
@@ -82,6 +88,12 @@ DD_EN = {
         ('about.html', 'About the Group'),
         ('about.html#chai', 'Prof. Fei Chai'),
         ('members.html', 'Members'),
+    ],
+    'papers': [
+        ('papers.html#journal', 'Journal Papers'),
+        ('papers.html#digital-twin', 'Digital Twin'),
+        ('papers.html#data', 'Research Data'),
+        ('papers.html#model', 'Numerical Models'),
     ],
     'research': [
         ('research.html#r0', 'Ecosystem & Biogeochemical Modeling'),
@@ -108,6 +120,13 @@ def nav(active, lang, subpage=False):
         cls = ' class="active"' if f == active else ''
         if f == 'about.html':
             subs = '\n'.join(f'          <dd><a href="{u}">{n}</a></dd>' for u, n in dd['about'])
+            parts.append(f'''        <li class="has-sub"><a href="{f}"{cls}>{name}</a>
+          <div class="sub"><dl>
+{subs}
+          </dl></div>
+        </li>''')
+        elif f == 'papers.html':
+            subs = '\n'.join(f'          <dd><a href="{u}">{n}</a></dd>' for u, n in dd['papers'])
             parts.append(f'''        <li class="has-sub"><a href="{f}"{cls}>{name}</a>
           <div class="sub"><dl>
 {subs}
@@ -161,7 +180,7 @@ def footer(lang):
     if lang == EN:
         qlinks = [
             ('about.html', 'About'), ('members.html', 'Members'), ('research.html', 'Research'),
-            ('papers.html', 'Publications'), ('news.html', 'Group News'), ('links.html', 'Links'),
+            ('papers.html', 'Research Outputs'), ('news.html', 'Group News'), ('links.html', 'Links'),
         ]
         rlinks = [
             ('https://coeoa.xmu.edu.cn/t/CF/', "Prof. Chai's Homepage", ' target="_blank"'),
@@ -171,7 +190,7 @@ def footer(lang):
     else:
         qlinks = [
             ('about.html', '课题组简介'), ('members.html', '成员介绍'), ('research.html', '研究方向'),
-            ('papers.html', '发表论文'), ('news.html', '课题组动态'), ('links.html', '相关链接'),
+            ('papers.html', '科研成果'), ('news.html', '课题组动态'), ('links.html', '相关链接'),
         ]
         rlinks = [
             ('https://coeoa.xmu.edu.cn/t/CF/', '柴扉教授个人主页', ' target="_blank"'),
@@ -553,7 +572,131 @@ PAPERS = [
 ]
 
 def papers_body(lang):
-    return '<div class="section">\n' + paper_timeline(PAPERS, lang) + '\n</div>'
+    if lang == EN:
+        return f'''<div class="section" id="journal">
+  <div class="sec-head">
+    <span class="en">JOURNAL PAPERS</span>
+    <h2>Journal Papers</h2>
+  </div>
+  {paper_timeline(PAPERS, lang)}
+</div>
+
+<div class="section" id="digital-twin">
+  <div class="sec-head">
+    <span class="en">DIGITAL TWIN</span>
+    <h2>Ocean Digital Twin</h2>
+  </div>
+  <div class="project-box">
+    <div class="project-hero">
+      <div class="kicker">DIGITAL TWIN</div>
+      <h3>Digital twin of the ocean as a catalyst for blue economy innovation</h3>
+      <p>Prof. Chai and international experts systematically reviewed the core architecture of ocean digital twins and key application scenarios in blue-economy development. Published in National Science Review (2026).</p>
+    </div>
+    <div class="project-body">
+      <div class="project-links" style="margin-top:0">
+        <a class="btn btn-solid" href="https://mel.xmu.edu.cn/info/1012/61071.htm" target="_blank">Read the Original Report →</a>
+        <a class="btn btn-line" href="https://doi.org/10.1093/nsr/nwag012" target="_blank">Paper DOI →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="data">
+  <div class="sec-head">
+    <span class="en">RESEARCH DATA</span>
+    <h2>Research Data</h2>
+  </div>
+  <div class="project-box">
+    <div class="project-body">
+      <h4>BGC-Argo Observations</h4>
+      <p>Biogeochemical-Argo float observations in the western North Pacific and the South China Sea, including high-frequency profiles of oxygen, nitrate, chlorophyll, pH, and particulate organic carbon flux.</p>
+      <h4>Model Outputs</h4>
+      <p>CESM-CoSiNE simulation outputs covering the global ocean, the North Pacific, and the South China Sea (data sharing under preparation).</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="model">
+  <div class="sec-head">
+    <span class="en">NUMERICAL MODELS</span>
+    <h2>Numerical Models</h2>
+  </div>
+  <div class="project-box">
+    <div class="project-hero">
+      <div class="kicker">CESM-CoSiNE</div>
+      <h3>CESM-CoSiNE: An Ocean Ecosystem\u2013Biogeochemistry Module Embedded in CESM</h3>
+      <p>Developed and maintained by our group, embedded in the CESM Earth System Model (POP2 ocean component) to study planktonic ecosystems and the marine carbon cycle at global and regional scales.</p>
+    </div>
+    <div class="project-body">
+      <div class="project-links" style="margin-top:0">
+        <a class="btn btn-solid" href="reports/CESM_CoSiNE16_Nature_style_draft_CN.html" target="_blank">Project Report (Nature Style)</a>
+        <a class="btn btn-line" href="reports/CESM_CoSiNE16_v2_Process_Manual.html" target="_blank">V2 Coupling Manual</a>
+      </div>
+    </div>
+  </div>
+</div>'''
+    return f'''<div class="section" id="journal">
+  <div class="sec-head">
+    <span class="en">JOURNAL PAPERS</span>
+    <h2>期刊论文</h2>
+  </div>
+  {paper_timeline(PAPERS, lang)}
+</div>
+
+<div class="section" id="digital-twin">
+  <div class="sec-head">
+    <span class="en">DIGITAL TWIN</span>
+    <h2>海洋数字孪生</h2>
+  </div>
+  <div class="project-box">
+    <div class="project-hero">
+      <div class="kicker">DIGITAL TWIN</div>
+      <h3>Digital twin of the ocean as a catalyst for blue economy innovation</h3>
+      <p>柴扉教授与国际专家系统梳理海洋数字孪生核心架构，解析其在蓝色经济发展中的关键应用场景。综述发表于 National Science Review（2026）。</p>
+    </div>
+    <div class="project-body">
+      <div class="project-links" style="margin-top:0">
+        <a class="btn btn-solid" href="https://mel.xmu.edu.cn/info/1012/61071.htm" target="_blank">阅读原报道 →</a>
+        <a class="btn btn-line" href="https://doi.org/10.1093/nsr/nwag012" target="_blank">论文 DOI →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="data">
+  <div class="sec-head">
+    <span class="en">RESEARCH DATA</span>
+    <h2>科研数据</h2>
+  </div>
+  <div class="project-box">
+    <div class="project-body">
+      <h4>BGC-Argo 观测</h4>
+      <p>西北太平洋与南海 Biogeochemical-Argo 浮标观测：溶解氧、硝酸盐、叶绿素、pH 与颗粒有机碳通量的高频剖面数据。</p>
+      <h4>模式输出</h4>
+      <p>CESM-CoSiNE 全球海洋、北太平洋与南海模拟输出（数据共享整理中）。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="model">
+  <div class="sec-head">
+    <span class="en">NUMERICAL MODELS</span>
+    <h2>数值模式</h2>
+  </div>
+  <div class="project-box">
+    <div class="project-hero">
+      <div class="kicker">CESM-CoSiNE</div>
+      <h3>CESM-CoSiNE：嵌入 CESM 的海洋生态—生物地球化学模块</h3>
+      <p>由本课题组自主发展并维护，已嵌入 CESM 地球系统模式（POP2 海洋分量），研究全球及区域尺度浮游生态系统与海洋碳循环的演变。</p>
+    </div>
+    <div class="project-body">
+      <div class="project-links" style="margin-top:0">
+        <a class="btn btn-solid" href="reports/CESM_CoSiNE16_Nature_style_draft_CN.html" target="_blank">项目报告（Nature 风格）</a>
+        <a class="btn btn-line" href="reports/CESM_CoSiNE16_v2_Process_Manual.html" target="_blank">V2 耦合说明书</a>
+      </div>
+    </div>
+  </div>
+</div>'''
 
 def news_body(lang):
     if lang == EN:
@@ -811,7 +954,7 @@ def home_body(lang):
             ],
             'link_news': 'news.html',
         }
-        pub_head = ('Publications', 'SELECTED PUBLICATIONS', 'All Publications')
+        pub_head = ('Research Outputs', 'SELECTED PUBLICATIONS', 'All Outputs')
         pubs = [
             ('2026', 2, 'Digital twin of the ocean as a catalyst for blue economy innovation', 'Chai F., Deng Q., Dai M., et al.', 'National Science Review, 13(3): nwag012', '10.1093/nsr/nwag012'),
             ('2025', 6, 'Rising trends in winter phytoplankton blooms in the northern Arabian Sea over the last two decades', 'Song Z., Kang D., Chai F.', 'Geophysical Research Letters, 52', '10.1029/2025GL116509'),
@@ -874,7 +1017,7 @@ def home_body(lang):
             ],
             'link_news': 'news.html',
         }
-        pub_head = ('代表性论文', 'SELECTED PUBLICATIONS', '全部论文')
+        pub_head = ('科研成果', 'SELECTED OUTPUTS', '全部成果')
         pubs = [
             ('2026', 2, 'Digital twin of the ocean as a catalyst for blue economy innovation', 'Chai F., Deng Q., Dai M., 等.', 'National Science Review, 13(3): nwag012', '10.1093/nsr/nwag012'),
             ('2025', 6, 'Rising trends in winter phytoplankton blooms in the northern Arabian Sea over the last two decades', 'Song Z., Kang D., Chai F.', 'Geophysical Research Letters, 52', '10.1029/2025GL116509'),
@@ -1170,7 +1313,7 @@ def main():
         'about.html': ('课题组简介', 'ABOUT THE GROUP', ABOUT_BODY),
         'research.html': ('研究方向', 'RESEARCH AREAS', None),
         'project.html': ('CESM-CoSiNE', 'CESM-CoSiNE PROJECT', None),
-        'papers.html': ('发表论文', 'PUBLICATIONS', None),
+        'papers.html': ('科研成果', 'RESEARCH OUTPUTS', None),
         'news.html': ('课题组动态', 'GROUP NEWS', None),
         'links.html': ('相关链接', 'RELATED LINKS', None),
     }
@@ -1178,7 +1321,7 @@ def main():
         'about.html': ('About the Group', 'ABOUT THE GROUP', ABOUT_BODY),
         'research.html': ('Research', 'RESEARCH AREAS', None),
         'project.html': ('CESM-CoSiNE', 'CESM-CoSiNE PROJECT', None),
-        'papers.html': ('Publications', 'PUBLICATIONS', None),
+        'papers.html': ('Research Outputs', 'RESEARCH OUTPUTS', None),
         'news.html': ('Group News', 'GROUP NEWS', None),
         'links.html': ('Links', 'RELATED LINKS', None),
     }
