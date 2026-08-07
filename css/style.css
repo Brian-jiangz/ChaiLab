@@ -57,7 +57,7 @@ body {
 .g-head.scrolled .logo .logo-xmu, .g-head.scrolled .logo .logo-mel { filter: none; }
 .logo .txt { min-width: 0; margin-left: 18px; padding-left: 18px; border-left: 1px solid rgba(255,255,255,.35); transition: border-color .35s; }
 .g-head.scrolled .logo .txt { border-left-color: var(--line-2); }
-.logo .txt strong { font-size: 15px; color: #fff; display: block; line-height: 1.35; letter-spacing: .06em; white-space: nowrap; font-weight: 600; transition: color .35s; }
+.logo .txt strong { font-size: 28px; color: #fff; display: block; line-height: 1.1; letter-spacing: .04em; white-space: nowrap; font-weight: 600; transition: color .35s; }
 .g-head.scrolled .logo .txt strong { color: var(--navy); }
 
 .g-nav { justify-self: center; min-width: 0; max-width: 100%; }
@@ -472,7 +472,7 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
   body { font-size: 15.5px; }
   .g-head .inner.main { padding: 0 20px; gap: 10px; }
   .g-nav ul > li > a { padding: 24px 10px; font-size: 13.5px; }
-  .logo .txt strong { font-size: 14px; letter-spacing: .04em; }
+  .logo .txt strong { font-size: 24px; letter-spacing: .03em; }
   .logo .txt { margin-left: 14px; padding-left: 14px; }
 }
 
@@ -562,7 +562,7 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
   .g-head .inner.main { padding: 0 16px; }
   .logo .logo-xmu { height: 26px; width: 26px; }
   .logo .txt { margin-left: 10px; padding-left: 10px; }
-  .logo .txt strong { font-size: 13px; letter-spacing: .02em; }
+  .logo .txt strong { font-size: 22px; letter-spacing: .02em; }
   .g-nav ul { justify-content: flex-start; }
   .g-nav ul > li > a { padding: 0 7px; font-size: 12px; }
   .hero { height: 78vh; min-height: 420px; }
