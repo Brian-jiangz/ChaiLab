@@ -844,3 +844,30 @@ a:focus-visible, button:focus-visible, .hdots span:focus-visible {
 .ov-desc { border-left: 3px solid var(--gold); padding: 8px 0 8px 22px; max-width: 860px; }
 .ov-desc p { font-size: .9375em; color: var(--ink-2); line-height: 2; }
 @media (max-width: 900px) { .ov-grid { grid-template-columns: 1fr; } }
+
+/* ===== 成员独立介绍页 ===== */
+.mp-sec { padding-top: 64px; }
+.mp-head {
+  display: grid; grid-template-columns: 220px 1fr; gap: 40px; align-items: center;
+  border: 1px solid var(--line); padding: 36px 40px; position: relative; overflow: hidden;
+}
+.mp-head::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--gold); }
+.mp-photo {
+  width: 220px; height: 260px; overflow: hidden; border: 1px solid var(--line);
+  background: var(--paper-2); display: flex; align-items: center; justify-content: center;
+}
+.mp-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.mp-initial { font-size: 96px; font-weight: 300; color: var(--navy-3); opacity: .4; }
+.mp-meta .en { font-size: 11px; letter-spacing: .42em; color: var(--ink-3); display: block; margin-bottom: 14px; }
+.mp-meta h2 { font-size: 30px; color: var(--navy); letter-spacing: .1em; font-weight: 600; }
+.mp-role { color: var(--gold); font-size: 14px; margin: 10px 0 18px; letter-spacing: .12em; }
+.mp-info { list-style: none; }
+.mp-info li { font-size: 13.5px; color: var(--ink-3); padding: 8px 0; border-bottom: 1px dashed var(--line); }
+.mp-info li:last-child { border-bottom: none; }
+.mp-info b { color: var(--ink); font-weight: 600; }
+.mp-note { margin-top: 32px; border-left: 3px solid var(--gold); padding: 6px 0 6px 22px; max-width: 760px; }
+.mp-note p { font-size: .9375em; color: var(--ink-2); line-height: 2; }
+@media (max-width: 900px) {
+  .mp-head { grid-template-columns: 1fr; padding: 28px 24px; }
+  .mp-photo { width: 100%; max-width: 260px; height: 240px; margin: 0 auto; }
+}

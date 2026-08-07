@@ -398,69 +398,112 @@ def project_box(lang, full=True):
     </div>
   </div>'''
 
+def members_data(lang):
+    """成员数据：name, role, dir, email, photo, slug"""
+    if lang == EN:
+        return [
+            ('Fei Chai', 'Chair Professor / PI', 'Marine biogeochemistry, physics-ecology coupling, climate modeling', 'fchai@xmu.edu.cn', 'chai_fei.jpg', 'fei-chai'),
+            ('Xiaoyi Wang', 'Research Assistant', 'Member profile under construction', '\u2014', '', 'xiaoyi-wang'),
+            ('Wang Qian', 'Postdoctoral Researcher', 'Member profile under construction', '\u2014', '', 'wang-qian'),
+            ('Yang Kai', 'Postdoctoral Researcher', 'Member profile under construction', '\u2014', '', 'yang-kai'),
+            ('Zhao Kewei', 'PhD Student', 'Member profile under construction', '\u2014', '', 'zhao-kewei'),
+            ('Jiang Zheng', 'PhD Student', 'Member profile under construction', '\u2014', '', 'jiang-zheng'),
+            ('Lin Jianchun', "Master's Student", 'Member profile under construction', '\u2014', '', 'lin-jianchun'),
+            ('Xie Xianyu', "Master's Student", 'Member profile under construction', '\u2014', '', 'xie-xianyu'),
+            ('Li Peimin', "Master's Student", 'Member profile under construction', '\u2014', '', 'li-peimin'),
+            ('Wang Qian', 'PhD Graduate (2025)', 'Alumni member', '\u2014', '', 'wang-qian-alumni'),
+            ('Wang Yin', "Master's Graduate (2026)", 'Alumni member', '\u2014', '', 'wang-yin'),
+        ]
+    return [
+        ('柴扉', '讲席教授 / PI', '海洋生物地球化学、物理—生态耦合、气候模拟', 'fchai@xmu.edu.cn', 'chai_fei.jpg', 'fei-chai'),
+        ('王晓依', '科研助理', '成员简介整理中……', '—', '', 'xiaoyi-wang'),
+        ('王谦', '博士后', '成员简介整理中……', '—', '', 'wang-qian'),
+        ('杨凯', '博士后', '成员简介整理中……', '—', '', 'yang-kai'),
+        ('赵柯崴', '博士研究生', '成员简介整理中……', '—', '', 'zhao-kewei'),
+        ('姜正', '博士研究生', '成员简介整理中……', '—', '', 'jiang-zheng'),
+        ('林剑纯', '硕士研究生', '成员简介整理中……', '—', '', 'lin-jianchun'),
+        ('谢娴予', '硕士研究生', '成员简介整理中……', '—', '', 'xie-xianyu'),
+        ('李沛珉', '硕士研究生', '成员简介整理中……', '—', '', 'li-peimin'),
+        ('王谦', '博士毕业（2025）', '已毕业成员', '—', '', 'wang-qian-alumni'),
+        ('王胤', '硕士毕业（2026）', '已毕业成员', '—', '', 'wang-yin'),
+    ]
+
 def members_body(lang):
     if lang == EN:
         groups = [
-            ('Faculty', [('Fei Chai', 'Chair Professor / PI', 'Marine biogeochemistry, physics-ecology coupling, climate modeling', 'fchai@xmu.edu.cn', 'about.html#chai', 'chai_fei.jpg'),
-                          ('Xiaoyi Wang', 'Research Assistant', '\u2014', '\u2014', '', ''),
-                          ('Wang Qian', 'Postdoctoral Researcher', '\u2014', '\u2014', '', ''),
-                          ('Yang Kai', 'Postdoctoral Researcher', '\u2014', '\u2014', '', '')]),
-            ('PhD Students', [('Zhao Kewei', 'PhD Student', '\u2014', '\u2014', '', ''),
-                              ('Jiang Zheng', 'PhD Student', '\u2014', '\u2014', '', '')]),
-            ("Master's Students", [('Lin Jianchun', "Master's Student", '\u2014', '\u2014', '', ''),
-                                   ('Xie Xianyu', "Master's Student", '\u2014', '\u2014', '', ''),
-                                   ('Li Peimin', "Master's Student", '\u2014', '\u2014', '', '')]),
-            ('Alumni', [('Wang Qian', 'PhD Graduate (2025)', '\u2014', '\u2014', '', ''),
-                        ('Wang Yin', "Master's Graduate (2026)", '\u2014', '\u2014', '', '')]),
+            ('Faculty', ['fei-chai', 'xiaoyi-wang', 'wang-qian', 'yang-kai']),
+            ('PhD Students', ['zhao-kewei', 'jiang-zheng']),
+            ("Master's Students", ['lin-jianchun', 'xie-xianyu', 'li-peimin']),
+            ('Alumni', ['wang-qian-alumni', 'wang-yin']),
         ]
     else:
         groups = [
-            ('教职工', [('柴扉', '讲席教授 / PI', '海洋生物地球化学、物理—生态耦合、气候模拟', 'fchai@xmu.edu.cn', 'about.html#chai', 'chai_fei.jpg'),
-                      ('王晓依', '科研助理', '—', '—', '', ''),
-                      ('王谦', '博士后', '—', '—', '', ''),
-                      ('杨凯', '博士后', '—', '—', '', '')]),
-            ('博士研究生', [('赵柯崴', '博士研究生', '—', '—', '', ''),
-                          ('姜正', '博士研究生', '—', '—', '', '')]),
-            ('硕士研究生', [('林剑纯', '硕士研究生', '—', '—', '', ''),
-                          ('谢娴予', '硕士研究生', '—', '—', '', ''),
-                          ('李沛珉', '硕士研究生', '—', '—', '', '')]),
-            ('已毕业成员', [('王谦', '博士毕业（2025）', '—', '—', '', ''),
-                          ('王胤', '硕士毕业（2026）', '—', '—', '', '')]),
+            ('教职工', ['fei-chai', 'xiaoyi-wang', 'wang-qian', 'yang-kai']),
+            ('博士研究生', ['zhao-kewei', 'jiang-zheng']),
+            ('硕士研究生', ['lin-jianchun', 'xie-xianyu', 'li-peimin']),
+            ('已毕业成员', ['wang-qian-alumni', 'wang-yin']),
         ]
+    data = members_data(lang)
+    by_slug = {m[5]: m for m in data}
     out = ['<div class="section">']
-    for i, (gtitle, members) in enumerate(groups):
+    for i, (gtitle, slugs) in enumerate(groups):
         style = ' style="margin-top:72px"' if i > 0 else ''
         out.append(f'  <div class="sec-head"{style}>\n    <h2>{gtitle}</h2>\n  </div>')
-        def _card(name, role, dir_, email, link, photo):
-            home_zh, home_en, soon_zh, soon_en = '个人主页 →', 'Personal Page →', '个人主页 · 待配置', 'Personal page · TBD'
-            if lang == EN:
-                home_zh, home_en, soon_zh, soon_en = home_en, home_en, soon_en, soon_en
+        cards = []
+        for slug in slugs:
+            name, role, dir_, email, photo, slug2 = by_slug[slug]
             if photo:
                 face = f'<div class="m-avatar"><img src="images/{photo}" alt="{name}"></div>'
             else:
                 face = f'<div class="m-avatar"><span class="m-initial">{name[0]}</span></div>'
-            if link:
-                ext = ' target="_blank"' if link.startswith('http') else ''
-                return f'''    <a class="member m-link" href="{link}"{ext}>
+            link = 'about-chai.html' if slug == 'fei-chai' else 'member-%s.html' % slug
+            home = '个人主页 →' if lang == ZH else 'Personal Page →'
+            cards.append(f'''    <a class="member m-link" href="{link}">
       {face}
       <h4>{name}</h4>
       <div class="role">{role}</div>
       <div class="dir">{dir_}</div>
       <div class="email">{email}</div>
-      <div class="m-home">{home_zh}<span class="m-arrow">›</span></div>
-    </a>'''
-            return f'''    <div class="member">
-      {face}
-      <h4>{name}</h4>
-      <div class="role">{role}</div>
-      <div class="dir">{dir_}</div>
-      <div class="email">{email}</div>
-      <div class="m-home soon">{soon_zh}</div>
-    </div>'''
-        cards = '\n'.join(_card(name, role, dir_, email, link, photo) for name, role, dir_, email, link, photo in members)
-        out.append(f'  <div class="members">\n{cards}\n  </div>')
+      <div class="m-home">{home}<span class="m-arrow">{'>'}</span></div>
+    </a>''')
+        out.append('  <div class="members">\n' + '\n'.join(cards) + '\n  </div>')
     out.append('</div>')
     return '\n'.join(out)
+
+def member_page(lang):
+    """为每个成员生成独立介绍页"""
+    data = members_data(lang)
+    for name, role, dir_, email, photo, slug in data:
+        if photo:
+            face = f'<div class="mp-photo"><img src="images/{photo}" alt="{name}"></div>'
+        else:
+            face = f'<div class="mp-photo"><span class="mp-initial">{name[0]}</span></div>'
+        body = f'''<div class="section mp-sec">
+  <div class="mp-head">
+    {face}
+    <div class="mp-meta">
+      <span class="en">{"GROUP MEMBER" if lang == EN else "课题组成员"}</span>
+      <h2>{name}</h2>
+      <div class="mp-role">{role}</div>
+      <ul class="mp-info">
+        <li><b>{"Email" if lang == EN else "邮箱"}：</b>{email}</li>
+        <li><b>{"Research Direction" if lang == EN else "研究方向"}：</b>{dir_}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="mp-note">
+    <p>{("Member profile is under construction. More details will be updated soon." if lang == EN else "成员个人简介整理中，更多信息将陆续更新。")}</p>
+  </div>
+</div>'''
+        fname = 'member-%s.html' % slug
+        en_sub = 'MEMBER PROFILE'
+        html = page(fname, name, en_sub, with_subnav('about', body, lang), lang,
+                    scripts='../js/home.js' if lang == EN else 'js/home.js')
+        if lang == EN:
+            html = html.replace('href="images/', 'href="../images/').replace('src="images/', 'src="../images/')
+        target = 'en/' + fname if lang == EN else fname
+        open(target, 'w').write(html)
+        print('生成成员页', target)
 
 def project_body(lang):
     if lang == EN:
@@ -1828,6 +1871,9 @@ def main():
     open('en/members.html', 'w').write(_en(page('members.html', 'Members', 'GROUP MEMBERS',
         with_subnav('about', members_body(EN), EN), EN, scripts='../js/home.js')))
     print('生成 members.html / en/members.html')
+    # 成员独立介绍页
+    member_page(ZH)
+    member_page(EN)
 
     # 首页（无 page-banner，使用 home.js）
     open('index.html', 'w').write(page('index.html', '首页', 'HOME', home_body(ZH), ZH, banner=False, scripts='js/home.js'))
