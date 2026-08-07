@@ -116,13 +116,14 @@
   /* 初始状态：Hero 显示，锁定滚动 */
   if (bodyHome) document.body.classList.add('locked');
 
-  /* 滚轮：Hero 上向下 -> 内容上滑；内容顶部向上 -> 回 Hero */
+  /* 滚轮：Hero 上向下 -> 内容上滑；内容顶部向上 -> 回 Hero（仅首页） */
   var wheelLock = false;
   window.addEventListener('wheel', function (e) {
+    if (!bodyMain) return;
     if (wheelLock) { e.preventDefault(); return; }
     var y = window.scrollY || window.pageYOffset;
     var atTop = y < 8;
-    var shown = bodyMain && bodyMain.classList.contains('show');
+    var shown = bodyMain.classList.contains('show');
     if (e.deltaY > 0 && atTop && !shown) {
       e.preventDefault();
       wheelLock = true;
@@ -143,10 +144,11 @@
     });
   }
 
-  /* 键盘：↓/PgDn 下滑，↑/PgUp 回顶 */
+  /* 键盘：↓/PgDn 下滑，↑/PgUp 回顶（仅首页） */
   document.addEventListener('keydown', function (e) {
+    if (!bodyMain) return;
     var atTop = (window.scrollY || 0) < 8;
-    var shown = bodyMain && bodyMain.classList.contains('show');
+    var shown = bodyMain.classList.contains('show');
     if ((e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') && atTop && !shown) {
       e.preventDefault(); goDown();
     }
