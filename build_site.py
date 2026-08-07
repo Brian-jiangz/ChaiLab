@@ -401,44 +401,48 @@ def project_box(lang, full=True):
 def members_body(lang):
     if lang == EN:
         groups = [
-            ('Faculty', [('Fei Chai', 'Chair Professor / PI', 'Marine biogeochemistry, physics-ecology coupling, climate modeling', 'fchai@xmu.edu.cn', 'about.html#chai'),
-                          ('Xiaoyi Wang', 'Research Assistant', '\u2014', '\u2014', ''),
-                          ('Wang Qian', 'Postdoctoral Researcher', '\u2014', '\u2014', ''),
-                          ('Yang Kai', 'Postdoctoral Researcher', '\u2014', '\u2014', '')]),
-            ('PhD Students', [('Zhao Kewei', 'PhD Student', '\u2014', '\u2014', ''),
-                              ('Jiang Zheng', 'PhD Student', '\u2014', '\u2014', '')]),
-            ("Master's Students", [('Lin Jianchun', "Master's Student", '\u2014', '\u2014', ''),
-                                   ('Xie Xianyu', "Master's Student", '\u2014', '\u2014', ''),
-                                   ('Li Peimin', "Master's Student", '\u2014', '\u2014', '')]),
-            ('Alumni', [('Wang Qian', 'PhD Graduate (2025)', '\u2014', '\u2014', ''),
-                        ('Wang Yin', "Master's Graduate (2026)", '\u2014', '\u2014', '')]),
+            ('Faculty', [('Fei Chai', 'Chair Professor / PI', 'Marine biogeochemistry, physics-ecology coupling, climate modeling', 'fchai@xmu.edu.cn', 'about.html#chai', 'chai_fei.jpg'),
+                          ('Xiaoyi Wang', 'Research Assistant', '\u2014', '\u2014', '', ''),
+                          ('Wang Qian', 'Postdoctoral Researcher', '\u2014', '\u2014', '', ''),
+                          ('Yang Kai', 'Postdoctoral Researcher', '\u2014', '\u2014', '', '')]),
+            ('PhD Students', [('Zhao Kewei', 'PhD Student', '\u2014', '\u2014', '', ''),
+                              ('Jiang Zheng', 'PhD Student', '\u2014', '\u2014', '', '')]),
+            ("Master's Students", [('Lin Jianchun', "Master's Student", '\u2014', '\u2014', '', ''),
+                                   ('Xie Xianyu', "Master's Student", '\u2014', '\u2014', '', ''),
+                                   ('Li Peimin', "Master's Student", '\u2014', '\u2014', '', '')]),
+            ('Alumni', [('Wang Qian', 'PhD Graduate (2025)', '\u2014', '\u2014', '', ''),
+                        ('Wang Yin', "Master's Graduate (2026)", '\u2014', '\u2014', '', '')]),
         ]
     else:
         groups = [
-            ('教职工', [('柴扉', '讲席教授 / PI', '海洋生物地球化学、物理—生态耦合、气候模拟', 'fchai@xmu.edu.cn', 'about.html#chai'),
-                      ('王晓依', '科研助理', '—', '—', ''),
-                      ('王谦', '博士后', '—', '—', ''),
-                      ('杨凯', '博士后', '—', '—', '')]),
-            ('博士研究生', [('赵柯崴', '博士研究生', '—', '—', ''),
-                          ('姜正', '博士研究生', '—', '—', '')]),
-            ('硕士研究生', [('林剑纯', '硕士研究生', '—', '—', ''),
-                          ('谢娴予', '硕士研究生', '—', '—', ''),
-                          ('李沛珉', '硕士研究生', '—', '—', '')]),
-            ('已毕业成员', [('王谦', '博士毕业（2025）', '—', '—', ''),
-                          ('王胤', '硕士毕业（2026）', '—', '—', '')]),
+            ('教职工', [('柴扉', '讲席教授 / PI', '海洋生物地球化学、物理—生态耦合、气候模拟', 'fchai@xmu.edu.cn', 'about.html#chai', 'chai_fei.jpg'),
+                      ('王晓依', '科研助理', '—', '—', '', ''),
+                      ('王谦', '博士后', '—', '—', '', ''),
+                      ('杨凯', '博士后', '—', '—', '', '')]),
+            ('博士研究生', [('赵柯崴', '博士研究生', '—', '—', '', ''),
+                          ('姜正', '博士研究生', '—', '—', '', '')]),
+            ('硕士研究生', [('林剑纯', '硕士研究生', '—', '—', '', ''),
+                          ('谢娴予', '硕士研究生', '—', '—', '', ''),
+                          ('李沛珉', '硕士研究生', '—', '—', '', '')]),
+            ('已毕业成员', [('王谦', '博士毕业（2025）', '—', '—', '', ''),
+                          ('王胤', '硕士毕业（2026）', '—', '—', '', '')]),
         ]
     out = ['<div class="section">']
     for i, (gtitle, members) in enumerate(groups):
         style = ' style="margin-top:72px"' if i > 0 else ''
         out.append(f'  <div class="sec-head"{style}>\n    <h2>{gtitle}</h2>\n  </div>')
-        def _card(name, role, dir_, email, link):
+        def _card(name, role, dir_, email, link, photo):
             home_zh, home_en, soon_zh, soon_en = '个人主页 →', 'Personal Page →', '个人主页 · 待配置', 'Personal page · TBD'
             if lang == EN:
                 home_zh, home_en, soon_zh, soon_en = home_en, home_en, soon_en, soon_en
+            if photo:
+                face = f'<div class="m-avatar"><img src="images/{photo}" alt="{name}"></div>'
+            else:
+                face = f'<div class="m-avatar"><span class="m-initial">{name[0]}</span></div>'
             if link:
                 ext = ' target="_blank"' if link.startswith('http') else ''
                 return f'''    <a class="member m-link" href="{link}"{ext}>
-      <div class="m-avatar">{name[0]}</div>
+      {face}
       <h4>{name}</h4>
       <div class="role">{role}</div>
       <div class="dir">{dir_}</div>
@@ -446,14 +450,14 @@ def members_body(lang):
       <div class="m-home">{home_zh}<span class="m-arrow">›</span></div>
     </a>'''
             return f'''    <div class="member">
-      <div class="m-avatar">{name[0]}</div>
+      {face}
       <h4>{name}</h4>
       <div class="role">{role}</div>
       <div class="dir">{dir_}</div>
       <div class="email">{email}</div>
       <div class="m-home soon">{soon_zh}</div>
     </div>'''
-        cards = '\n'.join(_card(name, role, dir_, email, link) for name, role, dir_, email, link in members)
+        cards = '\n'.join(_card(name, role, dir_, email, link, photo) for name, role, dir_, email, link, photo in members)
         out.append(f'  <div class="members">\n{cards}\n  </div>')
     out.append('</div>')
     return '\n'.join(out)
