@@ -787,7 +787,7 @@ def home_body(lang):
       </video>'''
         slide_parts.append(f'''    <div class="hslide{' hs' + str(i+1) if not photo and not video_html else ''}{' on' if i == 0 else ''}"{bg_style}>
 {video_html}
-{decos[i]}
+{'' if video_html else decos[i]}
       <div class="hcap" data-cap>
         <span class="kicker">{kicker}</span>
         <h2>{h}</h2>
