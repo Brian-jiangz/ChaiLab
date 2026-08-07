@@ -343,6 +343,72 @@ def tiles_body(lang, href_base='#'):
     </a>'''
         for i, (title, desc) in enumerate(zip(items, descs)))
 
+def digital_twin_box(lang):
+    """数字孪生 + 古气候与数字地球 展示卡（源自 Hero 内容）"""
+    if lang == EN:
+        dt = {
+            'kicker': 'OCEAN DIGITAL TWIN',
+            'title': 'Ocean digital twin as a catalyst for blue-economy innovation',
+            'desc': 'Prof. Chai and international experts systematically reviewed the core architecture of ocean digital twins and key application scenarios in blue-economy development. Published in National Science Review (2026).',
+            'feats': [
+                'Four-layer modular architecture: data, models, analysis, visualization & interaction',
+                'Answers "what is now?", "what next?", and "what if?" operational questions',
+                'Applications: aquaculture, offshore wind, shipping, disaster prevention, blue carbon',
+                'Roadmap: unified mathematical framework, hybrid modeling, edge-cloud computing',
+            ],
+            'btn1': 'Read the Original Report',
+            'btn2': 'Paper DOI',
+            'paleo_kicker': 'PALEOCLIMATE & DIGITAL EARTH',
+            'paleo_title': 'Paleoclimate and the Digital Earth',
+            'paleo_desc': 'Reconstruct the past, simulate the present, foresee the future. Earth system modeling of key periods such as the Last Interglacial to understand the long-term evolution of the carbon cycle, building toward a digital earth of the climate system.',
+        }
+    else:
+        dt = {
+            'kicker': 'OCEAN DIGITAL TWIN',
+            'title': '海洋数字孪生：赋能蓝色经济创新',
+            'desc': '柴扉教授与国际专家系统梳理海洋数字孪生核心架构，深度解析其在蓝色经济发展中的关键应用场景。综述发表于 National Science Review（2026）。',
+            'feats': [
+                '数据—模型—分析—可视化与交互四层模块化核心架构',
+                '回应"现在是什么状态？""接下来会怎样？""如果……会怎样？"三类运营问题',
+                '应用涵盖海洋水产养殖、海上风电、航运港口、防灾减灾、蓝碳等领域',
+                '提出统一数学框架、混合建模、边云协同等未来发展方向',
+            ],
+            'btn1': '阅读原报道',
+            'btn2': '论文 DOI',
+            'paleo_kicker': 'PALEOCLIMATE & DIGITAL EARTH',
+            'paleo_title': '古气候与数字地球',
+            'paleo_desc': '重建过去，模拟现在，预见未来。利用地球系统模式开展末次间冰期等关键时期古气候模拟，理解碳循环的长期演化，迈向气候系统的数字地球。',
+        }
+    feats_html = '\n'.join(f'        <li>{x}</li>' for x in dt['feats'])
+    return f'''<div class="project-box" style="margin-bottom:36px">
+    <div class="project-hero" style="background-image:linear-gradient(rgba(10,33,56,.8),rgba(13,47,79,.8)),url(images/mel_digital_twin.png);background-size:cover;background-position:center">
+      <div class="kicker">{dt['kicker']}</div>
+      <h3>{dt['title']}</h3>
+      <p>{dt['desc']}</p>
+    </div>
+    <div class="project-body">
+      <h4>{'Key Points' if lang == EN else '要点'}</h4>
+      <ul>
+{feats_html}
+      </ul>
+      <div class="project-links">
+        <a class="btn btn-solid" href="https://mel.xmu.edu.cn/info/1012/61071.htm" target="_blank">{dt['btn1']} →</a>
+        <a class="btn btn-line" href="https://doi.org/10.1093/nsr/nwag012" target="_blank">{dt['btn2']} →</a>
+      </div>
+    </div>
+  </div>
+  <div class="project-box">
+    <div class="project-hero" style="background:linear-gradient(160deg,#071a2e 0%,#0d2f4f 60%,#14507c 100%);position:relative;overflow:hidden">
+      <video class="hvideo" autoplay muted loop playsinline preload="metadata" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.35">
+        <source src="videos/paleo_hero.mp4" type="video/mp4">
+        <source src="videos/paleo_hero.webm" type="video/webm">
+      </video>
+      <div class="kicker">{dt['paleo_kicker']}</div>
+      <h3>{dt['paleo_title']}</h3>
+      <p>{dt['paleo_desc']}</p>
+    </div>
+  </div>'''
+
 def project_box(lang, full=True):
     if lang == EN:
         body = '''      <div class="kicker">CESM-CoSiNE</div>
@@ -1133,7 +1199,9 @@ def home_body(lang):
                  ('MAR 2026', 'CESM-CoSiNE module development and validation',
                   'images/cosine_bg.png', 'research.html#project'),
                  ('FEB 2026', 'Ocean digital twin review published in National Science Review',
-                  'images/mel_digital_twin.png', 'https://mel.xmu.edu.cn/info/1012/61071.htm'),
+                  'images/mel_digital_twin.png', 'papers-digital-twin.html'),
+                 ('JAN 2026', 'Paleoclimate and the digital earth',
+                  'images/cosine_bg.png', 'papers-digital-twin.html'),
                  ('NOV 2025', 'Lujiang Ocean Symposium concludes successfully',
                   'images/cosine_bg.png', 'news.html'),
                  ('SEP 2025', 'Group website officially launched',
@@ -1204,7 +1272,9 @@ def home_body(lang):
                  ('2026-03', 'CESM-CoSiNE 模式研发与验证进展',
                   'images/cosine_bg.png', 'research.html#project'),
                  ('2026-02', '海洋数字孪生综述发表于 National Science Review',
-                  'images/mel_digital_twin.png', 'https://mel.xmu.edu.cn/info/1012/61071.htm'),
+                  'images/mel_digital_twin.png', 'papers-digital-twin.html'),
+                 ('2026-01', '古气候与数字地球',
+                  'images/cosine_bg.png', 'papers-digital-twin.html'),
                  ('2025-11', '鹭江海洋研讨会圆满落幕',
                   'images/cosine_bg.png', 'news.html'),
                  ('2025-09', '课题组网站全新上线',
@@ -1732,7 +1802,7 @@ def main():
         pages.append(('papers-journal.html', '期刊论文', 'JOURNAL PAPERS',
                       with_subnav('papers', '<div class="section" id="journal">' + paper_timeline(PAPERS, ZH) + '</div>', ZH)))
         pages.append(('papers-digital-twin.html', '数字孪生', 'DIGITAL TWIN',
-                      with_subnav('papers', '<div class="section" id="digital-twin">' + project_box(ZH, full=True) + '</div>', ZH)))
+                      with_subnav('papers', '<div class="section" id="digital-twin">' + digital_twin_box(ZH) + '</div>', ZH)))
         pages.append(('papers-data.html', '科研数据', 'RESEARCH DATA',
                       with_subnav('papers', '''<div class="section" id="data">
   <div class="sec-head"><span class="en">RESEARCH DATA</span><h2>科研数据</h2></div>
@@ -1834,7 +1904,7 @@ def main():
         pages.append(('papers-journal.html', 'Journal Papers', 'JOURNAL PAPERS',
                       with_subnav('papers', '<div class="section" id="journal">' + paper_timeline(PAPERS, EN) + '</div>', EN)))
         pages.append(('papers-digital-twin.html', 'Digital Twin', 'DIGITAL TWIN',
-                      with_subnav('papers', '<div class="section" id="digital-twin">' + project_box(EN, full=True) + '</div>', EN)))
+                      with_subnav('papers', '<div class="section" id="digital-twin">' + digital_twin_box(EN) + '</div>', EN)))
         pages.append(('papers-data.html', 'Research Data', 'RESEARCH DATA',
                       with_subnav('papers', '''<div class="section" id="data">
   <div class="sec-head"><span class="en">RESEARCH DATA</span><h2>Research Data</h2></div>
