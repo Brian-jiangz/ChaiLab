@@ -432,15 +432,27 @@ def members_body(lang):
         style = ' style="margin-top:72px"' if i > 0 else ''
         out.append(f'  <div class="sec-head"{style}>\n    <h2>{gtitle}</h2>\n  </div>')
         def _card(name, role, dir_, email, link):
-            cls = ' m-link' if link else ''
-            ext = ' target="_blank"' if link.startswith('http') else ''
-            return f'''    <a class="member{cls}" href="{link}"{ext}>
+            home_zh, home_en, soon_zh, soon_en = '个人主页 →', 'Personal Page →', '个人主页 · 待配置', 'Personal page · TBD'
+            if lang == EN:
+                home_zh, home_en, soon_zh, soon_en = home_en, home_en, soon_en, soon_en
+            if link:
+                ext = ' target="_blank"' if link.startswith('http') else ''
+                return f'''    <a class="member m-link" href="{link}"{ext}>
       <div class="m-avatar">{name[0]}</div>
       <h4>{name}</h4>
       <div class="role">{role}</div>
       <div class="dir">{dir_}</div>
       <div class="email">{email}</div>
+      <div class="m-home">{home_zh}<span class="m-arrow">›</span></div>
     </a>'''
+            return f'''    <div class="member">
+      <div class="m-avatar">{name[0]}</div>
+      <h4>{name}</h4>
+      <div class="role">{role}</div>
+      <div class="dir">{dir_}</div>
+      <div class="email">{email}</div>
+      <div class="m-home soon">{soon_zh}</div>
+    </div>'''
         cards = '\n'.join(_card(name, role, dir_, email, link) for name, role, dir_, email, link in members)
         out.append(f'  <div class="members">\n{cards}\n  </div>')
     out.append('</div>')
@@ -1364,6 +1376,130 @@ def research_with_project(lang):
   </div>
   {proj}
 </div>''', lang)
+
+# ============ 二级滑动视图（Hero 式顺序切换） ============
+
+def research_slides(lang):
+    """研究方向二级滑动视图：6 方向 + CESM 项目"""
+    if lang == EN:
+        items = [
+            ('01', 'Marine Ecosystem and Biogeochemical Modeling',
+             'Development and improvement of the CESM-CoSiNE coupled marine ecosystem\u2013biogeochemistry module to simulate the spatiotemporal evolution of phytoplankton, nutrients, and the carbon cycle across the global ocean and marginal seas.'),
+            ('02', 'Marine Carbon Cycle and Climate Feedbacks',
+             'Quantifying the ocean\u2019s role in regulating atmospheric CO\u2082, biological pump efficiency, and the response of the marine carbon cycle to future climate change.'),
+            ('03', 'Submesoscale Processes and Ecological Effects',
+             'Exploring how submesoscale physical processes (fronts, eddies) regulate planktonic ecosystems and carbon export fluxes.'),
+            ('04', 'Paleoclimate and Paleoceanography',
+             'Earth system modeling of key periods such as the Last Interglacial to understand the long-term evolution of the carbon cycle.'),
+            ('05', 'Ocean Digital Twin',
+             'Building ocean digital twin systems to empower blue-economy innovation and integrated ocean observation\u2013simulation\u2013prediction.'),
+            ('06', 'Observation\u2013Model Integration',
+             'Combining in-situ observations, satellite remote sensing, and numerical models to quantify uncertainty and improve ecosystem model parameterizations.'),
+        ]
+    else:
+        items = [
+            ('01', '海洋生态系统与生物地球化学模拟',
+             '发展并改进 CESM-CoSiNE 海洋生态系统—生物地球化学耦合模式，模拟浮游植物、营养盐与碳循环在全球大洋与边缘海的时空演变。'),
+            ('02', '海洋碳循环与气候反馈',
+             '研究海洋对大气 CO₂ 的调控作用、生物泵效率及海洋碳循环对未来气候变化的响应。'),
+            ('03', '海洋次中尺度过程与生态效应',
+             '探索次中尺度物理过程（锋面、涡旋）对浮游生态系统与碳输出通量的调控机制。'),
+            ('04', '古气候与古海洋模拟',
+             '利用地球系统模式开展末次间冰期等关键时期古气候模拟，理解碳循环的长期演化。'),
+            ('05', '海洋数字孪生',
+             '构建海洋数字孪生系统，赋能蓝色经济创新，服务海洋观测—模拟—预测一体化。'),
+            ('06', '观测—模拟融合',
+             '结合现场观测、卫星遥感与数值模式，量化评估模式不确定性，改进生态模型参数化。'),
+        ]
+    slides = []
+    for i, (num, title, desc) in enumerate(items):
+        slides.append(f'''      <section class="sv-slide{' on' if i == 0 else ''}">
+        <div class="sv-num">{num}</div>
+        <h2>{title}</h2>
+        <p>{desc}</p>
+        <span class="sv-line"></span>
+      </section>''')
+    proj = project_box(lang, full=True)
+    slides.append(f'''      <section class="sv-slide">
+        <div class="sv-num">CESM-CoSiNE</div>
+        {proj}
+      </section>''')
+    return '\n'.join(slides)
+
+def papers_slides(lang):
+    """学术论文二级滑动视图：期刊论文 / 数字孪生 / 科研数据 / 数值模式"""
+    if lang == EN:
+        blocks = [
+            ('01', 'Journal Papers', 'Peer-reviewed journal publications of the group.', 'papers.html#journal'),
+            ('02', 'Ocean Digital Twin', 'The ocean digital twin framework and its applications in blue-economy innovation.', 'papers.html#digital-twin'),
+            ('03', 'Research Data', 'BGC-Argo observations and model outputs for the North Pacific and the South China Sea.', 'papers.html#data'),
+            ('04', 'Numerical Models', 'The CESM-CoSiNE marine ecosystem\u2013biogeochemistry module embedded in CESM.', 'papers.html#model'),
+        ]
+    else:
+        blocks = [
+            ('01', '期刊论文', '课题组发表的同行评审期刊论文。', 'papers.html#journal'),
+            ('02', '数字孪生', '海洋数字孪生框架及其在蓝色经济创新中的应用。', 'papers.html#digital-twin'),
+            ('03', '科研数据', '北太平洋与南海 BGC-Argo 观测及模式输出数据。', 'papers.html#data'),
+            ('04', '数值模式', '嵌入 CESM 的 CESM-CoSiNE 海洋生态—生物地球化学模块。', 'papers.html#model'),
+        ]
+    slides = []
+    for i, (num, title, desc, link) in enumerate(blocks):
+        slides.append(f'''      <section class="sv-slide{' on' if i == 0 else ''}">
+        <div class="sv-num">{num}</div>
+        <h2>{title}</h2>
+        <p>{desc}</p>
+        <span class="sv-line"></span>
+        <a class="btn btn-sm btn-gold" href="{link}">{'Learn More' if lang == EN else '了解更多'} →</a>
+      </section>''')
+    return '\n'.join(slides)
+
+def about_slides(lang):
+    """成员介绍二级滑动视图：课题组简介 / 柴扉教授 / 成员介绍"""
+    if lang == EN:
+        blocks = [
+            ('01', 'About the Group', 'Research on coupled physical\u2013ecological\u2013biogeochemical oceanography, focusing on the marine carbon cycle and ecosystem responses to climate change.', 'about.html#about-group'),
+            ('02', 'Prof. Fei Chai', 'Tang Shifeng Chair Professor in Marine Sciences; marine biogeochemistry and climate simulation.', 'about.html#chai'),
+            ('03', 'Members', 'Faculty, postdoctoral researchers, and graduate students of the group.', 'members.html'),
+        ]
+    else:
+        blocks = [
+            ('01', '课题组简介', '长期从事海洋物理—生态—生物地球化学耦合研究，聚焦海洋碳循环与生态系统对气候变化的响应。', 'about.html#about-group'),
+            ('02', '柴扉教授', '"唐世凤"海洋学科讲席教授；海洋生物地球化学与气候模拟。', 'about.html#chai'),
+            ('03', '成员介绍', '课题组教职工、博士后与研究生。', 'members.html'),
+        ]
+    slides = []
+    for i, (num, title, desc, link) in enumerate(blocks):
+        slides.append(f'''      <section class="sv-slide{' on' if i == 0 else ''}">
+        <div class="sv-num">{num}</div>
+        <h2>{title}</h2>
+        <p>{desc}</p>
+        <span class="sv-line"></span>
+        <a class="btn btn-sm btn-gold" href="{link}">{'Learn More' if lang == EN else '了解更多'} →</a>
+      </section>''')
+    return '\n'.join(slides)
+
+def slides_page(key, lang, title, en_sub):
+    """生成二级滑动视图页面（Hero 式切换）"""
+    if key == 'research':
+        slides = research_slides(lang)
+    elif key == 'papers':
+        slides = papers_slides(lang)
+    else:
+        slides = about_slides(lang)
+    dots = '\n'.join(f'        <span class="{"on" if i == 0 else ""}"><i></i></span>' for i in range(slides.count('<section class="sv-slide')))
+    body = f'''<div class="sv-view" id="svView">
+  <div class="sv-stage">
+{slides}
+  </div>
+  <button class="sv-arrow prev" id="svPrev" aria-label="prev">‹</button>
+  <button class="sv-arrow next" id="svNext" aria-label="next">›</button>
+  <div class="sv-dots" id="svDots">
+{dots}
+  </div>
+  <div class="sv-counter" id="svCounter">1 / {slides.count('<section class="sv-slide')}</div>
+</div>'''
+    fname = key + '-slides.html'
+    return page(fname, title, en_sub, body, lang, subpage=True, scripts='../js/home.js' if lang == EN else 'js/home.js')
 
 def main():
     specs = {

@@ -366,6 +366,16 @@ html.anim .hslide.on .hcap .hero-ctas { opacity: 1; transform: none; transition-
 .member .role { color: var(--gold); font-size: 12px; margin: 6px 0 12px; letter-spacing: .18em; }
 .member .dir { font-size: .8125em; color: var(--ink-3); line-height: 1.7; }
 .member .email { font-size: 12px; color: var(--navy-3); word-break: break-all; margin-top: 8px; }
+.member .m-home {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; letter-spacing: .1em; margin-top: 16px;
+  color: var(--gold); font-weight: 600;
+}
+.member .m-home .m-arrow { font-size: 16px; line-height: 1; transition: transform .25s; }
+.member.m-link .m-home { text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; transition: text-decoration-color .25s; }
+.member.m-link:hover .m-home { text-decoration-color: var(--gold); }
+.member.m-link:hover .m-home .m-arrow { transform: translateX(4px); }
+.member .m-home.soon { color: var(--ink-3); font-weight: 400; letter-spacing: .08em; cursor: default; }
 
 /* ===== 研究方向（序号 + 背景填充 + 居中 + 点击跳转） ===== */
 .research { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
