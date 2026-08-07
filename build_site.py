@@ -1384,136 +1384,95 @@ def research_with_project(lang):
 # ============ 二级滑动视图（Hero 式顺序切换） ============
 
 def research_slides(lang):
-    """研究方向二级滑动视图：6 方向 + CESM 项目"""
+    """研究方向二级内容（subnav 区块）"""
     if lang == EN:
         items = [
-            ('01', 'Marine Ecosystem and Biogeochemical Modeling',
-             'Development and improvement of the CESM-CoSiNE coupled marine ecosystem\u2013biogeochemistry module to simulate the spatiotemporal evolution of phytoplankton, nutrients, and the carbon cycle across the global ocean and marginal seas.'),
-            ('02', 'Marine Carbon Cycle and Climate Feedbacks',
-             'Quantifying the ocean\u2019s role in regulating atmospheric CO\u2082, biological pump efficiency, and the response of the marine carbon cycle to future climate change.'),
-            ('03', 'Submesoscale Processes and Ecological Effects',
-             'Exploring how submesoscale physical processes (fronts, eddies) regulate planktonic ecosystems and carbon export fluxes.'),
-            ('04', 'Paleoclimate and Paleoceanography',
-             'Earth system modeling of key periods such as the Last Interglacial to understand the long-term evolution of the carbon cycle.'),
-            ('05', 'Ocean Digital Twin',
-             'Building ocean digital twin systems to empower blue-economy innovation and integrated ocean observation\u2013simulation\u2013prediction.'),
-            ('06', 'Observation\u2013Model Integration',
-             'Combining in-situ observations, satellite remote sensing, and numerical models to quantify uncertainty and improve ecosystem model parameterizations.'),
+            ('r0', 'Marine Ecosystem and Biogeochemical Modeling', 'Development and improvement of the CESM-CoSiNE coupled marine ecosystem-biogeochemistry module to simulate the spatiotemporal evolution of phytoplankton, nutrients, and the carbon cycle across the global ocean and marginal seas.'),
+            ('r1', 'Marine Carbon Cycle and Climate Feedbacks', 'Quantifying the ocean role in regulating atmospheric CO2, biological pump efficiency, and the response of the marine carbon cycle to future climate change.'),
+            ('r2', 'Submesoscale Processes and Ecological Effects', 'Exploring how submesoscale physical processes (fronts, eddies) regulate planktonic ecosystems and carbon export fluxes.'),
+            ('r3', 'Paleoclimate and Paleoceanography', 'Earth system modeling of key periods such as the Last Interglacial to understand the long-term evolution of the carbon cycle.'),
+            ('r4', 'Ocean Digital Twin', 'Building ocean digital twin systems to empower blue-economy innovation and integrated ocean observation-simulation-prediction.'),
+            ('r5', 'Observation-Model Integration', 'Combining in-situ observations, satellite remote sensing, and numerical models to quantify uncertainty and improve ecosystem model parameterizations.'),
         ]
     else:
         items = [
-            ('01', '海洋生态系统与生物地球化学模拟',
-             '发展并改进 CESM-CoSiNE 海洋生态系统—生物地球化学耦合模式，模拟浮游植物、营养盐与碳循环在全球大洋与边缘海的时空演变。'),
-            ('02', '海洋碳循环与气候反馈',
-             '研究海洋对大气 CO₂ 的调控作用、生物泵效率及海洋碳循环对未来气候变化的响应。'),
-            ('03', '海洋次中尺度过程与生态效应',
-             '探索次中尺度物理过程（锋面、涡旋）对浮游生态系统与碳输出通量的调控机制。'),
-            ('04', '古气候与古海洋模拟',
-             '利用地球系统模式开展末次间冰期等关键时期古气候模拟，理解碳循环的长期演化。'),
-            ('05', '海洋数字孪生',
-             '构建海洋数字孪生系统，赋能蓝色经济创新，服务海洋观测—模拟—预测一体化。'),
-            ('06', '观测—模拟融合',
-             '结合现场观测、卫星遥感与数值模式，量化评估模式不确定性，改进生态模型参数化。'),
+            ('r0', '海洋生态系统与生物地球化学模拟', '发展并改进 CESM-CoSiNE 海洋生态系统—生物地球化学耦合模式，模拟浮游植物、营养盐与碳循环在全球大洋与边缘海的时空演变。'),
+            ('r1', '海洋碳循环与气候反馈', '研究海洋对大气 CO₂ 的调控作用、生物泵效率及海洋碳循环对未来气候变化的响应。'),
+            ('r2', '海洋次中尺度过程与生态效应', '探索次中尺度物理过程（锋面、涡旋）对浮游生态系统与碳输出通量的调控机制。'),
+            ('r3', '古气候与古海洋模拟', '利用地球系统模式开展末次间冰期等关键时期古气候模拟，理解碳循环的长期演化。'),
+            ('r4', '海洋数字孪生', '构建海洋数字孪生系统，赋能蓝色经济创新，服务海洋观测—模拟—预测一体化。'),
+            ('r5', '观测—模拟融合', '结合现场观测、卫星遥感与数值模式，量化评估模式不确定性，改进生态模型参数化。'),
         ]
-    slides = []
-    for i, (num, title, desc) in enumerate(items):
-        slides.append(f'''      <section class="sv-slide{' on' if i == 0 else ''}">
-        <div class="sv-num">{num}</div>
-        <h2>{title}</h2>
-        <p>{desc}</p>
-        <span class="sv-line"></span>
-      </section>''')
-    proj = project_box(lang, full=True)
-    slides.append(f'''      <section class="sv-slide">
-        <div class="sv-num">CESM-CoSiNE</div>
-        {proj}
-      </section>''')
-    return '\n'.join(slides)
+    blocks = []
+    for i, (aid, title, desc) in enumerate(items):
+        num = '%02d' % (i + 1)
+        blocks.append('<div class="section" id="%s">\n  <div class="sec-head">\n    <span class="en">%s · %s</span>\n    <h2>%s</h2>\n  </div>\n  <div class="ov-desc"><p>%s</p></div>\n</div>' % (aid, num, 'RESEARCH AREA' if lang == EN else '研究方向', title, desc))
+    blocks.append('<div class="section" id="project">\n  <div class="sec-head">\n    <span class="en">CESM-CoSiNE</span>\n    <h2>%s</h2>\n  </div>\n  %s\n</div>' % ('CESM-CoSiNE Project' if lang == EN else 'CESM-CoSiNE 项目', project_box(lang, full=True)))
+    return '\n'.join(blocks)
 
 def papers_slides(lang):
-    """学术论文二级滑动视图：期刊论文 / 数字孪生 / 科研数据 / 数值模式"""
+    """学术论文二级内容（subnav 区块）"""
     if lang == EN:
         blocks = [
-            ('01', 'Journal Papers', 'Peer-reviewed journal publications of the group.', 'papers.html#journal'),
-            ('02', 'Ocean Digital Twin', 'The ocean digital twin framework and its applications in blue-economy innovation.', 'papers.html#digital-twin'),
-            ('03', 'Research Data', 'BGC-Argo observations and model outputs for the North Pacific and the South China Sea.', 'papers.html#data'),
-            ('04', 'Numerical Models', 'The CESM-CoSiNE marine ecosystem\u2013biogeochemistry module embedded in CESM.', 'papers.html#model'),
+            ('journal', 'Journal Papers', 'Peer-reviewed journal publications of the group.', paper_timeline(PAPERS, lang)),
+            ('digital-twin', 'Ocean Digital Twin', 'The ocean digital twin framework and its applications in blue-economy innovation.', project_box(lang, full=True)),
+            ('data', 'Research Data', 'BGC-Argo observations and model outputs for the North Pacific and the South China Sea.', '<div class="ov-desc"><p>BGC-Argo float observations in the western North Pacific and the South China Sea; CESM-CoSiNE simulation outputs (data sharing under preparation).</p></div>'),
+            ('model', 'Numerical Models', 'The CESM-CoSiNE marine ecosystem-biogeochemistry module embedded in CESM.', project_box(lang, full=True)),
         ]
     else:
         blocks = [
-            ('01', '期刊论文', '课题组发表的同行评审期刊论文。', 'papers.html#journal'),
-            ('02', '数字孪生', '海洋数字孪生框架及其在蓝色经济创新中的应用。', 'papers.html#digital-twin'),
-            ('03', '科研数据', '北太平洋与南海 BGC-Argo 观测及模式输出数据。', 'papers.html#data'),
-            ('04', '数值模式', '嵌入 CESM 的 CESM-CoSiNE 海洋生态—生物地球化学模块。', 'papers.html#model'),
+            ('journal', '期刊论文', '课题组发表的同行评审期刊论文。', paper_timeline(PAPERS, lang)),
+            ('digital-twin', '海洋数字孪生', '海洋数字孪生框架及其在蓝色经济创新中的应用。', project_box(lang, full=True)),
+            ('data', '科研数据', '北太平洋与南海 BGC-Argo 观测及模式输出数据。', '<div class="ov-desc"><p>西北太平洋与南海 Biogeochemical-Argo 浮标观测；CESM-CoSiNE 全球海洋、北太平洋与南海模拟输出（数据共享整理中）。</p></div>'),
+            ('model', '数值模式', '嵌入 CESM 的 CESM-CoSiNE 海洋生态—生物地球化学模块。', project_box(lang, full=True)),
         ]
-    slides = []
-    for i, (num, title, desc, link) in enumerate(blocks):
-        slides.append(f'''      <section class="sv-slide{' on' if i == 0 else ''}">
-        <div class="sv-num">{num}</div>
-        <h2>{title}</h2>
-        <p>{desc}</p>
-        <span class="sv-line"></span>
-        <a class="btn btn-sm btn-gold" href="{link}">{'Learn More' if lang == EN else '了解更多'} →</a>
-      </section>''')
-    return '\n'.join(slides)
+    out = []
+    for i, (aid, title, desc, content) in enumerate(blocks):
+        num = '%02d' % (i + 1)
+        out.append('<div class="section" id="%s">\n  <div class="sec-head">\n    <span class="en">%s · %s</span>\n    <h2>%s</h2>\n  </div>\n  %s\n</div>' % (aid, num, 'SECTION' if lang == EN else '板块', title, content))
+    return '\n'.join(out)
 
 def about_slides(lang):
-    """成员介绍二级滑动视图：课题组简介 / 柴扉教授 / 成员介绍"""
+    """成员介绍二级内容（subnav 区块）"""
     if lang == EN:
         blocks = [
-            ('01', 'About the Group', 'Research on coupled physical\u2013ecological\u2013biogeochemical oceanography, focusing on the marine carbon cycle and ecosystem responses to climate change.', 'about.html#about-group'),
-            ('02', 'Prof. Fei Chai', 'Tang Shifeng Chair Professor in Marine Sciences; marine biogeochemistry and climate simulation.', 'about.html#chai'),
-            ('03', 'Members', 'Faculty, postdoctoral researchers, and graduate students of the group.', 'members.html'),
+            ('about-group', 'About the Group', ABOUT_BODY['en']),
+            ('chai', 'Prof. Fei Chai', pi_detail_html(PI_EN, EN)),
+            ('members', 'Members', members_body(EN)),
         ]
     else:
         blocks = [
-            ('01', '课题组简介', '长期从事海洋物理—生态—生物地球化学耦合研究，聚焦海洋碳循环与生态系统对气候变化的响应。', 'about.html#about-group'),
-            ('02', '柴扉教授', '"唐世凤"海洋学科讲席教授；海洋生物地球化学与气候模拟。', 'about.html#chai'),
-            ('03', '成员介绍', '课题组教职工、博士后与研究生。', 'members.html'),
+            ('about-group', '课题组简介', ABOUT_BODY['zh']),
+            ('chai', '柴扉教授', pi_detail_html(PI_ZH, ZH)),
+            ('members', '成员介绍', members_body(ZH)),
         ]
-    slides = []
-    for i, (num, title, desc, link) in enumerate(blocks):
-        slides.append(f'''      <section class="sv-slide{' on' if i == 0 else ''}">
-        <div class="sv-num">{num}</div>
-        <h2>{title}</h2>
-        <p>{desc}</p>
-        <span class="sv-line"></span>
-        <a class="btn btn-sm btn-gold" href="{link}">{'Learn More' if lang == EN else '了解更多'} →</a>
-      </section>''')
-    return '\n'.join(slides)
+    out = []
+    for i, (aid, title, content) in enumerate(blocks):
+        num = '%02d' % (i + 1)
+        out.append('<div class="section" id="%s">\n  <div class="sec-head">\n    <span class="en">%s · %s</span>\n    <h2>%s</h2>\n  </div>\n  %s\n</div>' % (aid, num, 'SECTION' if lang == EN else '板块', title, content))
+    return '\n'.join(out)
 
 def slides_page(key, lang, title, en_sub):
-    """生成二级滑动视图页面（Hero 式切换）"""
+    """二级内容页：with_subnav 左侧竖排导航 + 锚点区块"""
     if key == 'research':
-        slides = research_slides(lang)
+        body = research_slides(lang)
     elif key == 'papers':
-        slides = papers_slides(lang)
+        body = papers_slides(lang)
     else:
-        slides = about_slides(lang)
-    dots = '\n'.join(f'        <span class="{"on" if i == 0 else ""}"><i></i></span>' for i in range(slides.count('<section class="sv-slide')))
-    body = f'''<div class="sv-view" id="svView">
-  <div class="sv-stage">
-{slides}
-  </div>
-  <button class="sv-arrow prev" id="svPrev" aria-label="prev">‹</button>
-  <button class="sv-arrow next" id="svNext" aria-label="next">›</button>
-  <div class="sv-dots" id="svDots">
-{dots}
-  </div>
-  <div class="sv-counter" id="svCounter">1 / {slides.count('<section class="sv-slide')}</div>
-</div>'''
+        body = about_slides(lang)
     fname = key + '-slides.html'
-    return page(fname, title, en_sub, body, lang, banner=False, scripts='../js/home.js' if lang == EN else 'js/home.js')
+    return page(fname, title, en_sub, with_subnav(key, body, lang), lang,
+                scripts='../js/home.js' if lang == EN else 'js/home.js')
 
 def overview_page(key, lang, title, en_sub, cards, slides_title):
     """一级总览页：汇总卡片 + 进入二级滑动视图的入口"""
     card_html = '\n'.join(
-        f'''      <a class="ov-card" href="{link}?n={i}">
+        f'''      <a class="ov-card" href="{link}">
         <span class="ov-num">{num}</span>
         <h3>{t}</h3>
         <p>{d}</p>
         <span class="ov-go">{'Enter' if lang == EN else '进入'} →</span>
-      </a>''' for i, (num, t, d, link) in enumerate(cards))
+      </a>''' for num, t, d, link in cards)
     if slides_title:
         slides_link = key + '-slides.html'
         entry = f'''  <p style="text-align:center;margin-top:44px">
@@ -1570,23 +1529,23 @@ def main():
     # ---- 一级总览页 + 二级滑动视图 ----
     overviews = {
         'about': ('成员介绍', 'GROUP OVERVIEW', [
-            ('01', '课题组简介', '课题组研究概况与招生信息。', 'about-slides.html'),
-            ('02', '柴扉教授', '个人档案：学术经历、研究领域与代表性论文。', 'about-slides.html'),
-            ('03', '成员介绍', '教职工、博士后与研究生名单。', 'about-slides.html'),
+            ('01', '课题组简介', '课题组研究概况与招生信息。', 'about-slides.html#about-group'),
+            ('02', '柴扉教授', '个人档案：学术经历、研究领域与代表性论文。', 'about-slides.html#chai'),
+            ('03', '成员介绍', '教职工、博士后与研究生名单。', 'about-slides.html#members'),
         ]),
         'research': ('研究方向', 'RESEARCH AREAS', [
-            ('01', '海洋生态系统与生物地球化学模拟', 'CESM-CoSiNE 耦合模式研发与模拟。', 'research-slides.html'),
-            ('02', '海洋碳循环与气候反馈', '海洋碳循环对气候变化的响应。', 'research-slides.html'),
-            ('03', '次中尺度过程与生态效应', '锋面、涡旋对生态系统与碳输出的调控。', 'research-slides.html'),
-            ('04', '古气候与古海洋模拟', '关键时期古气候模拟研究。', 'research-slides.html'),
-            ('05', '海洋数字孪生', '海洋数字孪生系统构建。', 'research-slides.html'),
-            ('06', '观测—模拟融合', '观测与模式结合改进参数化。', 'research-slides.html'),
+            ('01', '海洋生态系统与生物地球化学模拟', 'CESM-CoSiNE 耦合模式研发与模拟。', 'research-slides.html#r0'),
+            ('02', '海洋碳循环与气候反馈', '海洋碳循环对气候变化的响应。', 'research-slides.html#r1'),
+            ('03', '次中尺度过程与生态效应', '锋面、涡旋对生态系统与碳输出的调控。', 'research-slides.html#r2'),
+            ('04', '古气候与古海洋模拟', '关键时期古气候模拟研究。', 'research-slides.html#r3'),
+            ('05', '海洋数字孪生', '海洋数字孪生系统构建。', 'research-slides.html#r4'),
+            ('06', '观测—模拟融合', '观测与模式结合改进参数化。', 'research-slides.html#r5'),
         ]),
         'papers': ('学术论文', 'ACADEMIC OUTPUTS', [
-            ('01', '期刊论文', '课题组发表的同行评审论文。', 'papers-slides.html'),
-            ('02', '数字孪生', '海洋数字孪生综述与框架。', 'papers-slides.html'),
-            ('03', '科研数据', 'BGC-Argo 观测与模式输出。', 'papers-slides.html'),
-            ('04', '数值模式', 'CESM-CoSiNE 模式与报告。', 'papers-slides.html'),
+            ('01', '期刊论文', '课题组发表的同行评审论文。', 'papers-slides.html#journal'),
+            ('02', '数字孪生', '海洋数字孪生综述与框架。', 'papers-slides.html#digital-twin'),
+            ('03', '科研数据', 'BGC-Argo 观测与模式输出。', 'papers-slides.html#data'),
+            ('04', '数值模式', 'CESM-CoSiNE 模式与报告。', 'papers-slides.html#model'),
         ]),
     }
     for key, (title, en_sub, cards) in overviews.items():
@@ -1621,23 +1580,23 @@ def main():
     # ---- 英文版总览 + 滑动视图 ----
     overviews_en = {
         'about': ('Members', 'GROUP OVERVIEW', [
-            ('01', 'About the Group', 'Overview of the group research and recruitment.', 'about-slides.html'),
-            ('02', 'Prof. Fei Chai', 'Profile: career, research interests, selected publications.', 'about-slides.html'),
-            ('03', 'Members', 'Faculty, postdocs, and graduate students.', 'about-slides.html'),
+            ('01', 'About the Group', 'Overview of the group research and recruitment.', 'about-slides.html#about-group'),
+            ('02', 'Prof. Fei Chai', 'Profile: career, research interests, selected publications.', 'about-slides.html#chai'),
+            ('03', 'Members', 'Faculty, postdocs, and graduate students.', 'about-slides.html#members'),
         ]),
         'research': ('Research', 'RESEARCH AREAS', [
-            ('01', 'Ecosystem & Biogeochemical Modeling', 'CESM-CoSiNE coupled modeling.', 'research-slides.html'),
-            ('02', 'Carbon Cycle & Climate Feedbacks', 'Ocean carbon cycle response to climate.', 'research-slides.html'),
-            ('03', 'Submesoscale Processes', 'Fronts and eddies regulating ecosystems.', 'research-slides.html'),
-            ('04', 'Paleoclimate Modeling', 'Earth system modeling of key periods.', 'research-slides.html'),
-            ('05', 'Ocean Digital Twin', 'Digital twin systems for the ocean.', 'research-slides.html'),
-            ('06', 'Observation\u2013Model Integration', 'Combining observations and models.', 'research-slides.html'),
+            ('01', 'Ecosystem & Biogeochemical Modeling', 'CESM-CoSiNE coupled modeling.', 'research-slides.html#r0'),
+            ('02', 'Carbon Cycle & Climate Feedbacks', 'Ocean carbon cycle response to climate.', 'research-slides.html#r1'),
+            ('03', 'Submesoscale Processes', 'Fronts and eddies regulating ecosystems.', 'research-slides.html#r2'),
+            ('04', 'Paleoclimate Modeling', 'Earth system modeling of key periods.', 'research-slides.html#r3'),
+            ('05', 'Ocean Digital Twin', 'Digital twin systems for the ocean.', 'research-slides.html#r4'),
+            ('06', 'Observation\u2013Model Integration', 'Combining observations and models.', 'research-slides.html#r5'),
         ]),
         'papers': ('Academic Papers', 'ACADEMIC OUTPUTS', [
-            ('01', 'Journal Papers', 'Peer-reviewed publications.', 'papers-slides.html'),
-            ('02', 'Digital Twin', 'Ocean digital twin review and framework.', 'papers-slides.html'),
-            ('03', 'Research Data', 'BGC-Argo observations and model outputs.', 'papers-slides.html'),
-            ('04', 'Numerical Models', 'CESM-CoSiNE model and reports.', 'papers-slides.html'),
+            ('01', 'Journal Papers', 'Peer-reviewed publications.', 'papers-slides.html#journal'),
+            ('02', 'Digital Twin', 'Ocean digital twin review and framework.', 'papers-slides.html#digital-twin'),
+            ('03', 'Research Data', 'BGC-Argo observations and model outputs.', 'papers-slides.html#data'),
+            ('04', 'Numerical Models', 'CESM-CoSiNE model and reports.', 'papers-slides.html#model'),
         ]),
     }
     for key, (title, en_sub, cards) in overviews_en.items():
