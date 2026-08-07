@@ -143,20 +143,20 @@
   /* 初始状态：Hero 显示，锁定滚动 */
   if (bodyHome) document.body.classList.add('locked');
 
-  /* bfcache 恢复（浏览器返回）：同步整屏状态，确保滚轮等交互恢复 */
+  /* bfcache 恢复（浏览器返回）：彻底重置整屏状态，避免锁定/滚动位置冲突 */
   window.addEventListener('pageshow', function (e) {
     if (!e.persisted) return;
     switching = false;
     wheelLock = false;
-    if (bodyMain) {
-      if (bodyMain.classList.contains('show')) {
-        document.body.classList.remove('locked');
-        if (head) head.classList.add('scrolled');
-      } else {
-        document.body.classList.add('locked');
-        if (head) head.classList.remove('scrolled');
-        window.scrollTo(0, 0);
-      }
+    if (!bodyMain) return;
+    /* 先解锁，让 scrollTo 生效 */
+    document.body.classList.remove('locked');
+    window.scrollTo(0, 0);
+    if (bodyMain.classList.contains('show')) {
+      if (head) head.classList.add('scrolled');
+    } else {
+      document.body.classList.add('locked');
+      if (head) head.classList.remove('scrolled');
     }
     if (slides.length) { go(cur); play(); }
   });
