@@ -2,7 +2,7 @@
   'use strict';
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var DUR = 6000;
-  var isMobile = function () { return window.innerWidth <= 900; };
+  var isMobile = function () { return window.innerWidth <= 1100; };
 
   /* ===== Hero 轮播（滑动 + 淡入 + Ken Burns） ===== */
   var slides = document.querySelectorAll('.hslide');
