@@ -89,7 +89,7 @@ DD_EN = {
     ],
 }
 
-def nav(active, lang):
+def nav(active, lang, subpage=False):
     items = NAV_EN if lang == EN else NAV_ZH
     dd = DD_EN if lang == EN else DD_ZH
     t = TXT[lang]
@@ -115,8 +115,9 @@ def nav(active, lang):
         else:
             parts.append(f'        <li><a href="{f}"{cls}>{name}</a></li>')
     lis = '\n'.join(parts)
+    head_cls = 'g-head subpage' if subpage else 'g-head'
     return f'''<!-- 顶部导航 -->
-<header class="g-head" id="g-head">
+<header class="{head_cls}" id="g-head">
   <div class="inner main">
     <a href="index.html" class="logo">
       <span class="logo-marks">
@@ -209,7 +210,7 @@ def page(fname, title, en_sub, body, lang, extra='', banner=True, scripts=''):
 </head>
 <body>
 
-{nav(fname, lang)}
+{nav(fname, lang, subpage=not banner)}
 {banner_html}
 {body}
 {footer(lang)}

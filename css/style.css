@@ -22,13 +22,28 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ===== 顶部导航（透明浮于 Hero 上，滚动后白底） ===== */
+/* ===== 顶部导航（首页透明浮于 Hero 上；子页面固定白底） ===== */
 .g-head {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   background: transparent; border-bottom: 1px solid transparent;
   transition: background .35s, box-shadow .35s, border-color .35s;
 }
 .g-head.scrolled { background: var(--paper); border-bottom-color: var(--line); box-shadow: 0 8px 24px rgba(8, 26, 44, .12); }
+/* 子页面：固定白底深字 */
+.g-head.subpage {
+  background: var(--paper); border-bottom-color: var(--line);
+  box-shadow: 0 4px 16px rgba(8, 26, 44, .08);
+}
+.g-head.subpage .logo .logo-xmu, .g-head.subpage .logo .logo-mel { filter: none; }
+.g-head.subpage .logo .txt { border-left-color: var(--line-2); }
+.g-head.subpage .logo .txt strong { color: var(--navy); }
+.g-head.subpage .g-nav ul > li > a { color: var(--ink-2); }
+.g-head.subpage .g-nav ul > li > a::after { background: var(--navy); }
+.g-head.subpage .g-nav ul > li > a:hover { color: var(--navy); }
+.g-head.subpage .g-nav ul > li > a.active { color: var(--navy); }
+.g-head.subpage .lang-switch { color: var(--navy); border-color: var(--navy); }
+.g-head.subpage .lang-switch:hover { background: var(--navy); color: #fff; }
+.g-head.subpage .nav-toggle { color: var(--navy); }
 
 .g-head .inner.main { max-width: 1400px; margin: 0 auto; height: 74px; display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; padding: 0 28px; gap: 16px; }
 .logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; min-width: 0; }
@@ -492,6 +507,11 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
   }
   .g-head.scrolled .g-nav ul > li > a { color: var(--ink-2); }
   .g-head.scrolled .g-nav ul > li > a:hover { color: var(--navy); }
+  .g-head.subpage .g-nav {
+    background: rgba(255,255,255,.8);
+    -webkit-backdrop-filter: blur(18px) saturate(1.2); backdrop-filter: blur(18px) saturate(1.2);
+    border-bottom-color: var(--line);
+  }
   .g-nav ul > li > a::after { display: none; }
   .g-nav .sub { display: none; }
   .g-nav .m-lang { display: none; }
