@@ -351,7 +351,7 @@ html.anim .hslide.on .hcap .hero-ctas { opacity: 1; transform: none; transition-
 .pi-card .info b { color: var(--ink); font-weight: 600; }
 
 /* ===== 成员 ===== */
-.members { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.members { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 270px)); justify-content: center; gap: 0; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
 .member { background: var(--paper); padding: 28px 24px 32px; text-align: center; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background .25s; display: flex; flex-direction: column; align-items: center; text-decoration: none; }
 .member.m-link:hover { background: var(--paper-2); }
 .member.m-link h4 { transition: color .2s; }
