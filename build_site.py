@@ -922,6 +922,7 @@ PI_EN = {
     'interests': [
         'Marine carbon cycle', 'Physical\u2013biogeochemical ecosystem modeling',
         'Marine ecosystem dynamics', 'Fisheries resources', 'BGC-Argo observations',
+        'Ocean digital twin',
     ],
     'pubs': [
         ('2026', 'Digital twin of the ocean as a catalyst for blue economy innovation', 'National Science Review'),
@@ -950,7 +951,7 @@ PI_ZH = {
     ],
     'interests': [
         '海洋碳循环', '物理—生物地球化学模型', '海洋生态系统',
-        '渔业资源', 'BGC-Argo 观测',
+        '渔业资源', 'BGC-Argo 观测', '海洋数字孪生',
     ],
     'pubs': [
         ('2026', 'Digital twin of the ocean as a catalyst for blue economy innovation', 'National Science Review'),
