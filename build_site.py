@@ -121,10 +121,8 @@ def nav(active, lang):
     <a href="index.html" class="logo">
       <img src="images/xmu_logo.png" alt="Xiamen University" class="logo-xmu">
       <img src="images/mel_logo.svg" alt="MEL" class="logo-mel">
-      <span class="logo-divider"></span>
       <div class="txt">
         <strong>{t['site_name']}</strong>
-        <span>{t['site_sub']}</span>
       </div>
     </a>
     <nav class="g-nav">
