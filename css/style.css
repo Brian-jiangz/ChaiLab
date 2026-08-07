@@ -329,7 +329,11 @@ html.anim .hslide.on .hcap .hero-ctas { opacity: 1; transform: none; transition-
 
 /* ===== CESM-CoSiNE 项目 ===== */
 .project-box { border: 1px solid var(--line); }
-.project-hero { background: var(--navy); color: #fff; padding: 56px 64px; position: relative; }
+.project-hero {
+  background-image: linear-gradient(rgba(10, 33, 56, .82), rgba(13, 47, 79, .82)), url(../images/cosine_bg.png);
+  background-size: cover; background-position: center;
+  color: #fff; padding: 56px 64px; position: relative;
+}
 .project-hero::after { content: ""; position: absolute; left: 64px; bottom: 0; width: 44px; height: 1px; background: var(--gold); }
 .project-hero .kicker { font-size: 11px; letter-spacing: .4em; color: var(--gold); margin-bottom: 16px; text-transform: uppercase; }
 .project-hero h3 { font-size: 24px; font-weight: 500; letter-spacing: .08em; line-height: 1.5; }
@@ -415,7 +419,11 @@ html.anim .hslide.on .hcap .hero-ctas { opacity: 1; transform: none; transition-
 .nitem:hover .arr { opacity: 1; right: 8px; }
 
 /* ===== CESM-CoSiNE 首页横幅 ===== */
-.cosine-band { background: linear-gradient(135deg, #0a2138, #0d2f4f); padding: 60px 24px; }
+.cosine-band {
+  background-image: linear-gradient(rgba(10, 33, 56, .82), rgba(13, 47, 79, .82)), url(../images/cosine_bg.png);
+  background-size: cover; background-position: center;
+  padding: 60px 24px;
+}
 .cosine-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 48px; }
 .cosine-txt .kicker { display: block; font-size: 11px; letter-spacing: .4em; color: var(--gold); margin-bottom: 14px; }
 .cosine-txt h2 { color: #fff; font-size: 26px; letter-spacing: .06em; font-weight: 600; max-width: 660px; line-height: 1.5; }
