@@ -888,6 +888,12 @@ def news_body(lang):
     </div>
     <div class="news-item">
       <span class="date">JUN 2026</span>
+      <h3>National key R&D project workshop on tropical ocean system evolution</h3>
+      <p>Workshop of the national key R&D program \u201cTropical Ocean System Evolution and Its Linkage with the Poles\u201d was held.</p>
+      <img class="news-thumb" src="images/news/project-workshop-2026.jpg" alt="Project workshop 2026">
+    </div>
+    <div class="news-item">
+      <span class="date">JUN 2026</span>
       <h3>Wang Yin master\u2019s thesis defense</h3>
       <p>Congratulations to Wang Yin on passing the master\u2019s thesis defense!</p>
       <img class="news-thumb" src="images/news/wangyin-defense-2026.jpg" alt="Wang Yin defense">
@@ -942,6 +948,12 @@ def news_body(lang):
       <span class="date">2026-07</span>
       <h3>剖面浮标揭秘边缘海深海碳脉冲</h3>
       <p>利用南海西南部布放的生物地球化学剖面浮标实现1000米深颗粒有机碳通量连续三年高频观测，揭示季节性气旋涡与沿岸急流驱动深海碳通量脉冲的机制。相关成果发表于 Limnology and Oceanography，柴扉教授为共同作者。<a href="https://mel.xmu.edu.cn/info/1012/63211.htm" target="_blank" style="color:var(--navy-3)">阅读原报道 →</a></p>
+    </div>
+    <div class="news-item">
+      <span class="date">2026-06</span>
+      <h3>国家重点研发项目"热带海洋系统演化及与两极的联动"项目研讨会</h3>
+      <p>国家重点研发计划"热带海洋系统演化及与两极的联动"项目研讨会顺利召开。</p>
+      <img class="news-thumb" src="images/news/project-workshop-2026.jpg" alt="项目研讨会">
     </div>
     <div class="news-item">
       <span class="date">2026-06</span>
