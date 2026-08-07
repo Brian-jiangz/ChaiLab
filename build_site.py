@@ -809,9 +809,14 @@ def news_body(lang):
   </div>
   <div class="news-list">
     <div class="news-item">
+      <span class="date">JUL 2026</span>
+      <h3>Profiling floats reveal deep-sea carbon pulses in the marginal sea</h3>
+      <p>Using Biogeochemical-Argo floats deployed in the southwestern South China Sea, the team achieved three years of high-frequency observations of particulate organic carbon flux at 1000 m depth. The study was published in Limnology and Oceanography, with Prof. Fei Chai as a co-author.<a href="https://mel.xmu.edu.cn/info/1012/63211.htm" target="_blank" style="color:var(--navy-3)">Read the Original Report →</a></p>
+    </div>
+    <div class="news-item">
       <span class="date">JUN 2026</span>
-      <h3>Wang Yin master’s thesis defense</h3>
-      <p>Congratulations to Wang Yin on passing the master’s thesis defense!</p>
+      <h3>Wang Yin master\u2019s thesis defense</h3>
+      <p>Congratulations to Wang Yin on passing the master\u2019s thesis defense!</p>
       <img class="news-thumb" src="images/news/wangyin-defense-2026.jpg" alt="Wang Yin defense">
     </div>
     <div class="news-item">
@@ -827,6 +832,11 @@ def news_body(lang):
       <img class="news-thumb" src="images/news/christmas-2025.jpg" alt="Christmas">
     </div>
     <div class="news-item">
+      <span class="date">NOV 2025</span>
+      <h3>Lujiang Ocean Symposium concludes successfully</h3>
+      <p>The ocean symposium co-hosted by Lujiang Innovation Laboratory and the State Key Laboratory of Marine Environmental Science (XMU) was held successfully.</p>
+    </div>
+    <div class="news-item">
       <span class="date">OCT 2025</span>
       <h3>Wang Qian PhD defense</h3>
       <p>Congratulations to Wang Qian on passing the PhD defense!</p>
@@ -834,19 +844,9 @@ def news_body(lang):
     </div>
     <div class="news-item">
       <span class="date">SEP 2025</span>
-      <h3>Teachers’ Day group photo</h3>
-      <p>Group photo on Teachers’ Day 2025.</p>
+      <h3>Teachers\u2019 Day group photo</h3>
+      <p>Group photo on Teachers\u2019 Day 2025.</p>
       <img class="news-thumb" src="images/news/teachers-day-2025.jpg" alt="Teachers Day">
-    </div>
-    <div class="news-item">
-      <span class="date">JUL 2026</span>
-      <h3>Profiling floats reveal deep-sea carbon pulses</h3>
-      <p>Using Biogeochemical-Argo floats deployed in the southwestern South China Sea, the team achieved three years of high-frequency observations of particulate organic carbon flux at 1000 m depth, revealing how seasonal cyclonic eddies and coastal jets drive deep-sea carbon flux pulses. The study was published in Limnology and Oceanography, with Prof. Fei Chai as a co-author.<a href="https://mel.xmu.edu.cn/info/1012/63211.htm" target="_blank" style="color:var(--navy-3)">Read the Original Report →</a></p>
-    </div>
-    <div class="news-item">
-      <span class="date">NOV 2025</span>
-      <h3>Lujiang Ocean Symposium concludes successfully</h3>
-      <p>The ocean symposium co-hosted by Lujiang Innovation Laboratory and the State Key Laboratory of Marine Environmental Science (XMU) was held successfully.</p>
     </div>
     <div class="news-item">
       <span class="date">SEP 2025</span>
@@ -871,6 +871,11 @@ def news_body(lang):
   </div>
   <div class="news-list">
     <div class="news-item">
+      <span class="date">2026-07</span>
+      <h3>剖面浮标揭秘边缘海深海碳脉冲</h3>
+      <p>利用南海西南部布放的生物地球化学剖面浮标实现1000米深颗粒有机碳通量连续三年高频观测，揭示季节性气旋涡与沿岸急流驱动深海碳通量脉冲的机制。相关成果发表于 Limnology and Oceanography，柴扉教授为共同作者。<a href="https://mel.xmu.edu.cn/info/1012/63211.htm" target="_blank" style="color:var(--navy-3)">阅读原报道 →</a></p>
+    </div>
+    <div class="news-item">
       <span class="date">2026-06</span>
       <h3>王胤硕士毕业答辩</h3>
       <p>祝贺王胤顺利通过硕士毕业答辩！</p>
@@ -889,6 +894,11 @@ def news_body(lang):
       <img class="news-thumb" src="images/news/christmas-2025.jpg" alt="圣诞节团建">
     </div>
     <div class="news-item">
+      <span class="date">2025-11</span>
+      <h3>鹭江海洋研讨会圆满落幕</h3>
+      <p>由鹭江创新实验室与海洋生物地球化学全国重点实验室（厦门大学）联合主办的海洋研讨会成功举办。</p>
+    </div>
+    <div class="news-item">
       <span class="date">2025-10</span>
       <h3>王谦博士毕业答辩</h3>
       <p>祝贺王谦顺利通过博士毕业答辩！</p>
@@ -899,16 +909,6 @@ def news_body(lang):
       <h3>教师节合影</h3>
       <p>2025年教师节课题组合影留念。</p>
       <img class="news-thumb" src="images/news/teachers-day-2025.jpg" alt="教师节合影">
-    </div>
-    <div class="news-item">
-      <span class="date">2026-07</span>
-      <h3>剖面浮标揭秘边缘海深海碳脉冲</h3>
-      <p>利用南海西南部布放的生物地球化学剖面浮标实现1000米深颗粒有机碳通量连续三年高频观测，揭示季节性气旋涡与沿岸急流驱动深海碳通量脉冲的机制。相关成果发表于 Limnology and Oceanography，柴扉教授为共同作者。<a href="https://mel.xmu.edu.cn/info/1012/63211.htm" target="_blank" style="color:var(--navy-3)">阅读原报道 →</a></p>
-    </div>
-    <div class="news-item">
-      <span class="date">2025-11</span>
-      <h3>鹭江海洋研讨会圆满落幕</h3>
-      <p>由鹭江创新实验室与海洋生物地球化学全国重点实验室（厦门大学）联合主办的海洋研讨会成功举办。</p>
     </div>
     <div class="news-item">
       <span class="date">2025-09</span>
@@ -922,6 +922,7 @@ def news_body(lang):
     </div>
   </div>
 </div>'''
+
 
 def links_body(lang):
     if lang == EN:
