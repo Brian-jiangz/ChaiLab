@@ -32,9 +32,14 @@ body {
 
 .g-head .inner.main { max-width: 1400px; margin: 0 auto; height: 74px; display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; padding: 0 28px; gap: 16px; }
 .logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; min-width: 0; }
-.logo .logo-xmu { height: 34px; width: auto; display: block; filter: brightness(0) invert(1); transition: filter .35s; }
-.logo .logo-mel { height: 26px; width: auto; display: block; margin-left: 8px; filter: brightness(0) invert(1); transition: filter .35s; }
-.g-head.scrolled .logo .logo-xmu, .g-head.scrolled .logo .logo-mel { filter: none; }
+.logo .logo-marks {
+  display: flex; align-items: center; flex-shrink: 0;
+  background: rgba(255,255,255,.94); border-radius: 10px; padding: 6px 12px;
+  transition: background .35s, padding .35s, box-shadow .35s;
+}
+.g-head.scrolled .logo .logo-marks { background: transparent; padding: 0; }
+.logo .logo-xmu { height: 30px; width: 30px; display: block; object-fit: contain; }
+.logo .logo-mel { height: 22px; width: auto; display: block; margin-left: 8px; }
 .logo .txt { min-width: 0; margin-left: 18px; padding-left: 18px; border-left: 1px solid rgba(255,255,255,.35); transition: border-color .35s; }
 .g-head.scrolled .logo .txt { border-left-color: var(--line-2); }
 .logo .txt strong { font-size: 15px; color: #fff; display: block; line-height: 1.35; letter-spacing: .06em; white-space: nowrap; font-weight: 600; transition: color .35s; }
