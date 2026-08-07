@@ -123,6 +123,7 @@ body.locked { overflow: hidden; }
 .hero-slides { position: absolute; inset: 0; }
 .body-main {
   position: relative; z-index: 6; background: var(--paper);
+  padding-top: 74px;
   transform: translateY(100vh);
   transition: transform .8s cubic-bezier(.77, 0, .18, 1);
   will-change: transform;
@@ -467,6 +468,7 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
 
 @media (max-width: 900px) {
   .g-head .inner.main { grid-template-columns: auto 1fr auto; height: 64px; }
+  .body-main { padding-top: 64px; }
   .nav-toggle { display: block; }
   .lang-switch { display: none; }
   .g-nav {
