@@ -809,8 +809,38 @@ def news_body(lang):
   </div>
   <div class="news-list">
     <div class="news-item">
+      <span class="date">JUN 2026</span>
+      <h3>Wang Yin master’s thesis defense</h3>
+      <p>Congratulations to Wang Yin on passing the master’s thesis defense!</p>
+      <img class="news-thumb" src="images/news/wangyin-defense-2026.jpg" alt="Wang Yin defense">
+    </div>
+    <div class="news-item">
+      <span class="date">FEB 2026</span>
+      <h3>Spring Festival celebration</h3>
+      <p>The group gathered together to welcome the Spring Festival.</p>
+      <img class="news-thumb" src="images/news/springfestival-2026.jpg" alt="Spring Festival">
+    </div>
+    <div class="news-item">
+      <span class="date">DEC 2025</span>
+      <h3>Christmas team building</h3>
+      <p>Group Christmas team-building activity.</p>
+      <img class="news-thumb" src="images/news/christmas-2025.jpg" alt="Christmas">
+    </div>
+    <div class="news-item">
+      <span class="date">OCT 2025</span>
+      <h3>Wang Qian PhD defense</h3>
+      <p>Congratulations to Wang Qian on passing the PhD defense!</p>
+      <img class="news-thumb" src="images/news/wangqian-defense-2025.jpg" alt="Wang Qian defense">
+    </div>
+    <div class="news-item">
+      <span class="date">SEP 2025</span>
+      <h3>Teachers’ Day group photo</h3>
+      <p>Group photo on Teachers’ Day 2025.</p>
+      <img class="news-thumb" src="images/news/teachers-day-2025.jpg" alt="Teachers Day">
+    </div>
+    <div class="news-item">
       <span class="date">JUL 2026</span>
-      <h3>Profiling floats reveal deep-sea carbon pulses in the marginal sea</h3>
+      <h3>Profiling floats reveal deep-sea carbon pulses</h3>
       <p>Using Biogeochemical-Argo floats deployed in the southwestern South China Sea, the team achieved three years of high-frequency observations of particulate organic carbon flux at 1000 m depth, revealing how seasonal cyclonic eddies and coastal jets drive deep-sea carbon flux pulses. The study was published in Limnology and Oceanography, with Prof. Fei Chai as a co-author.<a href="https://mel.xmu.edu.cn/info/1012/63211.htm" target="_blank" style="color:var(--navy-3)">Read the Original Report →</a></p>
     </div>
     <div class="news-item">
@@ -840,6 +870,36 @@ def news_body(lang):
     </div>
   </div>
   <div class="news-list">
+    <div class="news-item">
+      <span class="date">2026-06</span>
+      <h3>王胤硕士毕业答辩</h3>
+      <p>祝贺王胤顺利通过硕士毕业答辩！</p>
+      <img class="news-thumb" src="images/news/wangyin-defense-2026.jpg" alt="王胤硕士毕业答辩">
+    </div>
+    <div class="news-item">
+      <span class="date">2026-02</span>
+      <h3>课题组喜迎春节</h3>
+      <p>课题组欢聚一堂，共迎新春。</p>
+      <img class="news-thumb" src="images/news/springfestival-2026.jpg" alt="喜迎春节">
+    </div>
+    <div class="news-item">
+      <span class="date">2025-12</span>
+      <h3>圣诞节团建</h3>
+      <p>课题组圣诞团建活动。</p>
+      <img class="news-thumb" src="images/news/christmas-2025.jpg" alt="圣诞节团建">
+    </div>
+    <div class="news-item">
+      <span class="date">2025-10</span>
+      <h3>王谦博士毕业答辩</h3>
+      <p>祝贺王谦顺利通过博士毕业答辩！</p>
+      <img class="news-thumb" src="images/news/wangqian-defense-2025.jpg" alt="王谦博士毕业答辩">
+    </div>
+    <div class="news-item">
+      <span class="date">2025-09</span>
+      <h3>教师节合影</h3>
+      <p>2025年教师节课题组合影留念。</p>
+      <img class="news-thumb" src="images/news/teachers-day-2025.jpg" alt="教师节合影">
+    </div>
     <div class="news-item">
       <span class="date">2026-07</span>
       <h3>剖面浮标揭秘边缘海深海碳脉冲</h3>
