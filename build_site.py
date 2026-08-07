@@ -849,14 +849,9 @@ def news_body(lang):
       <img class="news-thumb" src="images/news/teachers-day-2025.jpg" alt="Teachers Day">
     </div>
     <div class="news-item">
-      <span class="date">SEP 2025</span>
+      <span class="date">AUG 2026</span>
       <h3>Group website officially launched</h3>
       <p>The official website of the Chai Group is now live, presenting our research areas, members, and achievements.</p>
-    </div>
-    <div class="news-item">
-      <span class="date">UPDATING</span>
-      <h3>Group news continuously updated</h3>
-      <p>Stay tuned for the latest research progress, recruitment, and academic exchange activities.</p>
     </div>
   </div>
 </div>'''
@@ -911,14 +906,9 @@ def news_body(lang):
       <img class="news-thumb" src="images/news/teachers-day-2025.jpg" alt="教师节合影">
     </div>
     <div class="news-item">
-      <span class="date">2025-09</span>
+      <span class="date">2026-08</span>
       <h3>课题组网站全新上线</h3>
       <p>柴扉教授课题组官方网站正式启用，全面展示课题组研究方向、成员与科研成果。</p>
-    </div>
-    <div class="news-item">
-      <span class="date">待更新</span>
-      <h3>课题组新闻持续更新中</h3>
-      <p>欢迎关注课题组最新科研进展、招生与学术交流动态。</p>
     </div>
   </div>
 </div>'''
