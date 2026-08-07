@@ -436,14 +436,14 @@ html.anim .hslide.on .hcap .hero-ctas { opacity: 1; transform: none; transition-
 
 /* ===== 子页面横幅 ===== */
 .page-banner {
-  margin-top: 74px; height: 300px; position: relative;
+  margin-top: 74px; height: 140px; position: relative;
   background: linear-gradient(160deg, #0a2138 0%, #0d2f4f 60%, #123a61 100%);
   color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
   overflow: hidden;
 }
 .page-banner::before { content: ""; position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: 44px; height: 1px; background: var(--gold); }
-.page-banner h1 { font-size: 32px; letter-spacing: .18em; font-weight: 500; text-shadow: 0 2px 16px rgba(0,0,0,.3); }
-.page-banner p { font-size: 12px; margin-top: 14px; opacity: .55; letter-spacing: .4em; }
+.page-banner h1 { font-size: 24px; letter-spacing: .18em; font-weight: 500; text-shadow: 0 2px 16px rgba(0,0,0,.3); }
+.page-banner p { font-size: 11px; margin-top: 8px; opacity: .55; letter-spacing: .4em; }
 
 /* ===== 页脚（多栏） ===== */
 .footer {
@@ -530,8 +530,8 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
   .hcap p { font-size: 13px; }
   .hero-ctas { margin-top: 20px; }
   .hero-cta { padding: 10px 20px; font-size: 13px; }
-  .page-banner { margin-top: 64px; height: 200px; }
-  .page-banner h1 { font-size: 22px; }
+  .page-banner { margin-top: 64px; height: 110px; }
+  .page-banner h1 { font-size: 20px; }
   .stats { grid-template-columns: repeat(2, 1fr); }
   .stat { border-left: none; border-top: 1px solid var(--line); padding: 32px 12px; }
   .stat:nth-child(-n+2) { border-top: none; }
