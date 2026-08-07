@@ -623,9 +623,12 @@ def home_body(lang):
     import os
     if lang == EN:
         slides = [
-            ('Marine Biogeochemistry', 'Marine Biogeochemistry and Climate Modeling', 'Ocean Biogeochemistry and Climate Modeling'),
-            ('Earth System Modeling', 'The CESM-CoSiNE Marine Ecosystem Model', 'From coupled physics\u2013chemistry\u2013biology to understanding the marine carbon cycle'),
-            ('Paleoclimate & Digital Earth', 'Paleoclimate and the Digital Earth', 'Reconstruct the past, simulate the present, foresee the future'),
+            ('Marine Biogeochemistry', 'Marine Biogeochemistry and Climate Modeling', 'Ocean Biogeochemistry and Climate Modeling',
+             [('About Us', 'about.html'), ('Research', 'research.html')]),
+            ('Earth System Modeling', 'The CESM-CoSiNE Marine Ecosystem Model', 'From coupled physics\u2013chemistry\u2013biology to understanding the marine carbon cycle',
+             [('CESM-CoSiNE Details', 'research.html#project'), ('Project Report', 'reports/CESM_CoSiNE16_Nature_style_draft_CN.html')]),
+            ('Paleoclimate & Digital Earth', 'Paleoclimate and the Digital Earth', 'Reconstruct the past, simulate the present, foresee the future',
+             [('Research Areas', 'research.html'), ('About Us', 'about.html')]),
         ]
         stats = [(22, '', 'Model Tracers'), (6, '', 'Research Areas'), (3, '', 'Ocean Regions'), (35, '+', 'Years of Research')]
         news_head = ('新闻动态', 'NEWS & UPDATES', 'More')
@@ -658,9 +661,12 @@ def home_body(lang):
         scroll_hint = 'Scroll'
     else:
         slides = [
-            ('Marine Biogeochemistry', '海洋生物地球化学与气候模拟', 'Ocean Biogeochemistry and Climate Modeling'),
-            ('Earth System Modeling', 'CESM-CoSiNE 海洋生态系统模式', '从物理—化学—生物耦合出发，理解海洋碳循环'),
-            ('Paleoclimate & Digital Earth', '古气候与数字地球', '重建过去，模拟现在，预见未来'),
+            ('Marine Biogeochemistry', '海洋生物地球化学与气候模拟', 'Ocean Biogeochemistry and Climate Modeling',
+             [('了解课题组', 'about.html'), ('研究方向', 'research.html')]),
+            ('Earth System Modeling', 'CESM-CoSiNE 海洋生态系统模式', '从物理—化学—生物耦合出发，理解海洋碳循环',
+             [('模式详情', 'research.html#project'), ('项目报告', 'reports/CESM_CoSiNE16_Nature_style_draft_CN.html')]),
+            ('Paleoclimate & Digital Earth', '古气候与数字地球', '重建过去，模拟现在，预见未来',
+             [('研究方向', 'research.html'), ('了解课题组', 'about.html')]),
         ]
         stats = [(22, '', '模式示踪物'), (6, '', '研究方向'), (3, '', '覆盖海域'), (35, '+', '年科研积累')]
         news_head = ('新闻动态', 'NEWS & UPDATES', '更多')
@@ -692,7 +698,7 @@ def home_body(lang):
         ]
         scroll_hint = '向下滚动'
 
-    wave_deco = '''      <svg class="hdeco" viewBox="0 0 1440 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    deco_wave = '''      <svg class="hdeco" viewBox="0 0 1440 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
         <g stroke="rgba(255,255,255,.07)" fill="none">
           <path d="M-40,440 C200,380 400,490 640,430 S1080,370 1480,440"/>
           <path d="M-40,478 C200,418 400,528 640,468 S1080,408 1480,478"/>
@@ -703,21 +709,55 @@ def home_body(lang):
           <line x1="360" y1="0" x2="360" y2="560"/><line x1="720" y1="0" x2="720" y2="560"/><line x1="1080" y1="0" x2="1080" y2="560"/>
         </g>
       </svg>'''
+    deco_dots = '''      <svg class="hdeco" viewBox="0 0 1440 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g fill="rgba(255,255,255,.06)">
+          <circle cx="140" cy="120" r="3"/><circle cx="300" cy="70" r="2"/><circle cx="520" cy="150" r="3.5"/>
+          <circle cx="700" cy="90" r="2.5"/><circle cx="880" cy="160" r="3"/><circle cx="1060" cy="80" r="2"/>
+          <circle cx="1250" cy="140" r="3.5"/><circle cx="1380" cy="70" r="2.5"/><circle cx="200" cy="230" r="2.5"/>
+          <circle cx="420" cy="260" r="2"/><circle cx="640" cy="220" r="3"/><circle cx="860" cy="250" r="2.5"/>
+          <circle cx="1080" cy="230" r="2"/><circle cx="1300" cy="270" r="3"/><circle cx="80" cy="350" r="3.5"/>
+          <circle cx="260" cy="390" r="2"/><circle cx="460" cy="340" r="2.5"/><circle cx="660" cy="380" r="3"/>
+          <circle cx="880" cy="350" r="2"/><circle cx="1100" cy="390" r="2.5"/><circle cx="1320" cy="360" r="3"/>
+        </g>
+        <g stroke="rgba(255,255,255,.05)" fill="none">
+          <path d="M-40,470 C200,430 400,510 640,460 S1080,420 1480,470"/>
+        </g>
+      </svg>'''
+    deco_contour = '''      <svg class="hdeco" viewBox="0 0 1440 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g fill="none" stroke="rgba(255,255,255,.07)">
+          <ellipse cx="720" cy="330" rx="620" ry="150"/>
+          <ellipse cx="720" cy="330" rx="460" ry="110"/>
+          <ellipse cx="720" cy="330" rx="300" ry="72"/>
+          <ellipse cx="720" cy="330" rx="150" ry="36"/>
+        </g>
+        <g fill="none" stroke="rgba(255,255,255,.05)">
+          <path d="M-40,120 H1480"/><path d="M-40,210 H1480"/><path d="M-40,450 H1480"/>
+        </g>
+      </svg>'''
+    decos = [deco_wave, deco_dots, deco_contour]
 
     slide_parts = []
-    for i, (kicker, h, p) in enumerate(slides):
+    for i, (kicker, h, p, ctas) in enumerate(slides):
         photo = f'images/hero{i+1}.jpg' if os.path.exists(f'images/hero{i+1}.jpg') else None
-        bg_style = f' style="background-image:linear-gradient(rgba(7,24,42,.55),rgba(7,24,42,.55)),url({photo});background-size:cover;background-position:center"' if photo else ''
+        bg_style = f' style="background-image:linear-gradient(rgba(7,24,42,.5),rgba(7,24,42,.5)),url({photo});background-size:cover;background-position:center"' if photo else ''
+        def _cta(j, t, u):
+            cls = ' cta-solid' if j == 0 else ''
+            ext = ' target="_blank"' if 'reports/' in u else ''
+            return f'          <a class="hero-cta{cls}" href="{u}"{ext}>{t} →</a>'
+        cta_html = '\n'.join(_cta(j, t, u) for j, (t, u) in enumerate(ctas))
         slide_parts.append(f'''    <div class="hslide{' hs' + str(i+1) if not photo else ''}{' on' if i == 0 else ''}"{bg_style}>
-{wave_deco}
+{decos[i]}
       <div class="hcap" data-cap>
         <span class="kicker">{kicker}</span>
         <h2>{h}</h2>
         <p>{p}</p>
+        <div class="hero-ctas">
+{cta_html}
+        </div>
       </div>
     </div>''')
 
-    dots = '\n'.join(f'        <span class="{"on" if i == 0 else ""}"><i></i></span>' for i in range(len(slides)))
+    dots = '\n'.join(f'        <span class="{"on" if i == 0 else ""}" role="button" aria-label="slide {i+1}"><i></i></span>' for i in range(len(slides)))
 
     stat_parts = '\n'.join(
         f'''      <div class="stat" data-reveal style="--d:{i*90}ms">
@@ -751,7 +791,8 @@ def home_body(lang):
 
     tiles = tiles_body(lang)
 
-    return f'''<!-- Hero 轮播 -->
+    return f'''<div class="read-progress" id="readProgress" aria-hidden="true"></div>
+<!-- Hero 轮播 -->
 <div class="hero" id="hero">
   <div class="hero-slides" id="heroSlides">
 {chr(10).join(slide_parts)}
@@ -847,7 +888,9 @@ def home_body(lang):
   <div class="join-grid">
 {join_parts}
   </div>
-</div>'''
+</div>
+
+<button class="back-top" id="backTop" aria-label="back to top">↑</button>'''
 
 def research_with_project(lang):
     tiles = tiles_body(lang)
