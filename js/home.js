@@ -143,24 +143,24 @@
   /* 初始状态：Hero 显示，锁定滚动 */
   if (bodyHome) document.body.classList.add('locked');
 
-  /* 滚轮：Hero 上向下 -> 内容上滑；内容顶部向上 -> 回 Hero（仅首页） */
-  var wheelLock = false;
+  /* 滚轮：Hero 上向下 -> 内容上滑；内容顶部向上 -> 回 Hero（仅首页）
+     用时间戳防抖（Date.now 真实时间，不受 bfcache 定时器冻结影响） */
+  var lastSwitch = 0;
+  var SWITCH_LOCK = 1100;
   function onWheel(e) {
     if (!bodyMain) return;
-    if (wheelLock) { e.preventDefault(); return; }
+    if (Date.now() - lastSwitch < SWITCH_LOCK) { e.preventDefault(); return; }
     var y = window.scrollY || window.pageYOffset;
     var atTop = y < 8;
     var shown = bodyMain.classList.contains('show');
     if (e.deltaY > 0 && atTop && !shown) {
       e.preventDefault();
-      wheelLock = true;
+      lastSwitch = Date.now();
       goDown();
-      setTimeout(function () { wheelLock = false; }, 1200);
     } else if (e.deltaY < 0 && atTop && shown) {
       e.preventDefault();
-      wheelLock = true;
+      lastSwitch = Date.now();
       goUp();
-      setTimeout(function () { wheelLock = false; }, 1200);
     }
   }
   function bindWheel() {
@@ -169,14 +169,11 @@
   }
   bindWheel();
 
-  /* bfcache 恢复（浏览器返回）：重置状态并重新绑定监听器 */
-  window.addEventListener('pageshow', function (e) {
-    if (!e.persisted) return;
+  /* bfcache 恢复（浏览器返回）：重置整屏状态 + 重新绑定监听器。
+     时间戳防抖不受冻结影响；此处只同步 locked/滚动位置，不刷新页面。 */
+  function resetScreens() {
     switching = false;
-    wheelLock = false;
-    bindWheel();
     if (!bodyMain) return;
-    /* 先解锁，让 scrollTo 生效 */
     document.body.classList.remove('locked');
     window.scrollTo(0, 0);
     if (bodyMain.classList.contains('show')) {
@@ -186,6 +183,16 @@
       if (head) head.classList.remove('scrolled');
     }
     if (slides.length) { go(cur); play(); }
+  }
+  window.addEventListener('pageshow', function (e) {
+    if (!e.persisted) return;
+    bindWheel();
+    resetScreens();
+  });
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden || !bodyMain) return;
+    bindWheel();
+    resetScreens();
   });
 
   /* 点击右下滚动提示 -> 下滑 */
@@ -242,17 +249,6 @@
       window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
     });
   }
-
-  /* 兜底：页面重新可见时自检整屏状态（覆盖部分 bfcache 边界情况） */
-  document.addEventListener('visibilitychange', function () {
-    if (document.hidden || !bodyMain) return;
-    if (bodyMain.classList.contains('show')) {
-      document.body.classList.remove('locked');
-    } else {
-      document.body.classList.add('locked');
-      if ((window.scrollY || 0) > 0) window.scrollTo(0, 0);
-    }
-  });
 
   /* ===== 滚动渐入 ===== */
   var reveals = document.querySelectorAll('[data-reveal]');
