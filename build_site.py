@@ -731,8 +731,8 @@ def home_body(lang):
         }
         pub_head = ('Publications', 'SELECTED PUBLICATIONS', 'All Publications')
         pubs = [
-            ('2026', '(To be added) Paper title', 'Authors. Journal Name, 2026.'),
-            ('2025', '(To be added) Paper title', 'Authors. Journal Name, 2025.'),
+            ('2026', 'Digital twin of the ocean as a catalyst for blue economy innovation', 'Chai F., Deng Q., Dai M., et al. National Science Review, 13(3): nwag012.'),
+            ('2026', 'Physical dynamics modulate deep-sea carbon flux in the western Pacific marginal sea', 'Xu C., Huang Y., Xing X., et al. Limnology and Oceanography, 71: e70440.'),
             ('2025', '(To be added) Paper title', 'Authors. Journal Name, 2025.'),
             ('2024', '(To be added) Paper title', 'Authors. Journal Name, 2024.'),
         ]
@@ -796,8 +796,8 @@ def home_body(lang):
         }
         pub_head = ('代表性论文', 'SELECTED PUBLICATIONS', '全部论文')
         pubs = [
-            ('2026', '（待补充）论文标题', 'Authors. Journal Name, 2026.'),
-            ('2025', '（待补充）论文标题', 'Authors. Journal Name, 2025.'),
+            ('2026', 'Digital twin of the ocean as a catalyst for blue economy innovation', 'Chai F., Deng Q., Dai M., 等. National Science Review, 13(3): nwag012.'),
+            ('2026', 'Physical dynamics modulate deep-sea carbon flux in the western Pacific marginal sea', 'Xu C., Huang Y., Xing X., 等. Limnology and Oceanography, 71: e70440.'),
             ('2025', '（待补充）论文标题', 'Authors. Journal Name, 2025.'),
             ('2024', '（待补充）论文标题', 'Authors. Journal Name, 2024.'),
         ]
