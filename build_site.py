@@ -62,6 +62,7 @@ def page(fname, title, en, body, extra=''):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 <title>{title} | 柴扉教授课题组 · 厦门大学</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
