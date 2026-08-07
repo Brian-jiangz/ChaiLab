@@ -92,14 +92,26 @@
     onScrollP();
   }
 
-  /* ===== 学术·科研面板轮播 ===== */
-  var acaSlides = document.querySelectorAll('#acaSlider .aca-slide');
-  if (acaSlides.length > 1) {
-    var acaCur = 0;
-    setInterval(function () {
-      acaSlides.forEach(function (s, k) { s.classList.toggle('on', k === acaCur); });
-      acaCur = (acaCur + 1) % acaSlides.length;
-    }, 4200);
+  /* ===== 学术·科研面板：左侧索引 hover 切换右侧大图 ===== */
+  var acaIndex = document.querySelector('.aca-index');
+  var acaImgs = document.querySelectorAll('.aca-stage-img');
+  var acaCapT = document.querySelector('.aca-stage-cap .cap-t');
+  var acaCapD = document.querySelector('.aca-stage-cap .cap-d');
+  if (acaIndex && acaImgs.length) {
+    var acaItems = acaIndex.querySelectorAll('li');
+    acaItems.forEach(function (li, k) {
+      li.addEventListener('mouseenter', function () {
+        acaItems.forEach(function (x, j) { x.classList.toggle('on', j === k); });
+        acaImgs.forEach(function (img, j) { img.classList.toggle('on', j === k); });
+        if (acaCapT) acaCapT.textContent = li.querySelector('.t').textContent;
+        if (acaCapD) acaCapD.textContent = li.querySelector('.d').textContent;
+      });
+      li.addEventListener('click', function () {
+        var link = li.getAttribute('data-link');
+        if (link && link.indexOf('http') === 0) window.open(link, '_blank');
+        else if (link) window.location.href = link;
+      });
+    });
   }
 
   /* ===== 北大式整屏切换：内容层上滑盖住 Hero / 下滑退出 ===== */

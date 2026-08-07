@@ -685,9 +685,12 @@ def home_body(lang):
             'feat_date': 'FEB 2026 · National Science Review',
             'block1': 'Research Progress',
             'block1_items': [
-                ('2026-02', 'Ocean digital twin review published in National Science Review'),
-                ('2025-11', 'Lujiang Ocean Symposium concludes successfully'),
-                ('2025-09', 'Group website officially launched'),
+                ('2026-02', 'Ocean digital twin review published in National Science Review',
+                 'images/mel_digital_twin.png', 'https://mel.xmu.edu.cn/info/1012/61071.htm'),
+                ('2025-11', 'Lujiang Ocean Symposium concludes successfully',
+                 'images/cosine_bg.png', 'news.html'),
+                ('2025-09', 'Group website officially launched',
+                 'images/cosine_bg.png', 'news.html'),
             ],
             'block2': 'Selected Work',
             'block2_items': [
@@ -745,9 +748,12 @@ def home_body(lang):
             'feat_date': '2026-02 · National Science Review',
             'block1': '科研进展',
             'block1_items': [
-                ('2026-02', '海洋数字孪生综述发表于 National Science Review'),
-                ('2025-11', '鹭江海洋研讨会圆满落幕'),
-                ('2025-09', '课题组网站全新上线'),
+                ('2026-02', '海洋数字孪生综述发表于 National Science Review',
+                 'images/mel_digital_twin.png', 'https://mel.xmu.edu.cn/info/1012/61071.htm'),
+                ('2025-11', '鹭江海洋研讨会圆满落幕',
+                 'images/cosine_bg.png', 'news.html'),
+                ('2025-09', '课题组网站全新上线',
+                 'images/cosine_bg.png', 'news.html'),
             ],
             'block2': '代表性工作',
             'block2_items': [
@@ -878,6 +884,16 @@ def home_body(lang):
 
     tiles = tiles_body(lang, 'research.html#')
 
+    aca_index = '\n'.join(
+        f'''        <li data-img="{img}" data-link="{link}" class="{"on" if i == 0 else ""}">
+          <span class="d">{d}</span>
+          <span class="t">{t}</span>
+          <span class="arr">→</span>
+        </li>''' for i, (d, t, img, link) in enumerate(aca['block1_items']))
+    aca_stage = '\n'.join(
+        f'''      <div class="aca-stage-img{" on" if i == 0 else ""}" style="background-image:url({img})"></div>'''
+        for i, (d, t, img, link) in enumerate(aca['block1_items']))
+
     return f'''<div class="read-progress" id="readProgress" aria-hidden="true"></div>
 <!-- 北大式整屏：Hero 层 -->
 <div class="body-home" id="bodyHome">
@@ -963,40 +979,24 @@ def home_body(lang):
   <p style="text-align:center;margin-top:44px" data-reveal><a class="btn btn-line" href="research.html">{res_more} →</a></p>
 </div>
 
-<!-- 学术·科研面板（清华式） -->
+<!-- 学术·科研面板（左侧索引 / 右侧大图，hover 切换） -->
 <div class="section home-sec academic-sec" id="academic">
+  <div class="aca-head" data-reveal>
+    <h2>{aca['title']}</h2>
+    <span class="en">{aca['en']}</span>
+    <a class="more" href="{aca['link_news']}">{aca['more']} ›</a>
+  </div>
   <div class="aca-wrap" data-reveal>
-    <div class="aca-main">
-      <div class="aca-slider" id="acaSlider">
-        <div class="aca-slide on" style="background-image:url({aca['slider'][0]})"></div>
-        <div class="aca-slide" style="background-image:url({aca['slider'][1]})"></div>
-      </div>
-      <div class="aca-head">
-        <h2>{aca['title']}</h2>
-        <span class="en">{aca['en']}</span>
-        <a class="more" href="{aca['link_news']}">{aca['more']} ›</a>
-      </div>
-      <a class="aca-feat" href="https://mel.xmu.edu.cn/info/1012/61071.htm" target="_blank">
-        <span class="aca-feat-img" style="background-image:url({aca['feat_img']})"></span>
-        <span class="aca-feat-txt">
-          <span class="h">{aca['feat_h']}</span>
-          <span class="p">{aca['feat_p']}</span>
-          <span class="date">{aca['feat_date']}</span>
-        </span>
-      </a>
+    <div class="aca-index">
+      <ul>
+{aca_index}
+      </ul>
     </div>
-    <div class="aca-side">
-      <div class="aca-block">
-        <h3>{aca['block1']}</h3>
-        <ul>
-{''.join(f'          <li><span class="d">{d}</span><a href="{aca["link_news"]}">{t}</a></li>' for d, t in aca['block1_items'])}
-        </ul>
-      </div>
-      <div class="aca-block">
-        <h3>{aca['block2']}</h3>
-        <ul>
-{''.join(f'          <li><span class="tag">{tag}</span><a href="{u}" target="_blank">{t}</a></li>' for tag, t, u in aca['block2_items'])}
-        </ul>
+    <div class="aca-stage">
+{aca_stage}
+      <div class="aca-stage-cap">
+        <span class="cap-t">{aca['block1_items'][0][1]}</span>
+        <span class="cap-d">{aca['block1_items'][0][0]}</span>
       </div>
     </div>
   </div>
