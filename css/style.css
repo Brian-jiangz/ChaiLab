@@ -97,9 +97,21 @@ body {
 .back-top.show { opacity: 1; visibility: visible; transform: none; }
 .back-top:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
 
-/* ===== Hero 轮播（全屏，滚动收缩） ===== */
+/* ===== Hero 轮播（全屏层，北大式整屏下滑切换） ===== */
+.body-home {
+  position: fixed; inset: 0; z-index: 5; height: 100vh;
+  transition: transform .8s cubic-bezier(.77, 0, .18, 1), opacity .8s ease;
+}
+.body-home.leave {
+  transform: translateY(100%); opacity: .25;
+  pointer-events: none;
+}
+.body-main { position: relative; background: var(--paper); }
+.body-home.leave + .body-main { animation: mainIn .8s cubic-bezier(.77, 0, .18, 1) both; }
+@keyframes mainIn { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: none; } }
+html.anim .body-home:not(.leave) + .body-main { animation: none; opacity: 1; transform: none; }
+html.anim .body-home.leave + .body-main { animation: mainIn .8s cubic-bezier(.77, 0, .18, 1) both; }
 .hero { height: 100vh; min-height: 620px; position: relative; overflow: hidden; background: #081a2c; padding-top: 74px; }
-.hero.shrunk { height: 60vh; min-height: 480px; }
 .hero-slides { position: absolute; inset: 0; }
 .hslide {
   position: absolute; inset: 0; opacity: 0; background-size: cover; background-position: center;
@@ -156,7 +168,12 @@ html.anim .hslide.on .hcap .hero-ctas { opacity: 1; transform: none; transition-
 .hdots span i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: #fff; display: block; }
 @keyframes dotfill { from { width: 0; } to { width: 100%; } }
 
-.scroll-hint { position: absolute; right: 36px; bottom: 36px; z-index: 5; cursor: pointer; user-select: none; display: flex; align-items: center; }
+.scroll-hint {
+  position: absolute; right: 40px; bottom: 40px; z-index: 5; cursor: pointer; user-select: none;
+  display: flex; align-items: center; gap: 0;
+  background: none; border: none; font: inherit; color: inherit; padding: 0;
+  transition: opacity .3s;
+}
 .mouse { display: inline-block; width: 19px; height: 30px; border: 1.5px solid rgba(255,255,255,.55); border-radius: 12px; position: relative; vertical-align: middle; }
 .mouse i { position: absolute; left: 50%; top: 6px; width: 3px; height: 6px; margin-left: -1.5px; background: #fff; border-radius: 2px; animation: wheel 1.8s ease-in-out infinite; }
 @keyframes wheel { 0% { opacity: 1; transform: translateY(0); } 70% { opacity: 0; transform: translateY(11px); } 100% { opacity: 0; transform: translateY(11px); } }
@@ -492,6 +509,8 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .body-home { transition: none; }
+  html.anim .body-home.leave + .body-main { animation: none; }
   html.anim [data-reveal] { opacity: 1; transform: none; transition: none; }
   html.anim .hcap .kicker, html.anim .hcap h2, html.anim .hcap p, html.anim .hcap .hero-ctas { opacity: 1; transform: none; transition: none; }
   html.anim .hslide.slide-in-l, html.anim .hslide.slide-in-r,

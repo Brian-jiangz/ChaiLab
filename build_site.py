@@ -824,6 +824,8 @@ def home_body(lang):
     tiles = tiles_body(lang, 'research.html#')
 
     return f'''<div class="read-progress" id="readProgress" aria-hidden="true"></div>
+<!-- 北大式整屏：Hero 层 -->
+<div class="body-home" id="bodyHome">
 <!-- Hero 轮播 -->
 <div class="hero" id="hero">
   <div class="hero-slides" id="heroSlides">
@@ -832,11 +834,14 @@ def home_body(lang):
   <div class="hdots" id="heroDots">
 {dots}
   </div>
-  <div class="scroll-hint" id="scrollHint">
+  <button class="scroll-hint" id="scrollHint" aria-label="scroll down">
     <span class="mouse"><i></i></span>
     <span class="hint-txt">{scroll_hint}</span>
-  </div>
+  </button>
 </div>
+</div>
+<!-- 内容层 -->
+<div class="body-main" id="bodyMain">
 
 <!-- 柴老师简介 -->
 <div class="section pi-intro" id="pi">
@@ -938,6 +943,7 @@ def home_body(lang):
 {stat_parts}
   </div>
 </div>
+</div><!-- /body-main -->
 
 <button class="back-top" id="backTop" aria-label="back to top">↑</button>'''
 

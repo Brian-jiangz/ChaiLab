@@ -88,21 +88,93 @@
     onScrollP();
   }
 
-  /* ===== 导航滚动反馈 + Hero 收缩 + 返回顶部 ===== */
+  /* ===== 北大式整屏切换：Hero 下滑 / 回顶 ===== */
+  var bodyHome = document.getElementById('bodyHome');
+  var bodyMain = document.getElementById('bodyMain');
+  var hintBtn = document.getElementById('scrollHint');
+  var switching = false;
+
+  function goDown() {
+    if (!bodyHome || switching) return;
+    switching = true;
+    if (!reduced) bodyHome.classList.add('leave');
+    else bodyHome.classList.add('leave');
+    setTimeout(function () { switching = false; }, 900);
+  }
+  function goUp() {
+    if (!bodyHome || switching) return;
+    if (!bodyHome.classList.contains('leave')) return;
+    switching = true;
+    bodyHome.classList.remove('leave');
+    window.scrollTo(0, 0);
+    setTimeout(function () { switching = false; }, 900);
+  }
+
+  /* 滚轮：Hero 内下滑 -> 整屏切换；内容层顶部上滚 -> 回 Hero */
+  var wheelLock = false;
+  window.addEventListener('wheel', function (e) {
+    if (wheelLock) { e.preventDefault(); return; }
+    var y = window.scrollY || window.pageYOffset;
+    var atTop = y < 8;
+    if (e.deltaY > 0 && atTop && bodyHome && !bodyHome.classList.contains('leave')) {
+      e.preventDefault();
+      wheelLock = true;
+      goDown();
+      setTimeout(function () { wheelLock = false; }, 1200);
+    } else if (e.deltaY < 0 && atTop && bodyHome && bodyHome.classList.contains('leave')) {
+      e.preventDefault();
+      wheelLock = true;
+      goUp();
+      setTimeout(function () { wheelLock = false; }, 1200);
+    }
+  }, { passive: false });
+
+  /* 点击右下滚动提示 -> 下滑 */
+  if (hintBtn) {
+    hintBtn.addEventListener('click', function () {
+      if (!bodyHome.classList.contains('leave')) goDown();
+    });
+  }
+
+  /* 键盘：↓/PgDn 下滑，↑/PgUp 回顶 */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+      if ((window.scrollY || 0) < 8 && bodyHome && !bodyHome.classList.contains('leave')) {
+        e.preventDefault(); goDown();
+      }
+    }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+      if ((window.scrollY || 0) < 8 && bodyHome) {
+        e.preventDefault(); goUp();
+      }
+    }
+  });
+
+  /* 触摸：Hero 内上滑 -> 下滑；内容层顶部下拉 -> 回顶 */
+  if (bodyHome) {
+    var tStart = 0;
+    bodyHome.addEventListener('touchstart', function (e) { tStart = e.touches[0].clientY; }, { passive: true });
+    bodyHome.addEventListener('touchend', function (e) {
+      var dy = e.changedTouches[0].clientY - tStart;
+      if (dy < -30 && !bodyHome.classList.contains('leave')) goDown();
+    }, { passive: true });
+  }
+  if (bodyMain) {
+    var mStart = 0;
+    bodyMain.addEventListener('touchstart', function (e) { mStart = e.touches[0].clientY; }, { passive: true });
+    bodyMain.addEventListener('touchend', function (e) {
+      var dy = e.changedTouches[0].clientY - mStart;
+      if (dy > 30 && (window.scrollY || 0) < 8) goUp();
+    }, { passive: true });
+  }
+
+  /* ===== 导航滚动反馈 + 返回顶部 ===== */
   var head = document.getElementById('g-head');
-  var hint = document.getElementById('scrollHint');
   var topBtn = document.getElementById('backTop');
-  var heroEl = document.getElementById('hero');
-  var shrinkBound = 120;
   function onScroll() {
     var y = window.scrollY || window.pageYOffset;
     if (head) head.classList.toggle('scrolled', y > 40);
     if (topBtn) topBtn.classList.toggle('show', y > 600);
-    if (heroEl && !reduced) heroEl.classList.toggle('shrunk', y > shrinkBound);
-    if (hint && !reduced) {
-      hint.style.opacity = Math.max(0, 1 - y / 260);
-      hint.style.transform = 'translateY(' + Math.min(y * 0.25, 60) + 'px)';
-    }
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
@@ -153,14 +225,6 @@
     counters.forEach(function (el) { cio.observe(el); });
   } else {
     counters.forEach(function (el) { el.textContent = el.getAttribute('data-count'); });
-  }
-
-  /* ===== 滚动提示点击 ===== */
-  if (hint) {
-    hint.addEventListener('click', function () {
-      var stats = document.querySelector('.stats-band');
-      if (stats) stats.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
-    });
   }
 
   /* ===== 移动端菜单：手风琴 + 自动关闭 ===== */
