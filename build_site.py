@@ -408,6 +408,7 @@ def members_data(lang):
             ('Yang Kai', 'Postdoctoral Researcher', 'Member profile under construction', '\u2014', '', 'yang-kai'),
             ('Zhao Kewei', 'PhD Student', 'Member profile under construction', '\u2014', '', 'zhao-kewei'),
             ('Jiang Zheng', 'PhD Student', 'Member profile under construction', '\u2014', '', 'jiang-zheng'),
+            ('Song Zhe', 'PhD Student', 'Member profile under construction', '\u2014', '', 'song-zhe'),
             ('Lin Jianchun', "Master's Student", 'Member profile under construction', '\u2014', '', 'lin-jianchun'),
             ('Xie Xianyu', "Master's Student", 'Member profile under construction', '\u2014', '', 'xie-xianyu'),
             ('Li Peimin', "Master's Student", 'Member profile under construction', '\u2014', '', 'li-peimin'),
@@ -421,6 +422,7 @@ def members_data(lang):
         ('杨凯', '博士后', '成员简介整理中……', '—', '', 'yang-kai'),
         ('赵柯崴', '博士研究生', '成员简介整理中……', '—', '', 'zhao-kewei'),
         ('姜正', '博士研究生', '成员简介整理中……', '—', '', 'jiang-zheng'),
+        ('宋喆', '博士研究生', '成员简介整理中……', '—', '', 'song-zhe'),
         ('林剑纯', '硕士研究生', '成员简介整理中……', '—', '', 'lin-jianchun'),
         ('谢娴予', '硕士研究生', '成员简介整理中……', '—', '', 'xie-xianyu'),
         ('李沛珉', '硕士研究生', '成员简介整理中……', '—', '', 'li-peimin'),
@@ -432,14 +434,14 @@ def members_body(lang):
     if lang == EN:
         groups = [
             ('Faculty', ['fei-chai', 'xiaoyi-wang', 'wang-qian', 'yang-kai']),
-            ('PhD Students', ['zhao-kewei', 'jiang-zheng']),
+            ('PhD Students', ['zhao-kewei', 'jiang-zheng', 'song-zhe']),
             ("Master's Students", ['lin-jianchun', 'xie-xianyu', 'li-peimin']),
             ('Alumni', ['wang-qian-alumni', 'wang-yin']),
         ]
     else:
         groups = [
             ('教职工', ['fei-chai', 'xiaoyi-wang', 'wang-qian', 'yang-kai']),
-            ('博士研究生', ['zhao-kewei', 'jiang-zheng']),
+            ('博士研究生', ['zhao-kewei', 'jiang-zheng', 'song-zhe']),
             ('硕士研究生', ['lin-jianchun', 'xie-xianyu', 'li-peimin']),
             ('已毕业成员', ['wang-qian-alumni', 'wang-yin']),
         ]
