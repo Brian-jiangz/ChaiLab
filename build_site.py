@@ -79,7 +79,7 @@ DD_ZH = {
     ],
     'links': [
         ('https://coeoa.xmu.edu.cn/t/CF/', '柴扉教授个人主页', '_blank'),
-        ('https://meli.xmu.edu.cn/', 'MEL 实验室官网', '_blank'),
+        ('https://mel.xmu.edu.cn/', 'MEL 实验室官网', '_blank'),
         ('links.html', '全部相关链接', ''),
     ],
 }
@@ -106,7 +106,7 @@ DD_EN = {
     ],
     'links': [
         ('https://coeoa.xmu.edu.cn/t/CF/', "Prof. Chai's Homepage", '_blank'),
-        ('https://meli.xmu.edu.cn/', 'MEL Official Site', '_blank'),
+        ('https://mel.xmu.edu.cn/', 'MEL Official Site', '_blank'),
         ('links.html', 'All Related Links', ''),
     ],
 }
@@ -184,7 +184,7 @@ def footer(lang):
         ]
         rlinks = [
             ('https://coeoa.xmu.edu.cn/t/CF/', "Prof. Chai's Homepage", ' target="_blank"'),
-            ('https://meli.xmu.edu.cn/', 'MEL, Xiamen University', ' target="_blank"'),
+            ('https://mel.xmu.edu.cn/', 'MEL, Xiamen University', ' target="_blank"'),
             ('https://www.xmu.edu.cn/', 'Xiamen University', ' target="_blank"'),
         ]
     else:
@@ -194,7 +194,7 @@ def footer(lang):
         ]
         rlinks = [
             ('https://coeoa.xmu.edu.cn/t/CF/', '柴扉教授个人主页', ' target="_blank"'),
-            ('https://meli.xmu.edu.cn/', '海洋生物地球化学全国重点实验室', ' target="_blank"'),
+            ('https://mel.xmu.edu.cn/', '海洋生物地球化学全国重点实验室', ' target="_blank"'),
             ('https://www.xmu.edu.cn/', '厦门大学', ' target="_blank"'),
         ]
     q_html = ''.join(f'<a href="{u}">{n}</a>' for u, n in qlinks)
@@ -269,49 +269,19 @@ SVG_LAB = '''<svg class="icon" width="26" height="26" viewBox="0 0 24 24" fill="
 
 ABOUT_BODY = {
 'zh': '''<div class="section" id="about-group">
-  <div class="intro-grid">
-    <div class="intro-card">
-      <p>本课题组依托厦门大学海洋生物地球化学全国重点实验室，长期从事海洋物理—生态—生物地球化学耦合研究，聚焦海洋碳循环、营养盐循环与生态系统对气候变化的响应与反馈。</p>
-      <p>课题组以自主发展的 CESM-CoSiNE 海洋生态系统—生物地球化学模块为核心工具，结合观测资料与数值模拟，研究北太平洋、南海及全球大洋中浮游生态系统与碳循环的调控机制，并拓展至古气候重建与海洋数字孪生等前沿方向。</p>
-      <p id="join">课题组面向全球招聘博士后、博士生与硕士生，欢迎对海洋生物地球化学、气候模拟与计算海洋学感兴趣的同学加入。</p>
-      <p style="margin-top:28px"><a class="btn btn-solid" href="members.html">了解课题组成员 →</a></p>
-    </div>
-    <div class="pi-card" id="chai">
-      <div class="pi-avatar"><img src="images/chai_fei.jpg" alt="柴扉教授"></div>
-      <h3>柴扉 教授</h3>
-      <div class="title">"唐世凤"海洋学科讲席教授 · PI</div>
-      <ul class="info">
-        <li><b>单位：</b>海洋生物地球化学全国重点实验室（厦门大学）</li>
-        <li><b>地址：</b>厦门大学翔安校区周隆泉楼</li>
-        <li><b>邮箱：</b>fchai@xmu.edu.cn</li>
-        <li><b>学历：</b>杜克大学 生物海洋学博士（1991–1995）</li>
-        <li><b>经历：</b>曾任美国缅因大学海洋学院教授（终身教职）兼院长（2012–2015）</li>
-        <li><b>经历：</b>曾任自然资源部第二海洋研究所研究员、卫星海洋环境动力学国家重点实验室主任（2016–2022）</li>
-      </ul>
-    </div>
+  <div class="intro-card intro-full">
+    <p>本课题组依托厦门大学海洋生物地球化学全国重点实验室，长期从事海洋物理—生态—生物地球化学耦合研究，聚焦海洋碳循环、营养盐循环与生态系统对气候变化的响应与反馈。</p>
+    <p>课题组以自主发展的 CESM-CoSiNE 海洋生态系统—生物地球化学模块为核心工具，结合观测资料与数值模拟，研究北太平洋、南海及全球大洋中浮游生态系统与碳循环的调控机制，并拓展至古气候重建与海洋数字孪生等前沿方向。</p>
+    <p id="join">课题组面向全球招聘博士后、博士生与硕士生，欢迎对海洋生物地球化学、气候模拟与计算海洋学感兴趣的同学加入。</p>
+    <p style="margin-top:28px"><a class="btn btn-solid" href="members.html">了解课题组成员 →</a></p>
   </div>
 </div>''',
 'en': '''<div class="section" id="about-group">
-  <div class="intro-grid">
-    <div class="intro-card">
-      <p>Affiliated with the State Key Laboratory of Marine Environmental Science (MEL) at Xiamen University, our group conducts research on coupled physical\u2013ecological\u2013biogeochemical oceanography, with a focus on the marine carbon cycle, nutrient cycles, and the response and feedback of marine ecosystems to climate change.</p>
-      <p>Centered on the CESM-CoSiNE marine ecosystem\u2013biogeochemistry module, which we develop in-house, and combining observations with numerical simulation, the group studies the controls of planktonic ecosystems and the carbon cycle in the North Pacific, the South China Sea, and the global ocean, extending to paleoclimate reconstruction and ocean digital twins.</p>
-      <p id="join">The group welcomes postdoctoral researchers and PhD/Master's students from around the world with interests in marine biogeochemistry, climate modeling, and computational oceanography.</p>
-      <p style="margin-top:28px"><a class="btn btn-solid" href="members.html">Meet the Team →</a></p>
-    </div>
-    <div class="pi-card" id="chai">
-      <div class="pi-avatar"><img src="images/chai_fei.jpg" alt="Prof. Fei Chai"></div>
-      <h3>Prof. Fei Chai</h3>
-      <div class="title">Tang Shifeng Chair Professor in Marine Sciences · PI</div>
-      <ul class="info">
-        <li><b>Unit:</b> State Key Laboratory of Marine Environmental Science (MEL), XMU</li>
-        <li><b>Office:</b> Zhoulongquan Building, Xiang\u2019an Campus, XMU</li>
-        <li><b>Email:</b> fchai@xmu.edu.cn</li>
-        <li><b>Ph.D.:</b> Biological Oceanography, Duke University (1991\u20131995)</li>
-        <li><b>Career:</b> Former Professor (tenured), School of Marine Sciences, University of Maine; Dean (2012\u20132015)</li>
-        <li><b>Career:</b> Former Senior Scientist, Second Institute of Oceanography, MNR; Director, State Key Laboratory of Satellite Ocean Environment Dynamics (2016\u20132022)</li>
-      </ul>
-    </div>
+  <div class="intro-card intro-full">
+    <p>Affiliated with the State Key Laboratory of Marine Environmental Science (MEL) at Xiamen University, our group conducts research on coupled physical\u2013ecological\u2013biogeochemical oceanography, with a focus on the marine carbon cycle, nutrient cycles, and the response and feedback of marine ecosystems to climate change.</p>
+    <p>Centered on the CESM-CoSiNE marine ecosystem\u2013biogeochemistry module, which we develop in-house, and combining observations with numerical simulation, the group studies the controls of planktonic ecosystems and the carbon cycle in the North Pacific, the South China Sea, and the global ocean, extending to paleoclimate reconstruction and ocean digital twins.</p>
+    <p id="join">The group welcomes postdoctoral researchers and PhD/Master's students from around the world with interests in marine biogeochemistry, climate modeling, and computational oceanography.</p>
+    <p style="margin-top:28px"><a class="btn btn-solid" href="members.html">Meet the Team →</a></p>
   </div>
 </div>''',
 }
@@ -559,7 +529,7 @@ SUB_MENUS = {
     ],
     'links': [
         ('https://coeoa.xmu.edu.cn/t/CF/', '柴扉教授个人主页', "Prof. Chai's Homepage"),
-        ('https://meli.xmu.edu.cn/', 'MEL 实验室官网', 'MEL Official Website'),
+        ('https://mel.xmu.edu.cn/', 'MEL 实验室官网', 'MEL Official Website'),
         ('#links', '全部相关链接', 'All Links'),
     ],
 }
@@ -833,11 +803,11 @@ def links_body(lang):
       <p>State Key Laboratory of Marine Environmental Science, XMU</p>
       <div class="ext">coeoa.xmu.edu.cn →</div>
     </a>
-    <a class="link-card" href="https://meli.xmu.edu.cn/" target="_blank">
+    <a class="link-card" href="https://mel.xmu.edu.cn/" target="_blank">
       <div class="icon">''' + SVG_LAB + '''</div>
       <h4>State Key Laboratory of Marine Environmental Science</h4>
       <p>Official website of MEL, Xiamen University</p>
-      <div class="ext">meli.xmu.edu.cn →</div>
+      <div class="ext">mel.xmu.edu.cn →</div>
     </a>
   </div>
 </div>'''
@@ -856,40 +826,76 @@ def links_body(lang):
       <p>厦门大学海洋生物地球化学全国重点实验室</p>
       <div class="ext">coeoa.xmu.edu.cn →</div>
     </a>
-    <a class="link-card" href="https://meli.xmu.edu.cn/" target="_blank">
+    <a class="link-card" href="https://mel.xmu.edu.cn/" target="_blank">
       <div class="icon">''' + SVG_LAB + '''</div>
       <h4>海洋生物地球化学全国重点实验室</h4>
       <p>厦门大学海洋生物地球化学全国重点实验室官网</p>
-      <div class="ext">meli.xmu.edu.cn →</div>
+      <div class="ext">mel.xmu.edu.cn →</div>
     </a>
   </div>
 </div>'''
     return with_subnav('links', content, lang)
 
 def pi_detail_html(pi, lang):
-    """柴教授完整档案（学术经历/研究领域/代表性论文）"""
+    """柴教授完整个人介绍（头像头区 + 学术经历 + 研究领域 + 代表性论文）"""
     timeline = '\n'.join(
-        f'          <li><span class="tl-y">{y}</span><span class="tl-t">{t}</span></li>'
+        f'''        <li>
+          <span class="tl-dot"></span>
+          <span class="tl-y">{y}</span>
+          <span class="tl-t">{t}</span>
+        </li>'''
         for y, t in pi['timeline'])
-    interests = '\n'.join(f'          <li>{x}</li>' for x in pi['interests'])
+    interests = '\n'.join(f'        <li>{x}</li>' for x in pi['interests'])
     pubs = '\n'.join(
-        f'          <li><span class="pub-y">{y}</span><span class="pub-t">{t} <i>— {j}</i></span></li>'
+        f'''        <li>
+          <span class="pub-y">{y}</span>
+          <span class="pub-t"><b>{t}</b> <i>— {j}</i></span>
+        </li>'''
         for y, t, j in pi['pubs'])
-    return f'''<div class="section pi-detail-sec">
-  <div class="pi-detail">
-    <div class="pi-col">
-      <h3>{'Career Timeline' if lang == EN else '学术经历'}</h3>
-      <ul class="pi-timeline">
+    L = lambda zh, en: en if lang == EN else zh
+    if lang == EN:
+        _unit = 'State Key Laboratory of Marine Environmental Science (MEL), XMU'
+        _office = 'Zhoulongquan Building, Xiang\u2019an Campus, XMU'
+    else:
+        _unit = '海洋生物地球化学全国重点实验室（厦门大学）'
+        _office = '厦门大学翔安校区周隆泉楼'
+    return f'''<div class="section chai-sec" id="chai">
+  <div class="sec-head">
+    <span class="en">{L('PRINCIPAL INVESTIGATOR', 'PRINCIPAL INVESTIGATOR')}</span>
+    <h2>{pi['name']}</h2>
+  </div>
+  <div class="chai-head" data-reveal>
+    <div class="chai-photo">
+      <img src="images/chai_fei.jpg" alt="{pi['name']}">
+    </div>
+    <div class="chai-meta">
+      <div class="chai-title">{pi['title']}</div>
+      <p class="chai-bio">{pi['bio']}</p>
+      <ul class="chai-info">
+        <li><b>{L('单位', 'Unit')}：</b>{_unit}</li>
+        <li><b>{L('地址', 'Office')}：</b>{_office}</li>
+        <li><b>{L('邮箱', 'Email')}：</b>fchai@xmu.edu.cn</li>
+      </ul>
+      <div class="chai-actions">
+        <a class="btn btn-solid btn-sm" href="{pi['homepage']}" target="_blank">{L('个人主页', 'Personal Homepage')} →</a>
+        <a class="btn btn-line btn-sm" href="members.html">{L('课题组成员', 'Group Members')} →</a>
+      </div>
+    </div>
+  </div>
+  <div class="chai-grid" data-reveal>
+    <div class="chai-col">
+      <h3>{L('学术经历', 'Career Timeline')}</h3>
+      <ul class="chai-timeline">
 {timeline}
       </ul>
     </div>
-    <div class="pi-col">
-      <h3>{'Research Interests' if lang == EN else '主要研究领域'}</h3>
-      <ul class="pi-interests">
+    <div class="chai-col">
+      <h3>{L('主要研究领域', 'Research Interests')}</h3>
+      <ul class="chai-interests">
 {interests}
       </ul>
-      <h3 style="margin-top:30px">{'Selected Publications' if lang == EN else '代表性论文'}</h3>
-      <ul class="pi-pubs">
+      <h3>{L('代表性论文', 'Selected Publications')}</h3>
+      <ul class="chai-pubs">
 {pubs}
       </ul>
     </div>
