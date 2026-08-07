@@ -544,6 +544,40 @@ def members_data(lang):
         ('王胤', '硕士毕业（2026）', '已毕业成员', '—', '', 'wang-yin'),
     ]
 
+def research_feed(lang):
+    """科研进展：自动从科研成果（论文+模式/项目）按时间倒序取最新 6 条"""
+    items = []
+    # 论文（自动来自 PAPERS 列表）
+    for year, month, title, authors, journal, doi in PAPERS:
+        items.append(('%s-%02d' % (year, month), title, 'images/cosine_bg.png', 'papers-journal.html'))
+    # 模式/项目（固定成果条目，含数字孪生/古气候等特色成果）
+    if lang == ZH:
+        extras = [
+            ('2026-05', 'LOVECLIM-CoSiNE v1.4 古海洋气候—生态耦合模式', 'images/loveclim_schema.jpg', 'papers-model.html'),
+            ('2026-03', 'CESM-CoSiNE 海洋生态—生物地球化学模块', 'images/cosine_bg.png', 'research-project.html'),
+            ('2026-01', '古气候与数字地球', 'video:paleo_hero', 'papers-digital-twin.html'),
+            ('2026-01', 'BGC-Argo 观测与模式输出数据', 'images/cosine_bg.png', 'papers-data.html'),
+        ]
+    else:
+        extras = [
+            ('2026-05', 'LOVECLIM-CoSiNE v1.4 paleo climate\u2013ecosystem model', 'images/loveclim_schema.jpg', 'papers-model.html'),
+            ('2026-03', 'CESM-CoSiNE ocean ecosystem\u2013biogeochemistry module', 'images/cosine_bg.png', 'research-project.html'),
+            ('2026-01', 'Paleoclimate and the digital earth', 'video:paleo_hero', 'papers-digital-twin.html'),
+            ('2026-01', 'BGC-Argo observations and model outputs', 'images/cosine_bg.png', 'papers-data.html'),
+        ]
+    items.extend(extras)
+    # 去重（同日期+同标题只保留一条，避免论文与成果条目重复）
+    seen = set()
+    dedup = []
+    for it in items:
+        key = (it[0], it[1])
+        if key not in seen:
+            seen.add(key)
+            dedup.append(it)
+    # 按日期倒序取 6 条
+    dedup.sort(key=lambda x: x[0], reverse=True)
+    return dedup[:6]
+
 def auto_stats(lang):
     """从成员数据自动统计：教职工数、培养研究生数（在读博硕 + 已毕业）"""
     data = members_data(lang)
@@ -1287,26 +1321,7 @@ def home_body(lang):
             'feat_p': 'Prof. Chai and international experts published a review in National Science Review, systematically reviewing the core architecture of ocean digital twins and key application scenarios in blue-economy development.',
             'feat_date': 'FEB 2026 · National Science Review',
              'block1': 'Research Progress',
-             'block1_items': [
-                 ('JUL 2026', 'Profiling floats reveal deep-sea carbon pulses in the marginal sea',
-                  'images/cosine_bg.png', 'https://mel.xmu.edu.cn/info/1012/63211.htm'),
-                 ('MAR 2026', 'CESM-CoSiNE module development and validation',
-                  'images/cosine_bg.png', 'research.html#project'),
-                 ('FEB 2026', 'Ocean digital twin review published in National Science Review',
-                  'images/mel_digital_twin.png', 'papers-digital-twin.html'),
-                 ('JAN 2026', 'Paleoclimate and the digital earth',
-                  'video:paleo_hero', 'papers-digital-twin.html'),
-                 ('NOV 2025', 'Lujiang Ocean Symposium concludes successfully',
-                  'images/cosine_bg.png', 'news.html'),
-                 ('SEP 2025', 'Group website officially launched',
-                  'images/cosine_bg.png', 'news.html'),
-                 ('JUN 2025', 'Rising winter phytoplankton blooms in the northern Arabian Sea',
-                  'images/cosine_bg.png', 'papers.html'),
-                 ('MAR 2025', 'Arctic warming as a potential trigger for the warm blob in the northeast Pacific',
-                  'images/cosine_bg.png', 'papers.html'),
-                 ('SEP 2024', 'TVD sea ice transport scheme published in Geoscientific Model Development',
-                  'images/cosine_bg.png', 'papers.html'),
-             ],
+             'block1_items': research_feed(EN),
             'block2': 'Selected Work',
             'block2_items': [
                 ('CESM-CoSiNE16', 'An ocean ecosystem\u2013biogeochemistry module embedded in CESM', 'reports/CESM_CoSiNE16_Nature_style_draft_CN.html'),
@@ -1360,26 +1375,7 @@ def home_body(lang):
             'feat_p': '柴扉教授团队系统梳理海洋数字孪生核心架构，解析其在蓝色经济发展中的关键应用场景，并对该领域挑战与前景作出前瞻性研判。',
             'feat_date': '2026-02 · National Science Review',
              'block1': '科研进展',
-             'block1_items': [
-                 ('2026-07', '剖面浮标揭秘边缘海深海碳脉冲',
-                  'images/cosine_bg.png', 'https://mel.xmu.edu.cn/info/1012/63211.htm'),
-                 ('2026-03', 'CESM-CoSiNE 模式研发与验证进展',
-                  'images/cosine_bg.png', 'research.html#project'),
-                 ('2026-02', '海洋数字孪生综述发表于 National Science Review',
-                  'images/mel_digital_twin.png', 'papers-digital-twin.html'),
-                 ('2026-01', '古气候与数字地球',
-                  'video:paleo_hero', 'papers-digital-twin.html'),
-                 ('2025-11', '鹭江海洋研讨会圆满落幕',
-                  'images/cosine_bg.png', 'news.html'),
-                 ('2025-09', '课题组网站全新上线',
-                  'images/cosine_bg.png', 'news.html'),
-                 ('2025-06', '阿拉伯海冬季浮游植物水华呈上升趋势',
-                  'images/cosine_bg.png', 'papers.html'),
-                 ('2025-03', '北极增暖或触发东北太平洋暖斑',
-                  'images/cosine_bg.png', 'papers.html'),
-                 ('2024-09', 'TVD 海冰输运方案发表于 Geoscientific Model Development',
-                  'images/cosine_bg.png', 'papers.html'),
-             ],
+             'block1_items': research_feed(ZH),
             'block2': '代表性工作',
             'block2_items': [
                 ('CESM-CoSiNE16', '嵌入 CESM 的海洋生态—生物地球化学模块', 'reports/CESM_CoSiNE16_Nature_style_draft_CN.html'),
