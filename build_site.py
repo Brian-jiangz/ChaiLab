@@ -772,6 +772,8 @@ def home_body(lang):
     slide_parts = []
     for i, (kicker, h, p, ctas) in enumerate(slides):
         photo = f'images/hero{i+1}.jpg' if os.path.exists(f'images/hero{i+1}.jpg') else None
+        if i == 1:
+            photo = 'images/cosine_bg.png'
         bg_style = f' style="background-image:linear-gradient(rgba(7,24,42,.5),rgba(7,24,42,.5)),url({photo});background-size:cover;background-position:center"' if photo else ''
         def _cta(j, t, u):
             cls = ' cta-solid' if j == 0 else ''
@@ -1033,7 +1035,8 @@ def main():
         return (html.replace('href="images/', 'href="../images/')
                     .replace('src="images/', 'src="../images/')
                     .replace('href="reports/', 'href="../reports/')
-                    .replace('src="videos/', 'src="../videos/'))
+                    .replace('src="videos/', 'src="../videos/')
+                    .replace('url(images/', 'url(../images/'))
     for fname, (title, en_sub, about_body) in specs_en.items():
         if fname == 'about.html':
             body = about_body['en']
