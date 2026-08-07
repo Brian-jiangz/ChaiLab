@@ -433,14 +433,14 @@ def members_data(lang):
 def members_body(lang):
     if lang == EN:
         groups = [
-            ('Faculty', ['fei-chai', 'xiaoyi-wang', 'wang-qian', 'yang-kai']),
+            ('Faculty', ['fei-chai', 'wang-qian', 'yang-kai', 'xiaoyi-wang']),
             ('PhD Students', ['zhao-kewei', 'jiang-zheng', 'song-zhe']),
             ("Master's Students", ['lin-jianchun', 'xie-xianyu', 'li-peimin']),
             ('Alumni', ['wang-qian-alumni', 'wang-yin']),
         ]
     else:
         groups = [
-            ('教职工', ['fei-chai', 'xiaoyi-wang', 'wang-qian', 'yang-kai']),
+            ('教职工', ['fei-chai', 'wang-qian', 'yang-kai', 'xiaoyi-wang']),
             ('博士研究生', ['zhao-kewei', 'jiang-zheng', 'song-zhe']),
             ('硕士研究生', ['lin-jianchun', 'xie-xianyu', 'li-peimin']),
             ('已毕业成员', ['wang-qian-alumni', 'wang-yin']),
