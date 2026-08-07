@@ -265,6 +265,7 @@ html.anim .hslide.on .hcap .hero-ctas { opacity: 1; transform: none; transition-
 .pi-actions { display: flex; gap: 14px; margin-top: 28px; flex-wrap: wrap; }
 
 /* ===== PI 详细档案（时间线 / 研究领域 / 论文） ===== */
+.pi-detail-sec { padding-top: 40px; }
 .pi-detail {
   display: grid; grid-template-columns: 1.2fr 1fr; gap: 0;
   border: 1px solid var(--line); margin-top: 48px;

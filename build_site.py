@@ -653,6 +653,94 @@ def links_body(lang):
   </div>
 </div>'''
 
+def pi_detail_html(pi, lang):
+    """柴教授完整档案（学术经历/研究领域/代表性论文）"""
+    timeline = '\n'.join(
+        f'          <li><span class="tl-y">{y}</span><span class="tl-t">{t}</span></li>'
+        for y, t in pi['timeline'])
+    interests = '\n'.join(f'          <li>{x}</li>' for x in pi['interests'])
+    pubs = '\n'.join(
+        f'          <li><span class="pub-y">{y}</span><span class="pub-t">{t} <i>— {j}</i></span></li>'
+        for y, t, j in pi['pubs'])
+    return f'''<div class="section pi-detail-sec">
+  <div class="pi-detail">
+    <div class="pi-col">
+      <h3>{'Career Timeline' if lang == EN else '学术经历'}</h3>
+      <ul class="pi-timeline">
+{timeline}
+      </ul>
+    </div>
+    <div class="pi-col">
+      <h3>{'Research Interests' if lang == EN else '主要研究领域'}</h3>
+      <ul class="pi-interests">
+{interests}
+      </ul>
+      <h3 style="margin-top:30px">{'Selected Publications' if lang == EN else '代表性论文'}</h3>
+      <ul class="pi-pubs">
+{pubs}
+      </ul>
+    </div>
+  </div>
+</div>'''
+
+PI_EN = {
+    'name': 'Prof. Fei Chai',
+    'en': 'PRINCIPAL INVESTIGATOR',
+    'title': 'Tang Shifeng Chair Professor in Marine Sciences · PI',
+    'bio': 'Marine biogeochemistry, ocean carbon cycle, and physical\u2013biogeochemical modeling. Ph.D. in Biological Oceanography, Duke University; former Professor and Dean at the School of Marine Sciences, University of Maine; currently Tang Shifeng Chair Professor at Xiamen University.',
+    'btn1': 'About the Group',
+    'btn2': 'Our Team',
+    'homepage': 'https://coeoa.xmu.edu.cn/t/CF/',
+    'timeline': [
+        ('1980\u20131987', 'B.S./M.S. in Physical Oceanography, Ocean University of China'),
+        ('1988\u20131991', 'M.S. in Ocean & Atmospheric Sciences, Princeton University'),
+        ('1991\u20131995', 'Ph.D. in Biological Oceanography, Duke University'),
+        ('1996\u20132008', 'Assistant then Associate (tenured) Professor, University of Maine'),
+        ('2008\u20132021', 'Professor, School of Marine Sciences, University of Maine (Dean 2012\u20132015)'),
+        ('2016\u20132022', 'Professor & Director, State Key Laboratory of Satellite Ocean Environment Dynamics, Second Institute of Oceanography, MNR'),
+        ('2022\u2013now', 'Tang Shifeng Chair Professor, State Key Laboratory of Marine Environmental Science (MEL), Xiamen University'),
+    ],
+    'interests': [
+        'Marine carbon cycle', 'Physical\u2013biogeochemical ecosystem modeling',
+        'Marine ecosystem dynamics', 'Fisheries resources', 'BGC-Argo observations',
+    ],
+    'pubs': [
+        ('2026', 'Digital twin of the ocean as a catalyst for blue economy innovation', 'National Science Review'),
+        ('2021', 'A limited effect of sub-tropical typhoons on phytoplankton dynamics', 'Biogeosciences'),
+        ('2020', 'Monitoring ocean biogeochemistry with autonomous platforms', 'Nature Reviews Earth & Environment'),
+        ('2020', 'Enhanced winter carbon export observed by BGC-Argo in the Northwest Pacific Ocean', 'Geophysical Research Letters'),
+    ],
+}
+
+PI_ZH = {
+    'name': '柴扉 教授',
+    'en': 'PRINCIPAL INVESTIGATOR',
+    'title': '"唐世凤"海洋学科讲席教授 · PI',
+    'bio': '长期从事海洋生物地球化学、海洋碳循环与物理—生物地球化学模型研究。美国杜克大学生物海洋学博士，曾任美国缅因大学海洋学院教授、院长，现任厦门大学海洋生物地球化学全国重点实验室"唐世凤"海洋学科讲席教授。',
+    'btn1': '了解课题组',
+    'btn2': '我们的团队',
+    'homepage': 'https://coeoa.xmu.edu.cn/t/CF/',
+    'timeline': [
+        ('1980–1987', '中国海洋大学 物理海洋学 本科、硕士'),
+        ('1988–1991', '美国普林斯顿大学 海洋和大气科学 硕士'),
+        ('1991–1995', '美国杜克大学 生物海洋学 博士'),
+        ('1996–2008', '美国缅因大学海洋学院 助理教授、副教授（终身教职）'),
+        ('2008–2021', '美国缅因大学海洋学院 教授（2012–2015 任院长）'),
+        ('2016–2022', '自然资源部第二海洋研究所研究员、卫星海洋环境动力学国家重点实验室主任'),
+        ('2022–至今', '厦门大学 "唐世凤"海洋学科讲席教授'),
+    ],
+    'interests': [
+        '海洋碳循环', '物理—生物地球化学模型', '海洋生态系统',
+        '渔业资源', 'BGC-Argo 观测',
+    ],
+    'pubs': [
+        ('2026', 'Digital twin of the ocean as a catalyst for blue economy innovation', 'National Science Review'),
+        ('2021', 'A limited effect of sub-tropical typhoons on phytoplankton dynamics', 'Biogeosciences'),
+        ('2020', 'Monitoring ocean biogeochemistry with autonomous platforms', 'Nature Reviews Earth & Environment'),
+        ('2020', 'Enhanced winter carbon export observed by BGC-Argo in the Northwest Pacific Ocean', 'Geophysical Research Letters'),
+    ],
+}
+
 def home_body(lang):
     """首页：清华式布局（Hero轮播+统计条+新闻分栏+研究方向+项目横幅+论文+招生合作）"""
     import os
@@ -719,34 +807,7 @@ def home_body(lang):
             ('Collaboration', 'The group maintains close collaborations with universities and research institutes at home and abroad. We welcome academic visits, joint training, and project cooperation.', 'links.html', 'Related Links'),
         ]
         scroll_hint = 'Scroll'
-        pi = {
-            'name': 'Prof. Fei Chai',
-            'en': 'PRINCIPAL INVESTIGATOR',
-            'title': 'Tang Shifeng Chair Professor in Marine Sciences · PI',
-            'bio': 'Marine biogeochemistry, ocean carbon cycle, and physical\u2013biogeochemical modeling. Ph.D. in Biological Oceanography, Duke University; former Professor and Dean at the School of Marine Sciences, University of Maine; currently Tang Shifeng Chair Professor at Xiamen University.',
-            'btn1': 'About the Group',
-            'btn2': 'Our Team',
-            'homepage': 'https://coeoa.xmu.edu.cn/t/CF/',
-            'timeline': [
-                ('1980\u20131987', 'B.S./M.S. in Physical Oceanography, Ocean University of China'),
-                ('1988\u20131991', 'M.S. in Ocean & Atmospheric Sciences, Princeton University'),
-                ('1991\u20131995', 'Ph.D. in Biological Oceanography, Duke University'),
-                ('1996\u20132008', 'Assistant then Associate (tenured) Professor, University of Maine'),
-                ('2008\u20132021', 'Professor, School of Marine Sciences, University of Maine (Dean 2012\u20132015)'),
-                ('2016\u20132022', 'Professor & Director, State Key Laboratory of Satellite Ocean Environment Dynamics, Second Institute of Oceanography, MNR'),
-                ('2022\u2013now', 'Tang Shifeng Chair Professor, State Key Laboratory of Marine Environmental Science (MEL), Xiamen University'),
-            ],
-            'interests': [
-                'Marine carbon cycle', 'Physical\u2013biogeochemical ecosystem modeling',
-                'Marine ecosystem dynamics', 'Fisheries resources', 'BGC-Argo observations',
-            ],
-            'pubs': [
-                ('2026', 'Digital twin of the ocean as a catalyst for blue economy innovation', 'National Science Review'),
-                ('2021', 'A limited effect of sub-tropical typhoons on phytoplankton dynamics', 'Biogeosciences'),
-                ('2020', 'Monitoring ocean biogeochemistry with autonomous platforms', 'Nature Reviews Earth & Environment'),
-                ('2020', 'Enhanced winter carbon export observed by BGC-Argo in the Northwest Pacific Ocean', 'Geophysical Research Letters'),
-            ],
-        }
+        pi = PI_EN
     else:
         slides = [
             ('Ocean Digital Twin', '海洋数字孪生：赋能蓝色经济创新', '柴扉教授团队综述发表于 National Science Review',
@@ -809,34 +870,7 @@ def home_body(lang):
             ('合作交流', '课题组与国内外多所高校及研究机构保持紧密合作，欢迎就学术访问、联合培养与项目合作事宜洽谈。', 'links.html', '查看相关链接'),
         ]
         scroll_hint = '向下滚动'
-        pi = {
-            'name': '柴扉 教授',
-            'en': 'PRINCIPAL INVESTIGATOR',
-            'title': '"唐世凤"海洋学科讲席教授 · PI',
-            'bio': '长期从事海洋生物地球化学、海洋碳循环与物理—生物地球化学模型研究。美国杜克大学生物海洋学博士，曾任美国缅因大学海洋学院教授、院长，现任厦门大学海洋生物地球化学全国重点实验室"唐世凤"海洋学科讲席教授。',
-            'btn1': '了解课题组',
-            'btn2': '我们的团队',
-            'homepage': 'https://coeoa.xmu.edu.cn/t/CF/',
-            'timeline': [
-                ('1980–1987', '中国海洋大学 物理海洋学 本科、硕士'),
-                ('1988–1991', '美国普林斯顿大学 海洋和大气科学 硕士'),
-                ('1991–1995', '美国杜克大学 生物海洋学 博士'),
-                ('1996–2008', '美国缅因大学海洋学院 助理教授、副教授（终身教职）'),
-                ('2008–2021', '美国缅因大学海洋学院 教授（2012–2015 任院长）'),
-                ('2016–2022', '自然资源部第二海洋研究所研究员、卫星海洋环境动力学国家重点实验室主任'),
-                ('2022–至今', '厦门大学 "唐世凤"海洋学科讲席教授'),
-            ],
-            'interests': [
-                '海洋碳循环', '物理—生物地球化学模型', '海洋生态系统',
-                '渔业资源', 'BGC-Argo 观测',
-            ],
-            'pubs': [
-                ('2026', 'Digital twin of the ocean as a catalyst for blue economy innovation', 'National Science Review'),
-                ('2021', 'A limited effect of sub-tropical typhoons on phytoplankton dynamics', 'Biogeosciences'),
-                ('2020', 'Monitoring ocean biogeochemistry with autonomous platforms', 'Nature Reviews Earth & Environment'),
-                ('2020', 'Enhanced winter carbon export observed by BGC-Argo in the Northwest Pacific Ocean', 'Geophysical Research Letters'),
-            ],
-        }
+        pi = PI_ZH
 
     deco_wave = '''      <svg class="hdeco" viewBox="0 0 1440 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
         <g stroke="rgba(255,255,255,.07)" fill="none">
@@ -1000,24 +1034,6 @@ def home_body(lang):
       </div>
     </div>
   </div>
-  <div class="pi-detail">
-    <div class="pi-col">
-      <h3>{'Career Timeline' if lang == EN else '学术经历'}</h3>
-      <ul class="pi-timeline">
-{pi_timeline}
-      </ul>
-    </div>
-    <div class="pi-col">
-      <h3>{'Research Interests' if lang == EN else '主要研究领域'}</h3>
-      <ul class="pi-interests">
-{pi_interests}
-      </ul>
-      <h3 style="margin-top:30px">{'Selected Publications' if lang == EN else '代表性论文'}</h3>
-      <ul class="pi-pubs">
-{pi_pubs}
-      </ul>
-    </div>
-  </div>
 </div>
 
 <!-- 课题组动态 -->
@@ -1175,7 +1191,7 @@ def main():
     os.makedirs('en', exist_ok=True)
     for fname, (title, en_sub, about_body) in specs.items():
         if fname == 'about.html':
-            body = about_body['zh']
+            body = about_body['zh'] + '\n' + pi_detail_html(PI_ZH, ZH)
         elif fname in body_full:
             body = body_full[fname](ZH)
         else:
@@ -1193,7 +1209,7 @@ def main():
                     .replace('url(images/', 'url(../images/'))
     for fname, (title, en_sub, about_body) in specs_en.items():
         if fname == 'about.html':
-            body = about_body['en']
+            body = about_body['en'] + '\n' + pi_detail_html(PI_EN, EN)
         elif fname in body_full:
             body = body_full[fname](EN)
         else:
