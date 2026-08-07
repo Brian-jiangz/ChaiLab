@@ -116,6 +116,24 @@
   /* 初始状态：Hero 显示，锁定滚动 */
   if (bodyHome) document.body.classList.add('locked');
 
+  /* bfcache 恢复（浏览器返回）：同步整屏状态，确保滚轮等交互恢复 */
+  window.addEventListener('pageshow', function (e) {
+    if (!e.persisted) return;
+    switching = false;
+    wheelLock = false;
+    if (bodyMain) {
+      if (bodyMain.classList.contains('show')) {
+        document.body.classList.remove('locked');
+        if (head) head.classList.add('scrolled');
+      } else {
+        document.body.classList.add('locked');
+        if (head) head.classList.remove('scrolled');
+        window.scrollTo(0, 0);
+      }
+    }
+    if (slides.length) { go(cur); play(); }
+  });
+
   /* 滚轮：Hero 上向下 -> 内容上滑；内容顶部向上 -> 回 Hero（仅首页） */
   var wheelLock = false;
   window.addEventListener('wheel', function (e) {
