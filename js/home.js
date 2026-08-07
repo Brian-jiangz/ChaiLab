@@ -384,36 +384,3 @@
   /* bfcache 刷新后恢复整屏状态（head 已就绪） */
   restoreScreen();
 })();
-
-  /* ===== 柴教授 → 成员介绍：Hero 下滑切换 ===== */
-  var chaiSec = document.getElementById('chai-section');
-  var membersCover = document.getElementById('members-cover');
-  if (chaiSec && membersCover) {
-    var mcShown = false;
-    var mcLock = false;
-    var vhNow = window.innerHeight || 800;
-    function chaiSpy() {
-      if (mcLock) return;
-      var rect = chaiSec.getBoundingClientRect();
-      /* 柴教授底部即将滚出视口底部（剩 12% 时触发），下滑动画在视口内可见 */
-      var out = rect.bottom <= vhNow * 0.12;
-      /* 向上滚回，柴教授顶部重新进入视口过半时回落 */
-      var back = rect.top > vhNow * 0.55;
-      if (out && !mcShown) {
-        mcShown = true;
-        mcLock = true;
-        chaiSec.classList.add('leave');
-        membersCover.classList.add('show');
-        setTimeout(function () { mcLock = false; }, 850);
-      } else if (back && mcShown) {
-        mcShown = false;
-        mcLock = true;
-        chaiSec.classList.remove('leave');
-        membersCover.classList.remove('show');
-        setTimeout(function () { mcLock = false; }, 850);
-      }
-    }
-    window.addEventListener('scroll', chaiSpy, { passive: true });
-    window.addEventListener('resize', function () { vhNow = window.innerHeight; chaiSpy(); });
-    chaiSpy();
-  }

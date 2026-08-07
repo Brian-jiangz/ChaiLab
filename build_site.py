@@ -1611,9 +1611,7 @@ def main():
     def about_body(lang):
         pi_html = pi_detail_html(PI_ZH if lang == ZH else PI_EN, lang)
         mem_html = members_body(lang)
-        return (ABOUT_BODY['zh' if lang == ZH else 'en'] + '\n'
-                + '<div class="chai-section" id="chai-section">' + pi_html + '</div>\n'
-                + '<div class="members-cover" id="members-cover">' + mem_html + '</div>')
+        return (ABOUT_BODY['zh' if lang == ZH else 'en'] + '\n' + pi_html + '\n' + mem_html)
     content_pages = {
         'about.html': lambda lang: with_subnav('about', about_body(lang), lang),
         'research.html': lambda lang: research_with_project(lang),
