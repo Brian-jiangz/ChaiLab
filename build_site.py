@@ -1186,12 +1186,22 @@ def home_body(lang):
         news = [
             ('FEB 2026', 'Prof. Chai\u2019s team reveals ocean digital twins as a new engine for blue-economy innovation',
              'The team systematically reviewed the core architecture of ocean digital twins, analyzed key application scenarios in blue-economy development, and provided forward-looking perspectives on challenges and prospects.'),
+            ('AUG 2026', 'Group website officially launched',
+             'The official website of the Chai Group is now live, presenting our research areas, members, and achievements.'),
+            ('JUL 2026', 'Profiling floats reveal deep-sea carbon pulses in the marginal sea',
+             'Biogeochemical-Argo floats in the South China Sea revealed mechanisms driving deep-sea carbon flux pulses, published in Limnology and Oceanography.'),
+            ('JUN 2026', 'National key R&D project workshop on tropical ocean system evolution',
+             'Workshop of the national key R&D program \u201cTropical Ocean System Evolution and Its Linkage with the Poles\u201d was held.'),
+            ('JUN 2026', 'Wang Yin master\u2019s thesis defense',
+             'Congratulations to Wang Yin on passing the master\u2019s thesis defense!'),
+            ('FEB 2026', 'Spring Festival celebration',
+             'The group gathered together to welcome the Spring Festival.'),
+            ('DEC 2025', 'Christmas team building',
+             'Group Christmas team-building activity.'),
             ('NOV 2025', 'Lujiang Ocean Symposium concludes successfully',
              'The ocean symposium co-hosted by Lujiang Innovation Laboratory and the State Key Laboratory of Marine Environmental Science (XMU) was held successfully.'),
-            ('SEP 2025', 'Group website officially launched',
-             'The official website of the Chai Group is now live, presenting our research areas, members, and achievements.'),
-            ('UPDATING', 'Group news continuously updated',
-             'Stay tuned for the latest research progress, recruitment, and academic exchange activities.'),
+            ('OCT 2025', 'Wang Qian PhD defense',
+             'Congratulations to Wang Qian on passing the PhD defense!'),
         ]
         res_head = ('Research Areas', 'RESEARCH AREAS')
         res_more = 'Learn More'
@@ -1259,12 +1269,22 @@ def home_body(lang):
         news = [
             ('2026-02', '柴扉教授团队揭示海洋数字孪生是赋能蓝色经济创新发展的新引擎',
              '团队系统梳理海洋数字孪生核心架构，解析其在蓝色经济发展中的关键应用场景，并对该领域挑战与前景作出前瞻性研判。'),
+            ('2026-08', '课题组网站全新上线',
+             '柴扉教授课题组官方网站正式启用，全面展示课题组研究方向、成员与科研成果。'),
+            ('2026-07', '剖面浮标揭秘边缘海深海碳脉冲',
+             '南海西南部 BGC-Argo 浮标揭示季节性气旋涡与沿岸急流驱动深海碳通量脉冲的机制，发表于 Limnology and Oceanography。'),
+            ('2026-06', '国家重点研发项目"热带海洋系统演化及与两极的联动"项目研讨会',
+             '国家重点研发计划项目研讨会顺利召开。'),
+            ('2026-06', '王胤硕士毕业答辩',
+             '祝贺王胤顺利通过硕士毕业答辩！'),
+            ('2026-02', '课题组喜迎春节',
+             '课题组欢聚一堂，共迎新春。'),
+            ('2025-12', '圣诞节团建',
+             '课题组圣诞团建活动。'),
             ('2025-11', '鹭江海洋研讨会圆满落幕',
              '由鹭江创新实验室与海洋生物地球化学全国重点实验室（厦门大学）联合主办的海洋研讨会成功举办。'),
-            ('2025-09', '课题组网站全新上线',
-             '柴扉教授课题组官方网站正式启用，全面展示课题组研究方向、成员与科研成果。'),
-            ('待更新', '课题组新闻持续更新中',
-             '欢迎关注课题组最新科研进展、招生与学术交流动态。'),
+            ('2025-10', '王谦博士毕业答辩',
+             '祝贺王谦顺利通过博士毕业答辩！'),
         ]
         res_head = ('研究方向', 'RESEARCH AREAS')
         res_more = '了解更多'
