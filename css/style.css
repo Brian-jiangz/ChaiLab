@@ -848,12 +848,17 @@ a:focus-visible, button:focus-visible, .hdots span:focus-visible {
 
 /* ===== 二级内容：Hero 式垂直全屏滑动 ===== */
 .vs-view { position: fixed; inset: 0; z-index: 5; overflow: hidden; background: var(--navy); }
-.vs-track { position: absolute; inset: 0; transition: transform .7s cubic-bezier(.77, 0, .18, 1); will-change: transform; }
+.vs-track { position: absolute; inset: 0; }
 .vs-panel {
-  position: absolute; left: 0; right: 0; height: 100vh; overflow: hidden;
+  position: absolute; left: 0; right: 0; top: 0; bottom: 0; height: 100%; overflow: hidden;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   text-align: center; color: #fff; padding: 40px 24px;
+  opacity: 0; visibility: hidden; transform: translateY(100vh); z-index: 1;
+  transition: transform .8s cubic-bezier(.77, 0, .18, 1), opacity .6s ease;
 }
+.vs-panel.on { opacity: 1; visibility: visible; transform: none; z-index: 2; }
+.vs-panel.enter { opacity: 1; visibility: visible; transform: translateY(100vh); z-index: 3; }
+.vs-panel.leave { opacity: 0; transform: translateY(-4%); z-index: 2; }
 .vs-bg { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 0; }
 .vs-inner { position: relative; z-index: 2; max-width: 900px; width: 100%; max-height: 100%; }
 .vs-inner.vs-scroll { overflow-y: auto; padding: 20px 8px; scrollbar-width: thin; }

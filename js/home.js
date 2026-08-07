@@ -385,7 +385,7 @@
   restoreScreen();
 })();
 
-  /* ===== 二级内容：Hero 式垂直全屏滑动 ===== */
+  /* ===== 二级内容：Hero 上滑盖住切换（与首页 Hero→内容层一致） ===== */
   var vsTrack = document.getElementById('vsTrack');
   if (vsTrack) {
     var vsPanels = vsTrack.querySelectorAll('.vs-panel');
@@ -399,14 +399,26 @@
     } catch (e) {}
     function vsGo(i) {
       if (vsLock) return;
+      var target = (i + vsPanels.length) % vsPanels.length;
+      if (target === vsCur) return;
       vsLock = true;
-      vsCur = (i + vsPanels.length) % vsPanels.length;
-      vsTrack.style.transform = 'translateY(' + (-vsCur * 100) + 'vh)';
+      var from = vsPanels[vsCur];
+      var to = vsPanels[target];
+      /* 新屏从下方上滑盖住（enter 先置底再上滑） */
+      to.classList.add('enter');
+      void to.offsetWidth;
+      to.classList.remove('enter');
+      to.classList.add('on');
+      from.classList.add('leave');
+      vsCur = target;
       vsSteps.forEach(function (s, k) { s.classList.toggle('on', k === vsCur); });
       if (vsCounter) vsCounter.textContent = (vsCur + 1) + ' / ' + vsPanels.length;
-      setTimeout(function () { vsLock = false; }, 750);
+      setTimeout(function () {
+        from.classList.remove('on', 'leave');
+        vsLock = false;
+      }, 850);
     }
-    vsGo(vsCur);
+    vsPanels.forEach(function (p, k) { p.classList.toggle('on', k === vsCur); });
     var vsUp = document.getElementById('vsUp');
     var vsDown = document.getElementById('vsDown');
     if (vsUp) vsUp.addEventListener('click', function () { vsGo(vsCur - 1); });
@@ -416,13 +428,18 @@
       if (e.key === 'ArrowUp') vsGo(vsCur - 1);
       if (e.key === 'ArrowDown') vsGo(vsCur + 1);
     });
-    /* 滚轮：防抖后切换 */
+    /* 滚轮：防抖后切换；vs-scroll 内部可滚动时优先内部滚动 */
     var vsWheelLock = false;
     window.addEventListener('wheel', function (e) {
       if (vsWheelLock) { e.preventDefault(); return; }
+      var sc = e.target && e.target.closest ? e.target.closest('.vs-scroll') : null;
+      if (sc && sc.scrollHeight > sc.clientHeight + 4) {
+        if (e.deltaY > 0 && sc.scrollTop + sc.clientHeight < sc.scrollHeight - 2) return;
+        if (e.deltaY < 0 && sc.scrollTop > 2) return;
+      }
       if (e.deltaY > 12) { vsWheelLock = true; vsGo(vsCur + 1); }
       else if (e.deltaY < -12) { vsWheelLock = true; vsGo(vsCur - 1); }
-      setTimeout(function () { vsWheelLock = false; }, 800);
+      setTimeout(function () { vsWheelLock = false; }, 850);
     }, { passive: false });
     /* 触摸：上下滑动切换 */
     var vsTy = 0;
