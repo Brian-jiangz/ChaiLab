@@ -169,31 +169,46 @@
   }
   bindWheel();
 
-  /* bfcache 恢复（浏览器返回）：重置整屏状态 + 重新绑定监听器。
-     时间戳防抖不受冻结影响；此处只同步 locked/滚动位置，不刷新页面。 */
-  function resetScreens() {
-    switching = false;
+  /* 离开页面时记录整屏状态（sessionStorage），供 bfcache 刷新后恢复 */
+  function saveScreenState() {
     if (!bodyMain) return;
-    document.body.classList.remove('locked');
-    window.scrollTo(0, 0);
-    if (bodyMain.classList.contains('show')) {
-      if (head) head.classList.add('scrolled');
-    } else {
-      document.body.classList.add('locked');
-      if (head) head.classList.remove('scrolled');
-    }
-    if (slides.length) { go(cur); play(); }
+    try {
+      sessionStorage.setItem('chai_screen', JSON.stringify({
+        show: bodyMain.classList.contains('show'),
+        y: window.scrollY || 0
+      }));
+      sessionStorage.setItem('chai_reload_pending', '1');
+    } catch (e) {}
   }
+  window.addEventListener('pagehide', saveScreenState);
+
+  /* bfcache 恢复（浏览器返回）：状态错乱的根因是 bfcache 冻结 JS 定时器/监听器。
+     终极方案：强制刷新重建页面，再用 sessionStorage 恢复离开时的界面状态。 */
   window.addEventListener('pageshow', function (e) {
     if (!e.persisted) return;
-    bindWheel();
-    resetScreens();
+    saveScreenState();
+    window.location.reload();
   });
-  document.addEventListener('visibilitychange', function () {
-    if (document.hidden || !bodyMain) return;
-    bindWheel();
-    resetScreens();
-  });
+  /* 刷新/重载后：仅当存在 pending 标志（确实经历了 bfcache 刷新）才恢复状态 */
+  function restoreScreen() {
+    var pending = false, raw = null;
+    try {
+      pending = !!sessionStorage.getItem('chai_reload_pending');
+      sessionStorage.removeItem('chai_reload_pending');
+      raw = sessionStorage.getItem('chai_screen');
+      sessionStorage.removeItem('chai_screen');
+    } catch (e) {}
+    if (!pending || !raw || !bodyMain) return;
+    try {
+      var s = JSON.parse(raw);
+      if (s.show) {
+        bodyMain.classList.add('show');
+        document.body.classList.remove('locked');
+        if (head) head.classList.add('scrolled');
+        window.scrollTo(0, s.y || 0);
+      }
+    } catch (e) {}
+  }
 
   /* 点击右下滚动提示 -> 下滑 */
   if (hintBtn) {
@@ -339,4 +354,7 @@
       a.href = inEn ? '../' + page : 'en/' + page;
     });
   })();
+
+  /* bfcache 刷新后恢复整屏状态（head 已就绪） */
+  restoreScreen();
 })();
