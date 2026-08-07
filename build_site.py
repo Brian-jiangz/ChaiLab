@@ -889,6 +889,13 @@ def home_body(lang):
   </div>
 </div>
 
+<!-- 统计条 -->
+<div class="stats-band">
+  <div class="stats">
+{stat_parts}
+  </div>
+</div>
+
 <!-- 研究方向 -->
 <div class="section home-sec" id="research">
   <div class="sec-head" data-reveal>
@@ -934,13 +941,6 @@ def home_body(lang):
 <div class="join-band">
   <div class="join-grid">
 {join_parts}
-  </div>
-</div>
-
-<!-- 统计条 -->
-<div class="stats-band">
-  <div class="stats">
-{stat_parts}
   </div>
 </div>
 </div><!-- /body-main -->

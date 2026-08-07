@@ -458,11 +458,10 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
   .logo .txt { margin-left: 14px; padding-left: 14px; }
 }
 
-/* 窄屏：导航收缩为汉堡面板，logo 文字保留 */
+/* 窄屏：导航收缩为汉堡面板，logo 文字与 En 按钮保留 */
 @media (max-width: 1100px) {
-  .g-head .inner.main { grid-template-columns: auto 1fr auto; }
+  .g-head .inner.main { grid-template-columns: auto 1fr auto auto; }
   .nav-toggle { display: block; }
-  .lang-switch { display: none; }
   .g-nav {
     display: none; position: absolute; top: 74px; left: 0; right: 0;
     background: #fff; border-bottom: 1px solid var(--line); justify-self: stretch;
