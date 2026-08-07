@@ -1398,7 +1398,7 @@ def main():
     os.makedirs('en', exist_ok=True)
     for fname, (title, en_sub, about_body) in specs.items():
         if fname == 'about.html':
-            body = with_subnav('about', about_body['zh'] + '\n' + pi_detail_html(PI_ZH, ZH), ZH)
+            body = with_subnav('about', about_body['zh'] + '\n' + pi_detail_html(PI_ZH, ZH) + '\n' + members_body(ZH), ZH)
         elif fname in body_full:
             body = body_full[fname](ZH)
         else:
@@ -1416,7 +1416,7 @@ def main():
                     .replace('url(images/', 'url(../images/'))
     for fname, (title, en_sub, about_body) in specs_en.items():
         if fname == 'about.html':
-            body = with_subnav('about', about_body['en'] + '\n' + pi_detail_html(PI_EN, EN), EN)
+            body = with_subnav('about', about_body['en'] + '\n' + pi_detail_html(PI_EN, EN) + '\n' + members_body(EN), EN)
         elif fname in body_full:
             body = body_full[fname](EN)
         else:
