@@ -94,7 +94,7 @@
 
   /* ===== 学术·科研面板：左侧索引 hover 切换右侧大图 ===== */
   var acaIndex = document.querySelector('.aca-index');
-  var acaImgs = document.querySelectorAll('.aca-stage-img');
+  var acaImgs = document.querySelectorAll('.aca-stage-img, .aca-stage-video');
   var acaCapT = document.querySelector('.aca-stage-cap .cap-t');
   var acaCapD = document.querySelector('.aca-stage-cap .cap-d');
   if (acaIndex && acaImgs.length) {
@@ -102,7 +102,11 @@
     acaItems.forEach(function (li, k) {
       li.addEventListener('mouseenter', function () {
         acaItems.forEach(function (x, j) { x.classList.toggle('on', j === k); });
-        acaImgs.forEach(function (img, j) { img.classList.toggle('on', j === k); });
+        acaImgs.forEach(function (img, j) {
+          img.classList.toggle('on', j === k);
+          var v = img.querySelector('video');
+          if (v) { if (j === k) { try { v.play(); } catch (e) {} } else { v.pause(); } }
+        });
         if (acaCapT) acaCapT.textContent = li.querySelector('.t').textContent;
         if (acaCapD) acaCapD.textContent = li.querySelector('.d').textContent;
       });

@@ -1295,7 +1295,7 @@ def home_body(lang):
                  ('FEB 2026', 'Ocean digital twin review published in National Science Review',
                   'images/mel_digital_twin.png', 'papers-digital-twin.html'),
                  ('JAN 2026', 'Paleoclimate and the digital earth',
-                  'images/cosine_bg.png', 'papers-digital-twin.html'),
+                  'video:paleo_hero', 'papers-digital-twin.html'),
                  ('NOV 2025', 'Lujiang Ocean Symposium concludes successfully',
                   'images/cosine_bg.png', 'news.html'),
                  ('SEP 2025', 'Group website officially launched',
@@ -1368,7 +1368,7 @@ def home_body(lang):
                  ('2026-02', '海洋数字孪生综述发表于 National Science Review',
                   'images/mel_digital_twin.png', 'papers-digital-twin.html'),
                  ('2026-01', '古气候与数字地球',
-                  'images/cosine_bg.png', 'papers-digital-twin.html'),
+                  'video:paleo_hero', 'papers-digital-twin.html'),
                  ('2025-11', '鹭江海洋研讨会圆满落幕',
                   'images/cosine_bg.png', 'news.html'),
                  ('2025-09', '课题组网站全新上线',
@@ -1515,7 +1515,13 @@ def home_body(lang):
           <span class="arr">→</span>
         </li>''' for i, (d, t, img, link) in enumerate(aca['block1_items']))
     aca_stage = '\n'.join(
-        f'''      <div class="aca-stage-img{" on" if i == 0 else ""}" style="background-image:url({img})"></div>'''
+        (f'''      <div class="aca-stage-video{" on" if i == 0 else ""}">
+        <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+          <source src="videos/{img.split(':')[1]}.mp4" type="video/mp4">
+          <source src="videos/{img.split(':')[1]}.webm" type="video/webm">
+        </video>
+      </div>''' if img.startswith('video:') else
+        f'''      <div class="aca-stage-img{" on" if i == 0 else ""}" style="background-image:url({img})"></div>''')
         for i, (d, t, img, link) in enumerate(aca['block1_items']))
 
     return f'''<div class="read-progress" id="readProgress" aria-hidden="true"></div>

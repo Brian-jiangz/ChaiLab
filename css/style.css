@@ -565,6 +565,12 @@ html.anim .hslide.on .hcap .hero-ctas { opacity: 1; transform: none; transition-
   background-size: cover; background-position: center; background-repeat: no-repeat;
 }
 .aca-stage-img.on { opacity: 1; z-index: 2; }
+.aca-stage-video {
+  position: absolute; inset: 0; opacity: 0; transition: opacity .5s ease;
+  background: var(--navy); overflow: hidden;
+}
+.aca-stage-video.on { opacity: 1; z-index: 2; }
+.aca-stage-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
 .aca-stage-cap {
   position: absolute; left: 0; right: 0; bottom: 0; z-index: 3;
   display: flex; justify-content: space-between; align-items: center; gap: 16px;
