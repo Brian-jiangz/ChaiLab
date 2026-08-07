@@ -7,12 +7,12 @@ ZH, EN = 'zh', 'en'
 NAV_ZH = [
     ('index.html', '首页'), ('about.html', '成员介绍'),
     ('research.html', '研究方向'),
-    ('papers.html', '学术论文'), ('news.html', '课题组动态'), ('links.html', '相关链接'),
+    ('papers.html', '科研成果'), ('news.html', '课题组动态'), ('links.html', '相关链接'),
 ]
 NAV_EN = [
     ('index.html', 'Home'), ('about.html', 'Members'),
     ('research.html', 'Research'),
-    ('papers.html', 'Academic Papers'), ('news.html', 'Group News'), ('links.html', 'Links'),
+    ('papers.html', 'Research Outputs'), ('news.html', 'Group News'), ('links.html', 'Links'),
 ]
 
 TXT = {
@@ -180,7 +180,7 @@ def footer(lang):
     if lang == EN:
         qlinks = [
             ('about.html', 'About'), ('members.html', 'Members'), ('research.html', 'Research'),
-            ('papers.html', 'Academic Papers'), ('news.html', 'Group News'), ('links.html', 'Links'),
+            ('papers.html', 'Research Outputs'), ('news.html', 'Group News'), ('links.html', 'Links'),
         ]
         rlinks = [
             ('https://coeoa.xmu.edu.cn/t/CF/', "Prof. Chai's Homepage", ' target="_blank"'),
@@ -190,7 +190,7 @@ def footer(lang):
     else:
         qlinks = [
             ('about.html', '课题组简介'), ('members.html', '成员介绍'), ('research.html', '研究方向'),
-            ('papers.html', '学术论文'), ('news.html', '课题组动态'), ('links.html', '相关链接'),
+            ('papers.html', '科研成果'), ('news.html', '课题组动态'), ('links.html', '相关链接'),
         ]
         rlinks = [
             ('https://coeoa.xmu.edu.cn/t/CF/', '柴扉教授个人主页', ' target="_blank"'),
@@ -1232,7 +1232,7 @@ def home_body(lang):
             ],
             'link_news': 'news.html',
         }
-        pub_head = ('Academic Papers', 'ACADEMIC PAPERS', 'Learn More')
+        pub_head = ('Research Outputs', 'RESEARCH OUTPUTS', 'Learn More')
         pubs = [
             ('2026', 2, 'Digital twin of the ocean as a catalyst for blue economy innovation', 'Chai F., Deng Q., Dai M., et al.', 'National Science Review, 13(3): nwag012', '10.1093/nsr/nwag012'),
             ('2025', 6, 'Rising trends in winter phytoplankton blooms in the northern Arabian Sea over the last two decades', 'Song Z., Kang D., Chai F.', 'Geophysical Research Letters, 52', '10.1029/2025GL116509'),
@@ -1305,7 +1305,7 @@ def home_body(lang):
             ],
             'link_news': 'news.html',
         }
-        pub_head = ('学术论文', 'ACADEMIC PAPERS', '了解更多')
+        pub_head = ('科研成果', 'RESEARCH OUTPUTS', '了解更多')
         pubs = [
             ('2026', 2, 'Digital twin of the ocean as a catalyst for blue economy innovation', 'Chai F., Deng Q., Dai M., 等.', 'National Science Review, 13(3): nwag012', '10.1093/nsr/nwag012'),
             ('2025', 6, 'Rising trends in winter phytoplankton blooms in the northern Arabian Sea over the last two decades', 'Song Z., Kang D., Chai F.', 'Geophysical Research Letters, 52', '10.1029/2025GL116509'),
@@ -1773,7 +1773,7 @@ def main():
         'about.html': ('课题组简介', 'ABOUT THE GROUP', ABOUT_BODY),
         'research.html': ('研究方向', 'RESEARCH AREAS', None),
         'project.html': ('CESM-CoSiNE', 'CESM-CoSiNE PROJECT', None),
-        'papers.html': ('学术论文', 'ACADEMIC PAPERS', None),
+        'papers.html': ('科研成果', 'RESEARCH OUTPUTS', None),
         'news.html': ('课题组动态', 'GROUP NEWS', None),
         'links.html': ('相关链接', 'RELATED LINKS', None),
     }
@@ -1781,7 +1781,7 @@ def main():
         'about.html': ('About the Group', 'ABOUT THE GROUP', ABOUT_BODY),
         'research.html': ('Research', 'RESEARCH AREAS', None),
         'project.html': ('CESM-CoSiNE', 'CESM-CoSiNE PROJECT', None),
-        'papers.html': ('Academic Papers', 'ACADEMIC PAPERS', None),
+        'papers.html': ('Research Outputs', 'RESEARCH OUTPUTS', None),
         'news.html': ('Group News', 'GROUP NEWS', None),
         'links.html': ('Links', 'RELATED LINKS', None),
     }
@@ -1858,7 +1858,7 @@ def main():
                 ('观测—模拟融合', RESEARCH_ITEMS_ZH[5][1], 'research-r5.html'),
                 ('CESM-CoSiNE 项目', '嵌入 CESM 的海洋生态—生物地球化学模块。', 'research-project.html'),
             ]),
-            ('学术论文', 'ACADEMIC PAPERS', [
+            ('科研成果', 'RESEARCH OUTPUTS', [
                 ('期刊论文', '课题组发表的同行评审期刊论文。', 'papers-journal.html'),
                 ('数字孪生', '海洋数字孪生框架及其应用。', 'papers-digital-twin.html'),
                 ('科研数据', 'BGC-Argo 观测与模式输出数据。', 'papers-data.html'),
@@ -1957,7 +1957,7 @@ def main():
                 ('Observation\u2013Model Integration', RESEARCH_ITEMS_EN[5][1], 'research-r5.html'),
                 ('CESM-CoSiNE Project', 'An ocean ecosystem-biogeochemistry module embedded in CESM.', 'research-project.html'),
             ]),
-            ('Academic Papers', 'ACADEMIC PAPERS', [
+            ('Research Outputs', 'RESEARCH OUTPUTS', [
                 ('Journal Papers', 'Peer-reviewed journal publications of the group.', 'papers-journal.html'),
                 ('Digital Twin', 'Ocean digital twin framework and applications.', 'papers-digital-twin.html'),
                 ('Research Data', 'BGC-Argo observations and model outputs.', 'papers-data.html'),
