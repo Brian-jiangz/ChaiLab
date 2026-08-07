@@ -133,8 +133,8 @@ def nav(active, lang):
         <li class="m-lang"><a href="{t['lang_url']}">{t['lang_switch']}</a></li>
       </ul>
     </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="menu">☰</button>
     <a class="lang-switch" href="{t['lang_url']}">{t['lang_short']}</a>
-    <button class="nav-toggle" onclick="document.querySelector('.g-nav').classList.toggle('open')">☰</button>
   </div>
 </header>'''
 
