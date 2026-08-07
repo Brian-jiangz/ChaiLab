@@ -1014,7 +1014,7 @@ def main():
             body = body_full[fname](ZH)
         else:
             body = body_fn[fname](ZH)
-        html = page(fname, title, en_sub, body, ZH)
+        html = page(fname, title, en_sub, body, ZH, scripts='js/home.js')
         open(fname, 'w').write(html)
         print('生成', fname)
 
@@ -1026,13 +1026,13 @@ def main():
             body = body_full[fname](EN)
         else:
             body = body_fn[fname](EN)
-        html = page(fname, title, en_sub, body, EN)
+        html = page(fname, title, en_sub, body, EN, scripts='../js/home.js')
         open('en/' + fname, 'w').write(html)
         print('生成 en/' + fname)
 
     # 成员页
-    open('members.html', 'w').write(page('members.html', '成员介绍', 'GROUP MEMBERS', members_body(ZH), ZH))
-    open('en/members.html', 'w').write(page('members.html', 'Members', 'GROUP MEMBERS', members_body(EN), EN))
+    open('members.html', 'w').write(page('members.html', '成员介绍', 'GROUP MEMBERS', members_body(ZH), ZH, scripts='js/home.js'))
+    open('en/members.html', 'w').write(page('members.html', 'Members', 'GROUP MEMBERS', members_body(EN), EN, scripts='../js/home.js'))
     print('生成 members.html / en/members.html')
 
     # 首页（无 page-banner，使用 home.js）

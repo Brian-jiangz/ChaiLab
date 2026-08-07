@@ -97,27 +97,21 @@
   function goDown() {
     if (!bodyMain || switching) return;
     switching = true;
-    menuLocked = true;
     bodyMain.classList.add('show');
     document.body.classList.remove('locked');
     if (head) head.classList.add('scrolled');
     if (bodyHome) bodyHome.style.pointerEvents = 'none';
-    setTimeout(function () {
-      switching = false;
-      menuLocked = false;
-      onScroll();
-    }, 900);
+    setTimeout(function () { switching = false; }, 900);
   }
   function goUp() {
     if (!bodyMain || switching) return;
     if (!bodyMain.classList.contains('show')) return;
     switching = true;
-    menuLocked = true;
     bodyMain.classList.remove('show');
     document.body.classList.add('locked');
     if (head) head.classList.remove('scrolled');
     if (bodyHome) bodyHome.style.pointerEvents = '';
-    setTimeout(function () { switching = false; menuLocked = false; }, 900);
+    setTimeout(function () { switching = false; }, 900);
   }
 
   /* 初始状态：Hero 显示，锁定滚动 */
@@ -183,13 +177,10 @@
   /* ===== 导航滚动反馈 + 返回顶部 ===== */
   var head = document.getElementById('g-head');
   var topBtn = document.getElementById('backTop');
-  var menuLocked = false;
-  function setMenu(scrolled) {
-    if (head) head.classList.toggle('scrolled', scrolled);
-  }
+  var hasScreens = !!(document.getElementById('bodyMain'));
   function onScroll() {
     var y = window.scrollY || window.pageYOffset;
-    if (!menuLocked && bodyMain && bodyMain.classList.contains('show')) setMenu(y > 40);
+    if (!hasScreens && head) head.classList.toggle('scrolled', y > 40);
     if (topBtn) topBtn.classList.toggle('show', y > 600);
   }
   window.addEventListener('scroll', onScroll, { passive: true });
