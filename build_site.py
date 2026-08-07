@@ -7,12 +7,12 @@ ZH, EN = 'zh', 'en'
 NAV_ZH = [
     ('index.html', '首页'), ('about.html', '成员介绍'),
     ('research.html', '研究方向'),
-    ('papers.html', '科研成果'), ('news.html', '课题组动态'), ('links.html', '相关链接'),
+    ('papers.html', '学术论文'), ('news.html', '课题组动态'), ('links.html', '相关链接'),
 ]
 NAV_EN = [
     ('index.html', 'Home'), ('about.html', 'Members'),
     ('research.html', 'Research'),
-    ('papers.html', 'Research Outputs'), ('news.html', 'Group News'), ('links.html', 'Links'),
+    ('papers.html', 'Academic Papers'), ('news.html', 'Group News'), ('links.html', 'Links'),
 ]
 
 TXT = {
@@ -180,7 +180,7 @@ def footer(lang):
     if lang == EN:
         qlinks = [
             ('about.html', 'About'), ('members.html', 'Members'), ('research.html', 'Research'),
-            ('papers.html', 'Research Outputs'), ('news.html', 'Group News'), ('links.html', 'Links'),
+            ('papers.html', 'Academic Papers'), ('news.html', 'Group News'), ('links.html', 'Links'),
         ]
         rlinks = [
             ('https://coeoa.xmu.edu.cn/t/CF/', "Prof. Chai's Homepage", ' target="_blank"'),
@@ -190,7 +190,7 @@ def footer(lang):
     else:
         qlinks = [
             ('about.html', '课题组简介'), ('members.html', '成员介绍'), ('research.html', '研究方向'),
-            ('papers.html', '科研成果'), ('news.html', '课题组动态'), ('links.html', '相关链接'),
+            ('papers.html', '学术论文'), ('news.html', '课题组动态'), ('links.html', '相关链接'),
         ]
         rlinks = [
             ('https://coeoa.xmu.edu.cn/t/CF/', '柴扉教授个人主页', ' target="_blank"'),
@@ -975,7 +975,7 @@ def home_body(lang):
              [('Research Areas', 'research.html'), ('About Us', 'about.html')]),
         ]
         stats = [(4, '', 'Faculty'), (6, '', 'Research Areas'), (5, '', 'Graduate Students'), (100, '+', 'Publications')]
-        news_head = ('Group News', 'GROUP NEWS', 'More')
+        news_head = ('Group News', 'GROUP NEWS', 'Learn More')
         news = [
             ('FEB 2026', 'Prof. Chai\u2019s team reveals ocean digital twins as a new engine for blue-economy innovation',
              'The team systematically reviewed the core architecture of ocean digital twins, analyzed key application scenarios in blue-economy development, and provided forward-looking perspectives on challenges and prospects.'),
@@ -989,9 +989,9 @@ def home_body(lang):
         res_head = ('Research Areas', 'RESEARCH AREAS')
         res_more = 'Learn More'
         aca = {
-            'title': 'Academic & Research',
-            'en': 'ACADEMIC & RESEARCH',
-            'more': 'View All',
+            'title': 'Research Progress',
+            'en': 'RESEARCH PROGRESS',
+            'more': 'Learn More',
             'slider': ['images/mel_digital_twin.png', 'images/cosine_bg.png'],
             'feat_img': 'images/mel_digital_twin.png',
             'feat_h': 'Ocean digital twin as a catalyst for blue-economy innovation',
@@ -1015,7 +1015,7 @@ def home_body(lang):
             ],
             'link_news': 'news.html',
         }
-        pub_head = ('Research Outputs', 'SELECTED PUBLICATIONS', 'All Outputs')
+        pub_head = ('Academic Papers', 'ACADEMIC PAPERS', 'Learn More')
         pubs = [
             ('2026', 2, 'Digital twin of the ocean as a catalyst for blue economy innovation', 'Chai F., Deng Q., Dai M., et al.', 'National Science Review, 13(3): nwag012', '10.1093/nsr/nwag012'),
             ('2025', 6, 'Rising trends in winter phytoplankton blooms in the northern Arabian Sea over the last two decades', 'Song Z., Kang D., Chai F.', 'Geophysical Research Letters, 52', '10.1029/2025GL116509'),
@@ -1038,7 +1038,7 @@ def home_body(lang):
              [('研究方向', 'research.html'), ('了解课题组', 'about.html')]),
         ]
         stats = [(4, '', '教职工'), (6, '', '研究方向'), (5, '', '在读研究生'), (100, '+', '发表论文')]
-        news_head = ('课题组动态', 'GROUP NEWS', '更多')
+        news_head = ('课题组动态', 'GROUP NEWS', '了解更多')
         news = [
             ('2026-02', '柴扉教授团队揭示海洋数字孪生是赋能蓝色经济创新发展的新引擎',
              '团队系统梳理海洋数字孪生核心架构，解析其在蓝色经济发展中的关键应用场景，并对该领域挑战与前景作出前瞻性研判。'),
@@ -1052,9 +1052,9 @@ def home_body(lang):
         res_head = ('研究方向', 'RESEARCH AREAS')
         res_more = '了解更多'
         aca = {
-            'title': '学术 · 科研',
-            'en': 'ACADEMIC & RESEARCH',
-            'more': '查看更多',
+            'title': '科研进展',
+            'en': 'RESEARCH PROGRESS',
+            'more': '了解更多',
             'slider': ['images/mel_digital_twin.png', 'images/cosine_bg.png'],
             'feat_img': 'images/mel_digital_twin.png',
             'feat_h': '海洋数字孪生综述发表于 National Science Review',
@@ -1078,7 +1078,7 @@ def home_body(lang):
             ],
             'link_news': 'news.html',
         }
-        pub_head = ('科研成果', 'SELECTED OUTPUTS', '全部成果')
+        pub_head = ('学术论文', 'ACADEMIC PAPERS', '了解更多')
         pubs = [
             ('2026', 2, 'Digital twin of the ocean as a catalyst for blue economy innovation', 'Chai F., Deng Q., Dai M., 等.', 'National Science Review, 13(3): nwag012', '10.1093/nsr/nwag012'),
             ('2025', 6, 'Rising trends in winter phytoplankton blooms in the northern Arabian Sea over the last two decades', 'Song Z., Kang D., Chai F.', 'Geophysical Research Letters, 52', '10.1029/2025GL116509'),
@@ -1313,6 +1313,7 @@ def home_body(lang):
       </div>
     </div>
   </div>
+  <p style="text-align:center;margin-top:40px" data-reveal><a class="btn btn-sm btn-line" href="{aca['link_news']}">{aca['more']} →</a></p>
 </div>
 
 <!-- 代表性论文 -->
@@ -1369,7 +1370,7 @@ def main():
         'about.html': ('课题组简介', 'ABOUT THE GROUP', ABOUT_BODY),
         'research.html': ('研究方向', 'RESEARCH AREAS', None),
         'project.html': ('CESM-CoSiNE', 'CESM-CoSiNE PROJECT', None),
-        'papers.html': ('科研成果', 'RESEARCH OUTPUTS', None),
+        'papers.html': ('学术论文', 'ACADEMIC PAPERS', None),
         'news.html': ('课题组动态', 'GROUP NEWS', None),
         'links.html': ('相关链接', 'RELATED LINKS', None),
     }
@@ -1377,7 +1378,7 @@ def main():
         'about.html': ('About the Group', 'ABOUT THE GROUP', ABOUT_BODY),
         'research.html': ('Research', 'RESEARCH AREAS', None),
         'project.html': ('CESM-CoSiNE', 'CESM-CoSiNE PROJECT', None),
-        'papers.html': ('Research Outputs', 'RESEARCH OUTPUTS', None),
+        'papers.html': ('Academic Papers', 'ACADEMIC PAPERS', None),
         'news.html': ('Group News', 'GROUP NEWS', None),
         'links.html': ('Links', 'RELATED LINKS', None),
     }

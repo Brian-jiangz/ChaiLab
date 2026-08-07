@@ -810,3 +810,25 @@ a:focus-visible, button:focus-visible, .hdots span:focus-visible {
 }
 .hero .harrow:focus-visible, .hero .hdots span:focus-visible { outline-color: #fff; }
 .back-top:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+/* ===== 跨页面切换动画（View Transitions，渐进增强） =====
+   二级页面间跳转：新页面从下方上滑盖住旧页面，与首页 Hero/内容层切换一致 */
+@view-transition {
+  navigation: auto;
+}
+::view-transition-old(root) {
+  animation: vt-old-out .5s cubic-bezier(.77, 0, .18, 1) both;
+}
+::view-transition-new(root) {
+  animation: vt-new-in .5s cubic-bezier(.77, 0, .18, 1) both;
+}
+@keyframes vt-old-out {
+  to { transform: translateY(-6%); opacity: .5; }
+}
+@keyframes vt-new-in {
+  from { transform: translateY(100vh); }
+  to { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+}
