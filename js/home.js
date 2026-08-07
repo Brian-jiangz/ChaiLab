@@ -143,27 +143,9 @@
   /* 初始状态：Hero 显示，锁定滚动 */
   if (bodyHome) document.body.classList.add('locked');
 
-  /* bfcache 恢复（浏览器返回）：彻底重置整屏状态，避免锁定/滚动位置冲突 */
-  window.addEventListener('pageshow', function (e) {
-    if (!e.persisted) return;
-    switching = false;
-    wheelLock = false;
-    if (!bodyMain) return;
-    /* 先解锁，让 scrollTo 生效 */
-    document.body.classList.remove('locked');
-    window.scrollTo(0, 0);
-    if (bodyMain.classList.contains('show')) {
-      if (head) head.classList.add('scrolled');
-    } else {
-      document.body.classList.add('locked');
-      if (head) head.classList.remove('scrolled');
-    }
-    if (slides.length) { go(cur); play(); }
-  });
-
   /* 滚轮：Hero 上向下 -> 内容上滑；内容顶部向上 -> 回 Hero（仅首页） */
   var wheelLock = false;
-  window.addEventListener('wheel', function (e) {
+  function onWheel(e) {
     if (!bodyMain) return;
     if (wheelLock) { e.preventDefault(); return; }
     var y = window.scrollY || window.pageYOffset;
@@ -180,7 +162,31 @@
       goUp();
       setTimeout(function () { wheelLock = false; }, 1200);
     }
-  }, { passive: false });
+  }
+  function bindWheel() {
+    window.removeEventListener('wheel', onWheel);
+    window.addEventListener('wheel', onWheel, { passive: false });
+  }
+  bindWheel();
+
+  /* bfcache 恢复（浏览器返回）：重置状态并重新绑定监听器 */
+  window.addEventListener('pageshow', function (e) {
+    if (!e.persisted) return;
+    switching = false;
+    wheelLock = false;
+    bindWheel();
+    if (!bodyMain) return;
+    /* 先解锁，让 scrollTo 生效 */
+    document.body.classList.remove('locked');
+    window.scrollTo(0, 0);
+    if (bodyMain.classList.contains('show')) {
+      if (head) head.classList.add('scrolled');
+    } else {
+      document.body.classList.add('locked');
+      if (head) head.classList.remove('scrolled');
+    }
+    if (slides.length) { go(cur); play(); }
+  });
 
   /* 点击右下滚动提示 -> 下滑 */
   if (hintBtn) {
@@ -236,6 +242,17 @@
       window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
     });
   }
+
+  /* 兜底：页面重新可见时自检整屏状态（覆盖部分 bfcache 边界情况） */
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden || !bodyMain) return;
+    if (bodyMain.classList.contains('show')) {
+      document.body.classList.remove('locked');
+    } else {
+      document.body.classList.add('locked');
+      if ((window.scrollY || 0) > 0) window.scrollTo(0, 0);
+    }
+  });
 
   /* ===== 滚动渐入 ===== */
   var reveals = document.querySelectorAll('[data-reveal]');
