@@ -811,6 +811,11 @@ def news_body(lang):
   </div>
   <div class="news-list">
     <div class="news-item">
+      <span class="date">AUG 2026</span>
+      <h3>Group website officially launched</h3>
+      <p>The official website of the Chai Group is now live, presenting our research areas, members, and achievements.</p>
+    </div>
+    <div class="news-item">
       <span class="date">JUL 2026</span>
       <h3>Profiling floats reveal deep-sea carbon pulses in the marginal sea</h3>
       <p>Using Biogeochemical-Argo floats deployed in the southwestern South China Sea, the team achieved three years of high-frequency observations of particulate organic carbon flux at 1000 m depth. The study was published in Limnology and Oceanography, with Prof. Fei Chai as a co-author.<a href="https://mel.xmu.edu.cn/info/1012/63211.htm" target="_blank" style="color:var(--navy-3)">Read the Original Report →</a></p>
@@ -850,11 +855,6 @@ def news_body(lang):
       <p>Group photo on Teachers\u2019 Day 2025.</p>
       <img class="news-thumb" src="images/news/teachers-day-2025.jpg" alt="Teachers Day">
     </div>
-    <div class="news-item">
-      <span class="date">AUG 2026</span>
-      <h3>Group website officially launched</h3>
-      <p>The official website of the Chai Group is now live, presenting our research areas, members, and achievements.</p>
-    </div>
   </div>
 </div>'''
     return '''<div class="section news-page">
@@ -867,6 +867,11 @@ def news_body(lang):
     </div>
   </div>
   <div class="news-list">
+    <div class="news-item">
+      <span class="date">2026-08</span>
+      <h3>课题组网站全新上线</h3>
+      <p>柴扉教授课题组官方网站正式启用，全面展示课题组研究方向、成员与科研成果。</p>
+    </div>
     <div class="news-item">
       <span class="date">2026-07</span>
       <h3>剖面浮标揭秘边缘海深海碳脉冲</h3>
@@ -906,11 +911,6 @@ def news_body(lang):
       <h3>教师节合影</h3>
       <p>2025年教师节课题组合影留念。</p>
       <img class="news-thumb" src="images/news/teachers-day-2025.jpg" alt="教师节合影">
-    </div>
-    <div class="news-item">
-      <span class="date">2026-08</span>
-      <h3>课题组网站全新上线</h3>
-      <p>柴扉教授课题组官方网站正式启用，全面展示课题组研究方向、成员与科研成果。</p>
     </div>
   </div>
 </div>'''
