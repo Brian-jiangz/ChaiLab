@@ -911,3 +911,51 @@ a:focus-visible, button:focus-visible, .hdots span:focus-visible {
   .vs-arrow.up { top: 72px; }
   .vs-steps { right: 12px; }
 }
+
+/* ===== 一级页面：Apple iPhone 风格 ===== */
+.apple-hero {
+  margin-top: 74px; position: relative; overflow: hidden;
+  background: linear-gradient(165deg, #0a2138 0%, #0d2f4f 55%, #1b4f7e 100%);
+  color: #fff; padding: 96px 24px 108px; text-align: center;
+}
+.apple-hero .en { font-size: 12px; letter-spacing: .5em; color: var(--gold); display: block; margin-bottom: 20px; }
+.apple-hero h1 { font-size: 56px; letter-spacing: .08em; font-weight: 600; line-height: 1.25; text-shadow: 0 2px 24px rgba(0,0,0,.3); }
+.apple-hero p { font-size: 17px; color: rgba(255,255,255,.78); margin-top: 18px; letter-spacing: .04em; font-weight: 300; }
+.apple-hero-inner { max-width: 900px; margin: 0 auto; }
+
+/* sticky 横向二级导航条（Apple 机型条） */
+.apple-nav {
+  position: sticky; top: 74px; z-index: 60;
+  background: rgba(255,255,255,.92);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2);
+  border-bottom: 1px solid var(--line);
+}
+.apple-nav-inner {
+  max-width: 1400px; margin: 0 auto; display: flex; gap: 6px;
+  overflow-x: auto; scrollbar-width: none; padding: 10px 28px;
+}
+.apple-nav-inner::-webkit-scrollbar { display: none; }
+.apple-nav a {
+  flex-shrink: 0; padding: 8px 16px; font-size: 13.5px; color: var(--ink-2);
+  text-decoration: none; border-radius: 20px; transition: .25s; letter-spacing: .02em;
+}
+.apple-nav a:hover { background: var(--paper-2); color: var(--navy); }
+.apple-nav a.on { background: var(--navy); color: #fff; }
+
+/* Apple 式大 section */
+.apple-section {
+  min-height: 520px; display: flex; align-items: center; justify-content: center;
+  background-size: cover; background-position: center; color: #fff; padding: 72px 24px;
+}
+.apple-sec-inner { max-width: 860px; text-align: center; }
+.as-num { font-size: 12px; letter-spacing: .5em; color: var(--gold); display: block; margin-bottom: 18px; }
+.apple-section h2 { font-size: 40px; letter-spacing: .08em; font-weight: 600; line-height: 1.35; text-shadow: 0 2px 20px rgba(0,0,0,.3); }
+.apple-section .as-desc { font-size: 16px; color: rgba(255,255,255,.82); line-height: 2; margin: 18px auto 30px; max-width: 660px; font-weight: 300; }
+@media (max-width: 900px) {
+  .apple-hero { margin-top: 64px; padding: 64px 20px 76px; }
+  .apple-hero h1 { font-size: 34px; }
+  .apple-nav { top: 64px; }
+  .apple-section { min-height: 380px; padding: 52px 20px; }
+  .apple-section h2 { font-size: 28px; }
+  .apple-section .as-desc { font-size: 14px; }
+}

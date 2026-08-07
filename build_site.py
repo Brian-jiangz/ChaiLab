@@ -1527,32 +1527,50 @@ def slides_page(key, lang, title, en_sub):
     return page(fname, title, en_sub, body, lang, banner=False,
                 scripts='../js/home.js' if lang == EN else 'js/home.js')
 
-def overview_page(key, lang, title, en_sub, cards, slides_title):
-    """一级总览页：汇总卡片 + 进入二级滑动视图的入口"""
-    card_html = '\n'.join(
-        f'''      <a class="ov-card" href="{link}">
-        <span class="ov-num">{num}</span>
-        <h3>{t}</h3>
-        <p>{d}</p>
-        <span class="ov-go">{'Enter' if lang == EN else '进入'} →</span>
-      </a>''' for num, t, d, link in cards)
-    if slides_title:
-        slides_link = key + '-slides.html'
-        entry = f'''  <p style="text-align:center;margin-top:44px">
-    <a class="btn btn-sm btn-line" href="{slides_link}">{'Enter Swipe View' if lang == EN else '进入滑动浏览'} →</a>
-  </p>'''
-    else:
-        entry = ''
-    body = f'''<div class="section ov-sec">
-  <div class="sec-head">
-    <span class="en">{en_sub}</span>
-    <h2>{title}</h2>
+def apple_page(key, lang, title, en_sub, hero_sub, items):
+    """一级页面：Apple iPhone 风格（Hero + sticky 横向二级导航 + 大 section + 保留左侧纵向 sub-nav）"""
+    # Hero 区
+    hero = '''<div class="apple-hero">
+  <div class="apple-hero-inner">
+    <span class="en">%s</span>
+    <h1>%s</h1>
+    <p>%s</p>
   </div>
-  <div class="ov-grid">
-{card_html}
+</div>''' % (en_sub, title, hero_sub)
+
+    # sticky 横向二级导航条（Apple 机型条样式）
+    nav_links = '\n'.join(
+        '<a href="#%s">%s</a>' % (aid, t) for aid, t in [(x[0], x[1]) for x in items])
+    apple_nav = '''<nav class="apple-nav" id="appleNav">
+  <div class="apple-nav-inner">
+%s
   </div>
-{entry}
-</div>'''
+</nav>''' % nav_links
+
+    # 各二级内容大 section（Apple 式）
+    sections = []
+    for i, (aid, t, d, img, content) in enumerate(items):
+        num = '%02d' % (i + 1)
+        if img:
+            bg = ' style="background-image:linear-gradient(rgba(7,24,42,.86),rgba(7,24,42,.86)),url(%s)"' % img
+        else:
+            bg = ''
+        sections.append('''<div class="apple-section" id="%s"%s>
+  <div class="apple-sec-inner">
+    <span class="as-num">%s</span>
+    <h2>%s</h2>
+    <p class="as-desc">%s</p>
+    %s
+  </div>
+</div>''' % (aid, bg, num, t, d, content))
+
+    body = hero + apple_nav + '''
+<div class="page-wrap">
+%s
+  <div class="sub-content">
+%s
+  </div>
+</div>''' % (subnav_html(key, lang), '\n'.join(sections))
     return body
 
 def main():
@@ -1589,35 +1607,38 @@ def main():
     import os
     os.makedirs('en', exist_ok=True)
 
-    # ---- 一级总览页 + 二级滑动视图 ----
+    # ---- 一级 Apple 风格页 + 二级滑动视图 ----
+    def sec_btn(aid, label):
+        return '<a class="btn btn-sm btn-gold" href="%s">%s →</a>' % (aid, label)
     overviews = {
-        'about': ('成员介绍', 'GROUP OVERVIEW', [
-            ('01', '课题组简介', '课题组研究概况与招生信息。', 'about-slides.html?n=0'),
-            ('02', '柴扉教授', '个人档案：学术经历、研究领域与代表性论文。', 'about-slides.html?n=1'),
-            ('03', '成员介绍', '教职工、博士后与研究生名单。', 'about-slides.html?n=2'),
+        'about': ('成员介绍', 'GROUP OVERVIEW', '了解我们的团队、研究方向与招生信息。', [
+            ('about-group', '课题组简介', '课题组研究概况与招生信息。', 'images/mel_digital_twin.png', sec_btn('about-slides.html?n=0', '了解更多')),
+            ('chai', '柴扉教授', '个人档案：学术经历、研究领域与代表性论文。', 'images/chai_fei.jpg', sec_btn('about-slides.html?n=1', '了解更多')),
+            ('members', '成员介绍', '教职工、博士后与研究生名单。', 'images/cosine_bg.png', sec_btn('about-slides.html?n=2', '了解更多')),
         ]),
-        'research': ('研究方向', 'RESEARCH AREAS', [
-            ('01', '海洋生态系统与生物地球化学模拟', 'CESM-CoSiNE 耦合模式研发与模拟。', 'research-slides.html?n=0'),
-            ('02', '海洋碳循环与气候反馈', '海洋碳循环对气候变化的响应。', 'research-slides.html?n=1'),
-            ('03', '次中尺度过程与生态效应', '锋面、涡旋对生态系统与碳输出的调控。', 'research-slides.html?n=2'),
-            ('04', '古气候与古海洋模拟', '关键时期古气候模拟研究。', 'research-slides.html?n=3'),
-            ('05', '海洋数字孪生', '海洋数字孪生系统构建。', 'research-slides.html?n=4'),
-            ('06', '观测—模拟融合', '观测与模式结合改进参数化。', 'research-slides.html?n=5'),
+        'research': ('研究方向', 'RESEARCH AREAS', '六大研究方向与 CESM-CoSiNE 项目。', [
+            ('r0', '海洋生态系统与生物地球化学模拟', 'CESM-CoSiNE 耦合模式研发与模拟。', 'images/cosine_bg.png', sec_btn('research-slides.html?n=0', '了解更多')),
+            ('r1', '海洋碳循环与气候反馈', '海洋碳循环对气候变化的响应。', 'images/mel_digital_twin.png', sec_btn('research-slides.html?n=1', '了解更多')),
+            ('r2', '次中尺度过程与生态效应', '锋面、涡旋对生态系统与碳输出的调控。', 'images/cosine_bg.png', sec_btn('research-slides.html?n=2', '了解更多')),
+            ('r3', '古气候与古海洋模拟', '关键时期古气候模拟研究。', 'images/cosine_bg.png', sec_btn('research-slides.html?n=3', '了解更多')),
+            ('r4', '海洋数字孪生', '海洋数字孪生系统构建。', 'images/mel_digital_twin.png', sec_btn('research-slides.html?n=4', '了解更多')),
+            ('r5', '观测—模拟融合', '观测与模式结合改进参数化。', 'images/cosine_bg.png', sec_btn('research-slides.html?n=5', '了解更多')),
+            ('project', 'CESM-CoSiNE 项目', '嵌入 CESM 的海洋生态—生物地球化学模块。', 'images/cosine_bg.png', sec_btn('research-slides.html?n=6', '了解更多')),
         ]),
-        'papers': ('学术论文', 'ACADEMIC OUTPUTS', [
-            ('01', '期刊论文', '课题组发表的同行评审论文。', 'papers-slides.html?n=0'),
-            ('02', '数字孪生', '海洋数字孪生综述与框架。', 'papers-slides.html?n=1'),
-            ('03', '科研数据', 'BGC-Argo 观测与模式输出。', 'papers-slides.html?n=2'),
-            ('04', '数值模式', 'CESM-CoSiNE 模式与报告。', 'papers-slides.html?n=3'),
+        'papers': ('学术论文', 'ACADEMIC OUTPUTS', '期刊论文、数字孪生、科研数据与数值模式。', [
+            ('journal', '期刊论文', '课题组发表的同行评审论文。', 'images/mel_digital_twin.png', sec_btn('papers-slides.html?n=0', '了解更多')),
+            ('digital-twin', '数字孪生', '海洋数字孪生综述与框架。', 'images/mel_digital_twin.png', sec_btn('papers-slides.html?n=1', '了解更多')),
+            ('data', '科研数据', 'BGC-Argo 观测与模式输出。', 'images/cosine_bg.png', sec_btn('papers-slides.html?n=2', '了解更多')),
+            ('model', '数值模式', 'CESM-CoSiNE 模式与报告。', 'images/cosine_bg.png', sec_btn('papers-slides.html?n=3', '了解更多')),
         ]),
     }
-    for key, (title, en_sub, cards) in overviews.items():
-        body = overview_page(key, ZH, title, en_sub, cards, '')
+    for key, (title, en_sub, hero_sub, items) in overviews.items():
+        body = apple_page(key, ZH, title, en_sub, hero_sub, items)
         html = page(key + '.html', title, en_sub, body, ZH, scripts='js/home.js')
         open(key + '.html', 'w').write(html)
-        print('生成总览', key + '.html')
+        print('生成一级页', key + '.html')
     # 二级滑动视图
-    for key, (title, en_sub, cards) in overviews.items():
+    for key, (title, en_sub, hero_sub, items) in overviews.items():
         html = slides_page(key, ZH, title + ' · 滑动浏览', 'SWIPE VIEW')
         open(key + '-slides.html', 'w').write(html)
         print('生成滑动视图', key + '-slides.html')
@@ -1640,34 +1661,37 @@ def main():
                     .replace('href="reports/', 'href="../reports/')
                     .replace('src="videos/', 'src="../videos/')
                     .replace('url(images/', 'url(../images/'))
-    # ---- 英文版总览 + 滑动视图 ----
+    # ---- 英文版 Apple 风格页 + 滑动视图 ----
+    def sec_btn(aid, label):
+        return '<a class="btn btn-sm btn-gold" href="%s">%s →</a>' % (aid, label)
     overviews_en = {
-        'about': ('Members', 'GROUP OVERVIEW', [
-            ('01', 'About the Group', 'Overview of the group research and recruitment.', 'about-slides.html?n=0'),
-            ('02', 'Prof. Fei Chai', 'Profile: career, research interests, selected publications.', 'about-slides.html?n=1'),
-            ('03', 'Members', 'Faculty, postdocs, and graduate students.', 'about-slides.html?n=2'),
+        'about': ('Members', 'GROUP OVERVIEW', 'Meet our team, research, and recruitment.', [
+            ('about-group', 'About the Group', 'Overview of the group research and recruitment.', 'images/mel_digital_twin.png', sec_btn('about-slides.html?n=0', 'Learn More')),
+            ('chai', 'Prof. Fei Chai', 'Profile: career, research interests, selected publications.', 'images/chai_fei.jpg', sec_btn('about-slides.html?n=1', 'Learn More')),
+            ('members', 'Members', 'Faculty, postdocs, and graduate students.', 'images/cosine_bg.png', sec_btn('about-slides.html?n=2', 'Learn More')),
         ]),
-        'research': ('Research', 'RESEARCH AREAS', [
-            ('01', 'Ecosystem & Biogeochemical Modeling', 'CESM-CoSiNE coupled modeling.', 'research-slides.html?n=0'),
-            ('02', 'Carbon Cycle & Climate Feedbacks', 'Ocean carbon cycle response to climate.', 'research-slides.html?n=1'),
-            ('03', 'Submesoscale Processes', 'Fronts and eddies regulating ecosystems.', 'research-slides.html?n=2'),
-            ('04', 'Paleoclimate Modeling', 'Earth system modeling of key periods.', 'research-slides.html?n=3'),
-            ('05', 'Ocean Digital Twin', 'Digital twin systems for the ocean.', 'research-slides.html?n=4'),
-            ('06', 'Observation\u2013Model Integration', 'Combining observations and models.', 'research-slides.html?n=5'),
+        'research': ('Research', 'RESEARCH AREAS', 'Six research areas and the CESM-CoSiNE project.', [
+            ('r0', 'Ecosystem & Biogeochemical Modeling', 'CESM-CoSiNE coupled modeling.', 'images/cosine_bg.png', sec_btn('research-slides.html?n=0', 'Learn More')),
+            ('r1', 'Carbon Cycle & Climate Feedbacks', 'Ocean carbon cycle response to climate.', 'images/mel_digital_twin.png', sec_btn('research-slides.html?n=1', 'Learn More')),
+            ('r2', 'Submesoscale Processes', 'Fronts and eddies regulating ecosystems.', 'images/cosine_bg.png', sec_btn('research-slides.html?n=2', 'Learn More')),
+            ('r3', 'Paleoclimate Modeling', 'Earth system modeling of key periods.', 'images/cosine_bg.png', sec_btn('research-slides.html?n=3', 'Learn More')),
+            ('r4', 'Ocean Digital Twin', 'Digital twin systems for the ocean.', 'images/mel_digital_twin.png', sec_btn('research-slides.html?n=4', 'Learn More')),
+            ('r5', 'Observation\u2013Model Integration', 'Combining observations and models.', 'images/cosine_bg.png', sec_btn('research-slides.html?n=5', 'Learn More')),
+            ('project', 'CESM-CoSiNE Project', 'An ocean ecosystem-biogeochemistry module embedded in CESM.', 'images/cosine_bg.png', sec_btn('research-slides.html?n=6', 'Learn More')),
         ]),
-        'papers': ('Academic Papers', 'ACADEMIC OUTPUTS', [
-            ('01', 'Journal Papers', 'Peer-reviewed publications.', 'papers-slides.html?n=0'),
-            ('02', 'Digital Twin', 'Ocean digital twin review and framework.', 'papers-slides.html?n=1'),
-            ('03', 'Research Data', 'BGC-Argo observations and model outputs.', 'papers-slides.html?n=2'),
-            ('04', 'Numerical Models', 'CESM-CoSiNE model and reports.', 'papers-slides.html?n=3'),
+        'papers': ('Academic Papers', 'ACADEMIC OUTPUTS', 'Journal papers, digital twin, data, and models.', [
+            ('journal', 'Journal Papers', 'Peer-reviewed publications.', 'images/mel_digital_twin.png', sec_btn('papers-slides.html?n=0', 'Learn More')),
+            ('digital-twin', 'Digital Twin', 'Ocean digital twin review and framework.', 'images/mel_digital_twin.png', sec_btn('papers-slides.html?n=1', 'Learn More')),
+            ('data', 'Research Data', 'BGC-Argo observations and model outputs.', 'images/cosine_bg.png', sec_btn('papers-slides.html?n=2', 'Learn More')),
+            ('model', 'Numerical Models', 'CESM-CoSiNE model and reports.', 'images/cosine_bg.png', sec_btn('papers-slides.html?n=3', 'Learn More')),
         ]),
     }
-    for key, (title, en_sub, cards) in overviews_en.items():
-        body = overview_page(key, EN, title, en_sub, cards, '')
+    for key, (title, en_sub, hero_sub, items) in overviews_en.items():
+        body = apple_page(key, EN, title, en_sub, hero_sub, items)
         html = _en(page(key + '.html', title, en_sub, body, EN, scripts='../js/home.js'))
         open('en/' + key + '.html', 'w').write(html)
-        print('生成总览 en/' + key + '.html')
-    for key, (title, en_sub, cards) in overviews_en.items():
+        print('生成一级页 en/' + key + '.html')
+    for key, (title, en_sub, hero_sub, items) in overviews_en.items():
         html = _en(slides_page(key, EN, title + ' · Swipe View', 'SWIPE VIEW'))
         open('en/' + key + '-slides.html', 'w').write(html)
         print('生成滑动视图 en/' + key + '-slides.html')

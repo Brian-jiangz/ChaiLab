@@ -452,3 +452,28 @@
       }, { passive: true });
     }
   }
+
+  /* ===== Apple 横向导航：滚动高亮 ===== */
+  var appleNav = document.getElementById('appleNav');
+  if (appleNav) {
+    var apLinks = Array.prototype.slice.call(appleNav.querySelectorAll('a[href*="#"]'));
+    var apTargets = apLinks.map(function (a) {
+      var id = a.getAttribute('href').split('#')[1];
+      return id ? document.getElementById(id) : null;
+    }).filter(Boolean);
+    function onAppleSpy() {
+      if (!apTargets.length) return;
+      var y = (window.scrollY || 0) + 160;
+      var cur = apTargets[0];
+      apTargets.forEach(function (t) {
+        if (t && t.offsetTop <= y) cur = t;
+      });
+      apLinks.forEach(function (a) {
+        var id = a.getAttribute('href').split('#')[1];
+        a.classList.toggle('on', cur && id === cur.id);
+      });
+    }
+    window.addEventListener('scroll', onAppleSpy, { passive: true });
+    window.addEventListener('resize', onAppleSpy);
+    onAppleSpy();
+  }
