@@ -247,8 +247,8 @@ html.anim .hslide.on .hcap .hero-ctas { opacity: 1; transform: none; transition-
 .pi-wrap::before {
   content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--gold);
 }
-.pi-photo { width: 300px; height: 360px; overflow: hidden; border: 1px solid var(--line); }
-.pi-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.pi-photo { width: 300px; aspect-ratio: 0.895; overflow: hidden; border: 1px solid var(--line); }
+.pi-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .pi-info .en { font-size: 11px; letter-spacing: .42em; color: var(--ink-3); text-transform: uppercase; display: block; margin-bottom: 14px; }
 .pi-info h2 { font-size: 30px; color: var(--navy); letter-spacing: .1em; font-weight: 600; }
 .pi-info .pi-title { color: var(--gold); font-size: 14px; margin: 10px 0 18px; letter-spacing: .14em; }
@@ -545,7 +545,7 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
   .news-feat h2 { font-size: 21px; }
   .news-item { padding: 32px 26px; }
   .pi-wrap { grid-template-columns: 1fr; padding: 36px 28px; gap: 28px; }
-  .pi-photo { width: 100%; height: 300px; }
+  .pi-photo { width: 100%; max-width: 340px; margin: 0 auto; }
   .join-cell { border-left: none; border-top: 1px solid var(--line); padding: 40px 32px; }
   .join-cell:first-child { border-top: none; }
   .section, .home-sec { padding: 56px 20px; }
