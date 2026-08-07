@@ -1612,7 +1612,7 @@ def main():
         'about.html': lambda lang: with_subnav('about',
             ABOUT_BODY['zh'] + '\n' + pi_detail_html(PI_ZH, ZH) + '\n' + members_body(ZH), ZH),
         'research.html': lambda lang: research_with_project(lang),
-        'papers.html': lambda lang: with_subnav('papers', papers_body(lang), lang),
+        'papers.html': lambda lang: papers_body(lang),
     }
     for fname, gen in content_pages.items():
         body = gen(ZH)
@@ -1645,7 +1645,7 @@ def main():
         'about.html': lambda lang: with_subnav('about',
             ABOUT_BODY['en'] + '\n' + pi_detail_html(PI_EN, EN) + '\n' + members_body(EN), EN),
         'research.html': lambda lang: research_with_project(lang),
-        'papers.html': lambda lang: with_subnav('papers', papers_body(lang), lang),
+        'papers.html': lambda lang: papers_body(lang),
     }
     for fname, gen in content_pages_en.items():
         body = gen(EN)
