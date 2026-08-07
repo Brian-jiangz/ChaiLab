@@ -203,7 +203,7 @@ def page(fname, title, en_sub, body, lang, extra='', banner=True, scripts=''):
 <html lang="{lang}">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" href="{prefix}images/favicon.svg" type="image/svg+xml">
 <title>{title} | {sitename} · Xiamen University</title>
 <link rel="stylesheet" href="{prefix}css/style.css">
@@ -249,7 +249,8 @@ ABOUT_BODY = {
         <li><b>地址：</b>厦门大学翔安校区周隆泉楼</li>
         <li><b>邮箱：</b>fchai@xmu.edu.cn</li>
         <li><b>学历：</b>杜克大学 生物海洋学博士（1991–1995）</li>
-        <li><b>经历：</b>曾任美国缅因大学海洋学院教授（终身教职）</li>
+        <li><b>经历：</b>曾任美国缅因大学海洋学院教授（终身教职）兼院长（2012–2015）</li>
+        <li><b>经历：</b>曾任自然资源部第二海洋研究所研究员、卫星海洋环境动力学国家重点实验室主任（2016–2022）</li>
       </ul>
     </div>
   </div>
@@ -271,7 +272,8 @@ ABOUT_BODY = {
         <li><b>Office:</b> Zhoulongquan Building, Xiang\u2019an Campus, XMU</li>
         <li><b>Email:</b> fchai@xmu.edu.cn</li>
         <li><b>Ph.D.:</b> Biological Oceanography, Duke University (1991\u20131995)</li>
-        <li><b>Career:</b> Former Professor (tenured), School of Marine Sciences, University of Maine</li>
+        <li><b>Career:</b> Former Professor (tenured), School of Marine Sciences, University of Maine; Dean (2012\u20132015)</li>
+        <li><b>Career:</b> Former Senior Scientist, Second Institute of Oceanography, MNR; Director, State Key Laboratory of Satellite Ocean Environment Dynamics (2016\u20132022)</li>
       </ul>
     </div>
   </div>
@@ -491,9 +493,17 @@ def papers_body(lang):
     <li class="paper">
       <div class="year">2026</div>
       <div>
-        <div class="t">(To be added) Paper title</div>
-        <div class="a">Authors: TBD</div>
-        <div class="j">Journal: TBD</div>
+        <div class="t">Digital twin of the ocean as a catalyst for blue economy innovation</div>
+        <div class="a">Chai F., Deng Q., Dai M., Wang X., Staneva J., Behera S. K., Tonani M., Liu J., Yu Z., Peng Z.</div>
+        <div class="j">National Science Review, 13(3): nwag012. DOI: <a href="https://doi.org/10.1093/nsr/nwag012" target="_blank" style="color:var(--navy-3)">10.1093/nsr/nwag012</a></div>
+      </div>
+    </li>
+    <li class="paper">
+      <div class="year">2026</div>
+      <div>
+        <div class="t">Physical dynamics modulate deep-sea carbon flux in the western Pacific marginal sea</div>
+        <div class="a">Xu C., Huang Y., Xing X., Qiu G., Poteau A., Wang H., Hu J., Chai F., Huang B.</div>
+        <div class="j">Limnology and Oceanography, 71: e70440. DOI: <a href="https://doi.org/10.1002/lno.70440" target="_blank" style="color:var(--navy-3)">10.1002/lno.70440</a></div>
       </div>
     </li>
     <li class="paper">
@@ -519,9 +529,17 @@ def papers_body(lang):
     <li class="paper">
       <div class="year">2026</div>
       <div>
-        <div class="t">（待补充）论文标题</div>
-        <div class="a">作者：待补充</div>
-        <div class="j">期刊：待补充</div>
+        <div class="t">Digital twin of the ocean as a catalyst for blue economy innovation</div>
+        <div class="a">Chai F., Deng Q., Dai M., Wang X., Staneva J., Behera S. K., Tonani M., Liu J., Yu Z., Peng Z.</div>
+        <div class="j">National Science Review, 13(3): nwag012. DOI: <a href="https://doi.org/10.1093/nsr/nwag012" target="_blank" style="color:var(--navy-3)">10.1093/nsr/nwag012</a></div>
+      </div>
+    </li>
+    <li class="paper">
+      <div class="year">2026</div>
+      <div>
+        <div class="t">Physical dynamics modulate deep-sea carbon flux in the western Pacific marginal sea</div>
+        <div class="a">Xu C., Huang Y., Xing X., Qiu G., Poteau A., Wang H., Hu J., Chai F., Huang B.</div>
+        <div class="j">Limnology and Oceanography, 71: e70440. DOI: <a href="https://doi.org/10.1002/lno.70440" target="_blank" style="color:var(--navy-3)">10.1002/lno.70440</a></div>
       </div>
     </li>
     <li class="paper">
@@ -556,6 +574,11 @@ def news_body(lang):
   </div>
   <div class="news-list">
     <div class="news-item">
+      <span class="date">JUL 2026</span>
+      <h3>Profiling floats reveal deep-sea carbon pulses in the marginal sea</h3>
+      <p>Using Biogeochemical-Argo floats deployed in the southwestern South China Sea, the team achieved three years of high-frequency observations of particulate organic carbon flux at 1000 m depth, revealing how seasonal cyclonic eddies and coastal jets drive deep-sea carbon flux pulses. The study was published in Limnology and Oceanography, with Prof. Fei Chai as a co-author.<a href="https://mel.xmu.edu.cn/info/1012/63211.htm" target="_blank" style="color:var(--navy-3)">Read the Original Report →</a></p>
+    </div>
+    <div class="news-item">
       <span class="date">NOV 2025</span>
       <h3>Lujiang Ocean Symposium concludes successfully</h3>
       <p>The ocean symposium co-hosted by Lujiang Innovation Laboratory and the State Key Laboratory of Marine Environmental Science (XMU) was held successfully.</p>
@@ -582,6 +605,11 @@ def news_body(lang):
     </div>
   </div>
   <div class="news-list">
+    <div class="news-item">
+      <span class="date">2026-07</span>
+      <h3>剖面浮标揭秘边缘海深海碳脉冲</h3>
+      <p>利用南海西南部布放的生物地球化学剖面浮标实现1000米深颗粒有机碳通量连续三年高频观测，揭示季节性气旋涡与沿岸急流驱动深海碳通量脉冲的机制。相关成果发表于 Limnology and Oceanography，柴扉教授为共同作者。<a href="https://mel.xmu.edu.cn/info/1012/63211.htm" target="_blank" style="color:var(--navy-3)">阅读原报道 →</a></p>
+    </div>
     <div class="news-item">
       <span class="date">2025-11</span>
       <h3>鹭江海洋研讨会圆满落幕</h3>
@@ -691,6 +719,8 @@ def home_body(lang):
                  'images/cosine_bg.png', 'news.html'),
                 ('2025-09', 'Group website officially launched',
                  'images/cosine_bg.png', 'news.html'),
+                ('2026-03', 'CESM-CoSiNE module development and validation',
+                 'images/cosine_bg.png', 'research.html#project'),
             ],
             'block2': 'Selected Work',
             'block2_items': [
@@ -754,6 +784,8 @@ def home_body(lang):
                  'images/cosine_bg.png', 'news.html'),
                 ('2025-09', '课题组网站全新上线',
                  'images/cosine_bg.png', 'news.html'),
+                ('2026-03', 'CESM-CoSiNE 模式研发与验证进展',
+                 'images/cosine_bg.png', 'research.html#project'),
             ],
             'block2': '代表性工作',
             'block2_items': [
