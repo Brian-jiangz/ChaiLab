@@ -317,7 +317,10 @@ html.anim .hslide.on .hcap .hero-ctas { opacity: 1; transform: none; transition-
 
 /* ===== 成员 ===== */
 .members { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
-.member { background: var(--paper); padding: 40px 24px 36px; text-align: center; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background .25s; }
+.member { background: var(--paper); padding: 40px 24px 36px; text-align: center; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background .25s; display: block; text-decoration: none; }
+.member.m-link:hover { background: var(--paper-2); }
+.member.m-link h4 { transition: color .2s; }
+.member.m-link:hover h4 { color: var(--navy); }
 .member:hover { background: var(--paper-2); }
 .m-avatar {
   width: 92px; height: 92px; border-radius: 50%; margin: 0 auto 16px;

@@ -5,12 +5,12 @@
 ZH, EN = 'zh', 'en'
 
 NAV_ZH = [
-    ('index.html', '首页'), ('about.html', '课题组简介'),
+    ('index.html', '首页'), ('about.html', '成员介绍'),
     ('research.html', '研究方向'),
     ('papers.html', '科研成果'), ('news.html', '课题组动态'), ('links.html', '相关链接'),
 ]
 NAV_EN = [
-    ('index.html', 'Home'), ('about.html', 'About'),
+    ('index.html', 'Home'), ('about.html', 'Members'),
     ('research.html', 'Research'),
     ('papers.html', 'Research Outputs'), ('news.html', 'Group News'), ('links.html', 'Links'),
 ]
@@ -268,7 +268,7 @@ SVG_LAB = '''<svg class="icon" width="26" height="26" viewBox="0 0 24 24" fill="
 # ============ 内容（中英双语） ============
 
 ABOUT_BODY = {
-'zh': '''<div class="section">
+'zh': '''<div class="section" id="about-group">
   <div class="intro-grid">
     <div class="intro-card">
       <p>本课题组依托厦门大学海洋生物地球化学全国重点实验室，长期从事海洋物理—生态—生物地球化学耦合研究，聚焦海洋碳循环、营养盐循环与生态系统对气候变化的响应与反馈。</p>
@@ -431,44 +431,47 @@ def project_box(lang, full=True):
 def members_body(lang):
     if lang == EN:
         groups = [
-            ('Faculty', [('Fei Chai', 'Chair Professor / PI', 'Marine biogeochemistry, physics-ecology coupling, climate modeling', 'fchai@xmu.edu.cn'),
-                          ('Xiaoyi Wang', 'Research Assistant', '\u2014', '\u2014')]),
-            ('Postdocs', [('Wang Qian', 'Postdoctoral Researcher', '\u2014', '\u2014'),
-                          ('Yang Kai', 'Postdoctoral Researcher', '\u2014', '\u2014')]),
-            ('PhD Students', [('Zhao Kewei', 'PhD Student', '\u2014', '\u2014'),
-                              ('Jiang Zheng', 'PhD Student', '\u2014', '\u2014')]),
-            ("Master's Students", [('Lin Jianchun', "Master's Student", '\u2014', '\u2014'),
-                                   ('Xie Xianyu', "Master's Student", '\u2014', '\u2014'),
-                                   ('Li Peimin', "Master's Student", '\u2014', '\u2014')]),
-            ('Alumni', [('Wang Qian', 'PhD Graduate (2025)', '\u2014', '\u2014'),
-                        ('Wang Yin', "Master's Graduate (2026)", '\u2014', '\u2014')]),
+            ('Faculty', [('Fei Chai', 'Chair Professor / PI', 'Marine biogeochemistry, physics-ecology coupling, climate modeling', 'fchai@xmu.edu.cn', 'about.html#chai'),
+                          ('Xiaoyi Wang', 'Research Assistant', '\u2014', '\u2014', ''),
+                          ('Wang Qian', 'Postdoctoral Researcher', '\u2014', '\u2014', ''),
+                          ('Yang Kai', 'Postdoctoral Researcher', '\u2014', '\u2014', '')]),
+            ('PhD Students', [('Zhao Kewei', 'PhD Student', '\u2014', '\u2014', ''),
+                              ('Jiang Zheng', 'PhD Student', '\u2014', '\u2014', '')]),
+            ("Master's Students", [('Lin Jianchun', "Master's Student", '\u2014', '\u2014', ''),
+                                   ('Xie Xianyu', "Master's Student", '\u2014', '\u2014', ''),
+                                   ('Li Peimin', "Master's Student", '\u2014', '\u2014', '')]),
+            ('Alumni', [('Wang Qian', 'PhD Graduate (2025)', '\u2014', '\u2014', ''),
+                        ('Wang Yin', "Master's Graduate (2026)", '\u2014', '\u2014', '')]),
         ]
     else:
         groups = [
-            ('教职工', [('柴扉', '讲席教授 / PI', '海洋生物地球化学、物理—生态耦合、气候模拟', 'fchai@xmu.edu.cn'),
-                      ('王晓依', '科研助理', '—', '—')]),
-            ('博士后', [('王谦', '博士后', '—', '—'),
-                      ('杨凯', '博士后', '—', '—')]),
-            ('博士研究生', [('赵柯崴', '博士研究生', '—', '—'),
-                          ('姜正', '博士研究生', '—', '—')]),
-            ('硕士研究生', [('林剑纯', '硕士研究生', '—', '—'),
-                          ('谢娴予', '硕士研究生', '—', '—'),
-                          ('李沛珉', '硕士研究生', '—', '—')]),
-            ('已毕业成员', [('王谦', '博士毕业（2025）', '—', '—'),
-                          ('王胤', '硕士毕业（2026）', '—', '—')]),
+            ('教职工', [('柴扉', '讲席教授 / PI', '海洋生物地球化学、物理—生态耦合、气候模拟', 'fchai@xmu.edu.cn', 'about.html#chai'),
+                      ('王晓依', '科研助理', '—', '—', ''),
+                      ('王谦', '博士后', '—', '—', ''),
+                      ('杨凯', '博士后', '—', '—', '')]),
+            ('博士研究生', [('赵柯崴', '博士研究生', '—', '—', ''),
+                          ('姜正', '博士研究生', '—', '—', '')]),
+            ('硕士研究生', [('林剑纯', '硕士研究生', '—', '—', ''),
+                          ('谢娴予', '硕士研究生', '—', '—', ''),
+                          ('李沛珉', '硕士研究生', '—', '—', '')]),
+            ('已毕业成员', [('王谦', '博士毕业（2025）', '—', '—', ''),
+                          ('王胤', '硕士毕业（2026）', '—', '—', '')]),
         ]
     out = ['<div class="section">']
     for i, (gtitle, members) in enumerate(groups):
         style = ' style="margin-top:72px"' if i > 0 else ''
         out.append(f'  <div class="sec-head"{style}>\n    <h2>{gtitle}</h2>\n  </div>')
-        cards = '\n'.join(
-            f'''    <div class="member">
+        def _card(name, role, dir_, email, link):
+            cls = ' m-link' if link else ''
+            ext = ' target="_blank"' if link.startswith('http') else ''
+            return f'''    <a class="member{cls}" href="{link}"{ext}>
       <div class="m-avatar">{name[0]}</div>
       <h4>{name}</h4>
       <div class="role">{role}</div>
       <div class="dir">{dir_}</div>
       <div class="email">{email}</div>
-    </div>''' for name, role, dir_, email in members)
+    </a>'''
+        cards = '\n'.join(_card(name, role, dir_, email, link) for name, role, dir_, email, link in members)
         out.append(f'  <div class="members">\n{cards}\n  </div>')
     out.append('</div>')
     return '\n'.join(out)
@@ -532,6 +535,53 @@ def project_body(lang):
 
 MONTHS_EN = ['', 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
 
+# 二级页面左侧竖排导航（href, 中文, 英文）
+SUB_MENUS = {
+    'about': [
+        ('about.html#about-group', '课题组简介', 'About the Group'),
+        ('about.html#chai', '柴扉教授', 'Prof. Fei Chai'),
+        ('members.html', '成员介绍', 'Members'),
+    ],
+    'papers': [
+        ('#journal', '期刊论文', 'Journal Papers'),
+        ('#digital-twin', '数字孪生', 'Digital Twin'),
+        ('#data', '科研数据', 'Data'),
+        ('#model', '数值模式', 'Models'),
+    ],
+    'research': [
+        ('#r0', '生态系统与生物地球化学模拟', 'Ecosystem & Biogeochemistry Modeling'),
+        ('#r1', '碳循环与气候反馈', 'Carbon Cycle & Climate Feedback'),
+        ('#r2', '次中尺度过程与生态效应', 'Submesoscale Processes & Ecology'),
+        ('#r3', '古气候与古海洋模拟', 'Paleoclimate & Paleoceanography'),
+        ('#r4', '海洋数字孪生', 'Ocean Digital Twin'),
+        ('#r5', '观测—模拟融合', 'Observation\u2013Model Fusion'),
+        ('#project', 'CESM-CoSiNE 项目', 'CESM-CoSiNE Project'),
+    ],
+    'links': [
+        ('https://coeoa.xmu.edu.cn/t/CF/', '柴扉教授个人主页', "Prof. Chai's Homepage"),
+        ('https://meli.xmu.edu.cn/', 'MEL 实验室官网', 'MEL Official Website'),
+        ('#links', '全部相关链接', 'All Links'),
+    ],
+}
+
+def subnav_html(page, lang):
+    items = SUB_MENUS[page]
+    lis = []
+    for href, zh, en in items:
+        label = en if lang == EN else zh
+        tgt = ' target="_blank"' if href.startswith('http') else ''
+        lis.append(f'      <a href="{href}"{tgt}>{label}</a>')
+    return '<nav class="sub-nav" id="subNav" aria-label="sub navigation">\n' + '\n'.join(lis) + '\n    </nav>'
+
+def with_subnav(page, body, lang):
+    return f'''<div class="page-wrap">
+{subnav_html(page, lang)}
+  <div class="sub-content">
+{body}
+  </div>
+</div>'''
+
+
 def paper_timeline(rows, lang, reveal=False):
     """论文时间线：同年份只显示一次，竖线 + 月份刻度"""
     groups = {}
@@ -573,7 +623,7 @@ PAPERS = [
 
 def papers_body(lang):
     if lang == EN:
-        return f'''<div class="section" id="journal">
+        content = f'''<div class="section" id="journal">
   <div class="sec-head">
     <span class="en">JOURNAL PAPERS</span>
     <h2>Journal Papers</h2>
@@ -635,7 +685,8 @@ def papers_body(lang):
     </div>
   </div>
 </div>'''
-    return f'''<div class="section" id="journal">
+        return with_subnav('papers', content, lang)
+    content = f'''<div class="section" id="journal">
   <div class="sec-head">
     <span class="en">JOURNAL PAPERS</span>
     <h2>期刊论文</h2>
@@ -697,6 +748,7 @@ def papers_body(lang):
     </div>
   </div>
 </div>'''
+    return with_subnav('papers', content, lang)
 
 def news_body(lang):
     if lang == EN:
@@ -767,7 +819,7 @@ def news_body(lang):
 
 def links_body(lang):
     if lang == EN:
-        return '''<div class="section">
+        content = '''<div class="section" id="links">
   <div class="links">
     <a class="link-card" href="#" onclick="return false" title="Link to be added">
       <div class="icon">''' + SVG_GLOBE + '''</div>
@@ -789,7 +841,8 @@ def links_body(lang):
     </a>
   </div>
 </div>'''
-    return '''<div class="section">
+        return with_subnav('links', content, lang)
+    content = '''<div class="section" id="links">
   <div class="links">
     <a class="link-card" href="#" onclick="return false" title="链接待补充">
       <div class="icon">''' + SVG_GLOBE + '''</div>
@@ -811,6 +864,7 @@ def links_body(lang):
     </a>
   </div>
 </div>'''
+    return with_subnav('links', content, lang)
 
 def pi_detail_html(pi, lang):
     """柴教授完整档案（学术经历/研究领域/代表性论文）"""
@@ -1290,7 +1344,7 @@ def research_with_project(lang):
     else:
         head1, head2 = '研究方向', 'CESM-CoSiNE 项目'
         en1, en2 = 'RESEARCH AREAS', 'CESM-CoSiNE PROJECT'
-    return f'''<div class="section">
+    return with_subnav('research', f'''<div class="section">
   <div class="sec-head">
     <span class="en">{en1}</span>
     <h2>{head1}</h2>
@@ -1306,7 +1360,7 @@ def research_with_project(lang):
     <h2>{head2}</h2>
   </div>
   {proj}
-</div>'''
+</div>''', lang)
 
 def main():
     specs = {
