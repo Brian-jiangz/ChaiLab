@@ -477,6 +477,9 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
 /* 窄屏：导航收缩为汉堡面板（横向一排、高透、同高） */
 @media (max-width: 1100px) {
   .g-head .inner.main { grid-template-columns: auto 1fr auto auto; }
+  .zoom-ctl { gap: 4px; }
+  .zoom-btn { width: 26px; height: 26px; font-size: 12px; }
+  .zoom-val { min-width: 34px; font-size: 11px; }
   .nav-toggle { display: block; }
   .g-nav {
     display: none; position: absolute; top: 74px; left: 0; right: 0;
@@ -512,7 +515,18 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
   }
   .g-nav ul > li > a::after { display: none; }
   .g-nav .sub { display: none; }
-  .g-nav .m-lang { display: none; }
+.g-nav .m-lang { display: none; }
+.zoom-ctl { display: flex; align-items: center; gap: 6px; flex-shrink: 0; justify-self: end; }
+.zoom-btn {
+  width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
+  background: transparent; border: 1px solid rgba(255,255,255,.6); color: #fff;
+  font-size: 13px; line-height: 1; cursor: pointer; transition: .25s; padding: 0;
+}
+.zoom-btn:hover { background: rgba(255,255,255,.15); }
+.g-head.scrolled .zoom-btn, .g-head.subpage .zoom-btn { border-color: var(--line-2); color: var(--ink-2); }
+.g-head.scrolled .zoom-btn:hover, .g-head.subpage .zoom-btn:hover { background: var(--paper-2); }
+.zoom-val { font-size: 12px; color: #fff; min-width: 40px; text-align: center; font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+.g-head.scrolled .zoom-val, .g-head.subpage .zoom-val { color: var(--ink-2); }
   .research, .news-grid, .news-list, .links { grid-template-columns: repeat(2, 1fr); }
   .hcap { padding: 0 32px; }
   .hcap h2 { font-size: 34px; }
@@ -522,6 +536,7 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
 
 @media (max-width: 900px) {
   .g-head .inner.main { grid-template-columns: auto 1fr auto auto; height: 64px; }
+  .zoom-ctl { display: none; }
   .body-main { padding-top: 64px; }
   .g-nav { top: 64px; height: 64px; }
   .hero { height: 82vh; min-height: 480px; }
