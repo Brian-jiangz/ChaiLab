@@ -58,24 +58,24 @@ TXT = {
 
 DD_ZH = {
     'about': [
-        ('about.html', '课题组简介'),
-        ('about.html#chai', '柴扉教授'),
+        ('about-group.html', '课题组简介'),
+        ('about-chai.html', '柴扉教授'),
         ('members.html', '成员介绍'),
     ],
     'papers': [
-        ('papers.html#journal', '期刊论文'),
-        ('papers.html#digital-twin', '数字孪生'),
-        ('papers.html#data', '科研数据'),
-        ('papers.html#model', '数值模式'),
+        ('papers-journal.html', '期刊论文'),
+        ('papers-digital-twin.html', '数字孪生'),
+        ('papers-data.html', '科研数据'),
+        ('papers-model.html', '数值模式'),
     ],
     'research': [
-        ('research.html#r0', '生态系统与生物地球化学模拟'),
-        ('research.html#r1', '碳循环与气候反馈'),
-        ('research.html#r2', '次中尺度过程与生态效应'),
-        ('research.html#r3', '古气候与古海洋模拟'),
-        ('research.html#r4', '海洋数字孪生'),
-        ('research.html#r5', '观测—模拟融合'),
-        ('research.html#project', 'CESM-CoSiNE 项目'),
+        ('research-r0.html', '生态系统与生物地球化学模拟'),
+        ('research-r1.html', '碳循环与气候反馈'),
+        ('research-r2.html', '次中尺度过程与生态效应'),
+        ('research-r3.html', '古气候与古海洋模拟'),
+        ('research-r4.html', '海洋数字孪生'),
+        ('research-r5.html', '观测—模拟融合'),
+        ('research-project.html', 'CESM-CoSiNE 项目'),
     ],
     'links': [
         ('https://coeoa.xmu.edu.cn/t/CF/', '柴扉教授个人主页', '_blank'),
@@ -85,24 +85,24 @@ DD_ZH = {
 }
 DD_EN = {
     'about': [
-        ('about.html', 'About the Group'),
-        ('about.html#chai', 'Prof. Fei Chai'),
+        ('about-group.html', 'About the Group'),
+        ('about-chai.html', 'Prof. Fei Chai'),
         ('members.html', 'Members'),
     ],
     'papers': [
-        ('papers.html#journal', 'Journal Papers'),
-        ('papers.html#digital-twin', 'Digital Twin'),
-        ('papers.html#data', 'Research Data'),
-        ('papers.html#model', 'Numerical Models'),
+        ('papers-journal.html', 'Journal Papers'),
+        ('papers-digital-twin.html', 'Digital Twin'),
+        ('papers-data.html', 'Research Data'),
+        ('papers-model.html', 'Numerical Models'),
     ],
     'research': [
-        ('research.html#r0', 'Ecosystem & Biogeochemical Modeling'),
-        ('research.html#r1', 'Carbon Cycle & Climate Feedbacks'),
-        ('research.html#r2', 'Submesoscale Processes'),
-        ('research.html#r3', 'Paleoclimate Modeling'),
-        ('research.html#r4', 'Ocean Digital Twin'),
-        ('research.html#r5', 'Observation\u2013Model Integration'),
-        ('research.html#project', 'CESM-CoSiNE Project'),
+        ('research-r0.html', 'Ecosystem & Biogeochemical Modeling'),
+        ('research-r1.html', 'Carbon Cycle & Climate Feedbacks'),
+        ('research-r2.html', 'Submesoscale Processes'),
+        ('research-r3.html', 'Paleoclimate Modeling'),
+        ('research-r4.html', 'Ocean Digital Twin'),
+        ('research-r5.html', 'Observation\u2013Model Integration'),
+        ('research-project.html', 'CESM-CoSiNE Project'),
     ],
     'links': [
         ('https://coeoa.xmu.edu.cn/t/CF/', "Prof. Chai's Homepage", '_blank'),
@@ -522,31 +522,48 @@ def project_body(lang):
 MONTHS_EN = ['', 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
 
 # 二级页面左侧竖排导航（href, 中文, 英文）
+RESEARCH_ITEMS_ZH = [
+    ('海洋生态系统与生物地球化学模拟', '发展并改进 CESM-CoSiNE 海洋生态系统—生物地球化学耦合模式，模拟浮游植物、营养盐与碳循环在全球大洋与边缘海的时空演变。'),
+    ('海洋碳循环与气候反馈', '研究海洋对大气 CO₂ 的调控作用、生物泵效率及海洋碳循环对未来气候变化的响应。'),
+    ('海洋次中尺度过程与生态效应', '探索次中尺度物理过程（锋面、涡旋）对浮游生态系统与碳输出通量的调控机制。'),
+    ('古气候与古海洋模拟', '利用地球系统模式开展末次间冰期等关键时期古气候模拟，理解碳循环的长期演化。'),
+    ('海洋数字孪生', '构建海洋数字孪生系统，赋能蓝色经济创新，服务海洋观测—模拟—预测一体化。'),
+    ('观测—模拟融合', '结合现场观测、卫星遥感与数值模式，量化评估模式不确定性，改进生态模型参数化。'),
+]
+RESEARCH_ITEMS_EN = [
+    ('Marine Ecosystem and Biogeochemical Modeling', 'Development and improvement of the CESM-CoSiNE coupled marine ecosystem-biogeochemistry module to simulate the spatiotemporal evolution of phytoplankton, nutrients, and the carbon cycle across the global ocean and marginal seas.'),
+    ('Marine Carbon Cycle and Climate Feedbacks', 'Quantifying the ocean role in regulating atmospheric CO2, biological pump efficiency, and the response of the marine carbon cycle to future climate change.'),
+    ('Submesoscale Processes and Ecological Effects', 'Exploring how submesoscale physical processes (fronts, eddies) regulate planktonic ecosystems and carbon export fluxes.'),
+    ('Paleoclimate and Paleoceanography', 'Earth system modeling of key periods such as the Last Interglacial to understand the long-term evolution of the carbon cycle.'),
+    ('Ocean Digital Twin', 'Building ocean digital twin systems to empower blue-economy innovation and integrated ocean observation-simulation-prediction.'),
+    ('Observation-Model Integration', 'Combining in-situ observations, satellite remote sensing, and numerical models to quantify uncertainty and improve ecosystem model parameterizations.'),
+]
+
 SUB_MENUS = {
     'about': [
-        ('about.html#about-group', '课题组简介', 'About the Group'),
-        ('about.html#chai', '柴扉教授', 'Prof. Fei Chai'),
+        ('about-group.html', '课题组简介', 'About the Group'),
+        ('about-chai.html', '柴扉教授', 'Prof. Fei Chai'),
         ('members.html', '成员介绍', 'Members'),
     ],
     'papers': [
-        ('#journal', '期刊论文', 'Journal Papers'),
-        ('#digital-twin', '数字孪生', 'Digital Twin'),
-        ('#data', '科研数据', 'Data'),
-        ('#model', '数值模式', 'Models'),
+        ('papers-journal.html', '期刊论文', 'Journal Papers'),
+        ('papers-digital-twin.html', '数字孪生', 'Digital Twin'),
+        ('papers-data.html', '科研数据', 'Data'),
+        ('papers-model.html', '数值模式', 'Models'),
     ],
     'research': [
-        ('#r0', '生态系统与生物地球化学模拟', 'Ecosystem & Biogeochemistry Modeling'),
-        ('#r1', '碳循环与气候反馈', 'Carbon Cycle & Climate Feedback'),
-        ('#r2', '次中尺度过程与生态效应', 'Submesoscale Processes & Ecology'),
-        ('#r3', '古气候与古海洋模拟', 'Paleoclimate & Paleoceanography'),
-        ('#r4', '海洋数字孪生', 'Ocean Digital Twin'),
-        ('#r5', '观测—模拟融合', 'Observation\u2013Model Fusion'),
-        ('#project', 'CESM-CoSiNE 项目', 'CESM-CoSiNE Project'),
+        ('research-r0.html', '生态系统与生物地球化学模拟', 'Ecosystem & Biogeochemistry Modeling'),
+        ('research-r1.html', '碳循环与气候反馈', 'Carbon Cycle & Climate Feedback'),
+        ('research-r2.html', '次中尺度过程与生态效应', 'Submesoscale Processes & Ecology'),
+        ('research-r3.html', '古气候与古海洋模拟', 'Paleoclimate & Paleoceanography'),
+        ('research-r4.html', '海洋数字孪生', 'Ocean Digital Twin'),
+        ('research-r5.html', '观测—模拟融合', 'Observation\u2013Model Fusion'),
+        ('research-project.html', 'CESM-CoSiNE 项目', 'CESM-CoSiNE Project'),
     ],
     'links': [
         ('https://coeoa.xmu.edu.cn/t/CF/', '柴扉教授个人主页', "Prof. Chai's Homepage"),
         ('https://mel.xmu.edu.cn/', 'MEL 实验室官网', 'MEL Official Website'),
-        ('#links', '全部相关链接', 'All Links'),
+        ('links.html', '全部相关链接', 'All Links'),
     ],
 }
 
@@ -1607,23 +1624,91 @@ def main():
     import os
     os.makedirs('en', exist_ok=True)
 
-    # ---- 一级内容页（with_subnav 左侧竖排导航 + 二级内容区块） ----
-    def about_body(lang):
-        pi_html = pi_detail_html(PI_ZH if lang == ZH else PI_EN, lang)
-        mem_html = members_body(lang)
-        return (ABOUT_BODY['zh' if lang == ZH else 'en'] + '\n' + pi_html + '\n' + mem_html)
-    content_pages = {
-        'about.html': lambda lang: with_subnav('about', about_body(lang), lang),
-        'research.html': lambda lang: research_with_project(lang),
-        'papers.html': lambda lang: papers_body(lang),
-    }
-    for fname, gen in content_pages.items():
-        body = gen(ZH)
-        html = page(fname, '课题组简介' if fname == 'about.html' else ('研究方向' if fname == 'research.html' else '学术论文'),
-                    'ABOUT THE GROUP' if fname == 'about.html' else ('RESEARCH AREAS' if fname == 'research.html' else 'ACADEMIC PAPERS'),
-                    body, ZH, scripts='js/home.js')
-        open(fname, 'w').write(html)
-        print('生成一级页', fname)
+    # ---- 二级独立页面 ----
+    def sub_pages_zh():
+        pages = []
+        # 成员介绍栏
+        pages.append(('about-group.html', '课题组简介', 'ABOUT THE GROUP',
+                      with_subnav('about', ABOUT_BODY['zh'], ZH)))
+        pages.append(('about-chai.html', '柴扉教授', 'PROF. FEI CHAI',
+                      with_subnav('about', pi_detail_html(PI_ZH, ZH), ZH)))
+        # 学术论文栏
+        pages.append(('papers-journal.html', '期刊论文', 'JOURNAL PAPERS',
+                      with_subnav('papers', '<div class="section" id="journal">' + paper_timeline(PAPERS, ZH) + '</div>', ZH)))
+        pages.append(('papers-digital-twin.html', '数字孪生', 'DIGITAL TWIN',
+                      with_subnav('papers', '<div class="section" id="digital-twin">' + project_box(ZH, full=True) + '</div>', ZH)))
+        pages.append(('papers-data.html', '科研数据', 'RESEARCH DATA',
+                      with_subnav('papers', '''<div class="section" id="data">
+  <div class="sec-head"><span class="en">RESEARCH DATA</span><h2>科研数据</h2></div>
+  <div class="ov-desc"><p>西北太平洋与南海 Biogeochemical-Argo 浮标观测；CESM-CoSiNE 全球海洋、北太平洋与南海模拟输出（数据共享整理中）。</p></div>
+</div>''', ZH)))
+        pages.append(('papers-model.html', '数值模式', 'NUMERICAL MODELS',
+                      with_subnav('papers', '<div class="section" id="model">' + project_box(ZH, full=True) + '</div>', ZH)))
+        # 研究方向栏
+        for i in range(6):
+            aid = 'r%d' % i
+            num = '%02d' % (i + 1)
+            title, desc = RESEARCH_ITEMS_ZH[i]
+            pages.append(('research-%s.html' % aid, title, 'RESEARCH AREA %s' % num,
+                          with_subnav('research', '''<div class="section" id="%s">
+  <div class="sec-head"><span class="en">%s · 研究方向</span><h2>%s</h2></div>
+  <div class="ov-desc"><p>%s</p></div>
+</div>''' % (aid, num, title, desc), ZH)))
+        pages.append(('research-project.html', 'CESM-CoSiNE 项目', 'CESM-CoSiNE PROJECT',
+                      with_subnav('research', '<div class="section" id="project">' + project_box(ZH, full=True) + '</div>', ZH)))
+        for fname, title, en_sub, body in pages:
+            html = page(fname, title, en_sub, body, ZH, scripts='js/home.js')
+            open(fname, 'w').write(html)
+            print('生成二级页', fname)
+
+    sub_pages_zh()
+
+    # ---- 一级总览页（二级入口卡片） ----
+    def overview_zh():
+        groups = [
+            ('成员介绍', 'GROUP OVERVIEW', [
+                ('课题组简介', '课题组研究概况与招生信息。', 'about-group.html'),
+                ('柴扉教授', '个人档案：学术经历、研究领域与代表性论文。', 'about-chai.html'),
+                ('成员介绍', '教职工、博士后与研究生名单。', 'members.html'),
+            ]),
+            ('研究方向', 'RESEARCH AREAS', [
+                ('海洋生态系统与生物地球化学模拟', RESEARCH_ITEMS_ZH[0][1], 'research-r0.html'),
+                ('海洋碳循环与气候反馈', RESEARCH_ITEMS_ZH[1][1], 'research-r1.html'),
+                ('海洋次中尺度过程与生态效应', RESEARCH_ITEMS_ZH[2][1], 'research-r2.html'),
+                ('古气候与古海洋模拟', RESEARCH_ITEMS_ZH[3][1], 'research-r3.html'),
+                ('海洋数字孪生', RESEARCH_ITEMS_ZH[4][1], 'research-r4.html'),
+                ('观测—模拟融合', RESEARCH_ITEMS_ZH[5][1], 'research-r5.html'),
+                ('CESM-CoSiNE 项目', '嵌入 CESM 的海洋生态—生物地球化学模块。', 'research-project.html'),
+            ]),
+            ('学术论文', 'ACADEMIC PAPERS', [
+                ('期刊论文', '课题组发表的同行评审期刊论文。', 'papers-journal.html'),
+                ('数字孪生', '海洋数字孪生框架及其应用。', 'papers-digital-twin.html'),
+                ('科研数据', 'BGC-Argo 观测与模式输出数据。', 'papers-data.html'),
+                ('数值模式', 'CESM-CoSiNE 模式与报告。', 'papers-model.html'),
+            ]),
+        ]
+        for title, en_sub, items in groups:
+            cards = '\n'.join(
+                '''      <a class="ov-card" href="%s">
+        <span class="ov-go">%s →</span>
+        <h3>%s</h3>
+        <p>%s</p>
+      </a>''' % (link, '进入', t, d) for t, d, link in items)
+            body = '''<div class="section ov-sec">
+  <div class="sec-head">
+    <span class="en">%s</span>
+    <h2>%s</h2>
+  </div>
+  <div class="ov-grid">
+%s
+  </div>
+</div>''' % (en_sub, title, cards)
+            fname = 'about.html' if title == '成员介绍' else ('research.html' if title == '研究方向' else 'papers.html')
+            html = page(fname, title, en_sub, body, ZH, scripts='js/home.js')
+            open(fname, 'w').write(html)
+            print('生成一级页', fname)
+
+    overview_zh()
 
     for fname, (title, en_sub, about_body) in specs.items():
         if fname in ('about.html', 'research.html', 'papers.html'):
@@ -1643,20 +1728,88 @@ def main():
                     .replace('href="reports/', 'href="../reports/')
                     .replace('src="videos/', 'src="../videos/')
                     .replace('url(images/', 'url(../images/'))
-    # ---- 英文版一级内容页 ----
-    content_pages_en = {
-        'about.html': lambda lang: with_subnav('about',
-            ABOUT_BODY['en'] + '\n' + pi_detail_html(PI_EN, EN) + '\n' + members_body(EN), EN),
-        'research.html': lambda lang: research_with_project(lang),
-        'papers.html': lambda lang: papers_body(lang),
-    }
-    for fname, gen in content_pages_en.items():
-        body = gen(EN)
-        html = _en(page(fname, 'About the Group' if fname == 'about.html' else ('Research' if fname == 'research.html' else 'Academic Papers'),
-                        'ABOUT THE GROUP' if fname == 'about.html' else ('RESEARCH AREAS' if fname == 'research.html' else 'ACADEMIC PAPERS'),
-                        body, EN, scripts='../js/home.js'))
-        open('en/' + fname, 'w').write(html)
-        print('生成一级页 en/' + fname)
+    # ---- 英文版二级独立页面 ----
+    def sub_pages_en():
+        pages = []
+        pages.append(('about-group.html', 'About the Group', 'ABOUT THE GROUP',
+                      with_subnav('about', ABOUT_BODY['en'], EN)))
+        pages.append(('about-chai.html', 'Prof. Fei Chai', 'PROF. FEI CHAI',
+                      with_subnav('about', pi_detail_html(PI_EN, EN), EN)))
+        pages.append(('papers-journal.html', 'Journal Papers', 'JOURNAL PAPERS',
+                      with_subnav('papers', '<div class="section" id="journal">' + paper_timeline(PAPERS, EN) + '</div>', EN)))
+        pages.append(('papers-digital-twin.html', 'Digital Twin', 'DIGITAL TWIN',
+                      with_subnav('papers', '<div class="section" id="digital-twin">' + project_box(EN, full=True) + '</div>', EN)))
+        pages.append(('papers-data.html', 'Research Data', 'RESEARCH DATA',
+                      with_subnav('papers', '''<div class="section" id="data">
+  <div class="sec-head"><span class="en">RESEARCH DATA</span><h2>Research Data</h2></div>
+  <div class="ov-desc"><p>BGC-Argo float observations in the western North Pacific and the South China Sea; CESM-CoSiNE simulation outputs (data sharing under preparation).</p></div>
+</div>''', EN)))
+        pages.append(('papers-model.html', 'Numerical Models', 'NUMERICAL MODELS',
+                      with_subnav('papers', '<div class="section" id="model">' + project_box(EN, full=True) + '</div>', EN)))
+        for i in range(6):
+            aid = 'r%d' % i
+            num = '%02d' % (i + 1)
+            title, desc = RESEARCH_ITEMS_EN[i]
+            pages.append(('research-%s.html' % aid, title, 'RESEARCH AREA %s' % num,
+                          with_subnav('research', '''<div class="section" id="%s">
+  <div class="sec-head"><span class="en">%s · RESEARCH AREA</span><h2>%s</h2></div>
+  <div class="ov-desc"><p>%s</p></div>
+</div>''' % (aid, num, title, desc), EN)))
+        pages.append(('research-project.html', 'CESM-CoSiNE Project', 'CESM-CoSiNE PROJECT',
+                      with_subnav('research', '<div class="section" id="project">' + project_box(EN, full=True) + '</div>', EN)))
+        for fname, title, en_sub, body in pages:
+            html = _en(page(fname, title, en_sub, body, EN, scripts='../js/home.js'))
+            open('en/' + fname, 'w').write(html)
+            print('生成二级页 en/' + fname)
+
+    # ---- 英文一级总览页 ----
+    def overview_en():
+        groups = [
+            ('Members', 'GROUP OVERVIEW', [
+                ('About the Group', 'Overview of the group research and recruitment.', 'about-group.html'),
+                ('Prof. Fei Chai', 'Profile: career, research interests, selected publications.', 'about-chai.html'),
+                ('Members', 'Faculty, postdocs, and graduate students.', 'members.html'),
+            ]),
+            ('Research', 'RESEARCH AREAS', [
+                ('Ecosystem & Biogeochemical Modeling', RESEARCH_ITEMS_EN[0][1], 'research-r0.html'),
+                ('Carbon Cycle & Climate Feedbacks', RESEARCH_ITEMS_EN[1][1], 'research-r1.html'),
+                ('Submesoscale Processes', RESEARCH_ITEMS_EN[2][1], 'research-r2.html'),
+                ('Paleoclimate Modeling', RESEARCH_ITEMS_EN[3][1], 'research-r3.html'),
+                ('Ocean Digital Twin', RESEARCH_ITEMS_EN[4][1], 'research-r4.html'),
+                ('Observation\u2013Model Integration', RESEARCH_ITEMS_EN[5][1], 'research-r5.html'),
+                ('CESM-CoSiNE Project', 'An ocean ecosystem-biogeochemistry module embedded in CESM.', 'research-project.html'),
+            ]),
+            ('Academic Papers', 'ACADEMIC PAPERS', [
+                ('Journal Papers', 'Peer-reviewed journal publications of the group.', 'papers-journal.html'),
+                ('Digital Twin', 'Ocean digital twin framework and applications.', 'papers-digital-twin.html'),
+                ('Research Data', 'BGC-Argo observations and model outputs.', 'papers-data.html'),
+                ('Numerical Models', 'CESM-CoSiNE model and reports.', 'papers-model.html'),
+            ]),
+        ]
+        for title, en_sub, items in groups:
+            cards = '\n'.join(
+                '''      <a class="ov-card" href="%s">
+        <span class="ov-go">%s →</span>
+        <h3>%s</h3>
+        <p>%s</p>
+      </a>''' % (link, 'Enter', t, d) for t, d, link in items)
+            body = '''<div class="section ov-sec">
+  <div class="sec-head">
+    <span class="en">%s</span>
+    <h2>%s</h2>
+  </div>
+  <div class="ov-grid">
+%s
+  </div>
+</div>''' % (en_sub, title, cards)
+            fname = 'about.html' if title == 'Members' else ('research.html' if title == 'Research' else 'papers.html')
+            html = _en(page(fname, title, en_sub, body, EN, scripts='../js/home.js'))
+            open('en/' + fname, 'w').write(html)
+            print('生成一级页 en/' + fname)
+
+    overview_en()
+
+    sub_pages_en()
 
     for fname, (title, en_sub, about_body) in specs_en.items():
         if fname in ('about.html', 'research.html', 'papers.html'):
