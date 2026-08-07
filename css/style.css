@@ -93,7 +93,9 @@ body {
   background: #fff; box-shadow: 0 16px 40px rgba(8,26,44,.16); border-top: 2px solid var(--navy);
   padding: 10px 4px; min-width: 250px; z-index: 60;
 }
-.g-nav .has-sub:hover .sub { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+/* 鼠标移到菜单名自动弹出，移开自动隐藏 */
+.g-nav .has-sub:hover .sub,
+.g-nav .has-sub:focus-within .sub { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
 .g-nav .sub dl { margin: 0; }
 .g-nav .sub dd { margin: 0; }
 .g-nav .sub dd a {
@@ -619,8 +621,7 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
     opacity: 0; visibility: hidden; transform: translateY(10px);
     transition: opacity .25s ease, transform .25s ease, visibility .25s;
   }
-  .g-nav .has-sub:hover .sub { opacity: 0; visibility: hidden; transform: translateY(10px); }
-  .g-nav .has-sub.open .sub { opacity: 1; visibility: visible; transform: translateY(0); }
+  .g-nav .has-sub:hover .sub, .g-nav .has-sub.open .sub { opacity: 1; visibility: visible; transform: translateY(0); }
   .g-nav .sub dd a { white-space: normal; padding: 12px 20px; }
   .g-nav .m-lang { display: none; }
   .research, .news-grid, .news-list, .links { grid-template-columns: repeat(2, 1fr); }
