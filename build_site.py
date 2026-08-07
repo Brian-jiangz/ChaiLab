@@ -6,12 +6,12 @@ ZH, EN = 'zh', 'en'
 
 NAV_ZH = [
     ('index.html', '首页'), ('about.html', '课题组简介'), ('members.html', '成员介绍'),
-    ('research.html', '研究方向'), ('project.html', 'CESM-CoSiNE'),
+    ('research.html', '研究方向'),
     ('papers.html', '发表论文'), ('news.html', '新闻动态'), ('links.html', '相关链接'),
 ]
 NAV_EN = [
     ('index.html', 'Home'), ('about.html', 'About'), ('members.html', 'Members'),
-    ('research.html', 'Research'), ('project.html', 'CESM-CoSiNE'),
+    ('research.html', 'Research'),
     ('papers.html', 'Publications'), ('news.html', 'News'), ('links.html', 'Links'),
 ]
 
@@ -74,6 +74,7 @@ def nav(active, lang):
     <nav class="g-nav">
       <ul>
 {lis}
+        <li class="m-lang"><a href="{t['lang_url']}">{t['lang_switch']}</a></li>
       </ul>
     </nav>
     <a class="lang-switch" href="{t['lang_url']}">{t['lang_switch']}</a>
@@ -191,6 +192,19 @@ ABOUT_BODY = {
 }
 
 def research_tiles(lang):
+    tiles_html = tiles_body(lang)
+    proj = project_box(lang, full=False)
+    return f'''<div class="section">
+  <div class="research">
+{tiles_html}
+  </div>
+</div>
+
+<div class="section">
+  {proj}
+</div>'''
+
+def tiles_body(lang):
     if lang == EN:
         items = [
             (SVG_WAVE, 'Marine Ecosystem and Biogeochemical Modeling', 'Development and improvement of the CESM-CoSiNE coupled marine ecosystem\u2013biogeochemistry module to simulate the spatiotemporal evolution of phytoplankton, nutrients, and the carbon cycle.'),
@@ -209,10 +223,64 @@ def research_tiles(lang):
             (SVG_DIGI, '海洋数字孪生', '构建海洋数字孪生系统，赋能蓝色经济创新，服务海洋观测—模拟—预测一体化。'),
             (SVG_SAT, '观测—模拟融合', '结合现场观测、卫星遥感与数值模式，量化评估模式不确定性，改进生态模型参数化。'),
         ]
-    tiles = '\n'.join(
+    return '\n'.join(
         f'    <div class="rtile">\n      <div class="icon">{icon}</div>\n      <h3>{title}</h3>\n      <p>{desc}</p>\n    </div>'
         for icon, title, desc in items)
-    return f'<div class="section">\n  <div class="research">\n{tiles}\n  </div>\n</div>'
+
+def project_box(lang, full=True):
+    if lang == EN:
+        body = '''      <div class="kicker">CESM-CoSiNE</div>
+      <h3>CESM-CoSiNE: An Ocean Ecosystem\u2013Biogeochemistry Module Embedded in CESM</h3>
+      <p>CoSiNE (Carbon, Silicon, Nitrogen Ecosystem) is developed and maintained by our group and has been embedded in the CESM Earth System Model (POP2 ocean component) to study the evolution of planktonic ecosystems and the marine carbon cycle at global and regional scales.</p>'''
+        feats = [
+            '16 CoSiNE tracers (nutrients, phytoplankton functional groups, zooplankton, DOC, etc.)',
+            'V2 extends to 22 tracers with carbon isotope (\u00b9\u00b3C / \u00b9\u2074C) tracking capability',
+            'Supports present-day climate, short-term forcing assessments, and paleoclimate (e.g., Last Interglacial) simulations',
+            'Outputs global and regional (North Pacific, South China Sea) carbon flux, nutrient, and ecosystem structure diagnostics',
+        ]
+        works = [
+            'CESM-CoSiNE16: An ocean ecosystem\u2013biogeochemistry module embedded in CESM and its short-term forcing assessment',
+            'CESM CoSiNE16+5 (CoSiNE22) coupling: expansion of carbon isotope tracers and implementation',
+        ]
+        btn1, btn2 = 'Project Report (Nature Style)', 'V2 Coupling Manual'
+    else:
+        body = '''      <div class="kicker">CESM-CoSiNE</div>
+      <h3>CESM-CoSiNE：嵌入 CESM 的海洋生态—生物地球化学模块</h3>
+      <p>CoSiNE（Carbon, Silicon, Nitrogen Ecosystem）由本课题组维护发展，已嵌入 CESM 地球系统模式（POP2 海洋分量），用于研究浮游生态系统与海洋碳循环在全球及区域尺度上的演变。</p>'''
+        feats = [
+            '包含 16 个 CoSiNE 示踪物（营养盐、浮游植物功能群、浮游动物、DOC 等）',
+            'V2 版本扩展至 22 个示踪物，加入碳同位素（¹³C / ¹⁴C）追踪能力',
+            '支持现代气候、短期强迫评估与古气候（如末次间冰期）模拟',
+            '输出全球及区域（北太平洋、南海）碳通量、营养盐与生态结构诊断',
+        ]
+        works = [
+            'CESM-CoSiNE16：一个嵌入 CESM 的海洋生态—生物地球化学模块及其短期强迫评估',
+            'CESM CoSiNE16+5（CoSiNE22）耦合：碳同位素示踪物扩展与实现',
+        ]
+        btn1, btn2 = '📄 阅读项目报告（Nature 风格）', '🔧 V2 耦合说明书'
+    feats_html = '\n'.join(f'        <li>{x}</li>' for x in feats)
+    works_html = '\n'.join(f'        <li>{x}</li>' for x in works)
+    extra = f'''
+      <h4>{'Model Features' if lang == EN else '模式特色'}</h4>
+      <ul>
+{feats_html}
+      </ul>
+      <h4>{'Selected Work' if lang == EN else '代表性工作'}</h4>
+      <ul>
+{works_html}
+      </ul>
+      <div class="project-links">
+        <a class="btn btn-solid" href="reports/CESM_CoSiNE16_Nature_style_draft_CN.html" target="_blank">{btn1}</a>
+        <a class="btn btn-line" href="reports/CESM_CoSiNE16_v2_Process_Manual.html" target="_blank">{btn2}</a>
+      </div>''' if full else ''
+    return f'''<div class="project-box">
+    <div class="project-hero">
+      {body}
+    </div>
+    <div class="project-body">
+{extra}
+    </div>
+  </div>'''
 
 def members_body(lang):
     if lang == EN:
@@ -645,26 +713,6 @@ def home_body(lang):
   <p style="text-align:center;margin-top:40px"><a class="btn btn-line" href="research.html">{more['research']}</a></p>
 </div>
 
-<!-- CESM-CoSiNE 项目 -->
-<div class="section" id="project">
-  <div class="sec-head">
-    <span class="en">{secs['project'][0]}</span>
-    <h2>{secs['project'][1]}</h2>
-  </div>
-  <div class="project-box">
-    <div class="project-hero">
-      <div class="kicker">CESM-CoSiNE</div>
-      <h3>{proj_title}</h3>
-      <p>{proj_desc}</p>
-    </div>
-    <div class="project-body">
-      <div class="project-links" style="margin-top:0">
-        <a class="btn btn-solid" href="project.html">{more['project']}</a>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- 新闻动态 -->
 <div class="section" id="news">
   <div class="sec-head">
@@ -697,6 +745,33 @@ auto();
 </script>'''
     return body, js
 
+def research_with_project(lang):
+    tiles = tiles_body(lang)
+    proj = project_box(lang, full=True)
+    if lang == EN:
+        head1, head2 = 'Research Areas', 'CESM-CoSiNE Project'
+        en1, en2 = 'RESEARCH AREAS', 'CESM-CoSiNE'
+    else:
+        head1, head2 = '研究方向', 'CESM-CoSiNE 项目'
+        en1, en2 = 'RESEARCH AREAS', 'CESM-CoSiNE PROJECT'
+    return f'''<div class="section">
+  <div class="sec-head">
+    <span class="en">{en1}</span>
+    <h2>{head1}</h2>
+  </div>
+  <div class="research">
+{tiles}
+  </div>
+</div>
+
+<div class="section" id="project">
+  <div class="sec-head">
+    <span class="en">{en2}</span>
+    <h2>{head2}</h2>
+  </div>
+  {proj}
+</div>'''
+
 def main():
     specs = {
         'about.html': ('课题组简介', 'ABOUT THE GROUP', ABOUT_BODY),
@@ -722,19 +797,33 @@ def main():
         'news.html': news_body,
         'links.html': links_body,
     }
+    body_full = {
+        'research.html': research_with_project,
+        'project.html': lambda lang: project_box(lang, full=True),
+    }
 
     # 中文版
     import os
     os.makedirs('en', exist_ok=True)
     for fname, (title, en_sub, about_body) in specs.items():
-        body = about_body['zh'] if fname == 'about.html' else body_fn[fname](ZH)
+        if fname == 'about.html':
+            body = about_body['zh']
+        elif fname in body_full:
+            body = body_full[fname](ZH)
+        else:
+            body = body_fn[fname](ZH)
         html = page(fname, title, en_sub, body, ZH)
         open(fname, 'w').write(html)
         print('生成', fname)
 
     # 英文版
     for fname, (title, en_sub, about_body) in specs_en.items():
-        body = about_body['en'] if fname == 'about.html' else body_fn[fname](EN)
+        if fname == 'about.html':
+            body = about_body['en']
+        elif fname in body_full:
+            body = body_full[fname](EN)
+        else:
+            body = body_fn[fname](EN)
         html = page(fname, title, en_sub, body, EN)
         open('en/' + fname, 'w').write(html)
         print('生成 en/' + fname)
