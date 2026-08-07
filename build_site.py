@@ -7,12 +7,12 @@ ZH, EN = 'zh', 'en'
 NAV_ZH = [
     ('index.html', '首页'), ('about.html', '课题组简介'), ('members.html', '成员介绍'),
     ('research.html', '研究方向'),
-    ('papers.html', '发表论文'), ('news.html', '新闻动态'), ('links.html', '相关链接'),
+    ('papers.html', '发表论文'), ('news.html', '课题组动态'), ('links.html', '相关链接'),
 ]
 NAV_EN = [
     ('index.html', 'Home'), ('about.html', 'About'), ('members.html', 'Members'),
     ('research.html', 'Research'),
-    ('papers.html', 'Publications'), ('news.html', 'News'), ('links.html', 'Links'),
+    ('papers.html', 'Publications'), ('news.html', 'Group News'), ('links.html', 'Links'),
 ]
 
 TXT = {
@@ -144,7 +144,7 @@ def footer(lang):
     if lang == EN:
         qlinks = [
             ('about.html', 'About'), ('members.html', 'Members'), ('research.html', 'Research'),
-            ('papers.html', 'Publications'), ('news.html', 'News'), ('links.html', 'Links'),
+            ('papers.html', 'Publications'), ('news.html', 'Group News'), ('links.html', 'Links'),
         ]
         rlinks = [
             ('https://coeoa.xmu.edu.cn/t/CF/', "Prof. Chai's Homepage", ' target="_blank"'),
@@ -154,7 +154,7 @@ def footer(lang):
     else:
         qlinks = [
             ('about.html', '课题组简介'), ('members.html', '成员介绍'), ('research.html', '研究方向'),
-            ('papers.html', '发表论文'), ('news.html', '新闻动态'), ('links.html', '相关链接'),
+            ('papers.html', '发表论文'), ('news.html', '课题组动态'), ('links.html', '相关链接'),
         ]
         rlinks = [
             ('https://coeoa.xmu.edu.cn/t/CF/', '柴扉教授个人主页', ' target="_blank"'),
@@ -657,7 +657,7 @@ def home_body(lang):
              [('Research Areas', 'research.html'), ('About Us', 'about.html')]),
         ]
         stats = [(22, '', 'Model Tracers'), (6, '', 'Research Areas'), (3, '', 'Ocean Regions'), (35, '+', 'Years of Research')]
-        news_head = ('News', 'NEWS & UPDATES', 'More')
+        news_head = ('Group News', 'GROUP NEWS', 'More')
         news = [
             ('FEB 2026', 'Prof. Chai\u2019s team reveals ocean digital twins as a new engine for blue-economy innovation',
              'The team systematically reviewed the core architecture of ocean digital twins, analyzed key application scenarios in blue-economy development, and provided forward-looking perspectives on challenges and prospects.'),
@@ -698,7 +698,7 @@ def home_body(lang):
              [('研究方向', 'research.html'), ('了解课题组', 'about.html')]),
         ]
         stats = [(22, '', '模式示踪物'), (6, '', '研究方向'), (3, '', '覆盖海域'), (35, '+', '年科研积累')]
-        news_head = ('新闻动态', 'NEWS & UPDATES', '更多')
+        news_head = ('课题组动态', 'GROUP NEWS', '更多')
         news = [
             ('2026-02', '柴扉教授团队揭示海洋数字孪生是赋能蓝色经济创新发展的新引擎',
              '团队系统梳理海洋数字孪生核心架构，解析其在蓝色经济发展中的关键应用场景，并对该领域挑战与前景作出前瞻性研判。'),
@@ -863,7 +863,7 @@ def home_body(lang):
   </div>
 </div>
 
-<!-- 新闻动态 -->
+<!-- 课题组动态 -->
 <div class="section home-sec" id="news">
   <div class="sec-row" data-reveal>
     <div class="sec-title">
@@ -981,7 +981,7 @@ def main():
         'research.html': ('研究方向', 'RESEARCH AREAS', None),
         'project.html': ('CESM-CoSiNE', 'CESM-CoSiNE PROJECT', None),
         'papers.html': ('发表论文', 'PUBLICATIONS', None),
-        'news.html': ('新闻动态', 'NEWS & UPDATES', None),
+        'news.html': ('课题组动态', 'GROUP NEWS', None),
         'links.html': ('相关链接', 'RELATED LINKS', None),
     }
     specs_en = {
@@ -989,7 +989,7 @@ def main():
         'research.html': ('Research', 'RESEARCH AREAS', None),
         'project.html': ('CESM-CoSiNE', 'CESM-CoSiNE PROJECT', None),
         'papers.html': ('Publications', 'PUBLICATIONS', None),
-        'news.html': ('News', 'NEWS & UPDATES', None),
+        'news.html': ('Group News', 'GROUP NEWS', None),
         'links.html': ('Links', 'RELATED LINKS', None),
     }
 
