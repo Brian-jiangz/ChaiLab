@@ -384,3 +384,54 @@
   /* bfcache 刷新后恢复整屏状态（head 已就绪） */
   restoreScreen();
 })();
+
+  /* ===== 二级内容：Hero 式垂直全屏滑动 ===== */
+  var vsTrack = document.getElementById('vsTrack');
+  if (vsTrack) {
+    var vsPanels = vsTrack.querySelectorAll('.vs-panel');
+    var vsSteps = document.querySelectorAll('#vsSteps span');
+    var vsCounter = document.getElementById('vsCounter');
+    var vsCur = 0, vsLock = false;
+    /* URL ?n=i 定位 */
+    try {
+      var vsStart = parseInt(new URLSearchParams(location.search).get('n'), 10);
+      if (!isNaN(vsStart) && vsStart >= 0 && vsStart < vsPanels.length) vsCur = vsStart;
+    } catch (e) {}
+    function vsGo(i) {
+      if (vsLock) return;
+      vsLock = true;
+      vsCur = (i + vsPanels.length) % vsPanels.length;
+      vsTrack.style.transform = 'translateY(' + (-vsCur * 100) + 'vh)';
+      vsSteps.forEach(function (s, k) { s.classList.toggle('on', k === vsCur); });
+      if (vsCounter) vsCounter.textContent = (vsCur + 1) + ' / ' + vsPanels.length;
+      setTimeout(function () { vsLock = false; }, 750);
+    }
+    vsGo(vsCur);
+    var vsUp = document.getElementById('vsUp');
+    var vsDown = document.getElementById('vsDown');
+    if (vsUp) vsUp.addEventListener('click', function () { vsGo(vsCur - 1); });
+    if (vsDown) vsDown.addEventListener('click', function () { vsGo(vsCur + 1); });
+    vsSteps.forEach(function (s, k) { s.addEventListener('click', function () { vsGo(k); }); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowUp') vsGo(vsCur - 1);
+      if (e.key === 'ArrowDown') vsGo(vsCur + 1);
+    });
+    /* 滚轮：防抖后切换 */
+    var vsWheelLock = false;
+    window.addEventListener('wheel', function (e) {
+      if (vsWheelLock) { e.preventDefault(); return; }
+      if (e.deltaY > 12) { vsWheelLock = true; vsGo(vsCur + 1); }
+      else if (e.deltaY < -12) { vsWheelLock = true; vsGo(vsCur - 1); }
+      setTimeout(function () { vsWheelLock = false; }, 800);
+    }, { passive: false });
+    /* 触摸：上下滑动切换 */
+    var vsTy = 0;
+    var vsView = document.getElementById('vsView');
+    if (vsView) {
+      vsView.addEventListener('touchstart', function (e) { vsTy = e.touches[0].clientY; }, { passive: true });
+      vsView.addEventListener('touchend', function (e) {
+        var dy = e.changedTouches[0].clientY - vsTy;
+        if (Math.abs(dy) > 46) vsGo(vsCur + (dy < 0 ? 1 : -1));
+      }, { passive: true });
+    }
+  }

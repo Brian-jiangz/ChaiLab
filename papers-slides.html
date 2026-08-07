@@ -12,7 +12,7 @@
 <body>
 
 <!-- 顶部导航 -->
-<header class="g-head subpage" id="g-head">
+<header class="g-head" id="g-head">
   <div class="inner main">
     <a href="index.html" class="logo">
       <span class="logo-marks">
@@ -68,25 +68,16 @@
   </div>
 </header>
 
-<div class="page-banner">
-  <h1>学术论文 · 滑动浏览</h1>
-  <p>SWIPE VIEW</p>
-</div>
-
-<div class="page-wrap">
-<nav class="sub-nav" id="subNav" aria-label="sub navigation">
-      <a href="#journal">期刊论文</a>
-      <a href="#digital-twin">数字孪生</a>
-      <a href="#data">科研数据</a>
-      <a href="#model">数值模式</a>
-    </nav>
-  <div class="sub-content">
-<div class="section" id="journal">
-  <div class="sec-head">
-    <span class="en">01 · 板块</span>
-    <h2>期刊论文</h2>
-  </div>
-  <ul class="papers tl">
+<div class="vs-view" id="vsView">
+  <div class="vs-track" id="vsTrack">
+<section class="vs-panel">
+      <div class="vs-bg" style="background-image:linear-gradient(rgba(7,24,42,.78),rgba(7,24,42,.78)),url(images/mel_digital_twin.png)"></div>
+      <div class="vs-inner vs-scroll">
+        <span class="vs-num">01</span>
+        <h2>期刊论文</h2>
+        <p class="vs-p">课题组发表的同行评审期刊论文。</p>
+        <span class="vs-line"></span>
+        <ul class="papers tl">
   <li class="tl-group">
     <div class="tl-year">2026</div>
     <ul class="tl-items">
@@ -127,13 +118,16 @@
     </ul>
   </li>
 </ul>
-</div>
-<div class="section" id="digital-twin">
-  <div class="sec-head">
-    <span class="en">02 · 板块</span>
-    <h2>海洋数字孪生</h2>
-  </div>
-  <div class="project-box">
+      </div>
+    </section>
+<section class="vs-panel">
+      <div class="vs-bg" style="background-image:linear-gradient(rgba(7,24,42,.78),rgba(7,24,42,.78)),url(images/mel_digital_twin.png)"></div>
+      <div class="vs-inner vs-scroll">
+        <span class="vs-num">02</span>
+        <h2>海洋数字孪生</h2>
+        <p class="vs-p">海洋数字孪生框架及其在蓝色经济创新中的应用。</p>
+        <span class="vs-line"></span>
+        <div class="project-box">
     <div class="project-hero">
             <div class="kicker">CESM-CoSiNE</div>
       <h3>CESM-CoSiNE：嵌入 CESM 的海洋生态—生物地球化学模块</h3>
@@ -159,20 +153,26 @@
       </div>
     </div>
   </div>
-</div>
-<div class="section" id="data">
-  <div class="sec-head">
-    <span class="en">03 · 板块</span>
-    <h2>科研数据</h2>
-  </div>
-  <div class="ov-desc"><p>西北太平洋与南海 Biogeochemical-Argo 浮标观测；CESM-CoSiNE 全球海洋、北太平洋与南海模拟输出（数据共享整理中）。</p></div>
-</div>
-<div class="section" id="model">
-  <div class="sec-head">
-    <span class="en">04 · 板块</span>
-    <h2>数值模式</h2>
-  </div>
-  <div class="project-box">
+      </div>
+    </section>
+<section class="vs-panel">
+      <div class="vs-bg" style="background-image:linear-gradient(rgba(7,24,42,.78),rgba(7,24,42,.78)),url(images/cosine_bg.png)"></div>
+      <div class="vs-inner vs-scroll">
+        <span class="vs-num">03</span>
+        <h2>科研数据</h2>
+        <p class="vs-p">北太平洋与南海 BGC-Argo 观测及模式输出数据。</p>
+        <span class="vs-line"></span>
+        <p class="vs-p">西北太平洋与南海 Biogeochemical-Argo 浮标观测；CESM-CoSiNE 全球海洋、北太平洋与南海模拟输出（数据共享整理中）。</p>
+      </div>
+    </section>
+<section class="vs-panel">
+      <div class="vs-bg" style="background-image:linear-gradient(rgba(7,24,42,.78),rgba(7,24,42,.78)),url(images/cosine_bg.png)"></div>
+      <div class="vs-inner vs-scroll">
+        <span class="vs-num">04</span>
+        <h2>数值模式</h2>
+        <p class="vs-p">嵌入 CESM 的 CESM-CoSiNE 海洋生态—生物地球化学模块。</p>
+        <span class="vs-line"></span>
+        <div class="project-box">
     <div class="project-hero">
             <div class="kicker">CESM-CoSiNE</div>
       <h3>CESM-CoSiNE：嵌入 CESM 的海洋生态—生物地球化学模块</h3>
@@ -198,8 +198,18 @@
       </div>
     </div>
   </div>
-</div>
+      </div>
+    </section>
   </div>
+  <button class="vs-arrow up" id="vsUp" aria-label="prev">↑</button>
+  <button class="vs-arrow down" id="vsDown" aria-label="next">↓</button>
+  <div class="vs-steps" id="vsSteps">
+<span class="on"></span>
+<span></span>
+<span></span>
+<span></span>
+  </div>
+  <div class="vs-counter" id="vsCounter">1 / 4</div>
 </div>
 <!-- 页脚 -->
 <footer class="footer">

@@ -12,7 +12,7 @@
 <body>
 
 <!-- 顶部导航 -->
-<header class="g-head subpage" id="g-head">
+<header class="g-head" id="g-head">
   <div class="inner main">
     <a href="index.html" class="logo">
       <span class="logo-marks">
@@ -68,25 +68,16 @@
   </div>
 </header>
 
-<div class="page-banner">
-  <h1>Academic Papers · Swipe View</h1>
-  <p>SWIPE VIEW</p>
-</div>
-
-<div class="page-wrap">
-<nav class="sub-nav" id="subNav" aria-label="sub navigation">
-      <a href="#journal">Journal Papers</a>
-      <a href="#digital-twin">Digital Twin</a>
-      <a href="#data">Data</a>
-      <a href="#model">Models</a>
-    </nav>
-  <div class="sub-content">
-<div class="section" id="journal">
-  <div class="sec-head">
-    <span class="en">01 · SECTION</span>
-    <h2>Journal Papers</h2>
-  </div>
-  <ul class="papers tl">
+<div class="vs-view" id="vsView">
+  <div class="vs-track" id="vsTrack">
+<section class="vs-panel">
+      <div class="vs-bg" style="background-image:linear-gradient(rgba(7,24,42,.78),rgba(7,24,42,.78)),url(../images/mel_digital_twin.png)"></div>
+      <div class="vs-inner vs-scroll">
+        <span class="vs-num">01</span>
+        <h2>Journal Papers</h2>
+        <p class="vs-p">Peer-reviewed journal publications of the group.</p>
+        <span class="vs-line"></span>
+        <ul class="papers tl">
   <li class="tl-group">
     <div class="tl-year">2026</div>
     <ul class="tl-items">
@@ -127,13 +118,16 @@
     </ul>
   </li>
 </ul>
-</div>
-<div class="section" id="digital-twin">
-  <div class="sec-head">
-    <span class="en">02 · SECTION</span>
-    <h2>Ocean Digital Twin</h2>
-  </div>
-  <div class="project-box">
+      </div>
+    </section>
+<section class="vs-panel">
+      <div class="vs-bg" style="background-image:linear-gradient(rgba(7,24,42,.78),rgba(7,24,42,.78)),url(../images/mel_digital_twin.png)"></div>
+      <div class="vs-inner vs-scroll">
+        <span class="vs-num">02</span>
+        <h2>Ocean Digital Twin</h2>
+        <p class="vs-p">The ocean digital twin framework and its applications in blue-economy innovation.</p>
+        <span class="vs-line"></span>
+        <div class="project-box">
     <div class="project-hero">
             <div class="kicker">CESM-CoSiNE</div>
       <h3>CESM-CoSiNE: An Ocean Ecosystem–Biogeochemistry Module Embedded in CESM</h3>
@@ -159,20 +153,26 @@
       </div>
     </div>
   </div>
-</div>
-<div class="section" id="data">
-  <div class="sec-head">
-    <span class="en">03 · SECTION</span>
-    <h2>Research Data</h2>
-  </div>
-  <div class="ov-desc"><p>BGC-Argo float observations in the western North Pacific and the South China Sea; CESM-CoSiNE simulation outputs (data sharing under preparation).</p></div>
-</div>
-<div class="section" id="model">
-  <div class="sec-head">
-    <span class="en">04 · SECTION</span>
-    <h2>Numerical Models</h2>
-  </div>
-  <div class="project-box">
+      </div>
+    </section>
+<section class="vs-panel">
+      <div class="vs-bg" style="background-image:linear-gradient(rgba(7,24,42,.78),rgba(7,24,42,.78)),url(../images/cosine_bg.png)"></div>
+      <div class="vs-inner vs-scroll">
+        <span class="vs-num">03</span>
+        <h2>Research Data</h2>
+        <p class="vs-p">BGC-Argo observations and model outputs for the North Pacific and the South China Sea.</p>
+        <span class="vs-line"></span>
+        <p class="vs-p">BGC-Argo float observations in the western North Pacific and the South China Sea; CESM-CoSiNE simulation outputs (data sharing under preparation).</p>
+      </div>
+    </section>
+<section class="vs-panel">
+      <div class="vs-bg" style="background-image:linear-gradient(rgba(7,24,42,.78),rgba(7,24,42,.78)),url(../images/cosine_bg.png)"></div>
+      <div class="vs-inner vs-scroll">
+        <span class="vs-num">04</span>
+        <h2>Numerical Models</h2>
+        <p class="vs-p">The CESM-CoSiNE marine ecosystem-biogeochemistry module embedded in CESM.</p>
+        <span class="vs-line"></span>
+        <div class="project-box">
     <div class="project-hero">
             <div class="kicker">CESM-CoSiNE</div>
       <h3>CESM-CoSiNE: An Ocean Ecosystem–Biogeochemistry Module Embedded in CESM</h3>
@@ -198,8 +198,18 @@
       </div>
     </div>
   </div>
-</div>
+      </div>
+    </section>
   </div>
+  <button class="vs-arrow up" id="vsUp" aria-label="prev">↑</button>
+  <button class="vs-arrow down" id="vsDown" aria-label="next">↓</button>
+  <div class="vs-steps" id="vsSteps">
+<span class="on"></span>
+<span></span>
+<span></span>
+<span></span>
+  </div>
+  <div class="vs-counter" id="vsCounter">1 / 4</div>
 </div>
 <!-- 页脚 -->
 <footer class="footer">

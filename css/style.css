@@ -845,3 +845,64 @@ a:focus-visible, button:focus-visible, .hdots span:focus-visible {
 .ov-desc { border-left: 3px solid var(--gold); padding: 8px 0 8px 22px; max-width: 860px; }
 .ov-desc p { font-size: .9375em; color: var(--ink-2); line-height: 2; }
 @media (max-width: 900px) { .ov-grid { grid-template-columns: 1fr; } }
+
+/* ===== 二级内容：Hero 式垂直全屏滑动 ===== */
+.vs-view { position: fixed; inset: 0; z-index: 5; overflow: hidden; background: var(--navy); }
+.vs-track { position: absolute; inset: 0; transition: transform .7s cubic-bezier(.77, 0, .18, 1); will-change: transform; }
+.vs-panel {
+  position: absolute; left: 0; right: 0; height: 100vh; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; color: #fff; padding: 40px 24px;
+}
+.vs-bg { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 0; }
+.vs-inner { position: relative; z-index: 2; max-width: 900px; width: 100%; max-height: 100%; }
+.vs-inner.vs-scroll { overflow-y: auto; padding: 20px 8px; scrollbar-width: thin; }
+.vs-num { font-size: 13px; letter-spacing: .5em; color: var(--gold); display: block; margin-bottom: 22px; }
+.vs-panel h2 { font-size: 38px; letter-spacing: .1em; font-weight: 600; line-height: 1.4; margin-bottom: 20px; text-shadow: 0 2px 20px rgba(0,0,0,.3); }
+.vs-panel .vs-p { font-size: 15px; color: rgba(255,255,255,.82); line-height: 2; max-width: 720px; margin: 0 auto; font-weight: 300; }
+.vs-line { width: 44px; height: 1px; background: var(--gold); margin: 26px auto; display: block; }
+.vs-panel .project-box { text-align: left; margin: 0 auto; background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.15); }
+.vs-panel .project-hero { background: rgba(255,255,255,.04); }
+.vs-panel .project-body h4 { color: var(--gold); }
+.vs-panel .project-body p, .vs-panel .project-body li { color: rgba(255,255,255,.8); }
+.vs-panel .btn-line { border-color: rgba(255,255,255,.5); color: #fff; }
+.vs-panel .papers.tl { background: rgba(255,255,255,.05); padding: 24px 28px; text-align: left; }
+.vs-panel .papers .tl-year, .vs-panel .papers .t { color: #fff; }
+.vs-panel .papers .a, .vs-panel .papers .j { color: rgba(255,255,255,.65); }
+.vs-panel .papers .j a { color: var(--gold); }
+.vs-panel .intro-card { border-top-color: rgba(255,255,255,.2); }
+.vs-panel .intro-card p, .vs-panel .pi-bio { color: rgba(255,255,255,.85); }
+.vs-panel .chai-sec .sec-head h2, .vs-panel .chai-sec h2 { color: #fff; }
+.vs-panel .chai-head, .vs-panel .chai-grid { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.15); }
+.vs-panel .chai-title, .vs-panel .chai-col h3, .vs-panel .chai-info b, .vs-panel .chai-pubs .pub-t b { color: #fff; }
+.vs-panel .chai-bio, .vs-panel .chai-timeline .tl-t, .vs-panel .chai-pubs .pub-t { color: rgba(255,255,255,.85); }
+.vs-panel .chai-interests li { color: var(--gold); border-color: rgba(255,255,255,.3); background: rgba(255,255,255,.08); }
+.vs-panel .members .member { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.15); }
+.vs-panel .member h4 { color: #fff; }
+.vs-panel .member .dir, .vs-panel .member .email { color: rgba(255,255,255,.7); }
+.vs-arrow {
+  position: fixed; left: 50%; transform: translateX(-50%); z-index: 8;
+  width: 52px; height: 42px; background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.3); color: #fff; font-size: 20px;
+  cursor: pointer; transition: .25s; display: flex; align-items: center; justify-content: center;
+}
+.vs-arrow:hover { background: rgba(255,255,255,.25); }
+.vs-arrow.up { top: 84px; }
+.vs-arrow.down { bottom: 30px; }
+.vs-steps {
+  position: fixed; right: 26px; top: 50%; transform: translateY(-50%); z-index: 8;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.vs-steps span { width: 4px; height: 22px; background: rgba(255,255,255,.25); cursor: pointer; transition: background .3s; }
+.vs-steps span.on { background: var(--gold); }
+.vs-counter {
+  position: fixed; right: 40px; bottom: 30px; z-index: 8;
+  color: rgba(255,255,255,.6); font-size: 13px; letter-spacing: .2em; font-variant-numeric: tabular-nums;
+}
+@media (max-width: 900px) {
+  .vs-panel h2 { font-size: 26px; }
+  .vs-panel .vs-p { font-size: 14px; }
+  .vs-arrow { width: 44px; height: 36px; }
+  .vs-arrow.up { top: 72px; }
+  .vs-steps { right: 12px; }
+}

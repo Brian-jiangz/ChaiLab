@@ -12,7 +12,7 @@
 <body>
 
 <!-- 顶部导航 -->
-<header class="g-head subpage" id="g-head">
+<header class="g-head" id="g-head">
   <div class="inner main">
     <a href="index.html" class="logo">
       <span class="logo-marks">
@@ -68,24 +68,15 @@
   </div>
 </header>
 
-<div class="page-banner">
-  <h1>成员介绍 · 滑动浏览</h1>
-  <p>SWIPE VIEW</p>
-</div>
-
-<div class="page-wrap">
-<nav class="sub-nav" id="subNav" aria-label="sub navigation">
-      <a href="about.html#about-group">课题组简介</a>
-      <a href="about.html#chai">柴扉教授</a>
-      <a href="members.html">成员介绍</a>
-    </nav>
-  <div class="sub-content">
-<div class="section" id="about-group">
-  <div class="sec-head">
-    <span class="en">01 · 板块</span>
-    <h2>课题组简介</h2>
-  </div>
-  <div class="section" id="about-group">
+<div class="vs-view" id="vsView">
+  <div class="vs-track" id="vsTrack">
+<section class="vs-panel">
+      <div class="vs-bg" style="background-image:linear-gradient(rgba(7,24,42,.8),rgba(7,24,42,.8)),url(images/cosine_bg.png)"></div>
+      <div class="vs-inner vs-scroll">
+        <span class="vs-num">01</span>
+        <h2>课题组简介</h2>
+        <span class="vs-line"></span>
+        <div class="section" id="about-group">
   <div class="intro-card intro-full">
     <p>本课题组依托厦门大学海洋生物地球化学全国重点实验室，长期从事海洋物理—生态—生物地球化学耦合研究，聚焦海洋碳循环、营养盐循环与生态系统对气候变化的响应与反馈。</p>
     <p>课题组以自主发展的 CESM-CoSiNE 海洋生态系统—生物地球化学模块为核心工具，结合观测资料与数值模拟，研究北太平洋、南海及全球大洋中浮游生态系统与碳循环的调控机制，并拓展至古气候重建与海洋数字孪生等前沿方向。</p>
@@ -93,13 +84,15 @@
     <p style="margin-top:28px"><a class="btn btn-solid" href="members.html">了解课题组成员 →</a></p>
   </div>
 </div>
-</div>
-<div class="section" id="chai">
-  <div class="sec-head">
-    <span class="en">02 · 板块</span>
-    <h2>柴扉教授</h2>
-  </div>
-  <div class="section chai-sec" id="chai">
+      </div>
+    </section>
+<section class="vs-panel">
+      <div class="vs-bg" style="background-image:linear-gradient(rgba(7,24,42,.8),rgba(7,24,42,.8)),url(images/cosine_bg.png)"></div>
+      <div class="vs-inner vs-scroll">
+        <span class="vs-num">02</span>
+        <h2>柴扉教授</h2>
+        <span class="vs-line"></span>
+        <div class="section chai-sec" id="chai">
   <div class="sec-head">
     <span class="en">PRINCIPAL INVESTIGATOR</span>
     <h2>柴扉 教授</h2>
@@ -195,13 +188,15 @@
     </div>
   </div>
 </div>
-</div>
-<div class="section" id="members">
-  <div class="sec-head">
-    <span class="en">03 · 板块</span>
-    <h2>成员介绍</h2>
-  </div>
-  <div class="section">
+      </div>
+    </section>
+<section class="vs-panel">
+      <div class="vs-bg" style="background-image:linear-gradient(rgba(7,24,42,.8),rgba(7,24,42,.8)),url(images/cosine_bg.png)"></div>
+      <div class="vs-inner vs-scroll">
+        <span class="vs-num">03</span>
+        <h2>成员介绍</h2>
+        <span class="vs-line"></span>
+        <div class="section">
   <div class="sec-head">
     <h2>教职工</h2>
   </div>
@@ -311,8 +306,17 @@
     </div>
   </div>
 </div>
-</div>
+      </div>
+    </section>
   </div>
+  <button class="vs-arrow up" id="vsUp" aria-label="prev">↑</button>
+  <button class="vs-arrow down" id="vsDown" aria-label="next">↓</button>
+  <div class="vs-steps" id="vsSteps">
+<span class="on"></span>
+<span></span>
+<span></span>
+  </div>
+  <div class="vs-counter" id="vsCounter">1 / 3</div>
 </div>
 <!-- 页脚 -->
 <footer class="footer">
