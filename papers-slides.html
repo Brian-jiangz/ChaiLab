@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
-<title>研究方向 | 柴扉教授课题组 · Xiamen University</title>
+<title>学术论文 · 滑动浏览 | 柴扉教授课题组 · Xiamen University</title>
 <link rel="stylesheet" href="css/style.css">
 <script>document.documentElement.classList.add("anim");</script>
 <script src="js/home.js" defer></script>
@@ -12,7 +12,7 @@
 <body>
 
 <!-- 顶部导航 -->
-<header class="g-head subpage" id="g-head">
+<header class="g-head" id="g-head">
   <div class="inner main">
     <a href="index.html" class="logo">
       <span class="logo-marks">
@@ -33,7 +33,7 @@
           <dd><a href="members.html">成员介绍</a></dd>
           </dl></div>
         </li>
-        <li class="has-sub"><a href="research.html" class="active">研究方向</a>
+        <li class="has-sub"><a href="research.html">研究方向</a>
           <div class="sub"><dl>
           <dd><a href="research.html#r0">生态系统与生物地球化学模拟</a></dd>
           <dd><a href="research.html#r1">碳循环与气候反馈</a></dd>
@@ -68,55 +68,46 @@
   </div>
 </header>
 
-<div class="page-banner">
-  <h1>研究方向</h1>
-  <p>RESEARCH AREAS</p>
-</div>
-
-<div class="section ov-sec">
-  <div class="sec-head">
-    <span class="en">RESEARCH AREAS</span>
-    <h2>研究方向</h2>
+<div class="sv-view" id="svView">
+  <div class="sv-stage">
+      <section class="sv-slide on">
+        <div class="sv-num">01</div>
+        <h2>期刊论文</h2>
+        <p>课题组发表的同行评审期刊论文。</p>
+        <span class="sv-line"></span>
+        <a class="btn btn-sm btn-gold" href="papers.html#journal">了解更多 →</a>
+      </section>
+      <section class="sv-slide">
+        <div class="sv-num">02</div>
+        <h2>数字孪生</h2>
+        <p>海洋数字孪生框架及其在蓝色经济创新中的应用。</p>
+        <span class="sv-line"></span>
+        <a class="btn btn-sm btn-gold" href="papers.html#digital-twin">了解更多 →</a>
+      </section>
+      <section class="sv-slide">
+        <div class="sv-num">03</div>
+        <h2>科研数据</h2>
+        <p>北太平洋与南海 BGC-Argo 观测及模式输出数据。</p>
+        <span class="sv-line"></span>
+        <a class="btn btn-sm btn-gold" href="papers.html#data">了解更多 →</a>
+      </section>
+      <section class="sv-slide">
+        <div class="sv-num">04</div>
+        <h2>数值模式</h2>
+        <p>嵌入 CESM 的 CESM-CoSiNE 海洋生态—生物地球化学模块。</p>
+        <span class="sv-line"></span>
+        <a class="btn btn-sm btn-gold" href="papers.html#model">了解更多 →</a>
+      </section>
   </div>
-  <div class="ov-grid">
-      <a class="ov-card" href="research-slides.html?n=0">
-        <span class="ov-num">01</span>
-        <h3>海洋生态系统与生物地球化学模拟</h3>
-        <p>CESM-CoSiNE 耦合模式研发与模拟。</p>
-        <span class="ov-go">进入 →</span>
-      </a>
-      <a class="ov-card" href="research-slides.html?n=1">
-        <span class="ov-num">02</span>
-        <h3>海洋碳循环与气候反馈</h3>
-        <p>海洋碳循环对气候变化的响应。</p>
-        <span class="ov-go">进入 →</span>
-      </a>
-      <a class="ov-card" href="research-slides.html?n=2">
-        <span class="ov-num">03</span>
-        <h3>次中尺度过程与生态效应</h3>
-        <p>锋面、涡旋对生态系统与碳输出的调控。</p>
-        <span class="ov-go">进入 →</span>
-      </a>
-      <a class="ov-card" href="research-slides.html?n=3">
-        <span class="ov-num">04</span>
-        <h3>古气候与古海洋模拟</h3>
-        <p>关键时期古气候模拟研究。</p>
-        <span class="ov-go">进入 →</span>
-      </a>
-      <a class="ov-card" href="research-slides.html?n=4">
-        <span class="ov-num">05</span>
-        <h3>海洋数字孪生</h3>
-        <p>海洋数字孪生系统构建。</p>
-        <span class="ov-go">进入 →</span>
-      </a>
-      <a class="ov-card" href="research-slides.html?n=5">
-        <span class="ov-num">06</span>
-        <h3>观测—模拟融合</h3>
-        <p>观测与模式结合改进参数化。</p>
-        <span class="ov-go">进入 →</span>
-      </a>
+  <button class="sv-arrow prev" id="svPrev" aria-label="prev">‹</button>
+  <button class="sv-arrow next" id="svNext" aria-label="next">›</button>
+  <div class="sv-dots" id="svDots">
+        <span class="on"><i></i></span>
+        <span class=""><i></i></span>
+        <span class=""><i></i></span>
+        <span class=""><i></i></span>
   </div>
-
+  <div class="sv-counter" id="svCounter">1 / 4</div>
 </div>
 <!-- 页脚 -->
 <footer class="footer">

@@ -1499,7 +1499,35 @@ def slides_page(key, lang, title, en_sub):
   <div class="sv-counter" id="svCounter">1 / {slides.count('<section class="sv-slide')}</div>
 </div>'''
     fname = key + '-slides.html'
-    return page(fname, title, en_sub, body, lang, subpage=True, scripts='../js/home.js' if lang == EN else 'js/home.js')
+    return page(fname, title, en_sub, body, lang, banner=False, scripts='../js/home.js' if lang == EN else 'js/home.js')
+
+def overview_page(key, lang, title, en_sub, cards, slides_title):
+    """一级总览页：汇总卡片 + 进入二级滑动视图的入口"""
+    card_html = '\n'.join(
+        f'''      <a class="ov-card" href="{link}?n={i}">
+        <span class="ov-num">{num}</span>
+        <h3>{t}</h3>
+        <p>{d}</p>
+        <span class="ov-go">{'Enter' if lang == EN else '进入'} →</span>
+      </a>''' for i, (num, t, d, link) in enumerate(cards))
+    if slides_title:
+        slides_link = key + '-slides.html'
+        entry = f'''  <p style="text-align:center;margin-top:44px">
+    <a class="btn btn-sm btn-line" href="{slides_link}">{'Enter Swipe View' if lang == EN else '进入滑动浏览'} →</a>
+  </p>'''
+    else:
+        entry = ''
+    body = f'''<div class="section ov-sec">
+  <div class="sec-head">
+    <span class="en">{en_sub}</span>
+    <h2>{title}</h2>
+  </div>
+  <div class="ov-grid">
+{card_html}
+  </div>
+{entry}
+</div>'''
+    return body
 
 def main():
     specs = {
@@ -1534,11 +1562,45 @@ def main():
     # 中文版
     import os
     os.makedirs('en', exist_ok=True)
+
+    # ---- 一级总览页 + 二级滑动视图 ----
+    overviews = {
+        'about': ('成员介绍', 'GROUP OVERVIEW', [
+            ('01', '课题组简介', '课题组研究概况与招生信息。', 'about-slides.html'),
+            ('02', '柴扉教授', '个人档案：学术经历、研究领域与代表性论文。', 'about-slides.html'),
+            ('03', '成员介绍', '教职工、博士后与研究生名单。', 'about-slides.html'),
+        ]),
+        'research': ('研究方向', 'RESEARCH AREAS', [
+            ('01', '海洋生态系统与生物地球化学模拟', 'CESM-CoSiNE 耦合模式研发与模拟。', 'research-slides.html'),
+            ('02', '海洋碳循环与气候反馈', '海洋碳循环对气候变化的响应。', 'research-slides.html'),
+            ('03', '次中尺度过程与生态效应', '锋面、涡旋对生态系统与碳输出的调控。', 'research-slides.html'),
+            ('04', '古气候与古海洋模拟', '关键时期古气候模拟研究。', 'research-slides.html'),
+            ('05', '海洋数字孪生', '海洋数字孪生系统构建。', 'research-slides.html'),
+            ('06', '观测—模拟融合', '观测与模式结合改进参数化。', 'research-slides.html'),
+        ]),
+        'papers': ('学术论文', 'ACADEMIC OUTPUTS', [
+            ('01', '期刊论文', '课题组发表的同行评审论文。', 'papers-slides.html'),
+            ('02', '数字孪生', '海洋数字孪生综述与框架。', 'papers-slides.html'),
+            ('03', '科研数据', 'BGC-Argo 观测与模式输出。', 'papers-slides.html'),
+            ('04', '数值模式', 'CESM-CoSiNE 模式与报告。', 'papers-slides.html'),
+        ]),
+    }
+    for key, (title, en_sub, cards) in overviews.items():
+        body = overview_page(key, ZH, title, en_sub, cards, '')
+        html = page(key + '.html', title, en_sub, body, ZH, scripts='js/home.js')
+        open(key + '.html', 'w').write(html)
+        print('生成总览', key + '.html')
+    # 二级滑动视图
+    for key, (title, en_sub, cards) in overviews.items():
+        html = slides_page(key, ZH, title + ' · 滑动浏览', 'SWIPE VIEW')
+        open(key + '-slides.html', 'w').write(html)
+        print('生成滑动视图', key + '-slides.html')
+
     for fname, (title, en_sub, about_body) in specs.items():
-        if fname == 'about.html':
-            body = with_subnav('about', about_body['zh'] + '\n' + pi_detail_html(PI_ZH, ZH) + '\n' + members_body(ZH), ZH)
-        elif fname in body_full:
-            body = body_full[fname](ZH)
+        if fname in ('about.html', 'research.html', 'papers.html'):
+            continue
+        if fname == 'project.html':
+            body = project_box(ZH, full=True)
         else:
             body = body_fn[fname](ZH)
         html = page(fname, title, en_sub, body, ZH, scripts='js/home.js')
@@ -1552,11 +1614,43 @@ def main():
                     .replace('href="reports/', 'href="../reports/')
                     .replace('src="videos/', 'src="../videos/')
                     .replace('url(images/', 'url(../images/'))
+    # ---- 英文版总览 + 滑动视图 ----
+    overviews_en = {
+        'about': ('Members', 'GROUP OVERVIEW', [
+            ('01', 'About the Group', 'Overview of the group research and recruitment.', 'about-slides.html'),
+            ('02', 'Prof. Fei Chai', 'Profile: career, research interests, selected publications.', 'about-slides.html'),
+            ('03', 'Members', 'Faculty, postdocs, and graduate students.', 'about-slides.html'),
+        ]),
+        'research': ('Research', 'RESEARCH AREAS', [
+            ('01', 'Ecosystem & Biogeochemical Modeling', 'CESM-CoSiNE coupled modeling.', 'research-slides.html'),
+            ('02', 'Carbon Cycle & Climate Feedbacks', 'Ocean carbon cycle response to climate.', 'research-slides.html'),
+            ('03', 'Submesoscale Processes', 'Fronts and eddies regulating ecosystems.', 'research-slides.html'),
+            ('04', 'Paleoclimate Modeling', 'Earth system modeling of key periods.', 'research-slides.html'),
+            ('05', 'Ocean Digital Twin', 'Digital twin systems for the ocean.', 'research-slides.html'),
+            ('06', 'Observation\u2013Model Integration', 'Combining observations and models.', 'research-slides.html'),
+        ]),
+        'papers': ('Academic Papers', 'ACADEMIC OUTPUTS', [
+            ('01', 'Journal Papers', 'Peer-reviewed publications.', 'papers-slides.html'),
+            ('02', 'Digital Twin', 'Ocean digital twin review and framework.', 'papers-slides.html'),
+            ('03', 'Research Data', 'BGC-Argo observations and model outputs.', 'papers-slides.html'),
+            ('04', 'Numerical Models', 'CESM-CoSiNE model and reports.', 'papers-slides.html'),
+        ]),
+    }
+    for key, (title, en_sub, cards) in overviews_en.items():
+        body = overview_page(key, EN, title, en_sub, cards, '')
+        html = _en(page(key + '.html', title, en_sub, body, EN, scripts='../js/home.js'))
+        open('en/' + key + '.html', 'w').write(html)
+        print('生成总览 en/' + key + '.html')
+    for key, (title, en_sub, cards) in overviews_en.items():
+        html = _en(slides_page(key, EN, title + ' · Swipe View', 'SWIPE VIEW'))
+        open('en/' + key + '-slides.html', 'w').write(html)
+        print('生成滑动视图 en/' + key + '-slides.html')
+
     for fname, (title, en_sub, about_body) in specs_en.items():
-        if fname == 'about.html':
-            body = with_subnav('about', about_body['en'] + '\n' + pi_detail_html(PI_EN, EN) + '\n' + members_body(EN), EN)
-        elif fname in body_full:
-            body = body_full[fname](EN)
+        if fname in ('about.html', 'research.html', 'papers.html'):
+            continue
+        if fname == 'project.html':
+            body = project_box(EN, full=True)
         else:
             body = body_fn[fname](EN)
         html = _en(page(fname, title, en_sub, body, EN, scripts='../js/home.js'))

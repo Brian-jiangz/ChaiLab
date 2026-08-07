@@ -842,3 +842,64 @@ a:focus-visible, button:focus-visible, .hdots span:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
 }
+
+/* ===== 一级总览页（汇总卡片 + 入口） ===== */
+.ov-sec { padding-top: 64px; }
+.ov-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.ov-card {
+  display: flex; flex-direction: column; gap: 12px; position: relative;
+  border: 1px solid var(--line); padding: 36px 30px; text-decoration: none;
+  background: var(--paper); overflow: hidden;
+  transition: transform .3s, box-shadow .3s, border-color .3s;
+}
+.ov-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--navy); transform: scaleX(0); transform-origin: left; transition: transform .35s; }
+.ov-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(8,26,44,.12); border-color: var(--line-2); }
+.ov-card:hover::before { transform: scaleX(1); }
+.ov-card .ov-num { font-size: 14px; color: var(--gold); letter-spacing: .2em; font-weight: 600; }
+.ov-card h3 { font-size: 17px; color: var(--navy); font-weight: 600; letter-spacing: .04em; }
+.ov-card p { font-size: .8125em; color: var(--ink-3); line-height: 1.8; flex: 1; }
+.ov-card .ov-go { font-size: 12.5px; color: var(--navy); letter-spacing: .08em; opacity: 0; transform: translateX(-8px); transition: .3s; }
+.ov-card:hover .ov-go { opacity: 1; transform: none; }
+@media (max-width: 900px) { .ov-grid { grid-template-columns: 1fr; } }
+
+/* ===== 二级滑动视图（Hero 式顺序切换） ===== */
+.sv-view {
+  position: fixed; inset: 0; z-index: 5; background: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+}
+.sv-stage { position: absolute; inset: 0; }
+.sv-slide {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+  opacity: 0; transform: translateX(6%); transition: opacity .5s ease, transform .5s ease;
+  padding: 40px 60px; color: #fff; overflow-y: auto;
+}
+.sv-slide.on { opacity: 1; transform: none; z-index: 2; }
+.sv-slide .sv-num { font-size: 13px; letter-spacing: .5em; color: var(--gold); margin-bottom: 24px; }
+.sv-slide h2 { font-size: 40px; letter-spacing: .12em; font-weight: 600; line-height: 1.4; margin-bottom: 24px; text-shadow: 0 2px 20px rgba(0,0,0,.3); }
+.sv-slide > p { font-size: 16px; color: rgba(255,255,255,.82); line-height: 2; max-width: 760px; font-weight: 300; }
+.sv-slide .sv-line { width: 44px; height: 1px; background: var(--gold); margin: 30px 0; display: block; }
+.sv-slide .project-box { text-align: left; width: 100%; max-width: 860px; }
+.sv-arrow {
+  position: fixed; top: 50%; transform: translateY(-50%); z-index: 8;
+  width: 52px; height: 52px; background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.3); color: #fff; font-size: 28px;
+  cursor: pointer; transition: .25s; display: flex; align-items: center; justify-content: center;
+}
+.sv-arrow:hover { background: rgba(255,255,255,.25); }
+.sv-arrow.prev { left: 28px; }
+.sv-arrow.next { right: 28px; }
+.sv-dots { position: fixed; bottom: 36px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 8; }
+.sv-dots span { width: 46px; height: 3px; background: rgba(255,255,255,.28); cursor: pointer; position: relative; overflow: hidden; }
+.sv-dots span.on i { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; background: #fff; }
+.sv-counter {
+  position: fixed; bottom: 30px; right: 40px; z-index: 8;
+  color: rgba(255,255,255,.6); font-size: 13px; letter-spacing: .2em; font-variant-numeric: tabular-nums;
+}
+@media (max-width: 900px) {
+  .sv-slide { padding: 30px 24px; }
+  .sv-slide h2 { font-size: 26px; }
+  .sv-slide > p { font-size: 14px; }
+  .sv-arrow { display: none; }
+  .sv-counter { right: 20px; }
+}
