@@ -5,12 +5,12 @@
 ZH, EN = 'zh', 'en'
 
 NAV_ZH = [
-    ('index.html', '首页'), ('about.html', '课题组简介'), ('members.html', '成员介绍'),
+    ('index.html', '首页'), ('about.html', '课题组简介'),
     ('research.html', '研究方向'),
     ('papers.html', '发表论文'), ('news.html', '课题组动态'), ('links.html', '相关链接'),
 ]
 NAV_EN = [
-    ('index.html', 'Home'), ('about.html', 'About'), ('members.html', 'Members'),
+    ('index.html', 'Home'), ('about.html', 'About'),
     ('research.html', 'Research'),
     ('papers.html', 'Publications'), ('news.html', 'Group News'), ('links.html', 'Links'),
 ]
@@ -57,6 +57,11 @@ TXT = {
 }
 
 DD_ZH = {
+    'about': [
+        ('about.html', '课题组简介'),
+        ('about.html#chai', '柴扉教授'),
+        ('members.html', '成员介绍'),
+    ],
     'research': [
         ('research.html#r0', '生态系统与生物地球化学模拟'),
         ('research.html#r1', '碳循环与气候反馈'),
@@ -73,6 +78,11 @@ DD_ZH = {
     ],
 }
 DD_EN = {
+    'about': [
+        ('about.html', 'About the Group'),
+        ('about.html#chai', 'Prof. Fei Chai'),
+        ('members.html', 'Members'),
+    ],
     'research': [
         ('research.html#r0', 'Ecosystem & Biogeochemical Modeling'),
         ('research.html#r1', 'Carbon Cycle & Climate Feedbacks'),
@@ -96,7 +106,14 @@ def nav(active, lang, subpage=False):
     parts = []
     for f, name in items:
         cls = ' class="active"' if f == active else ''
-        if f == 'research.html':
+        if f == 'about.html':
+            subs = '\n'.join(f'          <dd><a href="{u}">{n}</a></dd>' for u, n in dd['about'])
+            parts.append(f'''        <li class="has-sub"><a href="{f}"{cls}>{name}</a>
+          <div class="sub"><dl>
+{subs}
+          </dl></div>
+        </li>''')
+        elif f == 'research.html':
             subs = '\n'.join(f'          <dd><a href="{u}">{n}</a></dd>' for u, n in dd['research'])
             parts.append(f'''        <li class="has-sub"><a href="{f}"{cls}>{name}</a>
           <div class="sub"><dl>
@@ -240,7 +257,7 @@ ABOUT_BODY = {
       <p id="join">课题组面向全球招聘博士后、博士生与硕士生，欢迎对海洋生物地球化学、气候模拟与计算海洋学感兴趣的同学加入。</p>
       <p style="margin-top:28px"><a class="btn btn-solid" href="members.html">了解课题组成员 →</a></p>
     </div>
-    <div class="pi-card">
+    <div class="pi-card" id="chai">
       <div class="pi-avatar"><img src="images/chai_fei.jpg" alt="柴扉教授"></div>
       <h3>柴扉 教授</h3>
       <div class="title">"唐世凤"海洋学科讲席教授 · PI</div>
@@ -263,7 +280,7 @@ ABOUT_BODY = {
       <p id="join">The group welcomes postdoctoral researchers and PhD/Master's students from around the world with interests in marine biogeochemistry, climate modeling, and computational oceanography.</p>
       <p style="margin-top:28px"><a class="btn btn-solid" href="members.html">Meet the Team →</a></p>
     </div>
-    <div class="pi-card">
+    <div class="pi-card" id="chai">
       <div class="pi-avatar"><img src="images/chai_fei.jpg" alt="Prof. Fei Chai"></div>
       <h3>Prof. Fei Chai</h3>
       <div class="title">Tang Shifeng Chair Professor in Marine Sciences · PI</div>
@@ -395,7 +412,8 @@ def project_box(lang, full=True):
 def members_body(lang):
     if lang == EN:
         groups = [
-            ('Faculty', [('Fei Chai', 'Chair Professor / PI', 'Marine biogeochemistry, physics-ecology coupling, climate modeling', 'fchai@xmu.edu.cn')]),
+            ('Faculty', [('Fei Chai', 'Chair Professor / PI', 'Marine biogeochemistry, physics-ecology coupling, climate modeling', 'fchai@xmu.edu.cn'),
+                          ('Xiaoyi Wang', 'Research Assistant', '\u2014', '\u2014')]),
             ('Postdocs', [('Wang Qian', 'Postdoctoral Researcher', '\u2014', '\u2014'),
                           ('Yang Kai', 'Postdoctoral Researcher', '\u2014', '\u2014')]),
             ('PhD Students', [('Zhao Kewei', 'PhD Student', '\u2014', '\u2014'),
@@ -408,7 +426,8 @@ def members_body(lang):
         ]
     else:
         groups = [
-            ('教授 / 研究员', [('柴扉', '讲席教授 / PI', '海洋生物地球化学、物理—生态耦合、气候模拟', 'fchai@xmu.edu.cn')]),
+            ('教职工', [('柴扉', '讲席教授 / PI', '海洋生物地球化学、物理—生态耦合、气候模拟', 'fchai@xmu.edu.cn'),
+                      ('王晓依', '科研助理', '—', '—')]),
             ('博士后', [('王谦', '博士后', '—', '—'),
                       ('杨凯', '博士后', '—', '—')]),
             ('博士研究生', [('赵柯崴', '博士研究生', '—', '—'),
@@ -496,66 +515,15 @@ PAPERS = [
     ('2026', 'Digital twin of the ocean as a catalyst for blue economy innovation',
      'Chai F., Deng Q., Dai M., Wang X., Staneva J., Behera S. K., Tonani M., Liu J., Yu Z., Peng Z.',
      'National Science Review, 13(3): nwag012', '10.1093/nsr/nwag012'),
-    ('2026', 'Physical dynamics modulate deep-sea carbon flux in the western Pacific marginal sea',
-     'Xu C., Huang Y., Xing X., Qiu G., Poteau A., Wang H., Hu J., Chai F., Huang B.',
-     'Limnology and Oceanography, 71: e70440', '10.1002/lno.70440'),
-    ('2025', 'Contrasting climate oscillations impacts on phytoplankton in the western and eastern tropical Pacific',
-     'An L., Laws E. A., Liu X., Chen R., Wang S., Hu S., Zhang Y., Huang Y., Xu F., Chai F., Huang B.',
-     'Nature Communications, 16', '10.1038/s41467-025-65947-x'),
-    ('2025', 'Spatial variation of upper ocean chlorophyll-a response across the track of a typhoon',
-     'Lin S., Wang Y., Pokavanich T., Ben Ismail S., Xiu P., Zhang W.-Z., Chai F.',
-     'Journal of Geophysical Research: Oceans, 130', '10.1029/2025JC022915'),
-    ('2025', 'Source apportionment of atmospheric iron in northern China based on 3-year continuous measurements',
-     'Zhang T., Xiang Y., Liu Y., Yan C., Zhu B., Liu X., Fan X., Wang Y., Zhang H., Wang Y., Chen S., Chai F., Zhu T., Zheng M.',
-     'Geophysical Research Letters, 52', '10.1029/2024GL114462'),
-    ('2025', 'Seasonal variability of phytoplankton following extreme aerosol events in the western subarctic Pacific',
-     'Zhang H.-R., Wang Y., Xiu P., Ma W., Zhang R., Feng Y., Zheng M., Zhang T., Chen S., Li W., Ben Ismail S., Jiang H.-B., Chai F.',
-     'Geophysical Research Letters, 52', '10.1029/2025GL117114'),
-    ('2025', 'Evaluating the potential impacts of mesoscale eddies on the distribution and abundance of an endangered species',
-     'Fu Y., Wu X., Jin P., Chen X., Xing Q., Chai F., Cao J., Yu W.',
-     'Marine Environmental Research, 209: 107337', '10.1016/j.marenvres.2025.107337'),
     ('2025', 'Rising trends in winter phytoplankton blooms in the northern Arabian Sea over the last two decades',
      'Song Z., Kang D., Chai F.',
      'Geophysical Research Letters, 52', '10.1029/2025GL116509'),
-    ('2025', 'Advancing ocean monitoring and knowledge for societal benefit: the urgency to expand Argo to OneArgo',
-     'Thierry V., Claustre H., et al. (incl. Chai F.)',
-     'Frontiers in Marine Science, 12', '10.3389/fmars.2025.1593904'),
-    ('2025', 'Decreased air-sea CO\u2082 flux during the persistent marine heatwave',
-     'Ren G., Na R., Zhang S., Rong Z., Ma W., Chai F., Tian Y., Gao Y., Lu L.',
-     'Journal of Geophysical Research: Oceans, 130', '10.1029/2024JC021525'),
     ('2025', 'Arctic warming as a potential trigger for the warm blob in the northeast Pacific',
      'Chen H.-H., Wang Y., Li X., Wan L., Yuan Y., Yan Y., Hannah C., Chai F.',
      'npj Climate and Atmospheric Science, 8', '10.1038/s41612-025-00900-9'),
-    ('2025', 'Global eddy-induced variation in the intensities of tropical cyclones',
-     'You X., Wang Y., Ben Ismail S., Lin S., Khamis Z. A., Hamouda A. Z., El-Gharabawy S., Zhang R., Chai F.',
-     'Environmental Research Communications, 7', '10.1088/2515-7620/adbe29'),
-    ('2025', 'Toward an integrated pantropical ocean observing system',
-     'Foltz G. R., Eddebbar Y. A., Sprintall J., et al. (incl. Chai F.)',
-     'Frontiers in Marine Science, 12', '10.3389/fmars.2025.1539183'),
-    ('2024', 'A consistent ocean oxygen profile dataset with new quality control and bias correction',
-     'Gouretski V., Cheng L., Du J., Xing X., Chai F., Tan Z.',
-     'Earth System Science Data, 16: 5503-5524', '10.5194/essd-16-5503-2024'),
-    ('2024', 'Contrasting supply dynamics of dissolved iron and nitrate shape the biogeography of phytoplankton in the western North Pacific',
-     'Ma W., Zhao Z., Wang T., Liang B., Wang Y., Xiu P., Chai F.',
-     'Geophysical Research Letters, 51', '10.1029/2024GL111335'),
     ('2024', 'Development of a total variation diminishing (TVD) sea ice transport scheme for the ocean model',
      'Wang Q., Zhang Y., Chai F., Zhang Y. J., Zampieri L.',
      'Geoscientific Model Development, 17: 7067-7086', '10.5194/gmd-17-7067-2024'),
-    ('2024', 'Isopycnal submesoscale stirring crucially sustaining subsurface chlorophyll maximum in the subtropical gyre',
-     'Cao H., Freilich M., Song X., Jing Z., Fox-Kemper B., Qiu B., Hetland R. D., Chai F., Ruiz S., Chen D.',
-     'Geophysical Research Letters, 51', '10.1029/2023GL105793'),
-    ('2024', 'Remote estimates of sea surface nitrate and its trends from ocean color in the Northwest Pacific',
-     'Chen S., Meng Y., Shang S., Zheng M., Wang Y., Chai F.',
-     'Journal of Geophysical Research: Oceans, 129', '10.1029/2023JC019846'),
-    ('2024', 'Eddy impacts on abundance and habitat distribution of a large predatory squid in the Southwest Atlantic Ocean',
-     'Jin P., Zhang Y., Du Y., Chen X., Kindong R., Xue H., Chai F., Yu W.',
-     'Marine Environmental Research, 195: 106368', '10.1016/j.marenvres.2024.106368'),
-    ('2024', 'Efficient biological carbon export to the mesopelagic ocean induced by submesoscale fronts',
-     'Guo M., Xing X., Xiu P., Dall\u2019Olmo G., Chen W., Chai F.',
-     'Nature Communications, 15: 1007', '10.1038/s41467-024-44846-7'),
-    ('2024', 'Complexities of regulating climate by promoting marine primary production with ocean iron fertilization',
-     'Jiang H.-B., Hutchins D. A., Zhang H.-R., Feng Y.-Y., Zhang R.-F., Sun W.-W., Ma W., Bai Y., Wells M., He D., Jiao N., Wang Y., Chai F.',
-     'Earth-Science Reviews, 250: 104675', '10.1016/j.earscirev.2024.104675'),
 ]
 
 def papers_body(lang):
@@ -742,9 +710,9 @@ def home_body(lang):
         pub_head = ('Publications', 'SELECTED PUBLICATIONS', 'All Publications')
         pubs = [
             ('2026', 'Digital twin of the ocean as a catalyst for blue economy innovation', 'Chai F., Deng Q., Dai M., et al. National Science Review, 13(3): nwag012.'),
-            ('2026', 'Physical dynamics modulate deep-sea carbon flux in the western Pacific marginal sea', 'Xu C., Huang Y., Xing X., et al. Limnology and Oceanography, 71: e70440.'),
-            ('2025', 'Contrasting climate oscillations impacts on phytoplankton in the western and eastern tropical Pacific', 'An L., Laws E. A., Liu X., et al. Nature Communications, 16.'),
             ('2025', 'Rising trends in winter phytoplankton blooms in the northern Arabian Sea over the last two decades', 'Song Z., Kang D., Chai F. Geophysical Research Letters, 52.'),
+            ('2025', 'Arctic warming as a potential trigger for the warm blob in the northeast Pacific', 'Chen H.-H., Wang Y., Li X., et al. npj Climate and Atmospheric Science, 8.'),
+            ('2024', 'Development of a total variation diminishing (TVD) sea ice transport scheme', 'Wang Q., Zhang Y., Chai F., et al. Geoscientific Model Development, 17.'),
         ]
         join = [
             ('Recruitment', 'We recruit PhD and Master\u2019s students year-round and welcome postdoctoral applicants from around the world with interests in marine biogeochemistry, climate modeling, and computational oceanography.', 'mailto:fchai@xmu.edu.cn', 'Send an Application'),
@@ -832,9 +800,9 @@ def home_body(lang):
         pub_head = ('代表性论文', 'SELECTED PUBLICATIONS', '全部论文')
         pubs = [
             ('2026', 'Digital twin of the ocean as a catalyst for blue economy innovation', 'Chai F., Deng Q., Dai M., 等. National Science Review, 13(3): nwag012.'),
-            ('2026', 'Physical dynamics modulate deep-sea carbon flux in the western Pacific marginal sea', 'Xu C., Huang Y., Xing X., 等. Limnology and Oceanography, 71: e70440.'),
-            ('2025', 'Contrasting climate oscillations impacts on phytoplankton in the western and eastern tropical Pacific', 'An L., Laws E. A., Liu X., 等. Nature Communications, 16.'),
             ('2025', 'Rising trends in winter phytoplankton blooms in the northern Arabian Sea over the last two decades', 'Song Z., Kang D., Chai F. Geophysical Research Letters, 52.'),
+            ('2025', 'Arctic warming as a potential trigger for the warm blob in the northeast Pacific', 'Chen H.-H., Wang Y., Li X., 等. npj Climate and Atmospheric Science, 8.'),
+            ('2024', 'Development of a total variation diminishing (TVD) sea ice transport scheme', 'Wang Q., Zhang Y., Chai F., 等. Geoscientific Model Development, 17.'),
         ]
         join = [
             ('招生招聘', '课题组长期招收博士研究生、硕士研究生，并面向全球招聘博士后。欢迎对海洋生物地球化学、气候模拟与计算海洋学感兴趣的同学与我们联系。', 'mailto:fchai@xmu.edu.cn', '发送申请邮件'),

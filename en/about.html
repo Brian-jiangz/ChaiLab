@@ -26,8 +26,13 @@
     <nav class="g-nav">
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="about.html" class="active">About</a></li>
-        <li><a href="members.html">Members</a></li>
+        <li class="has-sub"><a href="about.html" class="active">About</a>
+          <div class="sub"><dl>
+          <dd><a href="about.html">About the Group</a></dd>
+          <dd><a href="about.html#chai">Prof. Fei Chai</a></dd>
+          <dd><a href="members.html">Members</a></dd>
+          </dl></div>
+        </li>
         <li class="has-sub"><a href="research.html">Research</a>
           <div class="sub"><dl>
           <dd><a href="research.html#r0">Ecosystem & Biogeochemical Modeling</a></dd>
@@ -69,7 +74,7 @@
       <p id="join">The group welcomes postdoctoral researchers and PhD/Master's students from around the world with interests in marine biogeochemistry, climate modeling, and computational oceanography.</p>
       <p style="margin-top:28px"><a class="btn btn-solid" href="members.html">Meet the Team →</a></p>
     </div>
-    <div class="pi-card">
+    <div class="pi-card" id="chai">
       <div class="pi-avatar"><img src="../images/chai_fei.jpg" alt="Prof. Fei Chai"></div>
       <h3>Prof. Fei Chai</h3>
       <div class="title">Tang Shifeng Chair Professor in Marine Sciences · PI</div>
