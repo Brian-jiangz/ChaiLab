@@ -828,14 +828,19 @@ a:focus-visible, button:focus-visible, .hdots span:focus-visible {
 /* ===== 柴教授 → 成员介绍：Hero 覆盖式切换 ===== */
 .chai-section {
   min-height: 100vh; display: flex; align-items: center;
+  position: relative; z-index: 5;
   transition: transform .8s cubic-bezier(.77, 0, .18, 1), opacity .6s ease;
-  will-change: transform;
+  will-change: transform, opacity;
 }
 .chai-section > .chai-sec { width: 100%; }
-.chai-section.leave { transform: translateY(100vh); opacity: .4; }
+.chai-section.leave { transform: translateY(100vh); opacity: .35; }
 .members-cover {
   position: relative; z-index: 20; background: var(--paper);
+  transform: translateY(100vh);
+  transition: transform .8s cubic-bezier(.77, 0, .18, 1);
+  will-change: transform;
 }
+.members-cover.show { transform: translateY(0); }
 .members-cover .section { max-width: 1200px; }
 @media (max-width: 900px) {
   .chai-section { min-height: 0; }
