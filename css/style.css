@@ -590,7 +590,8 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
   .g-head .inner.main { grid-template-columns: auto 1fr auto auto; }
   .nav-toggle { display: block; }
   .g-nav {
-    display: none; position: absolute; top: 74px; left: 0; right: 0;
+    display: none; position: absolute; top: 74px; left: auto; right: 96px;
+    width: max-content; max-width: calc(100vw - 130px);
     height: 74px; overflow: visible;
     background: rgba(255,255,255,.22);
     -webkit-backdrop-filter: blur(10px) saturate(1.4); backdrop-filter: blur(10px) saturate(1.4);
