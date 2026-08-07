@@ -1608,9 +1608,14 @@ def main():
     os.makedirs('en', exist_ok=True)
 
     # ---- 一级内容页（with_subnav 左侧竖排导航 + 二级内容区块） ----
+    def about_body(lang):
+        pi_html = pi_detail_html(PI_ZH if lang == ZH else PI_EN, lang)
+        mem_html = members_body(lang)
+        return (ABOUT_BODY['zh' if lang == ZH else 'en'] + '\n'
+                + '<div class="chai-section" id="chai-section">' + pi_html + '</div>\n'
+                + '<div class="members-cover" id="members-cover">' + mem_html + '</div>')
     content_pages = {
-        'about.html': lambda lang: with_subnav('about',
-            ABOUT_BODY['zh'] + '\n' + pi_detail_html(PI_ZH, ZH) + '\n' + members_body(ZH), ZH),
+        'about.html': lambda lang: with_subnav('about', about_body(lang), lang),
         'research.html': lambda lang: research_with_project(lang),
         'papers.html': lambda lang: papers_body(lang),
     }

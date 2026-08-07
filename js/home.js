@@ -384,3 +384,30 @@
   /* bfcache 刷新后恢复整屏状态（head 已就绪） */
   restoreScreen();
 })();
+
+  /* ===== 柴教授 → 成员介绍：Hero 覆盖式切换 ===== */
+  var chaiSec = document.getElementById('chai-section');
+  var membersCover = document.getElementById('members-cover');
+  if (chaiSec && membersCover) {
+    var mcShown = false;
+    var mcLock = false;
+    function chaiSpy() {
+      if (mcLock) return;
+      var rect = chaiSec.getBoundingClientRect();
+      var trigger = rect.bottom <= window.innerHeight * 0.92;
+      if (trigger && !mcShown) {
+        mcShown = true;
+        mcLock = true;
+        membersCover.classList.add('show');
+        window.scrollTo({ top: chaiSec.offsetTop, behavior: 'auto' });
+        setTimeout(function () { mcLock = false; }, 900);
+      } else if (!trigger && mcShown) {
+        mcShown = false;
+        mcLock = true;
+        membersCover.classList.remove('show');
+        setTimeout(function () { mcLock = false; }, 900);
+      }
+    }
+    window.addEventListener('scroll', chaiSpy, { passive: true });
+    window.addEventListener('resize', chaiSpy);
+  }

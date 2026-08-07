@@ -824,3 +824,18 @@ a:focus-visible, button:focus-visible, .hdots span:focus-visible {
 }
 .hero .harrow:focus-visible, .hero .hdots span:focus-visible { outline-color: #fff; }
 .back-top:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+/* ===== 柴教授 → 成员介绍：Hero 覆盖式切换 ===== */
+.chai-section { min-height: 100vh; display: flex; align-items: center; }
+.chai-section > .chai-sec { width: 100%; }
+.members-cover {
+  position: relative; z-index: 20; background: var(--paper);
+  transform: translateY(100vh);
+  transition: transform .8s cubic-bezier(.77, 0, .18, 1);
+  will-change: transform;
+}
+.members-cover.show { transform: translateY(0); }
+.members-cover .section { max-width: 1200px; }
+@media (max-width: 900px) {
+  .chai-section { min-height: 0; }
+}
