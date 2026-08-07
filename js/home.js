@@ -2,7 +2,6 @@
   'use strict';
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var DUR = 6000;
-  var isMobile = function () { return window.innerWidth <= 1100; };
 
   /* ===== Hero 轮播（滑动 + 淡入 + Ken Burns） ===== */
   var slides = document.querySelectorAll('.hslide');
@@ -234,7 +233,7 @@
     counters.forEach(function (el) { el.textContent = el.getAttribute('data-count'); });
   }
 
-  /* ===== 移动端菜单：手风琴 + 自动关闭 ===== */
+  /* ===== 窄屏菜单：点击展开 / 自动收回 ===== */
   var nav = document.querySelector('.g-nav');
   var toggle = document.querySelector('.nav-toggle');
   function closeMenu() { if (nav) nav.classList.remove('open'); }
@@ -246,25 +245,16 @@
   }
   if (nav) {
     nav.addEventListener('click', function (e) {
-      var link = e.target.closest('a');
-      if (link) {
-        var li = link.parentElement;
-        var sub = li.querySelector('.sub');
-        if (sub && isMobile()) {
-          e.preventDefault();
-          e.stopPropagation();
-          var open = sub.classList.toggle('show');
-          li.classList.toggle('open', open);
-          sub.setAttribute('aria-hidden', open ? 'false' : 'true');
-        } else if (!link.closest('.sub')) {
-          closeMenu();
-        }
-      }
+      if (e.target.closest('a')) closeMenu();
     });
     document.addEventListener('click', function (e) {
       if (!nav.contains(e.target) && !(toggle && toggle.contains(e.target))) closeMenu();
     });
+    window.addEventListener('scroll', function () {
+      if (nav.classList.contains('open')) closeMenu();
+    }, { passive: true });
+    window.addEventListener('resize', function () {
+      if (nav.classList.contains('open')) closeMenu();
+    });
   }
-  var subs = document.querySelectorAll('.g-nav .sub');
-  subs.forEach(function (s) { s.setAttribute('aria-hidden', 'true'); });
 })();
