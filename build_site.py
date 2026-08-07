@@ -291,7 +291,7 @@ ABOUT_BODY = {
     </div>
   </div>
 </div>''',
-'en': '''<div class="section">
+'en': '''<div class="section" id="about-group">
   <div class="intro-grid">
     <div class="intro-card">
       <p>Affiliated with the State Key Laboratory of Marine Environmental Science (MEL) at Xiamen University, our group conducts research on coupled physical\u2013ecological\u2013biogeochemical oceanography, with a focus on the marine carbon cycle, nutrient cycles, and the response and feedback of marine ecosystems to climate change.</p>
@@ -1244,12 +1244,9 @@ def home_body(lang):
 
 <!-- 课题组动态 -->
 <div class="section home-sec" id="news">
-  <div class="sec-row" data-reveal>
-    <div class="sec-title">
-      <h2>{news_head[0]}</h2>
-      <span class="en">{news_head[1]}</span>
-    </div>
-    <a class="more" href="news.html">{news_head[2]} ›</a>
+  <div class="sec-head" data-reveal>
+    <span class="en">{news_head[1]}</span>
+    <h2>{news_head[0]}</h2>
   </div>
   <div class="news-split">
     <a class="nfeat" href="https://mel.xmu.edu.cn/info/1012/61071.htm" target="_blank" data-reveal>
@@ -1267,6 +1264,7 @@ def home_body(lang):
 {list_parts}
     </div>
   </div>
+  <p style="text-align:center;margin-top:40px" data-reveal><a class="btn btn-sm btn-line" href="news.html">{news_head[2]} →</a></p>
 </div>
 
 <!-- 统计条 -->
@@ -1285,15 +1283,14 @@ def home_body(lang):
   <div class="research home-research">
 {tiles}
   </div>
-  <p style="text-align:center;margin-top:44px" data-reveal><a class="btn btn-line" href="research.html">{res_more} →</a></p>
+  <p style="text-align:center;margin-top:40px" data-reveal><a class="btn btn-sm btn-line" href="research.html">{res_more} →</a></p>
 </div>
 
 <!-- 学术·科研面板（左侧索引 / 右侧大图，hover 切换） -->
 <div class="section home-sec academic-sec" id="academic">
-  <div class="aca-head" data-reveal>
-    <h2>{aca['title']}</h2>
+  <div class="sec-head" data-reveal>
     <span class="en">{aca['en']}</span>
-    <a class="more" href="{aca['link_news']}">{aca['more']} ›</a>
+    <h2>{aca['title']}</h2>
   </div>
   <div class="aca-wrap" data-reveal>
     <div class="aca-index">
@@ -1313,16 +1310,14 @@ def home_body(lang):
 
 <!-- 代表性论文 -->
 <div class="section home-sec" id="pubs">
-  <div class="sec-row" data-reveal>
-    <div class="sec-title">
-      <h2>{pub_head[0]}</h2>
-      <span class="en">{pub_head[1]}</span>
-    </div>
-    <a class="more" href="papers.html">{pub_head[2]} ›</a>
+  <div class="sec-head" data-reveal>
+    <span class="en">{pub_head[1]}</span>
+    <h2>{pub_head[0]}</h2>
   </div>
   <ul class="papers">
 {pub_parts}
   </ul>
+  <p style="text-align:center;margin-top:40px" data-reveal><a class="btn btn-sm btn-line" href="papers.html">{pub_head[2]} →</a></p>
 </div>
 
 <!-- 招生招聘 / 合作交流 -->
@@ -1397,7 +1392,7 @@ def main():
     os.makedirs('en', exist_ok=True)
     for fname, (title, en_sub, about_body) in specs.items():
         if fname == 'about.html':
-            body = about_body['zh'] + '\n' + pi_detail_html(PI_ZH, ZH)
+            body = with_subnav('about', about_body['zh'] + '\n' + pi_detail_html(PI_ZH, ZH), ZH)
         elif fname in body_full:
             body = body_full[fname](ZH)
         else:
@@ -1415,7 +1410,7 @@ def main():
                     .replace('url(images/', 'url(../images/'))
     for fname, (title, en_sub, about_body) in specs_en.items():
         if fname == 'about.html':
-            body = about_body['en'] + '\n' + pi_detail_html(PI_EN, EN)
+            body = with_subnav('about', about_body['en'] + '\n' + pi_detail_html(PI_EN, EN), EN)
         elif fname in body_full:
             body = body_full[fname](EN)
         else:

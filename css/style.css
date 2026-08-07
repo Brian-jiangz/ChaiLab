@@ -389,6 +389,7 @@ html.anim .hslide.on .hcap .hero-ctas { opacity: 1; transform: none; transition-
 .project-body li { margin-bottom: 8px; }
 .project-links { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--line); }
 .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 30px; text-decoration: none; font-size: 14px; letter-spacing: .1em; transition: .25s; }
+.btn-sm { padding: 8px 20px; font-size: 12.5px; letter-spacing: .08em; }
 .btn-solid { background: var(--navy); color: #fff; }
 .btn-solid:hover { background: var(--navy-2); }
 .btn-line { border: 1px solid var(--navy); color: var(--navy); }
@@ -557,6 +558,25 @@ html.anim .hslide.on .hcap .hero-ctas { opacity: 1; transform: none; transition-
 .page-banner h1 { font-size: 24px; letter-spacing: .18em; font-weight: 500; text-shadow: 0 2px 16px rgba(0,0,0,.3); }
 .page-banner p { font-size: 11px; margin-top: 8px; opacity: .55; letter-spacing: .4em; }
 
+/* ===== 二级页面：左侧竖排导航 ===== */
+.page-wrap { max-width: 1400px; margin: 0 auto; padding: 56px 28px 88px; display: grid; grid-template-columns: 224px 1fr; gap: 48px; align-items: start; }
+.sub-nav { position: sticky; top: 110px; display: flex; flex-direction: column; border-left: 2px solid var(--line); padding: 4px 0; }
+.sub-nav a {
+  display: block; padding: 11px 18px; color: var(--ink-2); text-decoration: none;
+  font-size: 14px; letter-spacing: .05em; line-height: 1.5;
+  border-left: 2px solid transparent; margin-left: -2px;
+  transition: color .2s, border-color .2s, background .2s;
+}
+.sub-nav a:hover { color: var(--navy); }
+.sub-nav a.active {
+  color: var(--navy); font-weight: 600;
+  border-left-color: var(--gold);
+  background: linear-gradient(90deg, rgba(201,168,106,.1), transparent);
+}
+.sub-content { min-width: 0; }
+.sub-content .section { max-width: none; padding: 8px 0 72px; }
+.sub-content .section:first-child { padding-top: 0; }
+
 /* ===== 页脚（多栏） ===== */
 .footer {
   position: relative; z-index: 7;
@@ -683,6 +703,19 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
   .tl-items { padding-left: 22px; }
   .footer .inner { grid-template-columns: 1fr 1fr; }
   .scroll-hint { display: none; }
+  /* 二级页面：竖排导航转顶部横向标签条 */
+  .page-wrap { grid-template-columns: 1fr; padding: 40px 20px 72px; gap: 0; }
+  .sub-nav {
+    position: static; flex-direction: row; overflow-x: auto;
+    border-left: none; border-bottom: 2px solid var(--line); margin-bottom: 36px;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .sub-nav::-webkit-scrollbar { display: none; }
+  .sub-nav a {
+    white-space: nowrap; border-left: none; border-bottom: 2px solid transparent;
+    margin-left: 0; margin-bottom: -2px; padding: 10px 16px; flex-shrink: 0;
+  }
+  .sub-nav a.active { border-bottom-color: var(--gold); border-left-color: transparent; background: none; }
 }
 
 /* 720px 以下：网格全面降为单列（iPad 竖屏 768+ 保持双列） */

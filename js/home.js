@@ -345,6 +345,32 @@
       if (nav.classList.contains('open')) closeMenu();
     });
   }
+  /* ===== 二级页面：左侧竖排导航滚动高亮 ===== */
+  var subNav = document.getElementById('subNav');
+  if (subNav) {
+    var subLinks = Array.prototype.slice.call(subNav.querySelectorAll('a[href*="#"]'));
+    var subTargets = subLinks.map(function (a) {
+      var id = a.getAttribute('href').split('#')[1];
+      return id ? document.getElementById(id) : null;
+    }).filter(Boolean);
+    function onScrollSpy() {
+      if (!subTargets.length) return;
+      var y = (window.scrollY || 0) + 130;
+      var cur = subTargets[0];
+      subTargets.forEach(function (t) {
+        if (t && t.offsetTop <= y) cur = t;
+      });
+      subLinks.forEach(function (a) {
+        var id = a.getAttribute('href').split('#')[1];
+        var on = cur && id === cur.id;
+        a.classList.toggle('active', on);
+      });
+    }
+    window.addEventListener('scroll', onScrollSpy, { passive: true });
+    window.addEventListener('resize', onScrollSpy);
+    onScrollSpy();
+  }
+
   /* ===== 语言切换：保留当前页面，不跳回首页 ===== */
   (function () {
     var page = (location.pathname.split('/').pop() || 'index.html').replace(/\/$/, '');
