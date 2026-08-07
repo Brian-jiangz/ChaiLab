@@ -527,40 +527,54 @@ def papers_body(lang):
 
 def news_body(lang):
     if lang == EN:
-        return '''<div class="section">
-  <div class="news-grid">
-    <div class="news">
+        return '''<div class="section news-page">
+  <div class="news-feat">
+    <div class="nf-head">
       <span class="date">FEB 2026</span>
-      <h4>Prof. Chai\u2019s team reveals ocean digital twins as a new engine for blue-economy innovation</h4>
+      <h2>Prof. Chai\u2019s team reveals ocean digital twins as a new engine for blue-economy innovation</h2>
       <p>The team systematically reviewed the core architecture of ocean digital twins, analyzed key application scenarios in blue-economy development, and provided forward-looking perspectives on challenges and prospects.</p>
     </div>
-    <div class="news">
+  </div>
+  <div class="news-list">
+    <div class="news-item">
       <span class="date">NOV 2025</span>
-      <h4>Lujiang Ocean Symposium concludes successfully</h4>
+      <h3>Lujiang Ocean Symposium concludes successfully</h3>
       <p>The ocean symposium co-hosted by Lujiang Innovation Laboratory and the State Key Laboratory of Marine Environmental Science (XMU) was held successfully.</p>
     </div>
-    <div class="news">
+    <div class="news-item">
+      <span class="date">SEP 2025</span>
+      <h3>Group website officially launched</h3>
+      <p>The official website of the Chai Group is now live, presenting our research areas, members, and achievements.</p>
+    </div>
+    <div class="news-item">
       <span class="date">UPDATING</span>
-      <h4>Group news continuously updated</h4>
+      <h3>Group news continuously updated</h3>
       <p>Stay tuned for the latest research progress, recruitment, and academic exchange activities.</p>
     </div>
   </div>
 </div>'''
-    return '''<div class="section">
-  <div class="news-grid">
-    <div class="news">
+    return '''<div class="section news-page">
+  <div class="news-feat">
+    <div class="nf-head">
       <span class="date">2026-02</span>
-      <h4>柴扉教授团队揭示海洋数字孪生是赋能蓝色经济创新发展的新引擎</h4>
+      <h2>柴扉教授团队揭示海洋数字孪生是赋能蓝色经济创新发展的新引擎</h2>
       <p>团队系统梳理海洋数字孪生核心架构，解析其在蓝色经济发展中的关键应用场景，并对该领域挑战与前景作出前瞻性研判。</p>
     </div>
-    <div class="news">
+  </div>
+  <div class="news-list">
+    <div class="news-item">
       <span class="date">2025-11</span>
-      <h4>鹭江海洋研讨会圆满落幕</h4>
+      <h3>鹭江海洋研讨会圆满落幕</h3>
       <p>由鹭江创新实验室与海洋生物地球化学全国重点实验室（厦门大学）联合主办的海洋研讨会成功举办。</p>
     </div>
-    <div class="news">
+    <div class="news-item">
+      <span class="date">2025-09</span>
+      <h3>课题组网站全新上线</h3>
+      <p>柴扉教授课题组官方网站正式启用，全面展示课题组研究方向、成员与科研成果。</p>
+    </div>
+    <div class="news-item">
       <span class="date">待更新</span>
-      <h4>课题组新闻持续更新中</h4>
+      <h3>课题组新闻持续更新中</h3>
       <p>欢迎关注课题组最新科研进展、招生与学术交流动态。</p>
     </div>
   </div>
