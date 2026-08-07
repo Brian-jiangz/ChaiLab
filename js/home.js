@@ -36,6 +36,11 @@
         } else {
           s.classList.remove('on');
         }
+        var v = s.querySelector('video');
+        if (v) {
+          if (going) { try { v.play(); } catch (e) {} }
+          else { v.pause(); }
+        }
       });
       restartDot(cur);
     }
@@ -256,16 +261,29 @@
   /* ===== 窄屏菜单：点击展开 / 自动收回 ===== */
   var nav = document.querySelector('.g-nav');
   var toggle = document.querySelector('.nav-toggle');
-  function closeMenu() { if (nav) nav.classList.remove('open'); }
+  var mqNarrow = window.matchMedia('(max-width: 1100px)');
+  function closeSubs() {
+    if (nav) nav.querySelectorAll('.has-sub.open').forEach(function (el) { el.classList.remove('open'); });
+  }
+  function closeMenu() { closeSubs(); if (nav) nav.classList.remove('open'); }
   if (toggle) {
     toggle.addEventListener('click', function (e) {
       e.stopPropagation();
       nav.classList.toggle('open');
+      if (!nav.classList.contains('open')) closeSubs();
     });
   }
   if (nav) {
     nav.addEventListener('click', function (e) {
-      if (e.target.closest('a')) closeMenu();
+      var subLi = e.target.closest('.has-sub');
+      if (subLi && mqNarrow.matches) {
+        e.preventDefault();
+        var wasOpen = subLi.classList.contains('open');
+        closeSubs();
+        if (!wasOpen) subLi.classList.add('open');
+      } else if (e.target.closest('a')) {
+        closeMenu();
+      }
     });
     document.addEventListener('click', function (e) {
       if (!nav.contains(e.target) && !(toggle && toggle.contains(e.target))) closeMenu();
@@ -277,4 +295,13 @@
       if (nav.classList.contains('open')) closeMenu();
     });
   }
+  /* ===== 语言切换：保留当前页面，不跳回首页 ===== */
+  (function () {
+    var page = (location.pathname.split('/').pop() || 'index.html').replace(/\/$/, '');
+    var inEn = /\/en\//.test(location.pathname);
+    var links = document.querySelectorAll('.lang-switch, .m-lang a');
+    links.forEach(function (a) {
+      a.href = inEn ? '../' + page : 'en/' + page;
+    });
+  })();
 })();

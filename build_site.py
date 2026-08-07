@@ -778,7 +778,15 @@ def home_body(lang):
             ext = ' target="_blank"' if 'reports/' in u else ''
             return f'          <a class="hero-cta{cls}" href="{u}"{ext}>{t} →</a>'
         cta_html = '\n'.join(_cta(j, t, u) for j, (t, u) in enumerate(ctas))
-        slide_parts.append(f'''    <div class="hslide{' hs' + str(i+1) if not photo else ''}{' on' if i == 0 else ''}"{bg_style}>
+        # 第三屏（古气候与数字地球）：视频背景
+        video_html = ''
+        if i == 2:
+            video_html = '''      <video class="hvideo" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+        <source src="videos/paleo_hero.mp4" type="video/mp4">
+        <source src="videos/paleo_hero.webm" type="video/webm">
+      </video>'''
+        slide_parts.append(f'''    <div class="hslide{' hs' + str(i+1) if not photo and not video_html else ''}{' on' if i == 0 else ''}"{bg_style}>
+{video_html}
 {decos[i]}
       <div class="hcap" data-cap>
         <span class="kicker">{kicker}</span>
@@ -1024,7 +1032,8 @@ def main():
     def _en(html):
         return (html.replace('href="images/', 'href="../images/')
                     .replace('src="images/', 'src="../images/')
-                    .replace('href="reports/', 'href="../reports/'))
+                    .replace('href="reports/', 'href="../reports/')
+                    .replace('src="videos/', 'src="../videos/'))
     for fname, (title, en_sub, about_body) in specs_en.items():
         if fname == 'about.html':
             body = about_body['en']
