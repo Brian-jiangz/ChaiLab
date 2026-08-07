@@ -385,22 +385,22 @@
   restoreScreen();
 })();
 
-  /* ===== 柴教授 → 成员介绍：Hero 覆盖式切换 ===== */
+  /* ===== 柴教授 → 成员介绍：Hero 向下滑出（北大式） ===== */
   var chaiSec = document.getElementById('chai-section');
   var membersCover = document.getElementById('members-cover');
   if (chaiSec && membersCover) {
     var mcShown = false;
     function chaiSpy() {
       var rect = chaiSec.getBoundingClientRect();
-      /* 柴教授区块完全滚出视口底部 -> 成员介绍上滑覆盖 */
+      /* 柴教授区块完全滚出视口底部 -> 整屏向下滑出，露出成员介绍 */
       var trigger = rect.bottom <= 0;
       if (trigger && !mcShown) {
         mcShown = true;
-        membersCover.classList.add('show');
+        chaiSec.classList.add('leave');
       } else if (!trigger && mcShown && rect.top > 0) {
-        /* 向上滚回柴教授区块重新进入视口 -> 成员介绍下移回落 */
+        /* 向上滚回 -> 柴教授滑回 */
         mcShown = false;
-        membersCover.classList.remove('show');
+        chaiSec.classList.remove('leave');
       }
     }
     window.addEventListener('scroll', chaiSpy, { passive: true });
