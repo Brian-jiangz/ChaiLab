@@ -18,10 +18,12 @@ def nav(active):
 <header class="g-head">
   <div class="inner">
     <a href="index.html" class="logo">
-      <div class="badge">柴</div>
+      <img src="images/xmu_logo.png" alt="厦门大学" class="logo-xmu">
+      <img src="images/mel_logo.svg" alt="海洋生物地球化学全国重点实验室" class="logo-mel">
+      <span class="logo-divider"></span>
       <div class="txt">
         <strong>柴扉教授课题组</strong>
-        <span>海洋生物地球化学全国重点实验室 · 厦门大学</span>
+        <span>Chai Group · Xiamen University</span>
       </div>
     </a>
     <button class="nav-toggle" onclick="document.querySelector('.g-nav').classList.toggle('open')">☰</button>
