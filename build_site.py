@@ -1229,7 +1229,7 @@ def home_body(lang):
             ('Paleoclimate & Digital Earth', 'Paleoclimate and the Digital Earth', 'Reconstruct the past, simulate the present, foresee the future',
              [('Research Areas', 'research.html'), ('About Us', 'about.html')]),
         ]
-        stats = [(4, '', 'Faculty'), (6, '', 'Research Areas'), (5, '', 'Graduate Students'), (100, '+', 'Publications')]
+        stats = [(4, '', 'Faculty'), (6, '', 'Research Areas'), (8, '', 'Graduate Students'), (100, '+', 'Publications')]
         news_head = ('Group News', 'GROUP NEWS', 'Learn More')
         news = [
             ('FEB 2026', 'Prof. Chai\u2019s team reveals ocean digital twins as a new engine for blue-economy innovation',
@@ -1302,7 +1302,7 @@ def home_body(lang):
             ('Paleoclimate & Digital Earth', '古气候与数字地球', '重建过去，模拟现在，预见未来',
              [('研究方向', 'research.html'), ('了解课题组', 'about.html')]),
         ]
-        stats = [(4, '', '教职工'), (6, '', '研究方向'), (5, '', '在读研究生'), (100, '+', '发表论文')]
+        stats = [(4, '', '教职工'), (6, '', '研究方向'), (8, '', '培养研究生'), (100, '+', '发表论文')]
         news_head = ('课题组动态', 'GROUP NEWS', '了解更多')
         news = [
             ('2026-02', '柴扉教授团队揭示海洋数字孪生是赋能蓝色经济创新发展的新引擎',
