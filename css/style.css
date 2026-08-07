@@ -82,7 +82,9 @@ body {
   background: linear-gradient(135deg, var(--xmu-blue), var(--ocean));
   color: #fff; display: flex; align-items: center; justify-content: center;
   font-size: 46px; font-weight: 700;
+  background-size: cover; background-position: center top; overflow: hidden;
 }
+.pi-avatar img { width: 100%; height: 100%; object-fit: cover; }
 .pi-card h3 { font-size: 20px; }
 .pi-card .title { color: var(--xmu-blue); font-size: 14px; margin: 6px 0 12px; }
 .pi-card .info { font-size: 13px; color: var(--muted); text-align: left; }
