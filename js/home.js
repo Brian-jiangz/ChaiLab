@@ -390,22 +390,17 @@
   var membersCover = document.getElementById('members-cover');
   if (chaiSec && membersCover) {
     var mcShown = false;
-    var mcLock = false;
     function chaiSpy() {
-      if (mcLock) return;
       var rect = chaiSec.getBoundingClientRect();
-      var trigger = rect.bottom <= window.innerHeight * 0.92;
+      /* 柴教授区块完全滚出视口底部 -> 成员介绍上滑覆盖 */
+      var trigger = rect.bottom <= 0;
       if (trigger && !mcShown) {
         mcShown = true;
-        mcLock = true;
         membersCover.classList.add('show');
-        window.scrollTo({ top: chaiSec.offsetTop, behavior: 'auto' });
-        setTimeout(function () { mcLock = false; }, 900);
-      } else if (!trigger && mcShown) {
+      } else if (!trigger && mcShown && rect.top > 0) {
+        /* 向上滚回柴教授区块重新进入视口 -> 成员介绍下移回落 */
         mcShown = false;
-        mcLock = true;
         membersCover.classList.remove('show');
-        setTimeout(function () { mcLock = false; }, 900);
       }
     }
     window.addEventListener('scroll', chaiSpy, { passive: true });
