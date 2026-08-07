@@ -210,7 +210,7 @@ def page(fname, title, en_sub, body, lang, extra='', banner=True, scripts=''):
 </head>
 <body>
 
-{nav(fname, lang, subpage=not banner)}
+{nav(fname, lang, subpage=banner)}
 {banner_html}
 {body}
 {footer(lang)}
