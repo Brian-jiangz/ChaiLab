@@ -395,23 +395,29 @@ def project_box(lang, full=True):
 def members_body(lang):
     if lang == EN:
         groups = [
-            ('Faculty', [('Fei Chai', 'Chair Professor / PI', 'Marine biogeochemistry, physics-ecology coupling, climate modeling', 'fchai@xmu.edu.cn'),
-                          ('TBD', 'Associate Professor / Researcher', 'Member information under construction\u2026', '\u2014')]),
-            ('Postdocs', [('TBD', 'Postdoctoral Researcher', 'Member information under construction\u2026', '\u2014')]),
-            ('Students', [('TBD', 'PhD Student', 'Member information under construction\u2026', '\u2014'),
-                          ('TBD', 'PhD Student', 'Member information under construction\u2026', '\u2014'),
-                          ('TBD', "Master's Student", 'Member information under construction\u2026', '\u2014'),
-                          ('TBD', "Master's Student", 'Member information under construction\u2026', '\u2014')]),
+            ('Faculty', [('Fei Chai', 'Chair Professor / PI', 'Marine biogeochemistry, physics-ecology coupling, climate modeling', 'fchai@xmu.edu.cn')]),
+            ('Postdocs', [('Wang Qian', 'Postdoctoral Researcher', '\u2014', '\u2014'),
+                          ('Yang Kai', 'Postdoctoral Researcher', '\u2014', '\u2014')]),
+            ('PhD Students', [('Zhao Kewei', 'PhD Student', '\u2014', '\u2014'),
+                              ('Jiang Zheng', 'PhD Student', '\u2014', '\u2014')]),
+            ("Master's Students", [('Lin Jianchun', "Master's Student", '\u2014', '\u2014'),
+                                   ('Xie Xianyu', "Master's Student", '\u2014', '\u2014'),
+                                   ('Li Peimin', "Master's Student", '\u2014', '\u2014')]),
+            ('Alumni', [('Wang Qian', 'PhD Graduate (2025)', '\u2014', '\u2014'),
+                        ('Wang Yin', "Master's Graduate (2026)", '\u2014', '\u2014')]),
         ]
     else:
         groups = [
-            ('教授 / 研究员', [('柴扉', '讲席教授 / PI', '海洋生物地球化学、物理—生态耦合、气候模拟', 'fchai@xmu.edu.cn'),
-                          ('（待补充）', '副教授 / 研究员', '成员信息整理中……', '—')]),
-            ('博士后', [('（待补充）', '博士后', '成员信息整理中……', '—')]),
-            ('研究生', [('（待补充）', '博士研究生', '成员信息整理中……', '—'),
-                          ('（待补充）', '博士研究生', '成员信息整理中……', '—'),
-                          ('（待补充）', '硕士研究生', '成员信息整理中……', '—'),
-                          ('（待补充）', '硕士研究生', '成员信息整理中……', '—')]),
+            ('教授 / 研究员', [('柴扉', '讲席教授 / PI', '海洋生物地球化学、物理—生态耦合、气候模拟', 'fchai@xmu.edu.cn')]),
+            ('博士后', [('王谦', '博士后', '—', '—'),
+                      ('杨凯', '博士后', '—', '—')]),
+            ('博士研究生', [('赵柯崴', '博士研究生', '—', '—'),
+                          ('姜正', '博士研究生', '—', '—')]),
+            ('硕士研究生', [('林剑纯', '硕士研究生', '—', '—'),
+                          ('谢娴予', '硕士研究生', '—', '—'),
+                          ('李沛珉', '硕士研究生', '—', '—')]),
+            ('已毕业成员', [('王谦', '博士毕业（2025）', '—', '—'),
+                          ('王胤', '硕士毕业（2026）', '—', '—')]),
         ]
     out = ['<div class="section">']
     for i, (gtitle, members) in enumerate(groups):
@@ -486,80 +492,84 @@ def project_body(lang):
   </div>
 </div>'''
 
+PAPERS = [
+    ('2026', 'Digital twin of the ocean as a catalyst for blue economy innovation',
+     'Chai F., Deng Q., Dai M., Wang X., Staneva J., Behera S. K., Tonani M., Liu J., Yu Z., Peng Z.',
+     'National Science Review, 13(3): nwag012', '10.1093/nsr/nwag012'),
+    ('2026', 'Physical dynamics modulate deep-sea carbon flux in the western Pacific marginal sea',
+     'Xu C., Huang Y., Xing X., Qiu G., Poteau A., Wang H., Hu J., Chai F., Huang B.',
+     'Limnology and Oceanography, 71: e70440', '10.1002/lno.70440'),
+    ('2025', 'Contrasting climate oscillations impacts on phytoplankton in the western and eastern tropical Pacific',
+     'An L., Laws E. A., Liu X., Chen R., Wang S., Hu S., Zhang Y., Huang Y., Xu F., Chai F., Huang B.',
+     'Nature Communications, 16', '10.1038/s41467-025-65947-x'),
+    ('2025', 'Spatial variation of upper ocean chlorophyll-a response across the track of a typhoon',
+     'Lin S., Wang Y., Pokavanich T., Ben Ismail S., Xiu P., Zhang W.-Z., Chai F.',
+     'Journal of Geophysical Research: Oceans, 130', '10.1029/2025JC022915'),
+    ('2025', 'Source apportionment of atmospheric iron in northern China based on 3-year continuous measurements',
+     'Zhang T., Xiang Y., Liu Y., Yan C., Zhu B., Liu X., Fan X., Wang Y., Zhang H., Wang Y., Chen S., Chai F., Zhu T., Zheng M.',
+     'Geophysical Research Letters, 52', '10.1029/2024GL114462'),
+    ('2025', 'Seasonal variability of phytoplankton following extreme aerosol events in the western subarctic Pacific',
+     'Zhang H.-R., Wang Y., Xiu P., Ma W., Zhang R., Feng Y., Zheng M., Zhang T., Chen S., Li W., Ben Ismail S., Jiang H.-B., Chai F.',
+     'Geophysical Research Letters, 52', '10.1029/2025GL117114'),
+    ('2025', 'Evaluating the potential impacts of mesoscale eddies on the distribution and abundance of an endangered species',
+     'Fu Y., Wu X., Jin P., Chen X., Xing Q., Chai F., Cao J., Yu W.',
+     'Marine Environmental Research, 209: 107337', '10.1016/j.marenvres.2025.107337'),
+    ('2025', 'Rising trends in winter phytoplankton blooms in the northern Arabian Sea over the last two decades',
+     'Song Z., Kang D., Chai F.',
+     'Geophysical Research Letters, 52', '10.1029/2025GL116509'),
+    ('2025', 'Advancing ocean monitoring and knowledge for societal benefit: the urgency to expand Argo to OneArgo',
+     'Thierry V., Claustre H., et al. (incl. Chai F.)',
+     'Frontiers in Marine Science, 12', '10.3389/fmars.2025.1593904'),
+    ('2025', 'Decreased air-sea CO\u2082 flux during the persistent marine heatwave',
+     'Ren G., Na R., Zhang S., Rong Z., Ma W., Chai F., Tian Y., Gao Y., Lu L.',
+     'Journal of Geophysical Research: Oceans, 130', '10.1029/2024JC021525'),
+    ('2025', 'Arctic warming as a potential trigger for the warm blob in the northeast Pacific',
+     'Chen H.-H., Wang Y., Li X., Wan L., Yuan Y., Yan Y., Hannah C., Chai F.',
+     'npj Climate and Atmospheric Science, 8', '10.1038/s41612-025-00900-9'),
+    ('2025', 'Global eddy-induced variation in the intensities of tropical cyclones',
+     'You X., Wang Y., Ben Ismail S., Lin S., Khamis Z. A., Hamouda A. Z., El-Gharabawy S., Zhang R., Chai F.',
+     'Environmental Research Communications, 7', '10.1088/2515-7620/adbe29'),
+    ('2025', 'Toward an integrated pantropical ocean observing system',
+     'Foltz G. R., Eddebbar Y. A., Sprintall J., et al. (incl. Chai F.)',
+     'Frontiers in Marine Science, 12', '10.3389/fmars.2025.1539183'),
+    ('2024', 'A consistent ocean oxygen profile dataset with new quality control and bias correction',
+     'Gouretski V., Cheng L., Du J., Xing X., Chai F., Tan Z.',
+     'Earth System Science Data, 16: 5503-5524', '10.5194/essd-16-5503-2024'),
+    ('2024', 'Contrasting supply dynamics of dissolved iron and nitrate shape the biogeography of phytoplankton in the western North Pacific',
+     'Ma W., Zhao Z., Wang T., Liang B., Wang Y., Xiu P., Chai F.',
+     'Geophysical Research Letters, 51', '10.1029/2024GL111335'),
+    ('2024', 'Development of a total variation diminishing (TVD) sea ice transport scheme for the ocean model',
+     'Wang Q., Zhang Y., Chai F., Zhang Y. J., Zampieri L.',
+     'Geoscientific Model Development, 17: 7067-7086', '10.5194/gmd-17-7067-2024'),
+    ('2024', 'Isopycnal submesoscale stirring crucially sustaining subsurface chlorophyll maximum in the subtropical gyre',
+     'Cao H., Freilich M., Song X., Jing Z., Fox-Kemper B., Qiu B., Hetland R. D., Chai F., Ruiz S., Chen D.',
+     'Geophysical Research Letters, 51', '10.1029/2023GL105793'),
+    ('2024', 'Remote estimates of sea surface nitrate and its trends from ocean color in the Northwest Pacific',
+     'Chen S., Meng Y., Shang S., Zheng M., Wang Y., Chai F.',
+     'Journal of Geophysical Research: Oceans, 129', '10.1029/2023JC019846'),
+    ('2024', 'Eddy impacts on abundance and habitat distribution of a large predatory squid in the Southwest Atlantic Ocean',
+     'Jin P., Zhang Y., Du Y., Chen X., Kindong R., Xue H., Chai F., Yu W.',
+     'Marine Environmental Research, 195: 106368', '10.1016/j.marenvres.2024.106368'),
+    ('2024', 'Efficient biological carbon export to the mesopelagic ocean induced by submesoscale fronts',
+     'Guo M., Xing X., Xiu P., Dall\u2019Olmo G., Chen W., Chai F.',
+     'Nature Communications, 15: 1007', '10.1038/s41467-024-44846-7'),
+    ('2024', 'Complexities of regulating climate by promoting marine primary production with ocean iron fertilization',
+     'Jiang H.-B., Hutchins D. A., Zhang H.-R., Feng Y.-Y., Zhang R.-F., Sun W.-W., Ma W., Bai Y., Wells M., He D., Jiao N., Wang Y., Chai F.',
+     'Earth-Science Reviews, 250: 104675', '10.1016/j.earscirev.2024.104675'),
+]
+
 def papers_body(lang):
-    if lang == EN:
-        return '''<div class="section">
-  <ul class="papers">
-    <li class="paper">
-      <div class="year">2026</div>
+    items = []
+    for year, title, authors, journal, doi in PAPERS:
+        items.append(f'''    <li class="paper">
+      <div class="year">{year}</div>
       <div>
-        <div class="t">Digital twin of the ocean as a catalyst for blue economy innovation</div>
-        <div class="a">Chai F., Deng Q., Dai M., Wang X., Staneva J., Behera S. K., Tonani M., Liu J., Yu Z., Peng Z.</div>
-        <div class="j">National Science Review, 13(3): nwag012. DOI: <a href="https://doi.org/10.1093/nsr/nwag012" target="_blank" style="color:var(--navy-3)">10.1093/nsr/nwag012</a></div>
+        <div class="t">{title}</div>
+        <div class="a">{authors}</div>
+        <div class="j">{journal}. DOI: <a href="https://doi.org/{doi}" target="_blank" style="color:var(--navy-3)">{doi}</a></div>
       </div>
-    </li>
-    <li class="paper">
-      <div class="year">2026</div>
-      <div>
-        <div class="t">Physical dynamics modulate deep-sea carbon flux in the western Pacific marginal sea</div>
-        <div class="a">Xu C., Huang Y., Xing X., Qiu G., Poteau A., Wang H., Hu J., Chai F., Huang B.</div>
-        <div class="j">Limnology and Oceanography, 71: e70440. DOI: <a href="https://doi.org/10.1002/lno.70440" target="_blank" style="color:var(--navy-3)">10.1002/lno.70440</a></div>
-      </div>
-    </li>
-    <li class="paper">
-      <div class="year">2025</div>
-      <div>
-        <div class="t">(To be added) Paper title</div>
-        <div class="a">Authors: TBD</div>
-        <div class="j">Journal: TBD</div>
-      </div>
-    </li>
-    <li class="paper">
-      <div class="year">\u2014</div>
-      <div>
-        <div class="t">Publication list under construction</div>
-        <div class="a">For a complete list, please visit Prof. Chai\u2019s homepage</div>
-        <div class="j"><a href="https://coeoa.xmu.edu.cn/t/CF/" target="_blank" style="color:var(--navy-3)">coeoa.xmu.edu.cn/t/CF/ \u2192</a></div>
-      </div>
-    </li>
-  </ul>
-</div>'''
-    return '''<div class="section">
-  <ul class="papers">
-    <li class="paper">
-      <div class="year">2026</div>
-      <div>
-        <div class="t">Digital twin of the ocean as a catalyst for blue economy innovation</div>
-        <div class="a">Chai F., Deng Q., Dai M., Wang X., Staneva J., Behera S. K., Tonani M., Liu J., Yu Z., Peng Z.</div>
-        <div class="j">National Science Review, 13(3): nwag012. DOI: <a href="https://doi.org/10.1093/nsr/nwag012" target="_blank" style="color:var(--navy-3)">10.1093/nsr/nwag012</a></div>
-      </div>
-    </li>
-    <li class="paper">
-      <div class="year">2026</div>
-      <div>
-        <div class="t">Physical dynamics modulate deep-sea carbon flux in the western Pacific marginal sea</div>
-        <div class="a">Xu C., Huang Y., Xing X., Qiu G., Poteau A., Wang H., Hu J., Chai F., Huang B.</div>
-        <div class="j">Limnology and Oceanography, 71: e70440. DOI: <a href="https://doi.org/10.1002/lno.70440" target="_blank" style="color:var(--navy-3)">10.1002/lno.70440</a></div>
-      </div>
-    </li>
-    <li class="paper">
-      <div class="year">2025</div>
-      <div>
-        <div class="t">（待补充）论文标题</div>
-        <div class="a">作者：待补充</div>
-        <div class="j">期刊：待补充</div>
-      </div>
-    </li>
-    <li class="paper">
-      <div class="year">—</div>
-      <div>
-        <div class="t">论文列表整理中，敬请期待</div>
-        <div class="a">如需完整论文列表，可访问柴扉教授个人主页</div>
-        <div class="j"><a href="https://coeoa.xmu.edu.cn/t/CF/" target="_blank" style="color:var(--navy-3)">coeoa.xmu.edu.cn/t/CF/ →</a></div>
-      </div>
-    </li>
-  </ul>
-</div>'''
+    </li>''')
+    return '<div class="section">\n  <ul class="papers">\n' + '\n'.join(items) + '\n  </ul>\n</div>'
 
 def news_body(lang):
     if lang == EN:
@@ -688,7 +698,7 @@ def home_body(lang):
             ('Paleoclimate & Digital Earth', 'Paleoclimate and the Digital Earth', 'Reconstruct the past, simulate the present, foresee the future',
              [('Research Areas', 'research.html'), ('About Us', 'about.html')]),
         ]
-        stats = [(4, '', 'Faculty'), (6, '', 'Research Areas'), (8, '', 'Graduate Students'), (100, '+', 'Publications')]
+        stats = [(4, '', 'Faculty'), (6, '', 'Research Areas'), (5, '', 'Graduate Students'), (100, '+', 'Publications')]
         news_head = ('Group News', 'GROUP NEWS', 'More')
         news = [
             ('FEB 2026', 'Prof. Chai\u2019s team reveals ocean digital twins as a new engine for blue-economy innovation',
@@ -733,17 +743,42 @@ def home_body(lang):
         pubs = [
             ('2026', 'Digital twin of the ocean as a catalyst for blue economy innovation', 'Chai F., Deng Q., Dai M., et al. National Science Review, 13(3): nwag012.'),
             ('2026', 'Physical dynamics modulate deep-sea carbon flux in the western Pacific marginal sea', 'Xu C., Huang Y., Xing X., et al. Limnology and Oceanography, 71: e70440.'),
-            ('2025', '(To be added) Paper title', 'Authors. Journal Name, 2025.'),
-            ('2024', '(To be added) Paper title', 'Authors. Journal Name, 2024.'),
+            ('2025', 'Contrasting climate oscillations impacts on phytoplankton in the western and eastern tropical Pacific', 'An L., Laws E. A., Liu X., et al. Nature Communications, 16.'),
+            ('2025', 'Rising trends in winter phytoplankton blooms in the northern Arabian Sea over the last two decades', 'Song Z., Kang D., Chai F. Geophysical Research Letters, 52.'),
         ]
         join = [
             ('Recruitment', 'We recruit PhD and Master\u2019s students year-round and welcome postdoctoral applicants from around the world with interests in marine biogeochemistry, climate modeling, and computational oceanography.', 'mailto:fchai@xmu.edu.cn', 'Send an Application'),
             ('Collaboration', 'The group maintains close collaborations with universities and research institutes at home and abroad. We welcome academic visits, joint training, and project cooperation.', 'links.html', 'Related Links'),
         ]
         scroll_hint = 'Scroll'
-        pi = ('Prof. Fei Chai', 'PRINCIPAL INVESTIGATOR', 'Tang Shifeng Chair Professor in Marine Sciences · PI',
-              'Marine biogeochemistry, ocean ecosystem modeling, and climate simulation. Ph.D. in Biological Oceanography, Duke University; former Professor (tenured) at the University of Maine.',
-              'About the Group', 'Our Team')
+        pi = {
+            'name': 'Prof. Fei Chai',
+            'en': 'PRINCIPAL INVESTIGATOR',
+            'title': 'Tang Shifeng Chair Professor in Marine Sciences · PI',
+            'bio': 'Marine biogeochemistry, ocean carbon cycle, and physical\u2013biogeochemical modeling. Ph.D. in Biological Oceanography, Duke University; former Professor and Dean at the School of Marine Sciences, University of Maine; currently Tang Shifeng Chair Professor at Xiamen University.',
+            'btn1': 'About the Group',
+            'btn2': 'Our Team',
+            'homepage': 'https://coeoa.xmu.edu.cn/t/CF/',
+            'timeline': [
+                ('1980\u20131987', 'B.S./M.S. in Physical Oceanography, Ocean University of China'),
+                ('1988\u20131991', 'M.S. in Ocean & Atmospheric Sciences, Princeton University'),
+                ('1991\u20131995', 'Ph.D. in Biological Oceanography, Duke University'),
+                ('1996\u20132008', 'Assistant then Associate (tenured) Professor, University of Maine'),
+                ('2008\u20132021', 'Professor, School of Marine Sciences, University of Maine (Dean 2012\u20132015)'),
+                ('2016\u20132022', 'Professor & Director, State Key Laboratory of Satellite Ocean Environment Dynamics, Second Institute of Oceanography, MNR'),
+                ('2022\u2013now', 'Tang Shifeng Chair Professor, State Key Laboratory of Marine Environmental Science (MEL), Xiamen University'),
+            ],
+            'interests': [
+                'Marine carbon cycle', 'Physical\u2013biogeochemical ecosystem modeling',
+                'Marine ecosystem dynamics', 'Fisheries resources', 'BGC-Argo observations',
+            ],
+            'pubs': [
+                ('2026', 'Digital twin of the ocean as a catalyst for blue economy innovation', 'National Science Review'),
+                ('2021', 'A limited effect of sub-tropical typhoons on phytoplankton dynamics', 'Biogeosciences'),
+                ('2020', 'Monitoring ocean biogeochemistry with autonomous platforms', 'Nature Reviews Earth & Environment'),
+                ('2020', 'Enhanced winter carbon export observed by BGC-Argo in the Northwest Pacific Ocean', 'Geophysical Research Letters'),
+            ],
+        }
     else:
         slides = [
             ('Ocean Digital Twin', '海洋数字孪生：赋能蓝色经济创新', '柴扉教授团队综述发表于 National Science Review',
@@ -753,7 +788,7 @@ def home_body(lang):
             ('Paleoclimate & Digital Earth', '古气候与数字地球', '重建过去，模拟现在，预见未来',
              [('研究方向', 'research.html'), ('了解课题组', 'about.html')]),
         ]
-        stats = [(4, '', '教职工'), (6, '', '研究方向'), (8, '', '在读研究生'), (100, '+', '发表论文')]
+        stats = [(4, '', '教职工'), (6, '', '研究方向'), (5, '', '在读研究生'), (100, '+', '发表论文')]
         news_head = ('课题组动态', 'GROUP NEWS', '更多')
         news = [
             ('2026-02', '柴扉教授团队揭示海洋数字孪生是赋能蓝色经济创新发展的新引擎',
@@ -798,17 +833,42 @@ def home_body(lang):
         pubs = [
             ('2026', 'Digital twin of the ocean as a catalyst for blue economy innovation', 'Chai F., Deng Q., Dai M., 等. National Science Review, 13(3): nwag012.'),
             ('2026', 'Physical dynamics modulate deep-sea carbon flux in the western Pacific marginal sea', 'Xu C., Huang Y., Xing X., 等. Limnology and Oceanography, 71: e70440.'),
-            ('2025', '（待补充）论文标题', 'Authors. Journal Name, 2025.'),
-            ('2024', '（待补充）论文标题', 'Authors. Journal Name, 2024.'),
+            ('2025', 'Contrasting climate oscillations impacts on phytoplankton in the western and eastern tropical Pacific', 'An L., Laws E. A., Liu X., 等. Nature Communications, 16.'),
+            ('2025', 'Rising trends in winter phytoplankton blooms in the northern Arabian Sea over the last two decades', 'Song Z., Kang D., Chai F. Geophysical Research Letters, 52.'),
         ]
         join = [
             ('招生招聘', '课题组长期招收博士研究生、硕士研究生，并面向全球招聘博士后。欢迎对海洋生物地球化学、气候模拟与计算海洋学感兴趣的同学与我们联系。', 'mailto:fchai@xmu.edu.cn', '发送申请邮件'),
             ('合作交流', '课题组与国内外多所高校及研究机构保持紧密合作，欢迎就学术访问、联合培养与项目合作事宜洽谈。', 'links.html', '查看相关链接'),
         ]
         scroll_hint = '向下滚动'
-        pi = ('柴扉 教授', 'PRINCIPAL INVESTIGATOR', '"唐世凤"海洋学科讲席教授 · PI',
-              '长期从事海洋生物地球化学与气候模拟研究。美国杜克大学生物海洋学博士，曾任美国缅因大学海洋学院教授（终身教职），现任厦门大学海洋生物地球化学全国重点实验室讲席教授。',
-              '了解课题组', '我们的团队')
+        pi = {
+            'name': '柴扉 教授',
+            'en': 'PRINCIPAL INVESTIGATOR',
+            'title': '"唐世凤"海洋学科讲席教授 · PI',
+            'bio': '长期从事海洋生物地球化学、海洋碳循环与物理—生物地球化学模型研究。美国杜克大学生物海洋学博士，曾任美国缅因大学海洋学院教授、院长，现任厦门大学海洋生物地球化学全国重点实验室"唐世凤"海洋学科讲席教授。',
+            'btn1': '了解课题组',
+            'btn2': '我们的团队',
+            'homepage': 'https://coeoa.xmu.edu.cn/t/CF/',
+            'timeline': [
+                ('1980–1987', '中国海洋大学 物理海洋学 本科、硕士'),
+                ('1988–1991', '美国普林斯顿大学 海洋和大气科学 硕士'),
+                ('1991–1995', '美国杜克大学 生物海洋学 博士'),
+                ('1996–2008', '美国缅因大学海洋学院 助理教授、副教授（终身教职）'),
+                ('2008–2021', '美国缅因大学海洋学院 教授（2012–2015 任院长）'),
+                ('2016–2022', '自然资源部第二海洋研究所研究员、卫星海洋环境动力学国家重点实验室主任'),
+                ('2022–至今', '厦门大学 "唐世凤"海洋学科讲席教授'),
+            ],
+            'interests': [
+                '海洋碳循环', '物理—生物地球化学模型', '海洋生态系统',
+                '渔业资源', 'BGC-Argo 观测',
+            ],
+            'pubs': [
+                ('2026', 'Digital twin of the ocean as a catalyst for blue economy innovation', 'National Science Review'),
+                ('2021', 'A limited effect of sub-tropical typhoons on phytoplankton dynamics', 'Biogeosciences'),
+                ('2020', 'Monitoring ocean biogeochemistry with autonomous platforms', 'Nature Reviews Earth & Environment'),
+                ('2020', 'Enhanced winter carbon export observed by BGC-Argo in the Northwest Pacific Ocean', 'Geophysical Research Letters'),
+            ],
+        }
 
     deco_wave = '''      <svg class="hdeco" viewBox="0 0 1440 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
         <g stroke="rgba(255,255,255,.07)" fill="none">
@@ -890,7 +950,15 @@ def home_body(lang):
       </div>''' for i, (v, suf, lab) in enumerate(stats))
 
     feat_d, feat_t, feat_p = news[0]
-    pi_name, pi_en, pi_title, pi_bio, pi_btn1, pi_btn2 = pi
+    pi_name = pi['name']; pi_en = pi['en']; pi_title = pi['title']
+    pi_bio = pi['bio']; pi_btn1 = pi['btn1']; pi_btn2 = pi['btn2']
+    pi_timeline = '\n'.join(
+        f'''          <li><span class="tl-y">{y}</span><span class="tl-t">{t}</span></li>'''
+        for y, t in pi['timeline'])
+    pi_interests = '\n'.join(f'          <li>{x}</li>' for x in pi['interests'])
+    pi_pubs = '\n'.join(
+        f'''          <li><span class="pub-y">{y}</span><span class="pub-t">{t} <i>— {j}</i></span></li>'''
+        for y, t, j in pi['pubs'])
     list_parts = '\n'.join(
         f'''      <a class="nitem" href="news.html" data-reveal style="--d:{i*100}ms">
         <span class="date">{d}</span>
@@ -960,7 +1028,26 @@ def home_body(lang):
       <div class="pi-actions">
         <a class="btn btn-solid" href="about.html">{pi_btn1} →</a>
         <a class="btn btn-line" href="members.html">{pi_btn2} →</a>
+        <a class="btn btn-line" href="{pi['homepage']}" target="_blank">{'Personal Homepage' if lang == EN else '个人主页'} →</a>
       </div>
+    </div>
+  </div>
+  <div class="pi-detail">
+    <div class="pi-col">
+      <h3>{'Career Timeline' if lang == EN else '学术经历'}</h3>
+      <ul class="pi-timeline">
+{pi_timeline}
+      </ul>
+    </div>
+    <div class="pi-col">
+      <h3>{'Research Interests' if lang == EN else '主要研究领域'}</h3>
+      <ul class="pi-interests">
+{pi_interests}
+      </ul>
+      <h3 style="margin-top:30px">{'Selected Publications' if lang == EN else '代表性论文'}</h3>
+      <ul class="pi-pubs">
+{pi_pubs}
+      </ul>
     </div>
   </div>
 </div>

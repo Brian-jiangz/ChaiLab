@@ -263,6 +263,42 @@ html.anim .hslide.on .hcap .hero-ctas { opacity: 1; transform: none; transition-
 .pi-info .pi-title { color: var(--gold); font-size: 14px; margin: 10px 0 18px; letter-spacing: .14em; }
 .pi-info p { font-size: .9375em; color: var(--ink-2); line-height: 2; max-width: 700px; }
 .pi-actions { display: flex; gap: 14px; margin-top: 28px; flex-wrap: wrap; }
+
+/* ===== PI 详细档案（时间线 / 研究领域 / 论文） ===== */
+.pi-detail {
+  display: grid; grid-template-columns: 1.2fr 1fr; gap: 0;
+  border: 1px solid var(--line); margin-top: 48px;
+}
+.pi-col { padding: 36px 40px; }
+.pi-col + .pi-col { border-left: 1px solid var(--line); }
+.pi-col h3 {
+  font-size: 15px; color: var(--navy); letter-spacing: .14em; font-weight: 600;
+  padding-bottom: 12px; border-bottom: 1px solid var(--line); margin-bottom: 16px;
+  position: relative;
+}
+.pi-col h3::before { content: ""; position: absolute; left: 0; bottom: -1px; width: 44px; height: 2px; background: var(--gold); }
+.pi-timeline { list-style: none; }
+.pi-timeline li {
+  display: flex; align-items: baseline; gap: 16px; padding: 10px 0;
+  border-bottom: 1px dashed var(--line);
+}
+.pi-timeline li:last-child { border-bottom: none; }
+.pi-timeline .tl-y {
+  flex-shrink: 0; min-width: 92px; font-size: 12px; color: var(--gold);
+  letter-spacing: .04em; font-variant-numeric: tabular-nums;
+}
+.pi-timeline .tl-t { font-size: 13.5px; color: var(--ink-2); line-height: 1.7; }
+.pi-interests { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; }
+.pi-interests li {
+  font-size: 13px; color: var(--navy); border: 1px solid var(--line-2);
+  padding: 6px 16px; background: var(--paper-2); letter-spacing: .03em;
+}
+.pi-pubs { list-style: none; }
+.pi-pubs li { display: flex; align-items: baseline; gap: 14px; padding: 9px 0; border-bottom: 1px dashed var(--line); }
+.pi-pubs li:last-child { border-bottom: none; }
+.pi-pubs .pub-y { flex-shrink: 0; font-size: 12px; color: var(--gold); font-variant-numeric: tabular-nums; }
+.pi-pubs .pub-t { font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+.pi-pubs .pub-t i { color: var(--ink-3); font-style: normal; font-size: 12px; }
 .intro-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 56px; align-items: start; }
 .intro-card { border-top: 1px solid var(--line); padding-top: 36px; }
 .intro-card p { margin-bottom: 18px; font-size: .9375em; color: var(--ink-2); text-indent: 2em; }
@@ -609,6 +645,9 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
   .news-item { padding: 32px 26px; }
   .pi-wrap { grid-template-columns: 1fr; padding: 36px 28px; gap: 28px; }
   .pi-photo { width: 100%; max-width: 340px; margin: 0 auto; }
+  .pi-detail { grid-template-columns: 1fr; }
+  .pi-col + .pi-col { border-left: none; border-top: 1px solid var(--line); }
+  .pi-col { padding: 28px 24px; }
   .aca-wrap { grid-template-columns: 1fr; }
   .aca-stage { min-height: 260px; }
   .section, .home-sec { padding: 56px 20px; }
