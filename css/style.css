@@ -422,11 +422,6 @@ html.anim .hslide.on .hcap .hero-ctas { opacity: 1; transform: none; transition-
 .tl-items { list-style: none; border-left: 2px solid var(--line-2); padding: 6px 0 18px 30px; }
 .tl-item { position: relative; padding: 14px 0 16px; }
 .tl-item:not(:last-child) { border-bottom: 1px dashed var(--line); }
-.tl-dot {
-  position: absolute; left: -33px; top: 24px; width: 10px; height: 10px;
-  border-radius: 50%; background: var(--gold); border: 2px solid var(--paper);
-  box-shadow: 0 0 0 2px var(--line-2);
-}
 .tl-month { display: inline-block; font-size: 11px; color: var(--gold); letter-spacing: .2em; margin-bottom: 4px; font-weight: 600; }
 .tl-item .t { font-size: .9375em; font-weight: 600; color: var(--ink); }
 .tl-item .a { font-size: .8125em; color: var(--ink-3); margin: 4px 0; }
@@ -682,7 +677,6 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
   .tl-group { grid-template-columns: 64px 1fr; }
   .tl-year { font-size: 17px; padding: 14px 16px 0 0; }
   .tl-items { padding-left: 22px; }
-  .tl-dot { left: -27px; top: 22px; }
   .footer .inner { grid-template-columns: 1fr 1fr; }
   .scroll-hint { display: none; }
 }

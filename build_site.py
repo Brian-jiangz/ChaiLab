@@ -527,7 +527,6 @@ def paper_timeline(rows, lang, reveal=False):
         for month, title, authors, journal, doi in sorted(groups[year], key=lambda x: -x[0]):
             m = f'{month}月' if lang == ZH else MONTHS_EN[month]
             out.append(f'''      <li class="tl-item">
-        <span class="tl-dot" aria-hidden="true"></span>
         <div class="tl-month">{m}</div>
         <div class="t">{title}</div>
         <div class="a">{authors}</div>
