@@ -1822,9 +1822,11 @@ def main():
         open('en/' + fname, 'w').write(html)
         print('生成 en/' + fname)
 
-    # 成员页
-    open('members.html', 'w').write(page('members.html', '成员介绍', 'GROUP MEMBERS', members_body(ZH), ZH, scripts='js/home.js'))
-    open('en/members.html', 'w').write(_en(page('members.html', 'Members', 'GROUP MEMBERS', members_body(EN), EN, scripts='../js/home.js')))
+    # 成员页（二级页，含左侧 sub-nav）
+    open('members.html', 'w').write(page('members.html', '成员介绍', 'GROUP MEMBERS',
+        with_subnav('about', members_body(ZH), ZH), ZH, scripts='js/home.js'))
+    open('en/members.html', 'w').write(_en(page('members.html', 'Members', 'GROUP MEMBERS',
+        with_subnav('about', members_body(EN), EN), EN, scripts='../js/home.js')))
     print('生成 members.html / en/members.html')
 
     # 首页（无 page-banner，使用 home.js）
