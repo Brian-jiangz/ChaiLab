@@ -20,9 +20,8 @@ TXT = {
         'site_name': '柴扉教授课题组',
         'site_sub': 'Chai Group · Xiamen University',
         'lang_switch': 'English',
+        'lang_short': 'En',
         'lang_url': 'en/index.html',
-        'tb_join': '招生招聘',
-        'tb_contact': '联系我们',
         'footer_name': '柴扉教授课题组',
         'footer_org': '海洋生物地球化学全国重点实验室（厦门大学）',
         'footer_addr': '厦门大学翔安校区周隆泉楼',
@@ -40,9 +39,8 @@ TXT = {
         'site_name': 'Chai Group',
         'site_sub': 'Xiamen University · MEL',
         'lang_switch': '中文',
+        'lang_short': '中文',
         'lang_url': '../index.html',
-        'tb_join': 'Join Us',
-        'tb_contact': 'Contact',
         'footer_name': 'Chai Group',
         'footer_org': 'State Key Laboratory of Marine Environmental Science (MEL), Xiamen University',
         'footer_addr': 'Zhoulongquan Building, Xiang\u2019an Campus, Xiamen University',
@@ -119,15 +117,6 @@ def nav(active, lang):
     lis = '\n'.join(parts)
     return f'''<!-- 顶部导航 -->
 <header class="g-head" id="g-head">
-  <div class="topbar">
-    <div class="tb-inner">
-      <a href="about.html#join">{t['tb_join']}</a>
-      <span class="tb-sep"></span>
-      <a href="mailto:fchai@xmu.edu.cn">{t['tb_contact']}</a>
-      <span class="tb-sep"></span>
-      <a href="{t['lang_url']}" class="tb-lang">{t['lang_switch']}</a>
-    </div>
-  </div>
   <div class="inner main">
     <a href="index.html" class="logo">
       <img src="images/xmu_logo.png" alt="Xiamen University" class="logo-xmu">
@@ -144,6 +133,7 @@ def nav(active, lang):
         <li class="m-lang"><a href="{t['lang_url']}">{t['lang_switch']}</a></li>
       </ul>
     </nav>
+    <a class="lang-switch" href="{t['lang_url']}">{t['lang_short']}</a>
     <button class="nav-toggle" onclick="document.querySelector('.g-nav').classList.toggle('open')">☰</button>
   </div>
 </header>'''
@@ -299,27 +289,32 @@ def research_tiles(lang):
   {proj}
 </div>'''
 
-def tiles_body(lang):
+def tiles_body(lang, href_base='#'):
     if lang == EN:
         items = [
-            (SVG_WAVE, 'Marine Ecosystem and Biogeochemical Modeling', 'Development and improvement of the CESM-CoSiNE coupled marine ecosystem\u2013biogeochemistry module to simulate the spatiotemporal evolution of phytoplankton, nutrients, and the carbon cycle.'),
-            (SVG_GLOBE, 'Marine Carbon Cycle and Climate Feedbacks', 'Quantifying the ocean\u2019s role in regulating atmospheric CO\u2082, biological pump efficiency, and the response of the marine carbon cycle to future climate change.'),
-            (SVG_BIO, 'Submesoscale Processes and Ecological Effects', 'Exploring how submesoscale physical processes (fronts, eddies) regulate planktonic ecosystems and carbon export fluxes.'),
-            (SVG_TIME, 'Paleoclimate and Paleoceanography', 'Earth system modeling of key periods such as the Last Interglacial to understand the long-term evolution of the carbon cycle.'),
-            (SVG_DIGI, 'Ocean Digital Twin', 'Building ocean digital twin systems to empower blue-economy innovation and integrated ocean observation\u2013simulation\u2013prediction.'),
-            (SVG_SAT, 'Observation\u2013Model Integration', 'Combining in-situ observations, satellite remote sensing, and numerical models to quantify uncertainty and improve ecosystem model parameterizations.'),
+            ('🌊', 'Marine Ecosystem and Biogeochemical Modeling', 'Development and improvement of the CESM-CoSiNE coupled marine ecosystem\u2013biogeochemistry module to simulate the spatiotemporal evolution of phytoplankton, nutrients, and the carbon cycle.'),
+            ('🌍', 'Marine Carbon Cycle and Climate Feedbacks', 'Quantifying the ocean\u2019s role in regulating atmospheric CO\u2082, biological pump efficiency, and the response of the marine carbon cycle to future climate change.'),
+            ('🌀', 'Submesoscale Processes and Ecological Effects', 'Exploring how submesoscale physical processes (fronts, eddies) regulate planktonic ecosystems and carbon export fluxes.'),
+            ('⏳', 'Paleoclimate and Paleoceanography', 'Earth system modeling of key periods such as the Last Interglacial to understand the long-term evolution of the carbon cycle.'),
+            ('🖥️', 'Ocean Digital Twin', 'Building ocean digital twin systems to empower blue-economy innovation and integrated ocean observation\u2013simulation\u2013prediction.'),
+            ('📡', 'Observation\u2013Model Integration', 'Combining in-situ observations, satellite remote sensing, and numerical models to quantify uncertainty and improve ecosystem model parameterizations.'),
         ]
     else:
         items = [
-            (SVG_WAVE, '海洋生态系统与生物地球化学模拟', '发展并改进 CESM-CoSiNE 海洋生态系统—生物地球化学耦合模式，模拟浮游植物、营养盐与碳循环的时空演变。'),
-            (SVG_GLOBE, '海洋碳循环与气候反馈', '研究海洋对大气 CO₂ 的调控作用、生物泵效率及海洋碳循环对未来气候变化的响应。'),
-            (SVG_BIO, '海洋次中尺度过程与生态效应', '探索次中尺度物理过程（锋面、涡旋）对浮游生态系统与碳输出通量的调控机制。'),
-            (SVG_TIME, '古气候与古海洋模拟', '利用地球系统模式开展末次间冰期等关键时期古气候模拟，理解碳循环的长期演化。'),
-            (SVG_DIGI, '海洋数字孪生', '构建海洋数字孪生系统，赋能蓝色经济创新，服务海洋观测—模拟—预测一体化。'),
-            (SVG_SAT, '观测—模拟融合', '结合现场观测、卫星遥感与数值模式，量化评估模式不确定性，改进生态模型参数化。'),
+            ('🌊', '海洋生态系统与生物地球化学模拟', '发展并改进 CESM-CoSiNE 海洋生态系统—生物地球化学耦合模式，模拟浮游植物、营养盐与碳循环的时空演变。'),
+            ('🌍', '海洋碳循环与气候反馈', '研究海洋对大气 CO₂ 的调控作用、生物泵效率及海洋碳循环对未来气候变化的响应。'),
+            ('🌀', '海洋次中尺度过程与生态效应', '探索次中尺度物理过程（锋面、涡旋）对浮游生态系统与碳输出通量的调控机制。'),
+            ('⏳', '古气候与古海洋模拟', '利用地球系统模式开展末次间冰期等关键时期古气候模拟，理解碳循环的长期演化。'),
+            ('🖥️', '海洋数字孪生', '构建海洋数字孪生系统，赋能蓝色经济创新，服务海洋观测—模拟—预测一体化。'),
+            ('📡', '观测—模拟融合', '结合现场观测、卫星遥感与数值模式，量化评估模式不确定性，改进生态模型参数化。'),
         ]
     return '\n'.join(
-        f'    <div class="rtile" id="r{i}">\n      <div class="icon">{icon}</div>\n      <h3>{title}</h3>\n      <p>{desc}</p>\n    </div>'
+        f'''    <a class="rtile rt-bg{i}" id="r{i}" href="{href_base}r{i}" data-reveal style="--d:{i*70}ms">
+      <div class="icon">{icon}</div>
+      <h3>{title}</h3>
+      <p>{desc}</p>
+      <span class="rt-go">→</span>
+    </a>'''
         for i, (icon, title, desc) in enumerate(items))
 
 def project_box(lang, full=True):
@@ -659,6 +654,9 @@ def home_body(lang):
             ('Collaboration', 'The group maintains close collaborations with universities and research institutes at home and abroad. We welcome academic visits, joint training, and project cooperation.', 'links.html', 'Related Links'),
         ]
         scroll_hint = 'Scroll'
+        pi = ('Prof. Fei Chai', 'PRINCIPAL INVESTIGATOR', 'Tang Shifeng Chair Professor in Marine Sciences · PI',
+              'Marine biogeochemistry, ocean ecosystem modeling, and climate simulation. Ph.D. in Biological Oceanography, Duke University; former Professor (tenured) at the University of Maine.',
+              'About the Group', 'Our Team')
     else:
         slides = [
             ('Marine Biogeochemistry', '海洋生物地球化学与气候模拟', 'Ocean Biogeochemistry and Climate Modeling',
@@ -697,6 +695,9 @@ def home_body(lang):
             ('合作交流', '课题组与国内外多所高校及研究机构保持紧密合作，欢迎就学术访问、联合培养与项目合作事宜洽谈。', 'links.html', '查看相关链接'),
         ]
         scroll_hint = '向下滚动'
+        pi = ('柴扉 教授', 'PRINCIPAL INVESTIGATOR', '"唐世凤"海洋学科讲席教授 · PI',
+              '长期从事海洋生物地球化学与气候模拟研究。美国杜克大学生物海洋学博士，曾任美国缅因大学海洋学院教授（终身教职），现任厦门大学海洋生物地球化学全国重点实验室讲席教授。',
+              '了解课题组', '我们的团队')
 
     deco_wave = '''      <svg class="hdeco" viewBox="0 0 1440 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
         <g stroke="rgba(255,255,255,.07)" fill="none">
@@ -766,6 +767,7 @@ def home_body(lang):
       </div>''' for i, (v, suf, lab) in enumerate(stats))
 
     feat_d, feat_t, feat_p = news[0]
+    pi_name, pi_en, pi_title, pi_bio, pi_btn1, pi_btn2 = pi
     list_parts = '\n'.join(
         f'''      <a class="nitem" href="news.html" data-reveal style="--d:{i*100}ms">
         <span class="date">{d}</span>
@@ -789,7 +791,7 @@ def home_body(lang):
       <a class="btn btn-ghost" href="{u}">{b} →</a>
     </div>''' for i, (t, p, u, b) in enumerate(join))
 
-    tiles = tiles_body(lang)
+    tiles = tiles_body(lang, 'research.html#')
 
     return f'''<div class="read-progress" id="readProgress" aria-hidden="true"></div>
 <!-- Hero 轮播 -->
@@ -797,8 +799,6 @@ def home_body(lang):
   <div class="hero-slides" id="heroSlides">
 {chr(10).join(slide_parts)}
   </div>
-  <button class="harrow prev" id="heroPrev" aria-label="prev">‹</button>
-  <button class="harrow next" id="heroNext" aria-label="next">›</button>
   <div class="hdots" id="heroDots">
 {dots}
   </div>
@@ -808,10 +808,22 @@ def home_body(lang):
   </div>
 </div>
 
-<!-- 统计条 -->
-<div class="stats-band">
-  <div class="stats">
-{stat_parts}
+<!-- 柴老师简介 -->
+<div class="section pi-intro" id="pi">
+  <div class="pi-wrap" data-reveal>
+    <div class="pi-photo">
+      <img src="images/chai_fei.jpg" alt="{pi_name}">
+    </div>
+    <div class="pi-info">
+      <span class="en">{pi_en}</span>
+      <h2>{pi_name}</h2>
+      <div class="pi-title">{pi_title}</div>
+      <p>{pi_bio}</p>
+      <div class="pi-actions">
+        <a class="btn btn-solid" href="about.html">{pi_btn1} →</a>
+        <a class="btn btn-line" href="members.html">{pi_btn2} →</a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -890,10 +902,17 @@ def home_body(lang):
   </div>
 </div>
 
+<!-- 统计条 -->
+<div class="stats-band">
+  <div class="stats">
+{stat_parts}
+  </div>
+</div>
+
 <button class="back-top" id="backTop" aria-label="back to top">↑</button>'''
 
 def research_with_project(lang):
-    tiles = tiles_body(lang)
+    tiles = tiles_body(lang, '#')
     proj = project_box(lang, full=True)
     if lang == EN:
         head1, head2 = 'Research Areas', 'CESM-CoSiNE Project'

@@ -88,14 +88,17 @@
     onScrollP();
   }
 
-  /* ===== 导航滚动反馈 + 返回顶部 ===== */
+  /* ===== 导航滚动反馈 + Hero 收缩 + 返回顶部 ===== */
   var head = document.getElementById('g-head');
   var hint = document.getElementById('scrollHint');
   var topBtn = document.getElementById('backTop');
+  var heroEl = document.getElementById('hero');
+  var shrinkBound = 120;
   function onScroll() {
     var y = window.scrollY || window.pageYOffset;
     if (head) head.classList.toggle('scrolled', y > 40);
     if (topBtn) topBtn.classList.toggle('show', y > 600);
+    if (heroEl && !reduced) heroEl.classList.toggle('shrunk', y > shrinkBound);
     if (hint && !reduced) {
       hint.style.opacity = Math.max(0, 1 - y / 260);
       hint.style.transform = 'translateY(' + Math.min(y * 0.25, 60) + 'px)';
