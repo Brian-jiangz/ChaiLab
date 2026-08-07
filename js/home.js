@@ -88,40 +88,54 @@
     onScrollP();
   }
 
-  /* ===== 北大式整屏切换：Hero 下滑 / 回顶 ===== */
+  /* ===== 北大式整屏切换：内容层上滑盖住 Hero / 下滑退出 ===== */
   var bodyHome = document.getElementById('bodyHome');
   var bodyMain = document.getElementById('bodyMain');
   var hintBtn = document.getElementById('scrollHint');
   var switching = false;
 
   function goDown() {
-    if (!bodyHome || switching) return;
+    if (!bodyMain || switching) return;
     switching = true;
-    if (!reduced) bodyHome.classList.add('leave');
-    else bodyHome.classList.add('leave');
-    setTimeout(function () { switching = false; }, 900);
+    menuLocked = true;
+    bodyMain.classList.add('show');
+    document.body.classList.remove('locked');
+    if (head) head.classList.add('scrolled');
+    if (bodyHome) bodyHome.style.pointerEvents = 'none';
+    setTimeout(function () {
+      switching = false;
+      menuLocked = false;
+      onScroll();
+    }, 900);
   }
   function goUp() {
-    if (!bodyHome || switching) return;
-    if (!bodyHome.classList.contains('leave')) return;
+    if (!bodyMain || switching) return;
+    if (!bodyMain.classList.contains('show')) return;
     switching = true;
-    bodyHome.classList.remove('leave');
-    window.scrollTo(0, 0);
-    setTimeout(function () { switching = false; }, 900);
+    menuLocked = true;
+    bodyMain.classList.remove('show');
+    document.body.classList.add('locked');
+    if (head) head.classList.remove('scrolled');
+    if (bodyHome) bodyHome.style.pointerEvents = '';
+    setTimeout(function () { switching = false; menuLocked = false; }, 900);
   }
 
-  /* 滚轮：Hero 内下滑 -> 整屏切换；内容层顶部上滚 -> 回 Hero */
+  /* 初始状态：Hero 显示，锁定滚动 */
+  if (bodyHome) document.body.classList.add('locked');
+
+  /* 滚轮：Hero 上向下 -> 内容上滑；内容顶部向上 -> 回 Hero */
   var wheelLock = false;
   window.addEventListener('wheel', function (e) {
     if (wheelLock) { e.preventDefault(); return; }
     var y = window.scrollY || window.pageYOffset;
     var atTop = y < 8;
-    if (e.deltaY > 0 && atTop && bodyHome && !bodyHome.classList.contains('leave')) {
+    var shown = bodyMain && bodyMain.classList.contains('show');
+    if (e.deltaY > 0 && atTop && !shown) {
       e.preventDefault();
       wheelLock = true;
       goDown();
       setTimeout(function () { wheelLock = false; }, 1200);
-    } else if (e.deltaY < 0 && atTop && bodyHome && bodyHome.classList.contains('leave')) {
+    } else if (e.deltaY < 0 && atTop && shown) {
       e.preventDefault();
       wheelLock = true;
       goUp();
@@ -132,21 +146,19 @@
   /* 点击右下滚动提示 -> 下滑 */
   if (hintBtn) {
     hintBtn.addEventListener('click', function () {
-      if (!bodyHome.classList.contains('leave')) goDown();
+      if (!bodyMain.classList.contains('show')) goDown();
     });
   }
 
   /* 键盘：↓/PgDn 下滑，↑/PgUp 回顶 */
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
-      if ((window.scrollY || 0) < 8 && bodyHome && !bodyHome.classList.contains('leave')) {
-        e.preventDefault(); goDown();
-      }
+    var atTop = (window.scrollY || 0) < 8;
+    var shown = bodyMain && bodyMain.classList.contains('show');
+    if ((e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') && atTop && !shown) {
+      e.preventDefault(); goDown();
     }
-    if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-      if ((window.scrollY || 0) < 8 && bodyHome) {
-        e.preventDefault(); goUp();
-      }
+    if ((e.key === 'ArrowUp' || e.key === 'PageUp') && atTop && shown) {
+      e.preventDefault(); goUp();
     }
   });
 
@@ -156,7 +168,7 @@
     bodyHome.addEventListener('touchstart', function (e) { tStart = e.touches[0].clientY; }, { passive: true });
     bodyHome.addEventListener('touchend', function (e) {
       var dy = e.changedTouches[0].clientY - tStart;
-      if (dy < -30 && !bodyHome.classList.contains('leave')) goDown();
+      if (dy < -30 && !bodyMain.classList.contains('show')) goDown();
     }, { passive: true });
   }
   if (bodyMain) {
@@ -171,9 +183,13 @@
   /* ===== 导航滚动反馈 + 返回顶部 ===== */
   var head = document.getElementById('g-head');
   var topBtn = document.getElementById('backTop');
+  var menuLocked = false;
+  function setMenu(scrolled) {
+    if (head) head.classList.toggle('scrolled', scrolled);
+  }
   function onScroll() {
     var y = window.scrollY || window.pageYOffset;
-    if (head) head.classList.toggle('scrolled', y > 40);
+    if (!menuLocked && bodyMain && bodyMain.classList.contains('show')) setMenu(y > 40);
     if (topBtn) topBtn.classList.toggle('show', y > 600);
   }
   window.addEventListener('scroll', onScroll, { passive: true });
