@@ -359,7 +359,7 @@
     }).filter(Boolean);
     function onScrollSpy() {
       if (!subTargets.length) return;
-      var y = (window.scrollY || 0) + 130;
+      var y = (window.scrollY || 0) + 90;
       var cur = subTargets[0];
       subTargets.forEach(function (t) {
         if (t && t.offsetTop <= y) cur = t;
