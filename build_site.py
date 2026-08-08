@@ -72,18 +72,18 @@ DD_ZH = {
         ('members.html', '成员介绍'),
     ],
     'papers': [
-        ('papers-journal.html', '期刊论文'),
-        ('papers-digital-twin.html', '数字孪生'),
-        ('papers-data.html', '科研数据'),
-        ('papers-model.html', '数值模式'),
+        ('papers.html#journal', '期刊论文'),
+        ('papers.html#digital-twin', '数字孪生'),
+        ('papers.html#data', '科研数据'),
+        ('papers.html#model', '数值模式'),
     ],
     'research': [
-        ('research-r0.html', '海洋碳循环与气候模拟'),
-        ('research-r1.html', '海洋数字孪生'),
-        ('research-r2.html', '古气候与古海洋模拟'),
-        ('research-r3.html', '海洋观测与生态系统'),
-        ('research-r4.html', '海洋热浪与模态水'),
-        ('research-project.html', '海洋模式研发'),
+        ('research.html#r0', '海洋碳循环与气候模拟'),
+        ('research.html#r1', '海洋数字孪生'),
+        ('research.html#r2', '古气候与古海洋模拟'),
+        ('research.html#r3', '海洋观测与生态系统'),
+        ('research.html#r4', '海洋热浪与模态水'),
+        ('research.html#r5', '海洋模式研发'),
     ],
     'links': [
         ('https://coeoa.xmu.edu.cn/t/CF/', '柴扉教授个人主页', '_blank'),
@@ -98,18 +98,18 @@ DD_EN = {
         ('members.html', 'Members'),
     ],
     'papers': [
-        ('papers-journal.html', 'Journal Papers'),
-        ('papers-digital-twin.html', 'Digital Twin'),
-        ('papers-data.html', 'Research Data'),
-        ('papers-model.html', 'Numerical Models'),
+        ('papers.html#journal', 'Journal Papers'),
+        ('papers.html#digital-twin', 'Digital Twin'),
+        ('papers.html#data', 'Research Data'),
+        ('papers.html#model', 'Numerical Models'),
     ],
     'research': [
-        ('research-r0.html', 'Carbon Cycle & Climate Modeling'),
-        ('research-r1.html', 'Ocean Digital Twin'),
-        ('research-r2.html', 'Paleoclimate & Paleoceanography'),
-        ('research-r3.html', 'Ocean Observation & Ecosystems'),
-        ('research-r4.html', 'Heatwaves & Mode Water'),
-        ('research-project.html', 'Ocean Model Development'),
+        ('research.html#r0', 'Carbon Cycle & Climate Modeling'),
+        ('research.html#r1', 'Ocean Digital Twin'),
+        ('research.html#r2', 'Paleoclimate & Paleoceanography'),
+        ('research.html#r3', 'Ocean Observation & Ecosystems'),
+        ('research.html#r4', 'Heatwaves & Mode Water'),
+        ('research.html#r5', 'Ocean Model Development'),
     ],
     'links': [
         ('https://coeoa.xmu.edu.cn/t/CF/', "Prof. Chai's Homepage", '_blank'),
@@ -927,6 +927,109 @@ RESEARCH_ITEMS_EN = [
     ('Marine Heatwaves and Mode Water', 'Investigating the mechanisms and evolution of marine heatwaves and Subtropical Mode Water and their impacts on marine ecosystems and the carbon cycle.'),
 ]
 
+RESEARCH_SECTIONS = {
+'zh': [
+    ('r0', '海洋碳循环与气候模拟', 'CARBON CYCLE & CLIMATE MODELING',
+     '发展并改进 CESM-CoSiNE 等海洋生态—生物地球化学耦合模式，量化海洋对大气 CO₂ 的调控作用，研究生物泵效率及海洋碳循环对未来气候变化的响应与反馈。',
+     ['CESM-CoSiNE 海洋生态—生物地球化学耦合模式研发与评估', '海洋生物泵与深海碳输出效率', 'ENSO 等气候模态对海气 CO₂ 交换与 pCO₂ 格局的调控'],
+     'images/cosine_bg.jpg', 'papers.html#journal', '相关论文 →'),
+    ('r1', '海洋数字孪生', 'OCEAN DIGITAL TWIN',
+     '构建海洋数字孪生系统，整合观测—模拟—预测一体化框架，赋能蓝色经济创新。',
+     ['海洋数字孪生核心架构体系', '蓝色经济发展关键应用场景', '海洋观测—模拟—预测一体化'],
+     'images/mel_digital_twin.jpg', 'papers.html#digital-twin', '数字孪生专题 →'),
+    ('r2', '古气候与古海洋模拟', 'PALEOCLIMATE & PALEOCEANOGRAPHY',
+     '利用地球系统模式开展末次间冰期等关键时期古气候模拟，理解碳循环的长期演化与气候反馈机制。',
+     ['末次间冰期海洋环境与碳循环模拟', 'LOVECLIM-CoSiNE 古气候—生态耦合模式', '古气候代用指标与模式结果综合'],
+     'images/loveclim_schema.jpg', 'papers.html#journal', '相关论文 →'),
+    ('r3', '海洋观测与生态系统', 'OCEAN OBSERVATION & ECOSYSTEMS',
+     '利用 Biogeochemical-Argo 剖面浮标观测营养盐、溶解氧、pH 与颗粒有机碳通量的高频变化，结合生态模型评估气候变化对渔业资源的影响。',
+     ['BGC-Argo 高频剖面观测体系', '深海颗粒有机碳通量监测', '气候变化下渔业资源评估'],
+     'images/cosine_bg.jpg', 'papers.html#data', '科研数据 →'),
+    ('r4', '海洋热浪与模态水', 'MARINE HEATWAVES & MODE WATER',
+     '研究海洋热浪与副热带模态水的发生机制、演变规律及其对海洋生态系统与碳循环的影响。',
+     ['海洋热浪的发生机制与演变规律', '北太平洋副热带模态水的形成与输运', '极端海洋事件对生态系统与碳循环的影响'],
+     'images/mel_digital_twin.jpg', 'papers.html#journal', '相关论文 →'),
+    ('r5', '海洋模式研发', 'OCEAN MODEL DEVELOPMENT',
+     '自主发展并维护 CESM-CoSiNE 海洋生态—生物地球化学模块，已嵌入 CESM 地球系统模式（POP2 海洋分量），支撑全球与区域尺度的现代气候与古气候模拟。',
+     ['CESM-CoSiNE16 嵌入 CESM 地球系统模式', 'CoSiNE22 碳同位素示踪扩展', '现代气候与古气候模拟支持'],
+     'images/loveclim_schema.jpg', 'research-project.html', '模式详情 →'),
+],
+'en': [
+    ('r0', 'Marine Carbon Cycle and Climate Modeling', 'CARBON CYCLE & CLIMATE MODELING',
+     'Developing and improving coupled marine ecosystem\u2013biogeochemistry models such as CESM-CoSiNE to quantify the ocean\u2019s role in regulating atmospheric CO\u2082, biological pump efficiency, and the response and feedback of the marine carbon cycle to climate change.',
+     ['Development and evaluation of the CESM-CoSiNE coupled ecosystem\u2013biogeochemistry model', 'Biological carbon pump and deep-sea carbon export efficiency', 'Regulation of air\u2013sea CO\u2082 exchange and pCO\u2082 patterns by ENSO and other climate modes'],
+     'images/cosine_bg.jpg', 'papers.html#journal', 'Publications \u2192'),
+    ('r1', 'Ocean Digital Twin', 'OCEAN DIGITAL TWIN',
+     'Building ocean digital twin systems that integrate observation\u2013simulation\u2013prediction into a unified framework, empowering blue-economy innovation.',
+     ['Core architecture of ocean digital twins', 'Key application scenarios in blue-economy development', 'Integrated ocean observation\u2013simulation\u2013prediction'],
+     'images/mel_digital_twin.jpg', 'papers.html#digital-twin', 'Digital Twin \u2192'),
+    ('r2', 'Paleoclimate and Paleoceanography', 'PALEOCLIMATE & PALEOCEANOGRAPHY',
+     'Earth system modeling of key periods such as the Last Interglacial to understand the long-term evolution of the carbon cycle and climate feedback mechanisms.',
+     ['Simulation of marine environment and carbon cycle during the Last Interglacial', 'LOVECLIM-CoSiNE paleo climate\u2013ecosystem model', 'Integration of paleoclimate proxies and model results'],
+     'images/loveclim_schema.jpg', 'papers.html#journal', 'Publications \u2192'),
+    ('r3', 'Ocean Observation and Ecosystems', 'OCEAN OBSERVATION & ECOSYSTEMS',
+     'Monitoring high-frequency variations of nutrients, oxygen, pH, and particulate organic carbon flux with Biogeochemical-Argo floats, and assessing the impacts of climate change on fisheries resources with ecological models.',
+     ['Biogeochemical-Argo high-frequency profiling', 'Deep-sea particulate organic carbon flux monitoring', 'Fisheries resource assessment under climate change'],
+     'images/cosine_bg.jpg', 'papers.html#data', 'Data \u2192'),
+    ('r4', 'Marine Heatwaves and Mode Water', 'MARINE HEATWAVES & MODE WATER',
+     'Investigating the mechanisms and evolution of marine heatwaves and Subtropical Mode Water and their impacts on marine ecosystems and the carbon cycle.',
+     ['Mechanisms and evolution of marine heatwaves', 'Formation and transport of North Pacific Subtropical Mode Water', 'Impacts of extreme ocean events on ecosystems and the carbon cycle'],
+     'images/mel_digital_twin.jpg', 'papers.html#journal', 'Publications \u2192'),
+    ('r5', 'Ocean Model Development', 'OCEAN MODEL DEVELOPMENT',
+     'Developing and maintaining the CESM-CoSiNE marine ecosystem\u2013biogeochemistry module, embedded in the CESM Earth System Model (POP2 ocean component), supporting modern-climate and paleoclimate simulations at global and regional scales.',
+     ['CESM-CoSiNE16 embedded in CESM', 'CoSiNE22 extension with carbon isotope tracers', 'Support for modern-climate and paleoclimate simulations'],
+     'images/loveclim_schema.jpg', 'research-project.html', 'Model Details \u2192'),
+],
+}
+
+RESEARCH_NAV = [
+    ('#r0', '海洋碳循环与气候模拟', 'Carbon Cycle & Climate Modeling'),
+    ('#r1', '海洋数字孪生', 'Ocean Digital Twin'),
+    ('#r2', '古气候与古海洋模拟', 'Paleoclimate & Paleoceanography'),
+    ('#r3', '海洋观测与生态系统', 'Ocean Observation & Ecosystems'),
+    ('#r4', '海洋热浪与模态水', 'Heatwaves & Mode Water'),
+    ('#r5', '海洋模式研发', 'Ocean Model Development'),
+]
+
+def research_long_body(lang):
+    items = RESEARCH_SECTIONS['zh' if lang == ZH else 'en']
+    secs = []
+    for i, (aid, title, ensub, desc, points, img, link, btn) in enumerate(items):
+        pts = '\n'.join(f'            <li>{p}</li>' for p in points)
+        secs.append(f'''  <section class="rd-sec" id="{aid}">
+    <div class="rd-wrap">
+      <div class="rd-text">
+        <div class="rd-num">0{i + 1} / 0{len(items)}</div>
+        <h2>{title}</h2>
+        <div class="rd-en">{ensub}</div>
+        <p>{desc}</p>
+        <ul class="rd-points">
+{pts}
+        </ul>
+        <a class="btn btn-line" href="{link}">{btn}</a>
+      </div>
+      <div class="rd-visual">
+        <img src="{img}" alt="{title}" loading="lazy">
+      </div>
+    </div>
+  </section>''')
+    nav = subnav_items(RESEARCH_NAV, lang)
+    return f'''<div class="page-wrap">
+{nav}
+  <div class="sub-content">
+{''.join(secs)}
+  </div>
+</div>'''
+
+def subnav_items(items, lang, current=''):
+    lis = []
+    for href, zh, en in items:
+        label = en if lang == EN else zh
+        tgt = ' target="_blank"' if href.startswith('http') else ''
+        cls = ' class="active"' if href == current else ''
+        lis.append(f'      <a href="{href}"{tgt}{cls}>{label}</a>')
+    return '<nav class="sub-nav" id="subNav" aria-label="sub navigation">\n' + '\n'.join(lis) + '\n    </nav>'
+
 SUB_MENUS = {
     'about': [
         ('about-group.html', '课题组简介', 'About the Group'),
@@ -1076,7 +1179,7 @@ def papers_body(lang):
     </div>
   </div>
 </div>'''
-        return with_subnav('papers', content, lang)
+        return papers_long(content, lang)
     content = f'''<div class="section" id="journal">
   <div class="sec-head">
     <span class="en">JOURNAL PAPERS</span>
@@ -1139,7 +1242,22 @@ def papers_body(lang):
     </div>
   </div>
 </div>'''
-    return with_subnav('papers', content, lang)
+    return papers_long(content, lang)
+
+PAPERS_NAV = [
+    ('#journal', '期刊论文', 'Journal Papers'),
+    ('#digital-twin', '数字孪生', 'Digital Twin'),
+    ('#data', '科研数据', 'Data'),
+    ('#model', '数值模式', 'Models'),
+]
+
+def papers_long(content, lang):
+    return f'''<div class="page-wrap">
+{subnav_items(PAPERS_NAV, lang)}
+  <div class="sub-content">
+{content}
+  </div>
+</div>'''
 
 def news_body(lang):
     if lang == EN:
@@ -2097,20 +2215,6 @@ def main():
                 ('柴扉教授', '个人档案：学术经历、研究领域与代表性论文。', 'about-chai.html'),
                 ('成员介绍', '教职工、博士后与研究生名单。', 'members.html'),
             ]),
-            ('研究方向', 'RESEARCH AREAS', [
-                ('海洋碳循环与气候模拟', RESEARCH_ITEMS_ZH[0][1], 'research-r0.html'),
-                ('海洋数字孪生', RESEARCH_ITEMS_ZH[1][1], 'research-r1.html'),
-                ('古气候与古海洋模拟', RESEARCH_ITEMS_ZH[2][1], 'research-r2.html'),
-                ('海洋观测与生态系统', RESEARCH_ITEMS_ZH[3][1], 'research-r3.html'),
-                ('海洋热浪与模态水', RESEARCH_ITEMS_ZH[4][1], 'research-r4.html'),
-                ('海洋模式研发', '发展并改进 CESM-CoSiNE 等海洋生态—生物地球化学耦合模式。', 'research-project.html'),
-            ]),
-            ('科研成果', 'RESEARCH OUTPUTS', [
-                ('期刊论文', '课题组发表的同行评审期刊论文。', 'papers-journal.html'),
-                ('数字孪生', '海洋数字孪生框架及其应用。', 'papers-digital-twin.html'),
-                ('科研数据', 'BGC-Argo 观测与模式输出数据。', 'papers-data.html'),
-                ('数值模式', 'CESM-CoSiNE 模式与报告。', 'papers-model.html'),
-            ]),
         ]
         for title, en_sub, items in groups:
             cards = '\n'.join(
@@ -2128,10 +2232,17 @@ def main():
 %s
   </div>
 </div>''' % (en_sub, title, cards)
-            fname = 'about.html' if title == '成员介绍' else ('research.html' if title == '研究方向' else 'papers.html')
+            fname = 'about.html'
             html = page(fname, title, en_sub, body, ZH, scripts='js/home.js')
             open(fname, 'w').write(html)
             print('生成一级页', fname)
+        # 研究方向 / 科研成果：长页模式（二级内容直接接在一级页下方）
+        html = page('research.html', '研究方向', 'RESEARCH AREAS', research_long_body(ZH), ZH, scripts='js/home.js')
+        open('research.html', 'w').write(html)
+        print('生成一级页 research.html（长页）')
+        html = page('papers.html', '科研成果', 'RESEARCH OUTPUTS', papers_body(ZH), ZH, scripts='js/home.js')
+        open('papers.html', 'w').write(html)
+        print('生成一级页 papers.html（长页）')
 
     overview_zh()
 
@@ -2196,20 +2307,6 @@ def main():
                 ('Prof. Fei Chai', 'Profile: career, research interests, selected publications.', 'about-chai.html'),
                 ('Members', 'Faculty, postdocs, and graduate students.', 'members.html'),
             ]),
-            ('Research', 'RESEARCH AREAS', [
-                ('Carbon Cycle & Climate Modeling', RESEARCH_ITEMS_EN[0][1], 'research-r0.html'),
-                ('Ocean Digital Twin', RESEARCH_ITEMS_EN[1][1], 'research-r1.html'),
-                ('Paleoclimate & Paleoceanography', RESEARCH_ITEMS_EN[2][1], 'research-r2.html'),
-                ('Ocean Observation & Ecosystems', RESEARCH_ITEMS_EN[3][1], 'research-r3.html'),
-                ('Heatwaves & Mode Water', RESEARCH_ITEMS_EN[4][1], 'research-r4.html'),
-                ('Ocean Model Development', 'Developing and improving coupled marine ecosystem-biogeochemistry models such as CESM-CoSiNE.', 'research-project.html'),
-            ]),
-            ('Research Outputs', 'RESEARCH OUTPUTS', [
-                ('Journal Papers', 'Peer-reviewed journal publications of the group.', 'papers-journal.html'),
-                ('Digital Twin', 'Ocean digital twin framework and applications.', 'papers-digital-twin.html'),
-                ('Research Data', 'BGC-Argo observations and model outputs.', 'papers-data.html'),
-                ('Numerical Models', 'CESM-CoSiNE model and reports.', 'papers-model.html'),
-            ]),
         ]
         for title, en_sub, items in groups:
             cards = '\n'.join(
@@ -2227,10 +2324,17 @@ def main():
 %s
   </div>
 </div>''' % (en_sub, title, cards)
-            fname = 'about.html' if title == 'Members' else ('research.html' if title == 'Research' else 'papers.html')
+            fname = 'about.html'
             html = _en(page(fname, title, en_sub, body, EN, scripts='../js/home.js'))
             open('en/' + fname, 'w').write(html)
             print('生成一级页 en/' + fname)
+        # 研究方向 / 科研成果：长页模式
+        html = _en(page('research.html', 'Research', 'RESEARCH AREAS', research_long_body(EN), EN, scripts='../js/home.js'))
+        open('en/research.html', 'w').write(html)
+        print('生成一级页 en/research.html（长页）')
+        html = _en(page('papers.html', 'Research Outputs', 'RESEARCH OUTPUTS', papers_body(EN), EN, scripts='../js/home.js'))
+        open('en/papers.html', 'w').write(html)
+        print('生成一级页 en/papers.html（长页）')
 
     overview_en()
 
