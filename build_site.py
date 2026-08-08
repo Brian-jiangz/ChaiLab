@@ -391,7 +391,7 @@ def digital_twin_box(lang):
         }
     feats_html = '\n'.join(f'        <li>{x}</li>' for x in dt['feats'])
     return f'''<div class="project-box" style="margin-bottom:36px">
-    <div class="project-hero" style="background-image:linear-gradient(rgba(10,33,56,.8),rgba(13,47,79,.8)),url(images/mel_digital_twin.png);background-size:cover;background-position:center">
+    <div class="project-hero" style="background-image:linear-gradient(rgba(10,33,56,.8),rgba(13,47,79,.8)),url(images/mel_digital_twin.jpg);background-size:cover;background-position:center">
       <div class="kicker">{dt['kicker']}</div>
       <h3>{dt['title']}</h3>
       <p>{dt['desc']}</p>
@@ -455,7 +455,7 @@ def model_box(lang):
       <p>{love['desc']}</p>
     </div>
     <div class="project-body">
-      <img class="model-schema" src="images/loveclim_schema.jpg" alt="LOVECLIM-CoSiNE v1.4 schema">
+      <img class="model-schema" src="images/loveclim_schema.jpg" alt="LOVECLIM-CoSiNE v1.4 schema" loading="lazy">
       <h4>{'Model Features' if lang == EN else '模式特色'}</h4>
       <ul>
 {feats_html}
@@ -559,21 +559,21 @@ def research_feed(lang):
     items = []
     # 论文（自动来自 PAPERS 列表）
     for year, month, title, authors, journal, doi in PAPERS:
-        items.append(('%s-%02d' % (year, month), title, 'images/cosine_bg.png', 'papers-journal.html'))
+        items.append(('%s-%02d' % (year, month), title, 'images/cosine_bg.jpg', 'papers-journal.html'))
     # 模式/项目（固定成果条目，含数字孪生/古气候等特色成果）
     if lang == ZH:
         extras = [
             ('2026-05', 'LOVECLIM-CoSiNE v1.4 古海洋气候—生态耦合模式', 'images/loveclim_schema.jpg', 'papers-model.html'),
-            ('2026-03', 'CESM-CoSiNE 海洋生态—生物地球化学模块', 'images/cosine_bg.png', 'research-project.html'),
+            ('2026-03', 'CESM-CoSiNE 海洋生态—生物地球化学模块', 'images/cosine_bg.jpg', 'research-project.html'),
             ('2026-01', '古气候与数字地球', 'video:paleo_hero', 'papers-digital-twin.html'),
-            ('2026-01', 'BGC-Argo 观测与模式输出数据', 'images/cosine_bg.png', 'papers-data.html'),
+            ('2026-01', 'BGC-Argo 观测与模式输出数据', 'images/cosine_bg.jpg', 'papers-data.html'),
         ]
     else:
         extras = [
             ('2026-05', 'LOVECLIM-CoSiNE v1.4 paleo climate\u2013ecosystem model', 'images/loveclim_schema.jpg', 'papers-model.html'),
-            ('2026-03', 'CESM-CoSiNE ocean ecosystem\u2013biogeochemistry module', 'images/cosine_bg.png', 'research-project.html'),
+            ('2026-03', 'CESM-CoSiNE ocean ecosystem\u2013biogeochemistry module', 'images/cosine_bg.jpg', 'research-project.html'),
             ('2026-01', 'Paleoclimate and the digital earth', 'video:paleo_hero', 'papers-digital-twin.html'),
-            ('2026-01', 'BGC-Argo observations and model outputs', 'images/cosine_bg.png', 'papers-data.html'),
+            ('2026-01', 'BGC-Argo observations and model outputs', 'images/cosine_bg.jpg', 'papers-data.html'),
         ]
     items.extend(extras)
     # 去重（同日期+同标题只保留一条，避免论文与成果条目重复）
@@ -647,7 +647,7 @@ def members_body(lang):
         for slug in slugs:
             name, role, dir_, email, photo, slug2 = by_slug[slug]
             if photo:
-                face = f'<div class="m-avatar"><img src="images/{photo}" alt="{name}"></div>'
+                face = f'<div class="m-avatar"><img src="images/{photo}" alt="{name}" loading="lazy"></div>'
             else:
                 face = f'<div class="m-avatar"><span class="m-initial">{name[0]}</span></div>'
             link = 'about-chai.html' if slug == 'fei-chai' else 'member-%s.html' % slug
@@ -1016,25 +1016,25 @@ def news_body(lang):
       <span class="date">JUN 2026</span>
       <h3>National key R&D project workshop on tropical ocean system evolution</h3>
       <p>Workshop of the national key R&D program \u201cTropical Ocean System Evolution and Its Linkage with the Poles\u201d was held.</p>
-      <img class="news-thumb" src="images/news/project-workshop-2026.jpg" alt="Project workshop 2026">
+      <img class="news-thumb" src="images/news/project-workshop-2026.jpg" alt="Project workshop 2026" loading="lazy">
     </div>
     <div class="news-item">
       <span class="date">JUN 2026</span>
       <h3>Wang Yin master\u2019s thesis defense</h3>
       <p>Congratulations to Wang Yin on passing the master\u2019s thesis defense!</p>
-      <img class="news-thumb" src="images/news/wangyin-defense-2026.jpg" alt="Wang Yin defense">
+      <img class="news-thumb" src="images/news/wangyin-defense-2026.jpg" alt="Wang Yin defense" loading="lazy">
     </div>
     <div class="news-item">
       <span class="date">FEB 2026</span>
       <h3>Spring Festival celebration</h3>
       <p>The group gathered together to welcome the Spring Festival.</p>
-      <img class="news-thumb" src="images/news/springfestival-2026.jpg" alt="Spring Festival">
+      <img class="news-thumb" src="images/news/springfestival-2026.jpg" alt="Spring Festival" loading="lazy">
     </div>
     <div class="news-item">
       <span class="date">DEC 2025</span>
       <h3>Christmas team building</h3>
       <p>Group Christmas team-building activity.</p>
-      <img class="news-thumb" src="images/news/christmas-2025.jpg" alt="Christmas">
+      <img class="news-thumb" src="images/news/christmas-2025.jpg" alt="Christmas" loading="lazy">
     </div>
     <div class="news-item">
       <span class="date">NOV 2025</span>
@@ -1045,13 +1045,13 @@ def news_body(lang):
       <span class="date">OCT 2025</span>
       <h3>Wang Qian PhD defense</h3>
       <p>Congratulations to Wang Qian on passing the PhD defense!</p>
-      <img class="news-thumb" src="images/news/wangqian-defense-2025.jpg" alt="Wang Qian defense">
+      <img class="news-thumb" src="images/news/wangqian-defense-2025.jpg" alt="Wang Qian defense" loading="lazy">
     </div>
     <div class="news-item">
       <span class="date">SEP 2025</span>
       <h3>Teachers\u2019 Day group photo</h3>
       <p>Group photo on Teachers\u2019 Day 2025.</p>
-      <img class="news-thumb" src="images/news/teachers-day-2025.jpg" alt="Teachers Day">
+      <img class="news-thumb" src="images/news/teachers-day-2025.jpg" alt="Teachers Day" loading="lazy">
     </div>
   </div>
 </div>'''
@@ -1079,25 +1079,25 @@ def news_body(lang):
       <span class="date">2026-06</span>
       <h3>国家重点研发项目"热带海洋系统演化及与两极的联动"项目研讨会</h3>
       <p>国家重点研发计划"热带海洋系统演化及与两极的联动"项目研讨会顺利召开。</p>
-      <img class="news-thumb" src="images/news/project-workshop-2026.jpg" alt="项目研讨会">
+      <img class="news-thumb" src="images/news/project-workshop-2026.jpg" alt="项目研讨会" loading="lazy">
     </div>
     <div class="news-item">
       <span class="date">2026-06</span>
       <h3>王胤硕士毕业答辩</h3>
       <p>祝贺王胤顺利通过硕士毕业答辩！</p>
-      <img class="news-thumb" src="images/news/wangyin-defense-2026.jpg" alt="王胤硕士毕业答辩">
+      <img class="news-thumb" src="images/news/wangyin-defense-2026.jpg" alt="王胤硕士毕业答辩" loading="lazy">
     </div>
     <div class="news-item">
       <span class="date">2026-02</span>
       <h3>课题组喜迎春节</h3>
       <p>课题组欢聚一堂，共迎新春。</p>
-      <img class="news-thumb" src="images/news/springfestival-2026.jpg" alt="喜迎春节">
+      <img class="news-thumb" src="images/news/springfestival-2026.jpg" alt="喜迎春节" loading="lazy">
     </div>
     <div class="news-item">
       <span class="date">2025-12</span>
       <h3>圣诞节团建</h3>
       <p>课题组圣诞团建活动。</p>
-      <img class="news-thumb" src="images/news/christmas-2025.jpg" alt="圣诞节团建">
+      <img class="news-thumb" src="images/news/christmas-2025.jpg" alt="圣诞节团建" loading="lazy">
     </div>
     <div class="news-item">
       <span class="date">2025-11</span>
@@ -1108,13 +1108,13 @@ def news_body(lang):
       <span class="date">2025-10</span>
       <h3>王谦博士毕业答辩</h3>
       <p>祝贺王谦顺利通过博士毕业答辩！</p>
-      <img class="news-thumb" src="images/news/wangqian-defense-2025.jpg" alt="王谦博士毕业答辩">
+      <img class="news-thumb" src="images/news/wangqian-defense-2025.jpg" alt="王谦博士毕业答辩" loading="lazy">
     </div>
     <div class="news-item">
       <span class="date">2025-09</span>
       <h3>教师节合影</h3>
       <p>2025年教师节课题组合影留念。</p>
-      <img class="news-thumb" src="images/news/teachers-day-2025.jpg" alt="教师节合影">
+      <img class="news-thumb" src="images/news/teachers-day-2025.jpg" alt="教师节合影" loading="lazy">
     </div>
   </div>
 </div>'''
@@ -1325,8 +1325,8 @@ def home_body(lang):
             'title': 'Research Progress',
             'en': 'RESEARCH PROGRESS',
             'more': 'Learn More',
-            'slider': ['images/mel_digital_twin.png', 'images/cosine_bg.png'],
-            'feat_img': 'images/mel_digital_twin.png',
+            'slider': ['images/mel_digital_twin.jpg', 'images/cosine_bg.jpg'],
+            'feat_img': 'images/mel_digital_twin.jpg',
             'feat_h': 'Ocean digital twin as a catalyst for blue-economy innovation',
             'feat_p': 'Prof. Chai and international experts published a review in National Science Review, systematically reviewing the core architecture of ocean digital twins and key application scenarios in blue-economy development.',
             'feat_date': 'FEB 2026 · National Science Review',
@@ -1379,8 +1379,8 @@ def home_body(lang):
             'title': '科研进展',
             'en': 'RESEARCH PROGRESS',
             'more': '了解更多',
-            'slider': ['images/mel_digital_twin.png', 'images/cosine_bg.png'],
-            'feat_img': 'images/mel_digital_twin.png',
+            'slider': ['images/mel_digital_twin.jpg', 'images/cosine_bg.jpg'],
+            'feat_img': 'images/mel_digital_twin.jpg',
             'feat_h': '海洋数字孪生综述发表于 National Science Review',
             'feat_p': '柴扉教授团队系统梳理海洋数字孪生核心架构，解析其在蓝色经济发展中的关键应用场景，并对该领域挑战与前景作出前瞻性研判。',
             'feat_date': '2026-02 · National Science Review',
@@ -1449,9 +1449,9 @@ def home_body(lang):
     for i, (kicker, h, p, ctas) in enumerate(slides):
         photo = f'images/hero{i+1}.jpg' if os.path.exists(f'images/hero{i+1}.jpg') else None
         if i == 0:
-            photo = 'images/mel_digital_twin.png'
+            photo = 'images/mel_digital_twin.jpg'
         if i == 1:
-            photo = 'images/cosine_bg.png'
+            photo = 'images/cosine_bg.jpg'
         bg_style = f' style="background-image:linear-gradient(rgba(7,24,42,.5),rgba(7,24,42,.5)),url({photo});background-size:cover;background-position:center"' if photo else ''
         def _cta(j, t, u):
             cls = ' cta-solid' if j == 0 else ''
@@ -1692,21 +1692,21 @@ def research_slides(lang):
     """研究方向二级内容：Hero 式垂直全屏滑动（每屏一个方向）"""
     if lang == EN:
         items = [
-            ('Marine Ecosystem and Biogeochemical Modeling', 'Development and improvement of the CESM-CoSiNE coupled marine ecosystem-biogeochemistry module to simulate the spatiotemporal evolution of phytoplankton, nutrients, and the carbon cycle across the global ocean and marginal seas.', 'images/cosine_bg.png'),
-            ('Marine Carbon Cycle and Climate Feedbacks', 'Quantifying the ocean role in regulating atmospheric CO2, biological pump efficiency, and the response of the marine carbon cycle to future climate change.', 'images/mel_digital_twin.png'),
-            ('Submesoscale Processes and Ecological Effects', 'Exploring how submesoscale physical processes (fronts, eddies) regulate planktonic ecosystems and carbon export fluxes.', 'images/cosine_bg.png'),
-            ('Paleoclimate and Paleoceanography', 'Earth system modeling of key periods such as the Last Interglacial to understand the long-term evolution of the carbon cycle.', 'images/cosine_bg.png'),
-            ('Ocean Digital Twin', 'Building ocean digital twin systems to empower blue-economy innovation and integrated ocean observation-simulation-prediction.', 'images/mel_digital_twin.png'),
-            ('Observation-Model Integration', 'Combining in-situ observations, satellite remote sensing, and numerical models to quantify uncertainty and improve ecosystem model parameterizations.', 'images/cosine_bg.png'),
+            ('Marine Ecosystem and Biogeochemical Modeling', 'Development and improvement of the CESM-CoSiNE coupled marine ecosystem-biogeochemistry module to simulate the spatiotemporal evolution of phytoplankton, nutrients, and the carbon cycle across the global ocean and marginal seas.', 'images/cosine_bg.jpg'),
+            ('Marine Carbon Cycle and Climate Feedbacks', 'Quantifying the ocean role in regulating atmospheric CO2, biological pump efficiency, and the response of the marine carbon cycle to future climate change.', 'images/mel_digital_twin.jpg'),
+            ('Submesoscale Processes and Ecological Effects', 'Exploring how submesoscale physical processes (fronts, eddies) regulate planktonic ecosystems and carbon export fluxes.', 'images/cosine_bg.jpg'),
+            ('Paleoclimate and Paleoceanography', 'Earth system modeling of key periods such as the Last Interglacial to understand the long-term evolution of the carbon cycle.', 'images/cosine_bg.jpg'),
+            ('Ocean Digital Twin', 'Building ocean digital twin systems to empower blue-economy innovation and integrated ocean observation-simulation-prediction.', 'images/mel_digital_twin.jpg'),
+            ('Observation-Model Integration', 'Combining in-situ observations, satellite remote sensing, and numerical models to quantify uncertainty and improve ecosystem model parameterizations.', 'images/cosine_bg.jpg'),
         ]
     else:
         items = [
-            ('海洋生态系统与生物地球化学模拟', '发展并改进 CESM-CoSiNE 海洋生态系统—生物地球化学耦合模式，模拟浮游植物、营养盐与碳循环在全球大洋与边缘海的时空演变。', 'images/cosine_bg.png'),
-            ('海洋碳循环与气候反馈', '研究海洋对大气 CO₂ 的调控作用、生物泵效率及海洋碳循环对未来气候变化的响应。', 'images/mel_digital_twin.png'),
-            ('海洋次中尺度过程与生态效应', '探索次中尺度物理过程（锋面、涡旋）对浮游生态系统与碳输出通量的调控机制。', 'images/cosine_bg.png'),
-            ('古气候与古海洋模拟', '利用地球系统模式开展末次间冰期等关键时期古气候模拟，理解碳循环的长期演化。', 'images/cosine_bg.png'),
-            ('海洋数字孪生', '构建海洋数字孪生系统，赋能蓝色经济创新，服务海洋观测—模拟—预测一体化。', 'images/mel_digital_twin.png'),
-            ('观测—模拟融合', '结合现场观测、卫星遥感与数值模式，量化评估模式不确定性，改进生态模型参数化。', 'images/cosine_bg.png'),
+            ('海洋生态系统与生物地球化学模拟', '发展并改进 CESM-CoSiNE 海洋生态系统—生物地球化学耦合模式，模拟浮游植物、营养盐与碳循环在全球大洋与边缘海的时空演变。', 'images/cosine_bg.jpg'),
+            ('海洋碳循环与气候反馈', '研究海洋对大气 CO₂ 的调控作用、生物泵效率及海洋碳循环对未来气候变化的响应。', 'images/mel_digital_twin.jpg'),
+            ('海洋次中尺度过程与生态效应', '探索次中尺度物理过程（锋面、涡旋）对浮游生态系统与碳输出通量的调控机制。', 'images/cosine_bg.jpg'),
+            ('古气候与古海洋模拟', '利用地球系统模式开展末次间冰期等关键时期古气候模拟，理解碳循环的长期演化。', 'images/cosine_bg.jpg'),
+            ('海洋数字孪生', '构建海洋数字孪生系统，赋能蓝色经济创新，服务海洋观测—模拟—预测一体化。', 'images/mel_digital_twin.jpg'),
+            ('观测—模拟融合', '结合现场观测、卫星遥感与数值模式，量化评估模式不确定性，改进生态模型参数化。', 'images/cosine_bg.jpg'),
         ]
     panels = []
     for i, (title, desc, img) in enumerate(items):
@@ -1722,7 +1722,7 @@ def research_slides(lang):
     </section>''' % (img, num, title, desc))
     proj = project_box(lang, full=True)
     panels.append('''<section class="vs-panel">
-      <div class="vs-bg" style="background-image:linear-gradient(rgba(7,24,42,.8),rgba(7,24,42,.8)),url(images/cosine_bg.png)"></div>
+      <div class="vs-bg" style="background-image:linear-gradient(rgba(7,24,42,.8),rgba(7,24,42,.8)),url(images/cosine_bg.jpg)"></div>
       <div class="vs-inner vs-scroll">
         <span class="vs-num">CESM-CoSiNE</span>
         <h2>%s</h2>
@@ -1736,17 +1736,17 @@ def papers_slides(lang):
     """学术论文二级内容：Hero 式垂直全屏滑动"""
     if lang == EN:
         blocks = [
-            ('Journal Papers', 'Peer-reviewed journal publications of the group.', 'images/mel_digital_twin.png', paper_timeline(PAPERS, lang)),
-            ('Ocean Digital Twin', 'The ocean digital twin framework and its applications in blue-economy innovation.', 'images/mel_digital_twin.png', project_box(lang, full=True)),
-            ('Research Data', 'BGC-Argo observations and model outputs for the North Pacific and the South China Sea.', 'images/cosine_bg.png', '<p class="vs-p">BGC-Argo float observations in the western North Pacific and the South China Sea; CESM-CoSiNE simulation outputs (data sharing under preparation).</p>'),
-            ('Numerical Models', 'The CESM-CoSiNE marine ecosystem-biogeochemistry module embedded in CESM.', 'images/cosine_bg.png', project_box(lang, full=True)),
+            ('Journal Papers', 'Peer-reviewed journal publications of the group.', 'images/mel_digital_twin.jpg', paper_timeline(PAPERS, lang)),
+            ('Ocean Digital Twin', 'The ocean digital twin framework and its applications in blue-economy innovation.', 'images/mel_digital_twin.jpg', project_box(lang, full=True)),
+            ('Research Data', 'BGC-Argo observations and model outputs for the North Pacific and the South China Sea.', 'images/cosine_bg.jpg', '<p class="vs-p">BGC-Argo float observations in the western North Pacific and the South China Sea; CESM-CoSiNE simulation outputs (data sharing under preparation).</p>'),
+            ('Numerical Models', 'The CESM-CoSiNE marine ecosystem-biogeochemistry module embedded in CESM.', 'images/cosine_bg.jpg', project_box(lang, full=True)),
         ]
     else:
         blocks = [
-            ('期刊论文', '课题组发表的同行评审期刊论文。', 'images/mel_digital_twin.png', paper_timeline(PAPERS, lang)),
-            ('海洋数字孪生', '海洋数字孪生框架及其在蓝色经济创新中的应用。', 'images/mel_digital_twin.png', project_box(lang, full=True)),
-            ('科研数据', '北太平洋与南海 BGC-Argo 观测及模式输出数据。', 'images/cosine_bg.png', '<p class="vs-p">西北太平洋与南海 Biogeochemical-Argo 浮标观测；CESM-CoSiNE 全球海洋、北太平洋与南海模拟输出（数据共享整理中）。</p>'),
-            ('数值模式', '嵌入 CESM 的 CESM-CoSiNE 海洋生态—生物地球化学模块。', 'images/cosine_bg.png', project_box(lang, full=True)),
+            ('期刊论文', '课题组发表的同行评审期刊论文。', 'images/mel_digital_twin.jpg', paper_timeline(PAPERS, lang)),
+            ('海洋数字孪生', '海洋数字孪生框架及其在蓝色经济创新中的应用。', 'images/mel_digital_twin.jpg', project_box(lang, full=True)),
+            ('科研数据', '北太平洋与南海 BGC-Argo 观测及模式输出数据。', 'images/cosine_bg.jpg', '<p class="vs-p">西北太平洋与南海 Biogeochemical-Argo 浮标观测；CESM-CoSiNE 全球海洋、北太平洋与南海模拟输出（数据共享整理中）。</p>'),
+            ('数值模式', '嵌入 CESM 的 CESM-CoSiNE 海洋生态—生物地球化学模块。', 'images/cosine_bg.jpg', project_box(lang, full=True)),
         ]
     panels = []
     for i, (title, desc, img, content) in enumerate(blocks):
@@ -1781,7 +1781,7 @@ def about_slides(lang):
     for i, (title, content) in enumerate(blocks):
         num = '%02d' % (i + 1)
         panels.append('''<section class="vs-panel">
-      <div class="vs-bg" style="background-image:linear-gradient(rgba(7,24,42,.8),rgba(7,24,42,.8)),url(images/cosine_bg.png)"></div>
+      <div class="vs-bg" style="background-image:linear-gradient(rgba(7,24,42,.8),rgba(7,24,42,.8)),url(images/cosine_bg.jpg)"></div>
       <div class="vs-inner vs-scroll">
         <span class="vs-num">%s</span>
         <h2>%s</h2>
