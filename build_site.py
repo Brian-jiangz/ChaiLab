@@ -620,9 +620,7 @@ def auto_stats(lang):
     ]
 
 MEMBER_CATS = [
-    ('faculty', '教师', 'Faculty'),
-    ('staff', '科研助理', 'Research Assistants'),
-    ('postdoc', '博士后', 'Postdocs'),
+    ('faculty,staff,postdoc', '教职工', 'Faculty & Staff'),
     ('phd', '博士生', 'PhD Students'),
     ('master', '硕士生', "Master's Students"),
     ('alumni', '校友', 'Alumni'),

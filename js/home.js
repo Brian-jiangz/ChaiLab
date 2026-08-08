@@ -384,8 +384,10 @@
         btn.classList.toggle('active', idx === i);
       });
       var cat = items[i].getAttribute('data-filter');
+      var cats = cat.split(',');
       tiles.forEach(function (tile) {
-        tile.style.display = (cat === 'all' || tile.getAttribute('data-cat') === cat) ? '' : 'none';
+        var tcat = tile.getAttribute('data-cat');
+        tile.style.display = (cat === 'all' || cats.indexOf(tcat) >= 0) ? '' : 'none';
       });
     }
     items.forEach(function (btn, i) {
