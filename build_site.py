@@ -78,12 +78,14 @@ DD_ZH = {
         ('papers-model.html', '数值模式'),
     ],
     'research': [
-        ('research-r0.html', '生态系统与生物地球化学模拟'),
-        ('research-r1.html', '碳循环与气候反馈'),
-        ('research-r2.html', '次中尺度过程与生态效应'),
+        ('research-r0.html', '海洋碳循环与气候反馈'),
+        ('research-r1.html', '海洋数字孪生'),
+        ('research-r2.html', '海洋模式研发'),
         ('research-r3.html', '古气候与古海洋模拟'),
-        ('research-r4.html', '海洋数字孪生'),
-        ('research-r5.html', '观测—模拟融合'),
+        ('research-r4.html', '海洋渔业'),
+        ('research-r5.html', 'BGC-Argo 观测'),
+        ('research-r6.html', '海洋热浪'),
+        ('research-r7.html', '北太平洋副热带模态水'),
         ('research-project.html', 'CESM-CoSiNE 项目'),
     ],
     'links': [
@@ -105,12 +107,14 @@ DD_EN = {
         ('papers-model.html', 'Numerical Models'),
     ],
     'research': [
-        ('research-r0.html', 'Ecosystem & Biogeochemical Modeling'),
-        ('research-r1.html', 'Carbon Cycle & Climate Feedbacks'),
-        ('research-r2.html', 'Submesoscale Processes'),
-        ('research-r3.html', 'Paleoclimate Modeling'),
-        ('research-r4.html', 'Ocean Digital Twin'),
-        ('research-r5.html', 'Observation\u2013Model Integration'),
+        ('research-r0.html', 'Carbon Cycle & Climate Feedbacks'),
+        ('research-r1.html', 'Ocean Digital Twin'),
+        ('research-r2.html', 'Ocean Model Development'),
+        ('research-r3.html', 'Paleoclimate & Paleoceanography'),
+        ('research-r4.html', 'Marine Fisheries'),
+        ('research-r5.html', 'BGC-Argo Observations'),
+        ('research-r6.html', 'Marine Heatwaves'),
+        ('research-r7.html', 'North Pacific Subtropical Mode Water'),
         ('research-project.html', 'CESM-CoSiNE Project'),
     ],
     'links': [
@@ -858,7 +862,7 @@ def member_page(lang):
 </div>'''
         fname = 'member-%s.html' % slug
         en_sub = 'MEMBER PROFILE'
-        html = page(fname, name, en_sub, with_subnav('about', body, lang), lang,
+        html = page(fname, name, en_sub, with_subnav('about', body, lang, current=fname), lang,
                     scripts='../js/home.js' if lang == EN else 'js/home.js')
         if lang == EN:
             html = html.replace('href="images/', 'href="../images/').replace('src="images/', 'src="../images/')
@@ -960,15 +964,15 @@ SUB_MENUS = {
         ('papers-model.html', '数值模式', 'Models'),
     ],
     'research': [
-        ('#r0', '海洋碳循环与气候反馈', 'Carbon Cycle & Climate Feedbacks'),
-        ('#r1', '海洋数字孪生', 'Ocean Digital Twin'),
-        ('#r2', '海洋模式研发', 'Ocean Model Development'),
-        ('#r3', '古气候与古海洋模拟', 'Paleoclimate & Paleoceanography'),
-        ('#r4', '海洋渔业', 'Marine Fisheries'),
-        ('#r5', 'BGC-Argo 观测', 'BGC-Argo Observations'),
-        ('#r6', '海洋热浪', 'Marine Heatwaves'),
-        ('#r7', '北太平洋副热带模态水', 'North Pacific Subtropical Mode Water'),
-        ('#project', 'CESM-CoSiNE 项目', 'CESM-CoSiNE Project'),
+        ('research-r0.html', '海洋碳循环与气候反馈', 'Carbon Cycle & Climate Feedbacks'),
+        ('research-r1.html', '海洋数字孪生', 'Ocean Digital Twin'),
+        ('research-r2.html', '海洋模式研发', 'Ocean Model Development'),
+        ('research-r3.html', '古气候与古海洋模拟', 'Paleoclimate & Paleoceanography'),
+        ('research-r4.html', '海洋渔业', 'Marine Fisheries'),
+        ('research-r5.html', 'BGC-Argo 观测', 'BGC-Argo Observations'),
+        ('research-r6.html', '海洋热浪', 'Marine Heatwaves'),
+        ('research-r7.html', '北太平洋副热带模态水', 'North Pacific Subtropical Mode Water'),
+        ('research-project.html', 'CESM-CoSiNE 项目', 'CESM-CoSiNE Project'),
     ],
     'links': [
         ('https://coeoa.xmu.edu.cn/t/CF/', '柴扉教授个人主页', "Prof. Chai's Homepage"),
@@ -977,18 +981,19 @@ SUB_MENUS = {
     ],
 }
 
-def subnav_html(page, lang):
+def subnav_html(page, lang, current=''):
     items = SUB_MENUS[page]
     lis = []
     for href, zh, en in items:
         label = en if lang == EN else zh
         tgt = ' target="_blank"' if href.startswith('http') else ''
-        lis.append(f'      <a href="{href}"{tgt}>{label}</a>')
+        cls = ' class="active"' if href == current else ''
+        lis.append(f'      <a href="{href}"{tgt}{cls}>{label}</a>')
     return '<nav class="sub-nav" id="subNav" aria-label="sub navigation">\n' + '\n'.join(lis) + '\n    </nav>'
 
-def with_subnav(page, body, lang):
+def with_subnav(page, body, lang, current=''):
     return f'''<div class="page-wrap">
-{subnav_html(page, lang)}
+{subnav_html(page, lang, current)}
   <div class="sub-content">
 {body}
   </div>
@@ -1317,7 +1322,7 @@ def links_body(lang):
     </a>
   </div>
 </div>'''
-        return with_subnav('links', content, lang)
+        return with_subnav('links', content, lang, current='links.html')
     content = '''<div class="section" id="links">
   <div class="links">
     <a class="link-card" href="#" onclick="return false" title="链接待补充">
@@ -1340,7 +1345,7 @@ def links_body(lang):
     </a>
   </div>
 </div>'''
-    return with_subnav('links', content, lang)
+    return with_subnav('links', content, lang, current='links.html')
 
 def pi_detail_html(pi, lang):
     """柴教授完整个人介绍（头像头区 + 学术经历 + 研究领域 + 代表性论文）"""
@@ -2074,33 +2079,34 @@ def main():
         pages = []
         # 成员介绍栏
         pages.append(('about-group.html', '课题组简介', 'ABOUT THE GROUP',
-                      with_subnav('about', ABOUT_BODY['zh'], ZH)))
+                      with_subnav('about', ABOUT_BODY['zh'], ZH, current='about-group.html')))
         pages.append(('about-chai.html', '柴扉教授', 'PROF. FEI CHAI',
-                      with_subnav('about', pi_detail_html(PI_ZH, ZH), ZH)))
+                      with_subnav('about', pi_detail_html(PI_ZH, ZH), ZH, current='about-chai.html')))
         # 学术论文栏
         pages.append(('papers-journal.html', '期刊论文', 'JOURNAL PAPERS',
-                      with_subnav('papers', '<div class="section" id="journal">' + paper_timeline(PAPERS, ZH) + '</div>', ZH)))
+                      with_subnav('papers', '<div class="section" id="journal">' + paper_timeline(PAPERS, ZH) + '</div>', ZH, current='papers-journal.html')))
         pages.append(('papers-digital-twin.html', '数字孪生', 'DIGITAL TWIN',
-                      with_subnav('papers', '<div class="section" id="digital-twin">' + digital_twin_box(ZH) + '</div>', ZH)))
+                      with_subnav('papers', '<div class="section" id="digital-twin">' + digital_twin_box(ZH) + '</div>', ZH, current='papers-digital-twin.html')))
         pages.append(('papers-data.html', '科研数据', 'RESEARCH DATA',
                       with_subnav('papers', '''<div class="section" id="data">
   <div class="sec-head"><span class="en">RESEARCH DATA</span><h2>科研数据</h2></div>
   <div class="ov-desc"><p>西北太平洋与南海 Biogeochemical-Argo 浮标观测；CESM-CoSiNE 全球海洋、北太平洋与南海模拟输出（数据共享整理中）。</p></div>
-</div>''', ZH)))
+</div>''', ZH, current='papers-data.html')))
         pages.append(('papers-model.html', '数值模式', 'NUMERICAL MODELS',
-                      with_subnav('papers', '<div class="section" id="model">' + model_box(ZH) + '</div>', ZH)))
+                      with_subnav('papers', '<div class="section" id="model">' + model_box(ZH) + '</div>', ZH, current='papers-model.html')))
         # 研究方向栏
         for i in range(8):
             aid = 'r%d' % i
             num = '%02d' % (i + 1)
             title, desc = RESEARCH_ITEMS_ZH[i]
-            pages.append(('research-%s.html' % aid, title, 'RESEARCH AREA %s' % num,
+            fname = 'research-%s.html' % aid
+            pages.append((fname, title, 'RESEARCH AREA %s' % num,
                           with_subnav('research', '''<div class="section" id="%s">
   <div class="sec-head"><span class="en">%s · 研究方向</span><h2>%s</h2></div>
   <div class="ov-desc"><p>%s</p></div>
-</div>''' % (aid, num, title, desc), ZH)))
+</div>''' % (aid, num, title, desc), ZH, current=fname)))
         pages.append(('research-project.html', 'CESM-CoSiNE 项目', 'CESM-CoSiNE PROJECT',
-                      with_subnav('research', '<div class="section" id="project">' + project_box(ZH, full=True) + '</div>', ZH)))
+                      with_subnav('research', '<div class="section" id="project">' + project_box(ZH, full=True) + '</div>', ZH, current='research-project.html')))
         for fname, title, en_sub, body in pages:
             html = page(fname, title, en_sub, body, ZH, scripts='js/home.js')
             open(fname, 'w').write(html)
@@ -2179,29 +2185,30 @@ def main():
     def sub_pages_en():
         pages = []
         pages.append(('about-group.html', 'About the Group', 'ABOUT THE GROUP',
-                      with_subnav('about', ABOUT_BODY['en'], EN)))
+                      with_subnav('about', ABOUT_BODY['en'], EN, current='about-group.html')))
         pages.append(('about-chai.html', 'Prof. Fei Chai', 'PROF. FEI CHAI',
-                      with_subnav('about', pi_detail_html(PI_EN, EN), EN)))
+                      with_subnav('about', pi_detail_html(PI_EN, EN), EN, current='about-chai.html')))
         pages.append(('papers-journal.html', 'Journal Papers', 'JOURNAL PAPERS',
-                      with_subnav('papers', '<div class="section" id="journal">' + paper_timeline(PAPERS, EN) + '</div>', EN)))
+                      with_subnav('papers', '<div class="section" id="journal">' + paper_timeline(PAPERS, EN) + '</div>', EN, current='papers-journal.html')))
         pages.append(('papers-digital-twin.html', 'Digital Twin', 'DIGITAL TWIN',
-                      with_subnav('papers', '<div class="section" id="digital-twin">' + digital_twin_box(EN) + '</div>', EN)))
+                      with_subnav('papers', '<div class="section" id="digital-twin">' + digital_twin_box(EN) + '</div>', EN, current='papers-digital-twin.html')))
         pages.append(('papers-data.html', 'Research Data', 'RESEARCH DATA',
                       with_subnav('papers', '''<div class="section" id="data">
   <div class="sec-head"><span class="en">RESEARCH DATA</span><h2>Research Data</h2></div>
   <div class="ov-desc"><p>BGC-Argo float observations in the western North Pacific and the South China Sea; CESM-CoSiNE simulation outputs (data sharing under preparation).</p></div>
-</div>''', EN)))
+</div>''', EN, current='papers-data.html')))
         pages.append(('papers-model.html', 'Numerical Models', 'NUMERICAL MODELS',
-                      with_subnav('papers', '<div class="section" id="model">' + model_box(EN) + '</div>', EN)))
+                      with_subnav('papers', '<div class="section" id="model">' + model_box(EN) + '</div>', EN, current='papers-model.html')))
         for i in range(8):
             aid = 'r%d' % i
             num = '%02d' % (i + 1)
             title, desc = RESEARCH_ITEMS_EN[i]
-            pages.append(('research-%s.html' % aid, title, 'RESEARCH AREA %s' % num,
+            fname = 'research-%s.html' % aid
+            pages.append((fname, title, 'RESEARCH AREA %s' % num,
                           with_subnav('research', '''<div class="section" id="%s">
   <div class="sec-head"><span class="en">%s · RESEARCH AREA</span><h2>%s</h2></div>
   <div class="ov-desc"><p>%s</p></div>
-</div>''' % (aid, num, title, desc), EN)))
+</div>''' % (aid, num, title, desc), EN, current=fname)))
         pages.append(('research-project.html', 'CESM-CoSiNE Project', 'CESM-CoSiNE PROJECT',
                       with_subnav('research', '<div class="section" id="project">' + project_box(EN, full=True) + '</div>', EN)))
         for fname, title, en_sub, body in pages:
