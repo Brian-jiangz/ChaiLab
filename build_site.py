@@ -78,14 +78,11 @@ DD_ZH = {
         ('papers-model.html', '数值模式'),
     ],
     'research': [
-        ('research-r0.html', '海洋碳循环与气候反馈'),
+        ('research-r0.html', '海洋碳循环与气候模拟'),
         ('research-r1.html', '海洋数字孪生'),
-        ('research-r2.html', '海洋模式研发'),
-        ('research-r3.html', '古气候与古海洋模拟'),
-        ('research-r4.html', '海洋渔业'),
-        ('research-r5.html', 'BGC-Argo 观测'),
-        ('research-r6.html', '海洋热浪'),
-        ('research-r7.html', '北太平洋副热带模态水'),
+        ('research-r2.html', '古气候与古海洋模拟'),
+        ('research-r3.html', '海洋观测与生态系统'),
+        ('research-r4.html', '海洋热浪与模态水'),
         ('research-project.html', 'CESM-CoSiNE 项目'),
     ],
     'links': [
@@ -107,14 +104,11 @@ DD_EN = {
         ('papers-model.html', 'Numerical Models'),
     ],
     'research': [
-        ('research-r0.html', 'Carbon Cycle & Climate Feedbacks'),
+        ('research-r0.html', 'Carbon Cycle & Climate Modeling'),
         ('research-r1.html', 'Ocean Digital Twin'),
-        ('research-r2.html', 'Ocean Model Development'),
-        ('research-r3.html', 'Paleoclimate & Paleoceanography'),
-        ('research-r4.html', 'Marine Fisheries'),
-        ('research-r5.html', 'BGC-Argo Observations'),
-        ('research-r6.html', 'Marine Heatwaves'),
-        ('research-r7.html', 'North Pacific Subtropical Mode Water'),
+        ('research-r2.html', 'Paleoclimate & Paleoceanography'),
+        ('research-r3.html', 'Ocean Observation & Ecosystems'),
+        ('research-r4.html', 'Heatwaves & Mode Water'),
         ('research-project.html', 'CESM-CoSiNE Project'),
     ],
     'links': [
@@ -319,45 +313,33 @@ def research_tiles(lang):
 def tiles_body(lang, href_base='#'):
     if lang == EN:
         items = [
-            'Marine Carbon Cycle and Climate Feedbacks',
+            'Marine Carbon Cycle and Climate Modeling',
             'Ocean Digital Twin',
-            'Ocean Model Development',
             'Paleoclimate and Paleoceanography',
-            'Marine Fisheries',
-            'BGC-Argo Observations',
-            'Marine Heatwaves',
-            'North Pacific Subtropical Mode Water',
+            'Ocean Observation and Ecosystems',
+            'Marine Heatwaves and Mode Water',
         ]
         descs = [
-            'Quantifying the ocean\u2019s role in regulating atmospheric CO\u2082, biological pump efficiency, and the response and feedback of the marine carbon cycle to climate change.',
+            'Developing and improving coupled marine ecosystem\u2013biogeochemistry models such as CESM-CoSiNE to quantify the ocean\u2019s role in regulating atmospheric CO\u2082, biological pump efficiency, and the response and feedback of the marine carbon cycle to climate change.',
             'Building ocean digital twin systems to empower blue-economy innovation and integrated ocean observation\u2013simulation\u2013prediction.',
-            'Developing and improving coupled marine ecosystem\u2013biogeochemistry models such as CESM-CoSiNE to support global and regional carbon cycle simulations.',
             'Earth system modeling of key periods such as the Last Interglacial to understand the long-term evolution of the carbon cycle.',
-            'Assessing the impacts of climate change on the distribution and sustainability of fisheries resources using ecological models and observations.',
-            'Monitoring high-frequency variations of nutrients, oxygen, pH, and particulate organic carbon flux with Biogeochemical-Argo profiling floats.',
-            'Investigating the mechanisms and evolution of marine heatwaves and their impacts on marine ecosystems and the carbon cycle.',
-            'Studying the formation and transport of Subtropical Mode Water and its influence on interannual variability of nutrients and ecosystems.',
+            'Monitoring high-frequency variations of nutrients, oxygen, pH, and particulate organic carbon flux with Biogeochemical-Argo floats; assessing the impacts of climate change on fisheries resources.',
+            'Investigating the mechanisms and evolution of marine heatwaves and Subtropical Mode Water and their impacts on marine ecosystems and the carbon cycle.',
         ]
     else:
         items = [
-            '海洋碳循环与气候反馈',
+            '海洋碳循环与气候模拟',
             '海洋数字孪生',
-            '海洋模式研发',
             '古气候与古海洋模拟',
-            '海洋渔业',
-            'BGC-Argo 观测',
-            '海洋热浪',
-            '北太平洋副热带模态水',
+            '海洋观测与生态系统',
+            '海洋热浪与模态水',
         ]
         descs = [
-            '研究海洋对大气 CO₂ 的调控作用、生物泵效率及海洋碳循环对未来气候变化的响应与反馈。',
+            '发展并改进 CESM-CoSiNE 等海洋生态—生物地球化学耦合模式，研究海洋对大气 CO₂ 的调控作用、生物泵效率及海洋碳循环对未来气候变化的响应与反馈。',
             '构建海洋数字孪生系统，赋能蓝色经济创新，服务海洋观测—模拟—预测一体化。',
-            '发展并改进 CESM-CoSiNE 等海洋生态系统—生物地球化学耦合模式，支撑全球与区域碳循环模拟。',
             '利用地球系统模式开展末次间冰期等关键时期古气候模拟，理解碳循环的长期演化。',
-            '结合生态模型与观测，评估气候变化对渔业资源分布与可持续性的影响。',
-            '利用生物地球化学剖面浮标观测营养盐、溶解氧、pH 与颗粒有机碳通量的高频变化。',
-            '研究海洋热浪的发生机制、演变规律及其对海洋生态系统与碳循环的影响。',
-            '研究副热带模态水的形成、输运及其对营养盐与生态系统年际变化的影响。',
+            '利用 Biogeochemical-Argo 剖面浮标观测营养盐、溶解氧、pH 与颗粒有机碳通量的高频变化；结合生态模型评估气候变化对渔业资源的影响。',
+            '研究海洋热浪与副热带模态水的发生机制、演变规律及其对海洋生态系统与碳循环的影响。',
         ]
     return '\n'.join(
         f'''    <a class="rtile rt-bg{i % 6}" id="r{i}" href="{href_base}r{i}" data-reveal style="--d:{i*70}ms">
@@ -626,13 +608,13 @@ def auto_stats(lang):
     if lang == EN:
         return [
             (faculty, '', 'Faculty'),
-            (8, '', 'Research Areas'),
+            (5, '', 'Research Areas'),
             (students, '', 'Graduate Students'),
             (100, '+', 'Publications'),
         ]
     return [
         (faculty, '', '教职工'),
-        (8, '', '研究方向'),
+        (5, '', '研究方向'),
         (students, '', '培养研究生'),
         (100, '+', '发表论文'),
     ]
@@ -931,24 +913,18 @@ MONTHS_EN = ['', 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 
 
 # 二级页面左侧竖排导航（href, 中文, 英文）
 RESEARCH_ITEMS_ZH = [
-    ('海洋碳循环与气候反馈', '研究海洋对大气 CO₂ 的调控作用、生物泵效率及海洋碳循环对未来气候变化的响应与反馈。'),
+    ('海洋碳循环与气候模拟', '发展并改进 CESM-CoSiNE 等海洋生态—生物地球化学耦合模式，研究海洋对大气 CO₂ 的调控作用、生物泵效率及海洋碳循环对未来气候变化的响应与反馈。'),
     ('海洋数字孪生', '构建海洋数字孪生系统，赋能蓝色经济创新，服务海洋观测—模拟—预测一体化。'),
-    ('海洋模式研发', '发展并改进 CESM-CoSiNE 等海洋生态系统—生物地球化学耦合模式，支撑全球与区域碳循环模拟。'),
     ('古气候与古海洋模拟', '利用地球系统模式开展末次间冰期等关键时期古气候模拟，理解碳循环的长期演化。'),
-    ('海洋渔业', '结合生态模型与观测，评估气候变化对渔业资源分布与可持续性的影响。'),
-    ('BGC-Argo 观测', '利用生物地球化学剖面浮标观测营养盐、溶解氧、pH 与颗粒有机碳通量的高频变化。'),
-    ('海洋热浪', '研究海洋热浪的发生机制、演变规律及其对海洋生态系统与碳循环的影响。'),
-    ('北太平洋副热带模态水', '研究副热带模态水的形成、输运及其对营养盐与生态系统年际变化的影响。'),
+    ('海洋观测与生态系统', '利用 Biogeochemical-Argo 剖面浮标观测营养盐、溶解氧、pH 与颗粒有机碳通量的高频变化；结合生态模型评估气候变化对渔业资源分布与可持续性的影响。'),
+    ('海洋热浪与模态水', '研究海洋热浪与副热带模态水的发生机制、演变规律及其对海洋生态系统与碳循环的影响。'),
 ]
 RESEARCH_ITEMS_EN = [
-    ('Marine Carbon Cycle and Climate Feedbacks', 'Quantifying the ocean role in regulating atmospheric CO2, biological pump efficiency, and the response and feedback of the marine carbon cycle to climate change.'),
-    ('Ocean Digital Twin', 'Building ocean digital twin systems to empower blue-economy innovation and integrated ocean observation-simulation-prediction.'),
-    ('Ocean Model Development', 'Developing and improving coupled marine ecosystem-biogeochemistry models such as CESM-CoSiNE to support global and regional carbon cycle simulations.'),
+    ('Marine Carbon Cycle and Climate Modeling', 'Developing and improving coupled marine ecosystem\u2013biogeochemistry models such as CESM-CoSiNE to quantify the ocean\u2019s role in regulating atmospheric CO\u2082, biological pump efficiency, and the response and feedback of the marine carbon cycle to climate change.'),
+    ('Ocean Digital Twin', 'Building ocean digital twin systems to empower blue-economy innovation and integrated ocean observation\u2013simulation\u2013prediction.'),
     ('Paleoclimate and Paleoceanography', 'Earth system modeling of key periods such as the Last Interglacial to understand the long-term evolution of the carbon cycle.'),
-    ('Marine Fisheries', 'Assessing the impacts of climate change on the distribution and sustainability of fisheries resources using ecological models and observations.'),
-    ('BGC-Argo Observations', 'Monitoring high-frequency variations of nutrients, oxygen, pH, and particulate organic carbon flux with Biogeochemical-Argo profiling floats.'),
-    ('Marine Heatwaves', 'Investigating the mechanisms and evolution of marine heatwaves and their impacts on marine ecosystems and the carbon cycle.'),
-    ('North Pacific Subtropical Mode Water', 'Studying the formation and transport of Subtropical Mode Water and its influence on interannual variability of nutrients and ecosystems.'),
+    ('Ocean Observation and Ecosystems', 'Monitoring high-frequency variations of nutrients, oxygen, pH, and particulate organic carbon flux with Biogeochemical-Argo floats; assessing the impacts of climate change on fisheries resources using ecological models and observations.'),
+    ('Marine Heatwaves and Mode Water', 'Investigating the mechanisms and evolution of marine heatwaves and Subtropical Mode Water and their impacts on marine ecosystems and the carbon cycle.'),
 ]
 
 SUB_MENUS = {
@@ -964,14 +940,11 @@ SUB_MENUS = {
         ('papers-model.html', '数值模式', 'Models'),
     ],
     'research': [
-        ('research-r0.html', '海洋碳循环与气候反馈', 'Carbon Cycle & Climate Feedbacks'),
+        ('research-r0.html', '海洋碳循环与气候模拟', 'Carbon Cycle & Climate Modeling'),
         ('research-r1.html', '海洋数字孪生', 'Ocean Digital Twin'),
-        ('research-r2.html', '海洋模式研发', 'Ocean Model Development'),
-        ('research-r3.html', '古气候与古海洋模拟', 'Paleoclimate & Paleoceanography'),
-        ('research-r4.html', '海洋渔业', 'Marine Fisheries'),
-        ('research-r5.html', 'BGC-Argo 观测', 'BGC-Argo Observations'),
-        ('research-r6.html', '海洋热浪', 'Marine Heatwaves'),
-        ('research-r7.html', '北太平洋副热带模态水', 'North Pacific Subtropical Mode Water'),
+        ('research-r2.html', '古气候与古海洋模拟', 'Paleoclimate & Paleoceanography'),
+        ('research-r3.html', '海洋观测与生态系统', 'Ocean Observation & Ecosystems'),
+        ('research-r4.html', '海洋热浪与模态水', 'Heatwaves & Mode Water'),
         ('research-project.html', 'CESM-CoSiNE 项目', 'CESM-CoSiNE Project'),
     ],
     'links': [
@@ -2095,7 +2068,7 @@ def main():
         pages.append(('papers-model.html', '数值模式', 'NUMERICAL MODELS',
                       with_subnav('papers', '<div class="section" id="model">' + model_box(ZH) + '</div>', ZH, current='papers-model.html')))
         # 研究方向栏
-        for i in range(8):
+        for i in range(5):
             aid = 'r%d' % i
             num = '%02d' % (i + 1)
             title, desc = RESEARCH_ITEMS_ZH[i]
@@ -2123,14 +2096,11 @@ def main():
                 ('成员介绍', '教职工、博士后与研究生名单。', 'members.html'),
             ]),
             ('研究方向', 'RESEARCH AREAS', [
-                ('海洋碳循环与气候反馈', RESEARCH_ITEMS_ZH[0][1], 'research-r0.html'),
+                ('海洋碳循环与气候模拟', RESEARCH_ITEMS_ZH[0][1], 'research-r0.html'),
                 ('海洋数字孪生', RESEARCH_ITEMS_ZH[1][1], 'research-r1.html'),
-                ('海洋模式研发', RESEARCH_ITEMS_ZH[2][1], 'research-r2.html'),
-                ('古气候与古海洋模拟', RESEARCH_ITEMS_ZH[3][1], 'research-r3.html'),
-                ('海洋渔业', RESEARCH_ITEMS_ZH[4][1], 'research-r4.html'),
-                ('BGC-Argo 观测', RESEARCH_ITEMS_ZH[5][1], 'research-r5.html'),
-                ('海洋热浪', RESEARCH_ITEMS_ZH[6][1], 'research-r6.html'),
-                ('北太平洋副热带模态水', RESEARCH_ITEMS_ZH[7][1], 'research-r7.html'),
+                ('古气候与古海洋模拟', RESEARCH_ITEMS_ZH[2][1], 'research-r2.html'),
+                ('海洋观测与生态系统', RESEARCH_ITEMS_ZH[3][1], 'research-r3.html'),
+                ('海洋热浪与模态水', RESEARCH_ITEMS_ZH[4][1], 'research-r4.html'),
                 ('CESM-CoSiNE 项目', '嵌入 CESM 的海洋生态—生物地球化学模块。', 'research-project.html'),
             ]),
             ('科研成果', 'RESEARCH OUTPUTS', [
@@ -2199,7 +2169,7 @@ def main():
 </div>''', EN, current='papers-data.html')))
         pages.append(('papers-model.html', 'Numerical Models', 'NUMERICAL MODELS',
                       with_subnav('papers', '<div class="section" id="model">' + model_box(EN) + '</div>', EN, current='papers-model.html')))
-        for i in range(8):
+        for i in range(5):
             aid = 'r%d' % i
             num = '%02d' % (i + 1)
             title, desc = RESEARCH_ITEMS_EN[i]
@@ -2225,14 +2195,11 @@ def main():
                 ('Members', 'Faculty, postdocs, and graduate students.', 'members.html'),
             ]),
             ('Research', 'RESEARCH AREAS', [
-                ('Carbon Cycle & Climate Feedbacks', RESEARCH_ITEMS_EN[0][1], 'research-r0.html'),
+                ('Carbon Cycle & Climate Modeling', RESEARCH_ITEMS_EN[0][1], 'research-r0.html'),
                 ('Ocean Digital Twin', RESEARCH_ITEMS_EN[1][1], 'research-r1.html'),
-                ('Ocean Model Development', RESEARCH_ITEMS_EN[2][1], 'research-r2.html'),
-                ('Paleoclimate & Paleoceanography', RESEARCH_ITEMS_EN[3][1], 'research-r3.html'),
-                ('Marine Fisheries', RESEARCH_ITEMS_EN[4][1], 'research-r4.html'),
-                ('BGC-Argo Observations', RESEARCH_ITEMS_EN[5][1], 'research-r5.html'),
-                ('Marine Heatwaves', RESEARCH_ITEMS_EN[6][1], 'research-r6.html'),
-                ('North Pacific Subtropical Mode Water', RESEARCH_ITEMS_EN[7][1], 'research-r7.html'),
+                ('Paleoclimate & Paleoceanography', RESEARCH_ITEMS_EN[2][1], 'research-r2.html'),
+                ('Ocean Observation & Ecosystems', RESEARCH_ITEMS_EN[3][1], 'research-r3.html'),
+                ('Heatwaves & Mode Water', RESEARCH_ITEMS_EN[4][1], 'research-r4.html'),
                 ('CESM-CoSiNE Project', 'An ocean ecosystem-biogeochemistry module embedded in CESM.', 'research-project.html'),
             ]),
             ('Research Outputs', 'RESEARCH OUTPUTS', [
