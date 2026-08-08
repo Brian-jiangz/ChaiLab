@@ -1003,6 +1003,12 @@ a:focus-visible, button:focus-visible, .hdots span:focus-visible {
 .rd-points li { position: relative; padding: 8px 0 8px 28px; font-size: .90625em; color: var(--ink-2); line-height: 1.8; }
 .rd-points li::before { content: ""; position: absolute; left: 8px; top: 17px; width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); }
 .rd-visual img { width: 100%; display: block; border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 20px 48px rgba(8, 26, 44, .14); }
+/* 单列宽版（about 长页区块） */
+.rd-wrap.rd-wide { grid-template-columns: 1fr; gap: 0; }
+.rd-wrap.rd-wide .rd-en { margin-bottom: 12px; }
+.rd-wide .intro-card { border-top: none; padding-top: 0; }
+.rd-wide .intro-card p { max-width: 860px; }
+.rd-wide .chai-sec, .rd-wide .pi-detail-sec, .rd-wide .mp-body { max-width: none; }
 /* 滑动渐入动画（滚动到区块时从下方滑入） */
 .rd-sec[data-reveal] { opacity: 0; transform: translateY(64px); transition: opacity 1s ease, transform 1s cubic-bezier(.22, 1, .36, 1); }
 .rd-sec[data-reveal].revealed { opacity: 1; transform: none; }

@@ -67,9 +67,9 @@ TXT = {
 
 DD_ZH = {
     'about': [
-        ('about-group.html', '课题组简介'),
-        ('about-chai.html', '柴扉教授'),
-        ('members.html', '成员介绍'),
+        ('about.html#about-group', '课题组简介'),
+        ('about.html#chai', '柴扉教授'),
+        ('about.html#members', '成员介绍'),
     ],
     'papers': [
         ('papers.html#journal', '期刊论文'),
@@ -93,9 +93,9 @@ DD_ZH = {
 }
 DD_EN = {
     'about': [
-        ('about-group.html', 'About the Group'),
-        ('about-chai.html', 'Prof. Fei Chai'),
-        ('members.html', 'Members'),
+        ('about.html#about-group', 'About the Group'),
+        ('about.html#chai', 'Prof. Fei Chai'),
+        ('about.html#members', 'Members'),
     ],
     'papers': [
         ('papers.html#journal', 'Journal Papers'),
@@ -1028,6 +1028,46 @@ def subnav_items(items, lang, current=''):
         cls = ' class="active"' if href == current else ''
         lis.append(f'      <a href="{href}"{tgt}{cls}>{label}</a>')
     return '<nav class="sub-nav" id="subNav" aria-label="sub navigation">\n' + '\n'.join(lis) + '\n    </nav>'
+
+ABOUT_NAV = [
+    ('#about-group', '课题组简介', 'About the Group'),
+    ('#chai', '柴扉教授', 'Prof. Fei Chai'),
+    ('#members', '团队成员', 'Team Members'),
+]
+
+def about_long_body(lang):
+    import re
+    intro = re.sub(r'^<div class="section" id="about-group">\s*', '', ABOUT_BODY[lang])
+    intro = re.sub(r'</div>\s*$', '', intro).rstrip()
+    intro = intro.replace('href="members.html"', 'href="#members"')
+    chai = pi_detail_html(PI_EN if lang == EN else PI_ZH, lang)
+    chai = re.sub(r'^<div class="section pi-detail-sec">\s*', '', chai)
+    chai = re.sub(r'</div>\s*$', '', chai).rstrip()
+    mem = members_body(lang)
+    mem = re.sub(r'^<div class="section">\s*', '', mem)
+    mem = re.sub(r'</div>\s*$', '', mem).rstrip()
+    mem = mem.replace(' style="margin-top:72px"', '')
+    def _block(aid, num, ensub, title, inner):
+        return f'''<section class="rd-sec" id="{aid}" data-reveal>
+  <div class="rd-wrap rd-wide">
+    <div class="rd-en">{ensub}</div>
+    <div class="rd-title"><span class="rd-num">{num}</span><h2>{title}</h2></div>
+  </div>
+  <div class="rd-wrap rd-wide">
+{inner}
+  </div>
+</section>'''
+    blocks = [
+        _block('about-group', '01', 'ABOUT THE GROUP', '课题组简介', intro),
+        _block('chai', '02', 'PROF. FEI CHAI', '柴扉教授', chai),
+        _block('members', '03', 'GROUP MEMBERS', '团队成员', mem),
+    ]
+    return f'''<div class="page-wrap">
+{subnav_items(ABOUT_NAV, lang)}
+  <div class="sub-content">
+{''.join(blocks)}
+  </div>
+</div>'''
 
 SUB_MENUS = {
     'about': [
@@ -2208,33 +2248,10 @@ def main():
 
     # ---- 一级总览页（二级入口卡片） ----
     def overview_zh():
-        groups = [
-            ('成员介绍', 'GROUP OVERVIEW', [
-                ('课题组简介', '课题组研究概况与招生信息。', 'about-group.html'),
-                ('柴扉教授', '个人档案：学术经历、研究领域与代表性论文。', 'about-chai.html'),
-                ('成员介绍', '教职工、博士后与研究生名单。', 'members.html'),
-            ]),
-        ]
-        for title, en_sub, items in groups:
-            cards = '\n'.join(
-                '''      <a class="ov-card" href="%s">
-        <span class="ov-go">%s →</span>
-        <h3>%s</h3>
-        <p>%s</p>
-      </a>''' % (link, '进入', t, d) for t, d, link in items)
-            body = '''<div class="section ov-sec">
-  <div class="sec-head">
-    <span class="en">%s</span>
-    <h2>%s</h2>
-  </div>
-  <div class="ov-grid">
-%s
-  </div>
-</div>''' % (en_sub, title, cards)
-            fname = 'about.html'
-            html = page(fname, title, en_sub, body, ZH, scripts='js/home.js')
-            open(fname, 'w').write(html)
-            print('生成一级页', fname)
+        # 成员介绍：长页模式（课题组简介 / 柴扉教授 / 团队成员 区块）
+        html = page('about.html', '成员介绍', 'GROUP OVERVIEW', about_long_body(ZH), ZH, scripts='js/home.js')
+        open('about.html', 'w').write(html)
+        print('生成一级页 about.html（长页）')
         # 研究方向 / 科研成果：长页模式（二级内容直接接在一级页下方）
         html = page('research.html', '研究方向', 'RESEARCH AREAS', research_long_body(ZH), ZH, scripts='js/home.js')
         open('research.html', 'w').write(html)
@@ -2300,33 +2317,10 @@ def main():
 
     # ---- 英文一级总览页 ----
     def overview_en():
-        groups = [
-            ('Members', 'GROUP OVERVIEW', [
-                ('About the Group', 'Overview of the group research and recruitment.', 'about-group.html'),
-                ('Prof. Fei Chai', 'Profile: career, research interests, selected publications.', 'about-chai.html'),
-                ('Members', 'Faculty, postdocs, and graduate students.', 'members.html'),
-            ]),
-        ]
-        for title, en_sub, items in groups:
-            cards = '\n'.join(
-                '''      <a class="ov-card" href="%s">
-        <span class="ov-go">%s →</span>
-        <h3>%s</h3>
-        <p>%s</p>
-      </a>''' % (link, 'Enter', t, d) for t, d, link in items)
-            body = '''<div class="section ov-sec">
-  <div class="sec-head">
-    <span class="en">%s</span>
-    <h2>%s</h2>
-  </div>
-  <div class="ov-grid">
-%s
-  </div>
-</div>''' % (en_sub, title, cards)
-            fname = 'about.html'
-            html = _en(page(fname, title, en_sub, body, EN, scripts='../js/home.js'))
-            open('en/' + fname, 'w').write(html)
-            print('生成一级页 en/' + fname)
+        # 成员介绍：长页模式
+        html = _en(page('about.html', 'Members', 'GROUP OVERVIEW', about_long_body(EN), EN, scripts='../js/home.js'))
+        open('en/about.html', 'w').write(html)
+        print('生成一级页 en/about.html（长页）')
         # 研究方向 / 科研成果：长页模式
         html = _en(page('research.html', 'Research', 'RESEARCH AREAS', research_long_body(EN), EN, scripts='../js/home.js'))
         open('en/research.html', 'w').write(html)
