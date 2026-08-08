@@ -675,13 +675,16 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
     -webkit-backdrop-filter: blur(10px) saturate(1.4); backdrop-filter: blur(10px) saturate(1.4);
     border-bottom: 1px solid rgba(255,255,255,.2);
     box-shadow: 0 16px 32px rgba(8, 26, 44, .18);
+    contain: layout;
   }
   .g-nav.open { display: block; }
   .g-nav ul {
     flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; align-items: stretch;
     height: 100%; margin: 0; padding: 0; gap: 0;
-    overflow: visible;
+    overflow-x: auto; overflow-y: visible;
+    -webkit-overflow-scrolling: touch; scrollbar-width: none;
   }
+  .g-nav ul::-webkit-scrollbar { display: none; }
   .g-nav ul > li { display: flex; align-items: center; flex-shrink: 0; }
   .g-nav ul > li > a {
     display: flex; align-items: center; height: 100%;
@@ -708,9 +711,9 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
     background: none; transform: none; transition: transform .25s;
   }
   .g-nav .has-sub.open > a::after { transform: rotate(180deg); }
-  /* 窄屏子菜单：绝对定位贴住按钮左下方 */
+  /* 窄屏子菜单：fixed 贴面板下方（contain:layout 保证参照面板，避开横向滚动容器裁剪） */
   .g-nav .sub {
-    position: absolute; top: 100%; left: 0;
+    position: fixed; top: calc(100% + 4px); left: 0; right: 0;
     min-width: 240px; max-width: none;
     background: #fff; border-top: 2px solid var(--navy);
     box-shadow: 0 16px 40px rgba(8, 26, 44, .2);
@@ -793,7 +796,7 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
     padding-left: max(16px, env(safe-area-inset-left));
     padding-right: max(16px, env(safe-area-inset-right));
   }
-  .nav-toggle { padding: 12px 10px; margin: 0 -10px; }
+  .nav-toggle { padding: 12px 14px; margin: 0 -14px; min-width: 44px; }
   .logo .logo-xmu { height: 26px; width: 26px; }
   .logo .txt { margin-left: 10px; padding-left: 10px; }
   .logo .txt strong { font-size: 22px; letter-spacing: .02em; }
@@ -801,7 +804,7 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
   .hero { height: 78svh; min-height: 420px; }
   .hcap { bottom: 76px; }
   .hcap h2 { font-size: 22px; }
-  .back-top { right: 16px; bottom: max(20px, env(safe-area-inset-bottom)); width: 40px; height: 40px; }
+  .back-top { right: 16px; bottom: max(20px, env(safe-area-inset-bottom)); width: 44px; height: 44px; }
   .sec-head h2 { font-size: 24px; }
   .sec-title h2 { font-size: 21px; }
   .stat b { font-size: 36px; }
