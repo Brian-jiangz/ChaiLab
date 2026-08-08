@@ -983,7 +983,59 @@ a:focus-visible, button:focus-visible, .hdots span:focus-visible {
   .news-item .news-thumb { max-height: 160px; }
 }
 
-/* ===== 数值模式宣传图 ===== */
+/* ===== 成员瓦片 + 筛选（OMEL 风格） ===== */
+.tabnav { display: flex; justify-content: center; margin: 0 0 40px; }
+.tabnav-platter {
+  display: inline-flex; gap: 2px; flex-wrap: wrap; justify-content: center;
+  background: rgba(8, 26, 44, .06); border-radius: 980px; padding: 4px;
+  max-width: 100%; overflow-x: auto; scrollbar-width: none;
+}
+.tabnav-platter::-webkit-scrollbar { display: none; }
+.tabnav-item {
+  border: 0; background: none; font-family: inherit;
+  font-size: 13px; line-height: 1; padding: 10px 18px; border-radius: 980px;
+  color: var(--ink-2); cursor: pointer; white-space: nowrap;
+  transition: background .25s, color .25s;
+}
+.tabnav-item:hover { background: rgba(255, 255, 255, .7); color: var(--navy); }
+.tabnav-item.active { background: #fff; font-weight: 600; color: var(--navy); box-shadow: 0 2px 8px rgba(8, 26, 44, .14); }
+.tile-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 18px; max-width: 1240px; width: 100%; margin: 0 auto;
+}
+.rd-wide .tile-grid, .rd-wide .tabnav { max-width: 100%; }
+.tile {
+  position: relative; background: var(--paper); border: 1px solid var(--line);
+  border-radius: 12px; padding: 32px 22px 26px;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  transition: transform .3s, box-shadow .3s, border-color .3s;
+}
+.tile:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(8, 26, 44, .1); border-color: var(--line-2); }
+.person-tile { min-height: 280px; }
+.person-tile .person-photo {
+  width: 96px; height: 96px; border-radius: 50%; margin: 4px 0 16px;
+  background: linear-gradient(135deg, #0d2f4f, #1b4f7e);
+  color: #fff; font-size: 34px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; transition: transform .4s cubic-bezier(.22, .61, .36, 1);
+}
+.person-tile .person-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; }
+.tile:hover .person-photo { transform: scale(1.08); }
+.person-photo.p-alt { background: linear-gradient(135deg, #1b4f7e, #2a6f9e); }
+.person-photo.p-alt2 { background: linear-gradient(135deg, #123a61, #3b82a8); }
+.person-photo.p-alt3 { background: linear-gradient(135deg, #0a2138, #1b4f7e); }
+.person-photo.p-alt4 { background: linear-gradient(135deg, #2a6f9e, #7d8894); }
+.person-tile .tile-title { font-size: 19px; font-weight: 700; color: var(--navy); letter-spacing: .04em; }
+.person-tile .tile-sub { margin-top: 4px; font-size: 13px; font-weight: 600; color: var(--gold); }
+.person-tile .tile-copy { margin-top: 10px; font-size: 13px; line-height: 1.65; color: var(--ink-3); }
+.tile-links { margin-top: auto; padding-top: 16px; }
+.tile-links a { display: inline-block; font-size: 14px; color: var(--navy-3); font-weight: 600; transition: color .2s; }
+.tile-links a:hover { color: var(--navy); text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 600px) {
+  .tabnav { justify-content: flex-start; margin-bottom: 28px; }
+  .tile-grid { gap: 12px; }
+  .tile { padding: 26px 16px 22px; }
+}
 .model-schema {
   width: 100%; max-width: 620px; display: block; margin: 0 auto 26px;
   border: 1px solid var(--line); border-radius: 6px;
@@ -992,7 +1044,8 @@ a:focus-visible, button:focus-visible, .hdots span:focus-visible {
 /* ===== 研究方向长页区块 ===== */
 .rd-sec { padding: 72px 0; }
 .rd-sec:nth-of-type(even) { background: var(--paper-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.rd-wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
+.rd-wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; min-width: 0; }
+.rd-wrap > * { min-width: 0; }
 .rd-en { font-size: 11px; letter-spacing: .42em; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; font-weight: 600; }
 .rd-title { display: flex; align-items: baseline; gap: 16px; }
 .rd-num { font-size: 14px; color: var(--ink-3); letter-spacing: .2em; font-weight: 700; font-variant-numeric: tabular-nums; }

@@ -375,6 +375,26 @@
     onScrollSpy();
   }
 
+  /* ===== 成员筛选：胶囊标签（全部/教师/博后/博硕/校友） ===== */
+  document.querySelectorAll('.tabnav-filter').forEach(function (tabnav) {
+    var items = Array.prototype.slice.call(tabnav.querySelectorAll('.tabnav-item'));
+    var tiles = document.querySelectorAll('.tile[data-cat]');
+    function activate(i) {
+      items.forEach(function (btn, idx) {
+        btn.classList.toggle('active', idx === i);
+      });
+      var cat = items[i].getAttribute('data-filter');
+      tiles.forEach(function (tile) {
+        tile.style.display = (cat === 'all' || tile.getAttribute('data-cat') === cat) ? '' : 'none';
+      });
+    }
+    items.forEach(function (btn, i) {
+      btn.addEventListener('click', function () { activate(i); });
+    });
+    var activeIdx = items.findIndex(function (b) { return b.classList.contains('active'); });
+    if (activeIdx < 0) activate(0);
+  });
+
   /* ===== 语言切换：保留当前页面，不跳回首页 ===== */
   (function () {
     var page = (location.pathname.split('/').pop() || 'index.html').replace(/\/$/, '');

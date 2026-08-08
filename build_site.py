@@ -619,49 +619,65 @@ def auto_stats(lang):
         (100, '+', '发表论文'),
     ]
 
+MEMBER_CATS = [
+    ('faculty', '教师', 'Faculty'),
+    ('staff', '科研助理', 'Research Assistants'),
+    ('postdoc', '博士后', 'Postdocs'),
+    ('phd', '博士生', 'PhD Students'),
+    ('master', '硕士生', "Master's Students"),
+    ('alumni', '校友', 'Alumni'),
+]
+
+MEMBER_CAT_OF = {
+    'fei-chai': 'faculty', 'xiaoyi-wang': 'staff',
+    'wang-qian': 'postdoc', 'yang-kai': 'postdoc',
+    'zhao-kewei': 'phd', 'jiang-zheng': 'phd', 'song-zhe': 'phd',
+    'lin-jianchun': 'master', 'xie-xianyu': 'master', 'li-peimin': 'master',
+    'wang-qian-alumni': 'alumni', 'wang-yin': 'alumni',
+}
+
+MEMBER_ORDER = ['fei-chai', 'xiaoyi-wang', 'wang-qian', 'yang-kai', 'zhao-kewei', 'jiang-zheng', 'song-zhe',
+                'lin-jianchun', 'xie-xianyu', 'li-peimin', 'wang-qian-alumni', 'wang-yin']
+
 def members_body(lang):
-    if lang == EN:
-        groups = [
-            ('Faculty', ['fei-chai', 'wang-qian', 'yang-kai', 'xiaoyi-wang']),
-            ('PhD Students', ['zhao-kewei', 'jiang-zheng', 'song-zhe']),
-            ("Master's Students", ['lin-jianchun', 'xie-xianyu', 'li-peimin']),
-            ('Alumni', ['wang-qian-alumni', 'wang-yin']),
-        ]
-    else:
-        groups = [
-            ('教职工', ['fei-chai', 'wang-qian', 'yang-kai', 'xiaoyi-wang']),
-            ('博士研究生', ['zhao-kewei', 'jiang-zheng', 'song-zhe']),
-            ('硕士研究生', ['lin-jianchun', 'xie-xianyu', 'li-peimin']),
-            ('已毕业成员', ['wang-qian-alumni', 'wang-yin']),
-        ]
     data = members_data(lang)
     by_slug = {m[5]: m for m in data}
-    out = ['<div class="section">']
-    for i, (gtitle, slugs) in enumerate(groups):
-        style = ' style="margin-top:72px"' if i > 0 else ''
-        out.append(f'  <div class="sec-head"{style}>\n    <h2>{gtitle}</h2>\n  </div>')
-        cards = []
-        for slug in slugs:
-            name, role, dir_, email, photo, slug2 = by_slug[slug]
-            if photo:
-                base = photo.rsplit('.', 1)[0]
-                hd = base + '-hd.' + photo.rsplit('.', 1)[1]
-                face = f'<div class="m-avatar"><img src="images/{photo}" srcset="images/{photo} 600w, images/{hd} 1244w" sizes="(max-width:600px) 80vw, 700px" alt="{name}" loading="lazy"></div>'
-            else:
-                face = f'<div class="m-avatar"><span class="m-initial">{name[0]}</span></div>'
-            link = 'about-chai.html' if slug == 'fei-chai' else 'member-%s.html' % slug
-            home = '个人主页 →' if lang == ZH else 'Personal Page →'
-            cards.append(f'''    <a class="member m-link" href="{link}">
+    if lang == EN:
+        tabs = ['<button class="tabnav-item active" data-filter="all">All</button>'] + \
+               [f'<button class="tabnav-item" data-filter="{c}">{en}</button>' for c, zh, en in MEMBER_CATS]
+    else:
+        tabs = ['<button class="tabnav-item active" data-filter="all">全部</button>'] + \
+               [f'<button class="tabnav-item" data-filter="{c}">{zh}</button>' for c, zh, en in MEMBER_CATS]
+    tabnav = '''<div class="tabnav tabnav-filter">
+      <div class="tabnav-platter" role="tablist">
+''' + '\n'.join('        ' + t for t in tabs) + '''
+      </div>
+    </div>'''
+    alts = ['p-alt', 'p-alt2', 'p-alt3', 'p-alt4']
+    tiles = []
+    for i, slug in enumerate(MEMBER_ORDER):
+        name, role, dir_, email, photo, slug2 = by_slug[slug]
+        if photo:
+            base = photo.rsplit('.', 1)[0]
+            hd = base + '-hd.' + photo.rsplit('.', 1)[1]
+            face = f'<div class="person-photo"><img src="images/{photo}" srcset="images/{photo} 600w, images/{hd} 1244w" sizes="(max-width:600px) 30vw, 128px" alt="{name}" loading="lazy"></div>'
+        else:
+            face = f'<div class="person-photo {alts[i % 4]}">{name[0]}</div>'
+        link = 'about.html#chai' if slug == 'fei-chai' else 'member-%s.html' % slug
+        home = '个人主页' if lang == ZH else 'Profile'
+        tiles.append(f'''    <div class="tile person-tile" data-cat="{MEMBER_CAT_OF[slug]}">
       {face}
-      <h4>{name}</h4>
-      <div class="role">{role}</div>
-      <div class="dir">{dir_}</div>
-      <div class="email">{email}</div>
-      <div class="m-home">{home}<span class="m-arrow">{'>'}</span></div>
-    </a>''')
-        out.append('  <div class="members">\n' + '\n'.join(cards) + '\n  </div>')
-    out.append('</div>')
-    return '\n'.join(out)
+      <h3 class="tile-title">{name}</h3>
+      <p class="tile-sub">{role}</p>
+      <p class="tile-copy">{dir_}</p>
+      <div class="tile-links"><a href="{link}">{home} ›</a></div>
+    </div>''')
+    return f'''<div class="section">
+{tabnav}
+  <div class="tile-grid">
+{chr(10).join(tiles)}
+  </div>
+</div>'''
 
 MP_NOTES = {
     'jiang-zheng': {
