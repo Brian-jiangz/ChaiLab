@@ -534,7 +534,7 @@ def members_data(lang):
             ('Wang Qian', 'Postdoctoral Researcher', 'Member profile under construction', '\u2014', '', 'wang-qian'),
             ('Yang Kai', 'Postdoctoral Researcher', 'Member profile under construction', '\u2014', '', 'yang-kai'),
             ('Zhao Kewei', 'PhD Student', 'Member profile under construction', '\u2014', '', 'zhao-kewei'),
-            ('Jiang Zheng', 'PhD Student', 'Earth system model development, paleoclimate simulation, and marine carbon cycle', '\u2014', 'jiang-zheng.jpg', 'jiang-zheng'),
+            ('Jiang Zheng', 'PhD Student', 'Earth system model development, paleoclimate simulation, and marine carbon cycle', 'jiangz@stu.xmu.edu.cn', 'jiang-zheng.jpg', 'jiang-zheng'),
             ('Song Zhe', 'PhD Student', 'Member profile under construction', '\u2014', '', 'song-zhe'),
             ('Lin Jianchun', "Master's Student", 'Member profile under construction', '\u2014', '', 'lin-jianchun'),
             ('Xie Xianyu', "Master's Student", 'Member profile under construction', '\u2014', '', 'xie-xianyu'),
@@ -548,7 +548,7 @@ def members_data(lang):
         ('王谦', '博士后', '成员简介整理中……', '—', '', 'wang-qian'),
         ('杨凯', '博士后', '成员简介整理中……', '—', '', 'yang-kai'),
         ('赵柯崴', '博士研究生', '成员简介整理中……', '—', '', 'zhao-kewei'),
-        ('姜正', '博士研究生', '地球系统模式研发、古气候模拟与海洋碳循环', '—', 'jiang-zheng.jpg', 'jiang-zheng'),
+        ('姜正', '博士研究生', '地球系统模式研发、古气候模拟与海洋碳循环', 'jiangz@stu.xmu.edu.cn', 'jiang-zheng.jpg', 'jiang-zheng'),
         ('宋喆', '博士研究生', '成员简介整理中……', '—', '', 'song-zhe'),
         ('林剑纯', '硕士研究生', '成员简介整理中……', '—', '', 'lin-jianchun'),
         ('谢娴予', '硕士研究生', '成员简介整理中……', '—', '', 'xie-xianyu'),
@@ -676,6 +676,13 @@ MP_NOTES = {
     },
 }
 
+MP_EDU = {
+    'jiang-zheng': {
+        'zh': '2025 至今，厦门大学海洋与地球学院',
+        'en': 'Since 2025, School of Ocean and Earth Sciences, Xiamen University',
+    },
+}
+
 def member_page(lang):
     """为每个成员生成独立介绍页"""
     data = members_data(lang)
@@ -697,6 +704,7 @@ def member_page(lang):
       <ul class="mp-info">
         <li><b>{"Email" if lang == EN else "邮箱"}：</b>{email}</li>
         <li><b>{"Research Direction" if lang == EN else "研究方向"}：</b>{dir_}</li>
+        {('<li><b>Education：</b>' + MP_EDU[slug][lang] + '</li>') if slug in MP_EDU else ''}
       </ul>
     </div>
   </div>
