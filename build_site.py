@@ -671,8 +671,26 @@ def members_body(lang):
 
 MP_NOTES = {
     'jiang-zheng': {
-        'zh': '我目前主要从事古气候模拟、海洋碳循环和海洋生态生物地球化学模式研发相关研究。研究兴趣集中于海洋生物地球化学过程如何响应并反馈气候变化，尤其关注海洋生物泵、营养盐循环、碳循环以及海气 CO₂ 交换在现代气候变率和古气候演化中的作用。在研究方法上，我注重将数值模拟、观测资料和地质代用指标相结合，通过模式研发、结果评估和机制分析，探索不同时间尺度上海洋—气候—碳循环系统的相互作用机制。',
-        'en': 'My research focuses on paleoclimate modeling, the marine carbon cycle, and the development of marine ecosystem\u2013biogeochemistry models. I am particularly interested in how marine biogeochemical processes respond to and feed back on climate change, with special attention to the roles of the biological carbon pump, nutrient cycles, and air\u2013sea CO\u2082 exchange in modern climate variability and paleoclimate evolution. Methodologically, I combine numerical simulations, observational data, and geological proxies\u2014through model development, evaluation, and mechanistic analysis\u2014to explore the interactions within the ocean\u2013climate\u2013carbon system across multiple time scales.',
+        'zh': {
+            'bio': '我目前主要从事古气候模拟、海洋碳循环和海洋生态生物地球化学模式研发相关研究。研究兴趣集中于海洋生物地球化学过程如何响应并反馈气候变化，尤其关注海洋生物泵、营养盐循环、碳循环以及海气 CO₂ 交换在现代气候变率和古气候演化中的作用。',
+            'research': '我的研究方向主要为地球系统模式研发、古气候模拟和海洋碳循环，重点关注不同时间尺度上海洋碳循环、营养盐循环与气候变化之间的耦合关系。研究工作结合地球系统模式、海洋生物地球化学模式、现代观测资料和古气候代用指标，探讨海洋生物泵、微生物过程及海气 CO₂ 交换在气候系统演变中的作用。在研究方法上，我注重将数值模拟、观测资料和地质代用指标相结合，通过模式研发、结果评估和机制分析，探索不同时间尺度上海洋—气候—碳循环系统的相互作用机制。',
+            'points': [
+                'CESM–CoSiNE 海洋生态生物地球化学耦合模式研发与评估',
+                '末次间冰期等典型古气候时期的海洋环境与碳循环模拟',
+                'ENSO、PDO 等气候模态对赤道太平洋海气 CO₂ 交换及表层 pCO₂ 空间格局的调控机制',
+                '古气候代用指标与模式结果的综合分析',
+            ],
+        },
+        'en': {
+            'bio': 'My research focuses on paleoclimate modeling, the marine carbon cycle, and the development of marine ecosystem\u2013biogeochemistry models. I am particularly interested in how marine biogeochemical processes respond to and feed back on climate change, especially the roles of the biological carbon pump, nutrient cycles, and air\u2013sea CO\u2082 exchange in modern climate variability and paleoclimate evolution.',
+            'research': 'My research mainly centers on earth system model development, paleoclimate simulation, and the marine carbon cycle, with an emphasis on the coupling between the ocean carbon cycle, nutrient cycles, and climate change across multiple time scales. Combining earth system models, marine biogeochemistry models, modern observational data, and paleoclimate proxies, I investigate the roles of the biological carbon pump, microbial processes, and air\u2013sea CO\u2082 exchange in the evolution of the climate system. Methodologically, I integrate numerical simulations, observational data, and geological proxies\u2014through model development, evaluation, and mechanistic analysis\u2014to explore the interactions within the ocean\u2013climate\u2013carbon system across multiple time scales.',
+            'points': [
+                'Development and evaluation of the CESM\u2013CoSiNE coupled ocean ecosystem\u2013biogeochemistry model',
+                'Simulation of marine environment and carbon cycle during typical paleoclimate periods such as the Last Interglacial',
+                'Mechanisms of ENSO, PDO, and other climate modes in regulating air\u2013sea CO\u2082 exchange and surface pCO\u2082 patterns in the equatorial Pacific',
+                'Integrated analysis of paleoclimate proxies and model results',
+            ],
+        },
     },
 }
 
@@ -694,7 +712,46 @@ def member_page(lang):
             face = f'<div class="mp-photo"><img src="images/{photo}" srcset="images/{photo} 600w, images/{hd} 1244w" sizes="(max-width:600px) 90vw, 700px" alt="{name}" loading="lazy"></div>'
         else:
             face = f'<div class="mp-photo"><span class="mp-initial">{name[0]}</span></div>'
-        body = f'''<div class="section mp-sec">
+        profile = MP_NOTES.get(slug, {}).get('zh' if lang == ZH else 'en', None)
+        if profile:
+            lab_about = 'ABOUT' if lang == EN else '个人简介'
+            lab_res = 'RESEARCH' if lang == EN else '研究方向'
+            lab_points = 'Current Research Topics' if lang == EN else '目前主要研究内容'
+            points_html = ''
+            if profile.get('points'):
+                lis = '\n'.join(f'          <li>{p}</li>' for p in profile['points'])
+                points_html = f'''      <h4>{lab_points}</h4>
+      <ul class="mp-points">
+{lis}
+      </ul>'''
+            body = f'''<div class="section mp-sec">
+  <div class="mp-head">
+    {face}
+    <div class="mp-meta">
+      <span class="en">{"GROUP MEMBER" if lang == EN else "课题组成员"}</span>
+      <h2>{name}</h2>
+      <div class="mp-role">{role}</div>
+      <ul class="mp-info">
+        <li><b>{"Email" if lang == EN else "邮箱"}：</b>{email}</li>
+        <li><b>{"Research Direction" if lang == EN else "研究方向"}：</b>{dir_}</li>
+        {('<li><b>Education：</b>' + MP_EDU[slug][lang] + '</li>') if slug in MP_EDU else ''}
+      </ul>
+    </div>
+  </div>
+  <div class="mp-body">
+    <section class="mp-block">
+      <h3>{lab_about}<span class="mp-en">{'' if lang == EN else 'ABOUT'}</span></h3>
+      <p>{profile['bio']}</p>
+    </section>
+    <section class="mp-block">
+      <h3>{lab_res}<span class="mp-en">{'' if lang == EN else 'RESEARCH'}</span></h3>
+      <p>{profile['research']}</p>
+{points_html}
+    </section>
+  </div>
+</div>'''
+        else:
+            body = f'''<div class="section mp-sec">
   <div class="mp-head">
     {face}
     <div class="mp-meta">
@@ -709,7 +766,7 @@ def member_page(lang):
     </div>
   </div>
   <div class="mp-note">
-    <p>{MP_NOTES.get(slug, {}).get('zh' if lang == ZH else 'en', default_note)}</p>
+    <p>{default_note}</p>
   </div>
 </div>'''
         fname = 'member-%s.html' % slug
