@@ -993,15 +993,19 @@ a:focus-visible, button:focus-visible, .hdots span:focus-visible {
 .rd-sec { padding: 72px 0; }
 .rd-sec:nth-of-type(even) { background: var(--paper-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .rd-wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
-.rd-num { font-size: 13px; color: var(--gold); letter-spacing: .34em; font-weight: 700; font-variant-numeric: tabular-nums; }
-.rd-text h2 { font-size: 30px; color: var(--navy); letter-spacing: .1em; font-weight: 600; margin: 12px 0 6px; }
-.rd-en { font-size: 11px; letter-spacing: .42em; color: var(--ink-3); text-transform: uppercase; }
+.rd-en { font-size: 11px; letter-spacing: .42em; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; font-weight: 600; }
+.rd-title { display: flex; align-items: baseline; gap: 16px; }
+.rd-num { font-size: 14px; color: var(--ink-3); letter-spacing: .2em; font-weight: 700; font-variant-numeric: tabular-nums; }
+.rd-text h2 { font-size: 30px; color: var(--navy); letter-spacing: .1em; font-weight: 600; margin: 0; }
 .rd-text h2::after { content: ""; display: block; width: 44px; height: 1px; background: var(--gold); margin-top: 18px; }
 .rd-text p { font-size: .9375em; color: var(--ink-2); line-height: 2.1; margin: 20px 0 6px; }
 .rd-points { list-style: none; margin: 12px 0 24px; }
 .rd-points li { position: relative; padding: 8px 0 8px 28px; font-size: .90625em; color: var(--ink-2); line-height: 1.8; }
 .rd-points li::before { content: ""; position: absolute; left: 8px; top: 17px; width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); }
 .rd-visual img { width: 100%; display: block; border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 20px 48px rgba(8, 26, 44, .14); }
+/* 滑动渐入动画（滚动到区块时从下方滑入） */
+.rd-sec[data-reveal] { opacity: 0; transform: translateY(64px); transition: opacity 1s ease, transform 1s cubic-bezier(.22, 1, .36, 1); }
+.rd-sec[data-reveal].revealed { opacity: 1; transform: none; }
 @media (max-width: 900px) {
   .rd-wrap { grid-template-columns: 1fr; gap: 28px; padding: 0 20px; }
   .rd-sec { padding: 48px 0; }

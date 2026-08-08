@@ -996,12 +996,11 @@ def research_long_body(lang):
     secs = []
     for i, (aid, title, ensub, desc, points, img, link, btn) in enumerate(items):
         pts = '\n'.join(f'            <li>{p}</li>' for p in points)
-        secs.append(f'''  <section class="rd-sec" id="{aid}">
+        secs.append(f'''  <section class="rd-sec" id="{aid}" data-reveal style="--d:{i * 60}ms">
     <div class="rd-wrap">
       <div class="rd-text">
-        <div class="rd-num">0{i + 1} / 0{len(items)}</div>
-        <h2>{title}</h2>
         <div class="rd-en">{ensub}</div>
+        <div class="rd-title"><span class="rd-num">0{i + 1}</span><h2>{title}</h2></div>
         <p>{desc}</p>
         <ul class="rd-points">
 {pts}
@@ -1117,7 +1116,7 @@ PAPERS = [
 
 def papers_body(lang):
     if lang == EN:
-        content = f'''<div class="section" id="journal">
+        content = f'''<div class="section" id="journal" data-reveal>
   <div class="sec-head">
     <span class="en">JOURNAL PAPERS</span>
     <h2>Journal Papers</h2>
@@ -1125,7 +1124,7 @@ def papers_body(lang):
   {paper_timeline(PAPERS, lang)}
 </div>
 
-<div class="section" id="digital-twin">
+<div class="section" id="digital-twin" data-reveal>
   <div class="sec-head">
     <span class="en">DIGITAL TWIN</span>
     <h2>Ocean Digital Twin</h2>
@@ -1145,7 +1144,7 @@ def papers_body(lang):
   </div>
 </div>
 
-<div class="section" id="data">
+<div class="section" id="data" data-reveal>
   <div class="sec-head">
     <span class="en">RESEARCH DATA</span>
     <h2>Research Data</h2>
@@ -1160,7 +1159,7 @@ def papers_body(lang):
   </div>
 </div>
 
-<div class="section" id="model">
+<div class="section" id="model" data-reveal>
   <div class="sec-head">
     <span class="en">NUMERICAL MODELS</span>
     <h2>Numerical Models</h2>
@@ -1180,7 +1179,7 @@ def papers_body(lang):
   </div>
 </div>'''
         return papers_long(content, lang)
-    content = f'''<div class="section" id="journal">
+    content = f'''<div class="section" id="journal" data-reveal>
   <div class="sec-head">
     <span class="en">JOURNAL PAPERS</span>
     <h2>期刊论文</h2>
@@ -1188,7 +1187,7 @@ def papers_body(lang):
   {paper_timeline(PAPERS, lang)}
 </div>
 
-<div class="section" id="digital-twin">
+<div class="section" id="digital-twin" data-reveal>
   <div class="sec-head">
     <span class="en">DIGITAL TWIN</span>
     <h2>海洋数字孪生</h2>
@@ -1208,7 +1207,7 @@ def papers_body(lang):
   </div>
 </div>
 
-<div class="section" id="data">
+<div class="section" id="data" data-reveal>
   <div class="sec-head">
     <span class="en">RESEARCH DATA</span>
     <h2>科研数据</h2>
@@ -1223,7 +1222,7 @@ def papers_body(lang):
   </div>
 </div>
 
-<div class="section" id="model">
+<div class="section" id="model" data-reveal>
   <div class="sec-head">
     <span class="en">NUMERICAL MODELS</span>
     <h2>数值模式</h2>
@@ -2179,7 +2178,7 @@ def main():
         pages.append(('papers-digital-twin.html', '数字孪生', 'DIGITAL TWIN',
                       with_subnav('papers', '<div class="section" id="digital-twin">' + digital_twin_box(ZH) + '</div>', ZH, current='papers-digital-twin.html')))
         pages.append(('papers-data.html', '科研数据', 'RESEARCH DATA',
-                      with_subnav('papers', '''<div class="section" id="data">
+                      with_subnav('papers', '''<div class="section" id="data" data-reveal>
   <div class="sec-head"><span class="en">RESEARCH DATA</span><h2>科研数据</h2></div>
   <div class="ov-desc"><p>西北太平洋与南海 Biogeochemical-Argo 浮标观测；CESM-CoSiNE 全球海洋、北太平洋与南海模拟输出（数据共享整理中）。</p></div>
 </div>''', ZH, current='papers-data.html')))
@@ -2276,7 +2275,7 @@ def main():
         pages.append(('papers-digital-twin.html', 'Digital Twin', 'DIGITAL TWIN',
                       with_subnav('papers', '<div class="section" id="digital-twin">' + digital_twin_box(EN) + '</div>', EN, current='papers-digital-twin.html')))
         pages.append(('papers-data.html', 'Research Data', 'RESEARCH DATA',
-                      with_subnav('papers', '''<div class="section" id="data">
+                      with_subnav('papers', '''<div class="section" id="data" data-reveal>
   <div class="sec-head"><span class="en">RESEARCH DATA</span><h2>Research Data</h2></div>
   <div class="ov-desc"><p>BGC-Argo float observations in the western North Pacific and the South China Sea; CESM-CoSiNE simulation outputs (data sharing under preparation).</p></div>
 </div>''', EN, current='papers-data.html')))
