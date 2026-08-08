@@ -534,7 +534,7 @@ def members_data(lang):
             ('Wang Qian', 'Postdoctoral Researcher', 'Member profile under construction', '\u2014', '', 'wang-qian'),
             ('Yang Kai', 'Postdoctoral Researcher', 'Member profile under construction', '\u2014', '', 'yang-kai'),
             ('Zhao Kewei', 'PhD Student', 'Member profile under construction', '\u2014', '', 'zhao-kewei'),
-            ('Jiang Zheng', 'PhD Student', 'Member profile under construction', '\u2014', '', 'jiang-zheng'),
+            ('Jiang Zheng', 'PhD Student', 'Earth system model development, paleoclimate simulation, and marine carbon cycle', '\u2014', 'jiang-zheng.jpg', 'jiang-zheng'),
             ('Song Zhe', 'PhD Student', 'Member profile under construction', '\u2014', '', 'song-zhe'),
             ('Lin Jianchun', "Master's Student", 'Member profile under construction', '\u2014', '', 'lin-jianchun'),
             ('Xie Xianyu', "Master's Student", 'Member profile under construction', '\u2014', '', 'xie-xianyu'),
@@ -548,7 +548,7 @@ def members_data(lang):
         ('王谦', '博士后', '成员简介整理中……', '—', '', 'wang-qian'),
         ('杨凯', '博士后', '成员简介整理中……', '—', '', 'yang-kai'),
         ('赵柯崴', '博士研究生', '成员简介整理中……', '—', '', 'zhao-kewei'),
-        ('姜正', '博士研究生', '成员简介整理中……', '—', '', 'jiang-zheng'),
+        ('姜正', '博士研究生', '地球系统模式研发、古气候模拟与海洋碳循环', '—', 'jiang-zheng.jpg', 'jiang-zheng'),
         ('宋喆', '博士研究生', '成员简介整理中……', '—', '', 'song-zhe'),
         ('林剑纯', '硕士研究生', '成员简介整理中……', '—', '', 'lin-jianchun'),
         ('谢娴予', '硕士研究生', '成员简介整理中……', '—', '', 'xie-xianyu'),
@@ -669,9 +669,17 @@ def members_body(lang):
     out.append('</div>')
     return '\n'.join(out)
 
+MP_NOTES = {
+    'jiang-zheng': {
+        'zh': '我目前主要从事古气候模拟、海洋碳循环和海洋生态生物地球化学模式研发相关研究。研究兴趣集中于海洋生物地球化学过程如何响应并反馈气候变化，尤其关注海洋生物泵、营养盐循环、碳循环以及海气 CO₂ 交换在现代气候变率和古气候演化中的作用。在研究方法上，我注重将数值模拟、观测资料和地质代用指标相结合，通过模式研发、结果评估和机制分析，探索不同时间尺度上海洋—气候—碳循环系统的相互作用机制。',
+        'en': 'My research focuses on paleoclimate modeling, the marine carbon cycle, and the development of marine ecosystem\u2013biogeochemistry models. I am particularly interested in how marine biogeochemical processes respond to and feed back on climate change, with special attention to the roles of the biological carbon pump, nutrient cycles, and air\u2013sea CO\u2082 exchange in modern climate variability and paleoclimate evolution. Methodologically, I combine numerical simulations, observational data, and geological proxies\u2014through model development, evaluation, and mechanistic analysis\u2014to explore the interactions within the ocean\u2013climate\u2013carbon system across multiple time scales.',
+    },
+}
+
 def member_page(lang):
     """为每个成员生成独立介绍页"""
     data = members_data(lang)
+    default_note = "Member profile is under construction. More details will be updated soon." if lang == EN else "成员个人简介整理中，更多信息将陆续更新。"
     for name, role, dir_, email, photo, slug in data:
         if photo:
             base = photo.rsplit('.', 1)[0]
@@ -693,7 +701,7 @@ def member_page(lang):
     </div>
   </div>
   <div class="mp-note">
-    <p>{("Member profile is under construction. More details will be updated soon." if lang == EN else "成员个人简介整理中，更多信息将陆续更新。")}</p>
+    <p>{MP_NOTES.get(slug, {}).get('zh' if lang == ZH else 'en', default_note)}</p>
   </div>
 </div>'''
         fname = 'member-%s.html' % slug
