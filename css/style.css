@@ -1062,6 +1062,21 @@ a:focus-visible, button:focus-visible, .hdots span:focus-visible {
 .rd-wide .intro-card { border-top: none; padding-top: 0; }
 .rd-wide .intro-card p { max-width: 860px; }
 .rd-wide .chai-sec, .rd-wide .pi-detail-sec, .rd-wide .mp-body { max-width: none; }
+/* 三级详情页（研究方向子页） */
+.rd-detail-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; margin-top: 36px; }
+.rd-detail-text p { font-size: .9375em; color: var(--ink-2); line-height: 2.1; }
+.rd-detail-links { display: flex; gap: 14px; margin-top: 28px; flex-wrap: wrap; }
+.rd-links { display: flex; gap: 14px; margin-top: 24px; flex-wrap: wrap; }
+@media (max-width: 900px) {
+  .rd-detail-grid { grid-template-columns: 1fr; gap: 28px; }
+}
+/* 区块标题行（标题 + 右侧更多链接） */
+.sec-head-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; text-align: left; }
+.sec-head-row .sec-head { text-align: left; }
+.sec-head-row .more { margin-bottom: 6px; }
+@media (max-width: 600px) {
+  .sec-head-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+}
 /* 滑动渐入动画（滚动到区块时从下方滑入） */
 .rd-sec[data-reveal] { opacity: 0; transform: translateY(64px); transition: opacity 1s ease, transform 1s cubic-bezier(.22, 1, .36, 1); }
 .rd-sec[data-reveal].revealed { opacity: 1; transform: none; }

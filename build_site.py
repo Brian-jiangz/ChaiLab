@@ -1010,6 +1010,8 @@ def research_long_body(lang):
     secs = []
     for i, (aid, title, ensub, desc, points, img, link, btn) in enumerate(items):
         pts = '\n'.join(f'            <li>{p}</li>' for p in points)
+        detail = 'research-project.html' if aid == 'r5' else 'research-%s.html' % aid
+        detail_lbl = '方向详情' if lang == ZH else 'Details'
         secs.append(f'''  <section class="rd-sec" id="{aid}" data-reveal style="--d:{i * 60}ms">
     <div class="rd-wrap">
       <div class="rd-text">
@@ -1019,7 +1021,10 @@ def research_long_body(lang):
         <ul class="rd-points">
 {pts}
         </ul>
-        <a class="btn btn-line" href="{link}">{btn}</a>
+        <div class="rd-links">
+          <a class="btn btn-solid" href="{detail}">{detail_lbl} →</a>
+          <a class="btn btn-line" href="{link}">{btn}</a>
+        </div>
       </div>
       <div class="rd-visual">
         <img src="{img}" alt="{title}" loading="lazy">
@@ -1171,9 +1176,12 @@ PAPERS = [
 def papers_body(lang):
     if lang == EN:
         content = f'''<div class="section" id="journal" data-reveal>
-  <div class="sec-head">
-    <span class="en">JOURNAL PAPERS</span>
-    <h2>Journal Papers</h2>
+  <div class="sec-head sec-head-row">
+    <div>
+      <span class="en">JOURNAL PAPERS</span>
+      <h2>Journal Papers</h2>
+    </div>
+    <a class="more" href="papers-journal.html">View All ›</a>
   </div>
   {paper_timeline(PAPERS, lang)}
 </div>
@@ -1193,6 +1201,7 @@ def papers_body(lang):
       <div class="project-links" style="margin-top:0">
         <a class="btn btn-solid" href="https://mel.xmu.edu.cn/info/1012/61071.htm" target="_blank">Read the Original Report →</a>
         <a class="btn btn-line" href="https://doi.org/10.1093/nsr/nwag012" target="_blank">Paper DOI →</a>
+        <a class="btn btn-line" href="papers-digital-twin.html">Full Page →</a>
       </div>
     </div>
   </div>
@@ -1209,6 +1218,9 @@ def papers_body(lang):
       <p>Biogeochemical-Argo float observations in the western North Pacific and the South China Sea, including high-frequency profiles of oxygen, nitrate, chlorophyll, pH, and particulate organic carbon flux.</p>
       <h4>Model Outputs</h4>
       <p>CESM-CoSiNE simulation outputs covering the global ocean, the North Pacific, and the South China Sea (data sharing under preparation).</p>
+      <div class="project-links" style="margin-top:0">
+        <a class="btn btn-line" href="papers-data.html">Full Page →</a>
+      </div>
     </div>
   </div>
 </div>
@@ -1228,15 +1240,19 @@ def papers_body(lang):
       <div class="project-links" style="margin-top:0">
         <a class="btn btn-solid" href="reports/CESM_CoSiNE16_Nature_style_draft_CN.html" target="_blank">Project Report (Nature Style)</a>
         <a class="btn btn-line" href="reports/CESM_CoSiNE16_v2_Process_Manual.html" target="_blank">V2 Coupling Manual</a>
+        <a class="btn btn-line" href="papers-model.html">Full Page →</a>
       </div>
     </div>
   </div>
 </div>'''
         return papers_long(content, lang)
     content = f'''<div class="section" id="journal" data-reveal>
-  <div class="sec-head">
-    <span class="en">JOURNAL PAPERS</span>
-    <h2>期刊论文</h2>
+  <div class="sec-head sec-head-row">
+    <div>
+      <span class="en">JOURNAL PAPERS</span>
+      <h2>期刊论文</h2>
+    </div>
+    <a class="more" href="papers-journal.html">查看全部 ›</a>
   </div>
   {paper_timeline(PAPERS, lang)}
 </div>
@@ -1256,6 +1272,7 @@ def papers_body(lang):
       <div class="project-links" style="margin-top:0">
         <a class="btn btn-solid" href="https://mel.xmu.edu.cn/info/1012/61071.htm" target="_blank">阅读原报道 →</a>
         <a class="btn btn-line" href="https://doi.org/10.1093/nsr/nwag012" target="_blank">论文 DOI →</a>
+        <a class="btn btn-line" href="papers-digital-twin.html">完整页面 →</a>
       </div>
     </div>
   </div>
@@ -1272,6 +1289,9 @@ def papers_body(lang):
       <p>西北太平洋与南海 Biogeochemical-Argo 浮标观测：溶解氧、硝酸盐、叶绿素、pH 与颗粒有机碳通量的高频剖面数据。</p>
       <h4>模式输出</h4>
       <p>CESM-CoSiNE 全球海洋、北太平洋与南海模拟输出（数据共享整理中）。</p>
+      <div class="project-links" style="margin-top:0">
+        <a class="btn btn-line" href="papers-data.html">完整页面 →</a>
+      </div>
     </div>
   </div>
 </div>
@@ -1291,6 +1311,7 @@ def papers_body(lang):
       <div class="project-links" style="margin-top:0">
         <a class="btn btn-solid" href="reports/CESM_CoSiNE16_Nature_style_draft_CN.html" target="_blank">项目报告（Nature 风格）</a>
         <a class="btn btn-line" href="reports/CESM_CoSiNE16_v2_Process_Manual.html" target="_blank">V2 耦合说明书</a>
+        <a class="btn btn-line" href="papers-model.html">完整页面 →</a>
       </div>
     </div>
   </div>
@@ -2238,17 +2259,32 @@ def main():
 </div>''', ZH, current='papers-data.html')))
         pages.append(('papers-model.html', '数值模式', 'NUMERICAL MODELS',
                       with_subnav('papers', '<div class="section" id="model">' + model_box(ZH) + '</div>', ZH, current='papers-model.html')))
-        # 研究方向栏
+        # 研究方向栏：三级详情页（内容丰富版）
         for i in range(5):
-            aid = 'r%d' % i
+            aid, title, ensub, desc, points, img, link, btn = RESEARCH_SECTIONS['zh'][i]
             num = '%02d' % (i + 1)
-            title, desc = RESEARCH_ITEMS_ZH[i]
             fname = 'research-%s.html' % aid
+            pts = '\n'.join(f'            <li>{p}</li>' for p in points)
             pages.append((fname, title, 'RESEARCH AREA %s' % num,
-                          with_subnav('research', '''<div class="section" id="%s">
-  <div class="sec-head"><span class="en">%s · 研究方向</span><h2>%s</h2></div>
-  <div class="ov-desc"><p>%s</p></div>
-</div>''' % (aid, num, title, desc), ZH, current=fname)))
+                          with_subnav('research', f'''<div class="section" id="{aid}">
+  <div class="rd-en">{ensub}</div>
+  <div class="rd-title"><span class="rd-num">{num}</span><h2>{title}</h2></div>
+  <div class="rd-detail-grid">
+    <div class="rd-detail-text">
+      <p>{desc}</p>
+      <ul class="rd-points">
+{pts}
+      </ul>
+      <div class="rd-detail-links">
+        <a class="btn btn-solid" href="{link}">{btn}</a>
+        <a class="btn btn-line" href="research.html#{aid}">返回研究方向</a>
+      </div>
+    </div>
+    <div class="rd-visual">
+      <img src="{img}" alt="{title}" loading="lazy">
+    </div>
+  </div>
+</div>''', ZH, current=fname)))
         pages.append(('research-project.html', '海洋模式研发', 'OCEAN MODEL DEVELOPMENT',
                       with_subnav('research', '''<div class="section" id="project">
   <div class="sec-head"><span class="en">OCEAN MODEL DEVELOPMENT</span><h2>海洋模式研发</h2></div>
@@ -2313,15 +2349,30 @@ def main():
         pages.append(('papers-model.html', 'Numerical Models', 'NUMERICAL MODELS',
                       with_subnav('papers', '<div class="section" id="model">' + model_box(EN) + '</div>', EN, current='papers-model.html')))
         for i in range(5):
-            aid = 'r%d' % i
+            aid, title, ensub, desc, points, img, link, btn = RESEARCH_SECTIONS['en'][i]
             num = '%02d' % (i + 1)
-            title, desc = RESEARCH_ITEMS_EN[i]
             fname = 'research-%s.html' % aid
+            pts = '\n'.join(f'            <li>{p}</li>' for p in points)
             pages.append((fname, title, 'RESEARCH AREA %s' % num,
-                          with_subnav('research', '''<div class="section" id="%s">
-  <div class="sec-head"><span class="en">%s · RESEARCH AREA</span><h2>%s</h2></div>
-  <div class="ov-desc"><p>%s</p></div>
-</div>''' % (aid, num, title, desc), EN, current=fname)))
+                          with_subnav('research', f'''<div class="section" id="{aid}">
+  <div class="rd-en">{ensub}</div>
+  <div class="rd-title"><span class="rd-num">{num}</span><h2>{title}</h2></div>
+  <div class="rd-detail-grid">
+    <div class="rd-detail-text">
+      <p>{desc}</p>
+      <ul class="rd-points">
+{pts}
+      </ul>
+      <div class="rd-detail-links">
+        <a class="btn btn-solid" href="{link}">{btn}</a>
+        <a class="btn btn-line" href="research.html#{aid}">Back to Research</a>
+      </div>
+    </div>
+    <div class="rd-visual">
+      <img src="{img}" alt="{title}" loading="lazy">
+    </div>
+  </div>
+</div>''', EN, current=fname)))
         pages.append(('research-project.html', 'Ocean Model Development', 'OCEAN MODEL DEVELOPMENT',
                       with_subnav('research', '<div class="section" id="project">' + project_box(EN, full=True) + '</div>', EN)))
         for fname, title, en_sub, body in pages:
