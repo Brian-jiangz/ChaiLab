@@ -83,7 +83,7 @@ DD_ZH = {
         ('research-r2.html', '古气候与古海洋模拟'),
         ('research-r3.html', '海洋观测与生态系统'),
         ('research-r4.html', '海洋热浪与模态水'),
-        ('research-project.html', 'CESM-CoSiNE 项目'),
+        ('research-project.html', '海洋模式研发'),
     ],
     'links': [
         ('https://coeoa.xmu.edu.cn/t/CF/', '柴扉教授个人主页', '_blank'),
@@ -109,7 +109,7 @@ DD_EN = {
         ('research-r2.html', 'Paleoclimate & Paleoceanography'),
         ('research-r3.html', 'Ocean Observation & Ecosystems'),
         ('research-r4.html', 'Heatwaves & Mode Water'),
-        ('research-project.html', 'CESM-CoSiNE Project'),
+        ('research-project.html', 'Ocean Model Development'),
     ],
     'links': [
         ('https://coeoa.xmu.edu.cn/t/CF/', "Prof. Chai's Homepage", '_blank'),
@@ -945,7 +945,7 @@ SUB_MENUS = {
         ('research-r2.html', '古气候与古海洋模拟', 'Paleoclimate & Paleoceanography'),
         ('research-r3.html', '海洋观测与生态系统', 'Ocean Observation & Ecosystems'),
         ('research-r4.html', '海洋热浪与模态水', 'Heatwaves & Mode Water'),
-        ('research-project.html', 'CESM-CoSiNE 项目', 'CESM-CoSiNE Project'),
+        ('research-project.html', '海洋模式研发', 'Ocean Model Development'),
     ],
     'links': [
         ('https://coeoa.xmu.edu.cn/t/CF/', '柴扉教授个人主页', "Prof. Chai's Homepage"),
@@ -2078,8 +2078,10 @@ def main():
   <div class="sec-head"><span class="en">%s · 研究方向</span><h2>%s</h2></div>
   <div class="ov-desc"><p>%s</p></div>
 </div>''' % (aid, num, title, desc), ZH, current=fname)))
-        pages.append(('research-project.html', 'CESM-CoSiNE 项目', 'CESM-CoSiNE PROJECT',
-                      with_subnav('research', '<div class="section" id="project">' + project_box(ZH, full=True) + '</div>', ZH, current='research-project.html')))
+        pages.append(('research-project.html', '海洋模式研发', 'OCEAN MODEL DEVELOPMENT',
+                      with_subnav('research', '''<div class="section" id="project">
+  <div class="sec-head"><span class="en">OCEAN MODEL DEVELOPMENT</span><h2>海洋模式研发</h2></div>
+  ''' + project_box(ZH, full=True) + '</div>', ZH, current='research-project.html')))
         for fname, title, en_sub, body in pages:
             html = page(fname, title, en_sub, body, ZH, scripts='js/home.js')
             open(fname, 'w').write(html)
@@ -2101,7 +2103,7 @@ def main():
                 ('古气候与古海洋模拟', RESEARCH_ITEMS_ZH[2][1], 'research-r2.html'),
                 ('海洋观测与生态系统', RESEARCH_ITEMS_ZH[3][1], 'research-r3.html'),
                 ('海洋热浪与模态水', RESEARCH_ITEMS_ZH[4][1], 'research-r4.html'),
-                ('CESM-CoSiNE 项目', '嵌入 CESM 的海洋生态—生物地球化学模块。', 'research-project.html'),
+                ('海洋模式研发', '发展并改进 CESM-CoSiNE 等海洋生态—生物地球化学耦合模式。', 'research-project.html'),
             ]),
             ('科研成果', 'RESEARCH OUTPUTS', [
                 ('期刊论文', '课题组发表的同行评审期刊论文。', 'papers-journal.html'),
@@ -2179,7 +2181,7 @@ def main():
   <div class="sec-head"><span class="en">%s · RESEARCH AREA</span><h2>%s</h2></div>
   <div class="ov-desc"><p>%s</p></div>
 </div>''' % (aid, num, title, desc), EN, current=fname)))
-        pages.append(('research-project.html', 'CESM-CoSiNE Project', 'CESM-CoSiNE PROJECT',
+        pages.append(('research-project.html', 'Ocean Model Development', 'OCEAN MODEL DEVELOPMENT',
                       with_subnav('research', '<div class="section" id="project">' + project_box(EN, full=True) + '</div>', EN)))
         for fname, title, en_sub, body in pages:
             html = _en(page(fname, title, en_sub, body, EN, scripts='../js/home.js'))
@@ -2200,7 +2202,7 @@ def main():
                 ('Paleoclimate & Paleoceanography', RESEARCH_ITEMS_EN[2][1], 'research-r2.html'),
                 ('Ocean Observation & Ecosystems', RESEARCH_ITEMS_EN[3][1], 'research-r3.html'),
                 ('Heatwaves & Mode Water', RESEARCH_ITEMS_EN[4][1], 'research-r4.html'),
-                ('CESM-CoSiNE Project', 'An ocean ecosystem-biogeochemistry module embedded in CESM.', 'research-project.html'),
+                ('Ocean Model Development', 'Developing and improving coupled marine ecosystem-biogeochemistry models such as CESM-CoSiNE.', 'research-project.html'),
             ]),
             ('Research Outputs', 'RESEARCH OUTPUTS', [
                 ('Journal Papers', 'Peer-reviewed journal publications of the group.', 'papers-journal.html'),
