@@ -682,14 +682,13 @@ MP_NOTES = {
             ],
             'edu': [
                 ('2025–至今', '厦门大学 海洋与地球学院', '博士研究生（在读）'),
-                ('2022.09–2025.06', '中国科学院海洋研究所', '物理海洋学 硕士（保研）｜学位论文《热带太平洋淡水通量对海洋碳循环的影响及其气候效应》，导师：张荣华 教授（南京信息工程大学）'),
-                ('2018.09–2022.06', '中国地质大学（武汉）', '海洋工程与技术 学士｜学位论文《热带太平洋海表二氧化碳分压的时空特征及其与物理场间的联系》（优秀毕业论文，前 5%），导师：宫勋 教授'),
+                ('2022.09–2025.06', '中国科学院海洋研究所', '物理海洋学 硕士（保研）｜学位论文《热带太平洋淡水通量对海洋碳循环的影响及其气候效应》'),
+                ('2018.09–2022.06', '中国地质大学（武汉）', '海洋工程与技术 学士｜学位论文《热带太平洋海表二氧化碳分压的时空特征及其与物理场间的联系》（优秀毕业论文，前 5%）'),
                 ('2023.11', '中国科学院南海海洋研究所', '海洋环流与气候变化讲习班 结业'),
                 ('2021.07', '华东师范大学', '河口海岸人地系统相互作用暑期学校 结业'),
             ],
             'pubs': [
                 ('2023', '姜正, 张荣华, 宫勋. 热带太平洋海表二氧化碳分压的时空特征及其与物理场间的联系 [J]. 海洋与湖沼.'),
-                ('待发表', 'Jiang, Z., and R.-H. Zhang. The Impact of Freshwater Flux Anomalies on Dissolved Inorganic Carbon in the Tropical Pacific During ENSO Periods.'),
             ],
             'exp': [
                 ('2022.01–至今', '中国科学院海洋研究所 环流与波动重点实验室（导师课题）', '分析观测资料研究赤道中西太平洋海表 pCO₂ 的气候态、年变化与季节/年际异常的时空分布；通过奇异值分解、超前滞后与相关分析等诊断方法，研究 pCO₂ 与海温、盐度、淡水通量（FWF）和叶绿素等变量的协同演变关系；推导 ENSO 时期 FWF 对热带太平洋海洋碳的调控机制；利用物理海洋—生物地球化学耦合模式设计敏感性试验，定量验证 FWF 对溶解无机碳与 pCO₂ 的影响。'),
@@ -729,14 +728,13 @@ MP_NOTES = {
             ],
             'edu': [
                 ('2025\u2013present', 'Xiamen University, School of Ocean and Earth Sciences', 'PhD student'),
-                ('2022.09\u20132025.06', 'Institute of Oceanology, Chinese Academy of Sciences', 'M.S. in Physical Oceanography (recommended admission). Thesis: "The impact of freshwater flux on the ocean carbon cycle in the tropical Pacific and its climatic effects"; Advisor: Prof. Rong-Hua Zhang (Nanjing University of Information Science and Technology)'),
-                ('2018.09\u20132022.06', 'China University of Geosciences (Wuhan)', 'B.S. in Ocean Engineering and Technology. Thesis: "Spatiotemporal characteristics of sea surface CO\u2082 partial pressure in the tropical Pacific and its relationship with physical fields" (Outstanding Thesis, top 5%); Advisor: Prof. Xun Gong'),
+                ('2022.09\u20132025.06', 'Institute of Oceanology, Chinese Academy of Sciences', 'M.S. in Physical Oceanography (recommended admission). Thesis: "The impact of freshwater flux on the ocean carbon cycle in the tropical Pacific and its climatic effects"'),
+                ('2018.09\u20132022.06', 'China University of Geosciences (Wuhan)', 'B.S. in Ocean Engineering and Technology. Thesis: "Spatiotemporal characteristics of sea surface CO\u2082 partial pressure in the tropical Pacific and its relationship with physical fields" (Outstanding Thesis, top 5%)'),
                 ('2023.11', 'South China Sea Institute of Oceanology, CAS', 'Workshop on Ocean Circulation and Climate Change (certificate)'),
                 ('2021.07', 'East China Normal University', 'Summer School on Human\u2013Land System Interactions in Estuaries and Coasts (certificate)'),
             ],
             'pubs': [
                 ('2023', 'Jiang, Z., Zhang, R.-H., Gong, X. Spatiotemporal characteristics of sea surface CO\u2082 partial pressure in the tropical Pacific and its relationship with physical fields. Oceanologia et Limnologia Sinica (in Chinese).'),
-                ('In prep.', 'Jiang, Z., and R.-H. Zhang. The Impact of Freshwater Flux Anomalies on Dissolved Inorganic Carbon in the Tropical Pacific During ENSO Periods.'),
             ],
             'exp': [
                 ('2022.01\u2013present', 'Key Laboratory of Ocean Circulation and Waves, Institute of Oceanology, CAS', 'Analyzed spatiotemporal variability of surface pCO\u2082 climatology and anomalies in the equatorial western\u2013central Pacific; diagnosed its covariability with SST, salinity, freshwater flux (FWF), and chlorophyll using SVD, lead\u2013lag, and correlation analyses; derived a mechanistic pathway of FWF regulating tropical Pacific ocean carbon during ENSO; designed sensitivity experiments with a physical\u2013biogeochemical coupled model to quantitatively verify the FWF impact on dissolved inorganic carbon and pCO\u2082.'),
@@ -806,9 +804,7 @@ def member_page(lang):
       </ul>
     </section>'''
             extra = ''
-            extra += _kv_block('edu', '教育经历', 'EDUCATION', L('教育经历', 'EDUCATION'))
             extra += _kv_block('pubs', '学术成果', 'PUBLICATIONS', L('学术成果', 'PUBLICATIONS'))
-            extra += _kv_block('exp', '科研经历', 'RESEARCH EXPERIENCE', L('科研经历', 'RESEARCH EXPERIENCE'))
             if profile.get('awards'):
                 aw = '\n'.join(f'        <li>{a}</li>' for a in profile['awards'])
                 extra += f'''    <section class="mp-block">
@@ -825,16 +821,18 @@ def member_page(lang):
 {cf}
       </ul>
     </section>'''
-            lab_about = '个人简介' if lang == ZH else 'ABOUT'
-            lab_res = '研究方向' if lang == ZH else 'RESEARCH'
-            lab_points = '目前主要研究内容' if lang == ZH else 'Current Research Topics'
+            extra += _kv_block('exp', '科研经历', 'RESEARCH EXPERIENCE', L('科研经历', 'RESEARCH EXPERIENCE'))
+            extra += _kv_block('edu', '教育经历', 'EDUCATION', L('教育经历', 'EDUCATION'))
+            lab_points = '目前主要研究方向' if lang == ZH else 'Research Directions'
             points_html = ''
             if profile.get('points'):
                 lis = '\n'.join(f'          <li>{p}</li>' for p in profile['points'])
-                points_html = f'''      <h4>{lab_points}</h4>
+                points_html = f'''    <section class="mp-block">
+      <h3>{lab_points}<span class="mp-en">{'' if lang == EN else 'RESEARCH DIRECTIONS'}</span></h3>
       <ul class="mp-points">
 {lis}
-      </ul>'''
+      </ul>
+    </section>'''
             body = f'''<div class="section mp-sec">
   <div class="mp-head">
     {face}
@@ -850,15 +848,7 @@ def member_page(lang):
     </div>
   </div>
   <div class="mp-body">
-    <section class="mp-block">
-      <h3>{lab_about}<span class="mp-en">{'' if lang == EN else 'ABOUT'}</span></h3>
-      <p>{profile['bio']}</p>
-    </section>
-    <section class="mp-block">
-      <h3>{lab_res}<span class="mp-en">{'' if lang == EN else 'RESEARCH'}</span></h3>
-      <p>{profile['research']}</p>
 {points_html}
-    </section>
 {extra}
   </div>
 </div>'''
