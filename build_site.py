@@ -1412,9 +1412,10 @@ PI_EN = {
         ('2022\u2013now', 'Tang Shifeng Chair Professor, State Key Laboratory of Marine Environmental Science (MEL), Xiamen University'),
     ],
     'interests': [
-        'Marine carbon cycle', 'Physical\u2013biogeochemical ecosystem modeling',
-        'Marine ecosystem dynamics', 'Fisheries resources', 'BGC-Argo observations',
-        'Ocean digital twin',
+        'Marine carbon cycle and climate feedbacks', 'Ocean digital twin',
+        'Ocean model development', 'Paleoclimate and paleoceanography simulation',
+        'Marine fisheries', 'BGC-Argo observations',
+        'Marine heatwaves', 'North Pacific Subtropical Mode Water',
     ],
     'pubs': [
         ('2026', 'Digital twin of the ocean as a catalyst for blue economy innovation', 'National Science Review'),
@@ -1442,8 +1443,10 @@ PI_ZH = {
         ('2022–至今', '厦门大学 "唐世凤"海洋学科讲席教授'),
     ],
     'interests': [
-        '海洋碳循环', '物理—生物地球化学模型', '海洋生态系统',
-        '渔业资源', 'BGC-Argo 观测', '海洋数字孪生',
+        '海洋碳循环与气候反馈', '海洋数字孪生',
+        '海洋模式研发', '古气候与古海洋模拟',
+        '海洋渔业', 'BGC-Argo 观测',
+        '海洋热浪', '北太平洋副热带模态水',
     ],
     'pubs': [
         ('2026', 'Digital twin of the ocean as a catalyst for blue economy innovation', 'National Science Review'),
