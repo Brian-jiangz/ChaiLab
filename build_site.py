@@ -702,6 +702,7 @@ MP_NOTES = {
             'conf': [
                 '第八届 MEL 研究生学术论坛（厦门大学，口头汇报）',
                 '2023 年大气科学研究生学术创新论坛（口头汇报）',
+                '全国研究生"海洋与气候"学术论坛（优秀海报奖）',
             ],
         },
         'en': {
@@ -735,6 +736,7 @@ MP_NOTES = {
             'conf': [
                 '8th MEL Graduate Student Forum, Xiamen University (oral presentation)',
                 '2023 Graduate Innovation Forum on Atmospheric Science (oral presentation)',
+                'National Graduate Forum on "Ocean and Climate" (Outstanding Poster Award)',
             ],
         },
     },
