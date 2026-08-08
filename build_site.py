@@ -4,6 +4,14 @@
 
 ZH, EN = 'zh', 'en'
 
+import hashlib
+def _asset_v(path):
+    try:
+        return hashlib.md5(open(path, 'rb').read()).hexdigest()[:8]
+    except OSError:
+        return '0'
+ASSET_V = {'css': _asset_v('css/style.css'), 'js': _asset_v('js/home.js')}
+
 NAV_ZH = [
     ('index.html', '首页'), ('about.html', '成员介绍'),
     ('research.html', '研究方向'),
@@ -227,13 +235,15 @@ def footer(lang):
 def page(fname, title, en_sub, body, lang, extra='', banner=True, scripts=''):
     t = TXT[lang]
     sitename = t['site_name']
+    css_v = ASSET_V['css']
+    js_v = ASSET_V['js']
     banner_html = f'''
 <div class="page-banner">
   <h1>{title}</h1>
   <p>{en_sub}</p>
 </div>
 ''' if banner else ''
-    scripts_html = f'<script>document.documentElement.classList.add("anim");</script>\n<script src="{scripts}" defer></script>' if scripts else ''
+    scripts_html = f'<script>document.documentElement.classList.add("anim");</script>\n<script src="{scripts}?v={js_v}" defer></script>' if scripts else ''
     prefix = '../' if lang == EN else ''
     return f'''<!DOCTYPE html>
 <html lang="{lang}">
@@ -242,7 +252,7 @@ def page(fname, title, en_sub, body, lang, extra='', banner=True, scripts=''):
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" href="{prefix}images/favicon.svg" type="image/svg+xml">
 <title>{title} | {sitename} · Xiamen University</title>
-<link rel="stylesheet" href="{prefix}css/style.css">
+<link rel="stylesheet" href="{prefix}css/style.css?v={css_v}">
 {scripts_html}
 </head>
 <body>
