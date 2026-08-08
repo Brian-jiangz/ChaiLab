@@ -391,7 +391,7 @@ def digital_twin_box(lang):
         }
     feats_html = '\n'.join(f'        <li>{x}</li>' for x in dt['feats'])
     return f'''<div class="project-box" style="margin-bottom:36px">
-    <div class="project-hero" style="background-image:linear-gradient(rgba(10,33,56,.8),rgba(13,47,79,.8)),url(images/mel_digital_twin.jpg);background-size:cover;background-position:center">
+    <div class="project-hero" style="--proj-img:url(images/mel_digital_twin.jpg);--proj-img-hd:url(images/mel_digital_twin-hd.jpg);background-image:linear-gradient(rgba(10,33,56,.8),rgba(13,47,79,.8)),var(--proj-img);background-size:cover;background-position:center">
       <div class="kicker">{dt['kicker']}</div>
       <h3>{dt['title']}</h3>
       <p>{dt['desc']}</p>
@@ -647,7 +647,9 @@ def members_body(lang):
         for slug in slugs:
             name, role, dir_, email, photo, slug2 = by_slug[slug]
             if photo:
-                face = f'<div class="m-avatar"><img src="images/{photo}" alt="{name}" loading="lazy"></div>'
+                base = photo.rsplit('.', 1)[0]
+                hd = base + '-hd.' + photo.rsplit('.', 1)[1]
+                face = f'<div class="m-avatar"><img src="images/{photo}" srcset="images/{photo} 600w, images/{hd} 1244w" sizes="(max-width:600px) 80vw, 700px" alt="{name}" loading="lazy"></div>'
             else:
                 face = f'<div class="m-avatar"><span class="m-initial">{name[0]}</span></div>'
             link = 'about-chai.html' if slug == 'fei-chai' else 'member-%s.html' % slug
@@ -669,7 +671,9 @@ def member_page(lang):
     data = members_data(lang)
     for name, role, dir_, email, photo, slug in data:
         if photo:
-            face = f'<div class="mp-photo"><img src="images/{photo}" alt="{name}"></div>'
+            base = photo.rsplit('.', 1)[0]
+            hd = base + '-hd.' + photo.rsplit('.', 1)[1]
+            face = f'<div class="mp-photo"><img src="images/{photo}" srcset="images/{photo} 600w, images/{hd} 1244w" sizes="(max-width:600px) 90vw, 700px" alt="{name}" loading="lazy"></div>'
         else:
             face = f'<div class="mp-photo"><span class="mp-initial">{name[0]}</span></div>'
         body = f'''<div class="section mp-sec">
@@ -1452,7 +1456,7 @@ def home_body(lang):
             photo = 'images/mel_digital_twin.jpg'
         if i == 1:
             photo = 'images/cosine_bg.jpg'
-        bg_style = f' style="background-image:linear-gradient(rgba(7,24,42,.5),rgba(7,24,42,.5)),url({photo});background-size:cover;background-position:center"' if photo else ''
+        bg_style = f' style="--bg:url({photo});--bg-hd:url({photo.replace(".jpg", "-hd.jpg")});background-image:linear-gradient(rgba(7,24,42,.5),rgba(7,24,42,.5)),var(--bg);background-size:cover;background-position:center"' if photo else ''
         def _cta(j, t, u):
             cls = ' cta-solid' if j == 0 else ''
             ext = ' target="_blank"' if 'reports/' in u else ''
@@ -1527,7 +1531,7 @@ def home_body(lang):
           <source src="videos/{img.split(':')[1]}.webm" type="video/webm">
         </video>
       </div>''' if img.startswith('video:') else
-        f'''      <div class="aca-stage-img{" on" if i == 0 else ""}" style="background-image:url({img})"></div>''')
+        f'''      <div class="aca-stage-img{" on" if i == 0 else ""}" style="--img:url({img});--img-hd:url({img.replace('.jpg', '-hd.jpg')})"></div>''')
         for i, (d, t, img, link) in enumerate(aca['block1_items']))
 
     return f'''<div class="read-progress" id="readProgress" aria-hidden="true"></div>
@@ -1712,14 +1716,14 @@ def research_slides(lang):
     for i, (title, desc, img) in enumerate(items):
         num = '%02d' % (i + 1)
         panels.append('''<section class="vs-panel">
-      <div class="vs-bg" style="background-image:linear-gradient(rgba(7,24,42,.72),rgba(7,24,42,.72)),url(%s)"></div>
+      <div class="vs-bg" style="--bg:url(%s);--bg-hd:url(%s);background-image:linear-gradient(rgba(7,24,42,.72),rgba(7,24,42,.72)),var(--bg)"></div>
       <div class="vs-inner">
         <span class="vs-num">%s</span>
         <h2>%s</h2>
         <p>%s</p>
         <span class="vs-line"></span>
       </div>
-    </section>''' % (img, num, title, desc))
+    </section>''' % (img, img.replace('.jpg', '-hd.jpg'), num, title, desc))
     proj = project_box(lang, full=True)
     panels.append('''<section class="vs-panel">
       <div class="vs-bg" style="background-image:linear-gradient(rgba(7,24,42,.8),rgba(7,24,42,.8)),url(images/cosine_bg.jpg)"></div>
@@ -1752,7 +1756,7 @@ def papers_slides(lang):
     for i, (title, desc, img, content) in enumerate(blocks):
         num = '%02d' % (i + 1)
         panels.append('''<section class="vs-panel">
-      <div class="vs-bg" style="background-image:linear-gradient(rgba(7,24,42,.78),rgba(7,24,42,.78)),url(%s)"></div>
+      <div class="vs-bg" style="--bg:url(%s);--bg-hd:url(%s);background-image:linear-gradient(rgba(7,24,42,.78),rgba(7,24,42,.78)),var(--bg)"></div>
       <div class="vs-inner vs-scroll">
         <span class="vs-num">%s</span>
         <h2>%s</h2>
@@ -1760,7 +1764,7 @@ def papers_slides(lang):
         <span class="vs-line"></span>
         %s
       </div>
-    </section>''' % (img, num, title, desc, content))
+    </section>''' % (img, img.replace('.jpg', '-hd.jpg'), num, title, desc, content))
     return '\n'.join(panels)
 
 def about_slides(lang):

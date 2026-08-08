@@ -421,7 +421,7 @@ html.anim .hslide.on .hcap .hero-ctas { opacity: 1; transform: none; transition-
 /* ===== CESM-CoSiNE 项目 ===== */
 .project-box { border: 1px solid var(--line); }
 .project-hero {
-  background-image: linear-gradient(rgba(10, 33, 56, .82), rgba(13, 47, 79, .82)), url(../images/cosine_bg.png);
+  background-image: linear-gradient(rgba(10, 33, 56, .82), rgba(13, 47, 79, .82)), var(--proj-img, url(../images/cosine_bg.png));
   background-size: cover; background-position: center;
   color: #fff; padding: 56px 64px; position: relative;
 }
@@ -563,8 +563,14 @@ html.anim .hslide.on .hcap .hero-ctas { opacity: 1; transform: none; transition-
 .aca-stage-img {
   position: absolute; inset: 0; opacity: 0; transition: opacity .5s ease;
   background-size: cover; background-position: center; background-repeat: no-repeat;
+  background-image: var(--img);
 }
 .aca-stage-img.on { opacity: 1; z-index: 2; }
+/* 桌面：科研进展舞台图用高清版 */
+@media (min-width: 901px) {
+  .aca-stage-img { background-image: var(--img-hd, var(--img)); }
+  .project-hero { background-image: linear-gradient(rgba(10, 33, 56, .82), rgba(13, 47, 79, .82)), var(--proj-img-hd, var(--proj-img, url(../images/cosine_bg.png))); }
+}
 .aca-stage-video {
   position: absolute; inset: 0; opacity: 0; transition: opacity .5s ease;
   background: var(--navy); overflow: hidden;
