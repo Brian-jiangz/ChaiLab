@@ -942,9 +942,32 @@ a:focus-visible, button:focus-visible, .hdots span:focus-visible {
   font-size: 12px; display: flex; align-items: center; justify-content: center;
   font-variant-numeric: tabular-nums;
 }
+/* 教育经历 / 学术成果 / 科研经历：年份 + 内容行 */
+.mp-lines { list-style: none; }
+.mp-lines li {
+  display: grid; grid-template-columns: 132px 1fr; gap: 18px;
+  padding: 12px 0; border-bottom: 1px dashed var(--line); align-items: baseline;
+}
+.mp-lines li:last-child { border-bottom: none; }
+.mp-lines .mp-y {
+  font-size: 12.5px; color: var(--gold); font-weight: 700; letter-spacing: .06em;
+  font-variant-numeric: tabular-nums; text-align: right;
+}
+.mp-lines li div { font-size: .90625em; color: var(--ink-2); line-height: 1.9; }
+.mp-lines li div b { color: var(--ink); font-weight: 600; }
+.mp-lines .mp-desc { display: block; margin-top: 3px; font-size: .9375em; color: var(--ink-2); }
+/* 获奖 / 会议：两列网格小条目 */
+.mp-awards { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0 28px; }
+.mp-awards li {
+  position: relative; padding: 8px 0 8px 20px; font-size: .875em; color: var(--ink-2);
+  line-height: 1.7; border-bottom: 1px dashed var(--line);
+}
+.mp-awards li::before { content: ""; position: absolute; left: 4px; top: 15px; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
 @media (max-width: 900px) {
   .mp-body { margin-top: 36px; }
   .mp-block h3 { font-size: 17px; }
+  .mp-lines li { grid-template-columns: 96px 1fr; gap: 12px; }
+  .mp-awards { grid-template-columns: 1fr; }
 }
 @media (max-width: 900px) {
   .mp-head { grid-template-columns: 1fr; padding: 28px 24px; }
