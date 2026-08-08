@@ -5,12 +5,13 @@
 ZH, EN = 'zh', 'en'
 
 import hashlib
+import re
 def _asset_v(path):
     try:
         return hashlib.md5(open(path, 'rb').read()).hexdigest()[:8]
     except OSError:
         return '0'
-ASSET_V = {'css': _asset_v('css/style.css'), 'js': _asset_v('js/home.js')}
+ASSET_V = {'css': _asset_v('css/style.css'), 'js': _asset_v('js/home.js'), 'img': _asset_v('images/mel_digital_twin-hd.jpg') + _asset_v('images/chai_fei-hd.jpg')[:4]}
 
 NAV_ZH = [
     ('index.html', '首页'), ('about.html', '成员介绍'),
@@ -245,6 +246,8 @@ def page(fname, title, en_sub, body, lang, extra='', banner=True, scripts=''):
 ''' if banner else ''
     scripts_html = f'<script>document.documentElement.classList.add("anim");</script>\n<script src="{scripts}?v={js_v}" defer></script>' if scripts else ''
     prefix = '../' if lang == EN else ''
+    img_v = ASSET_V['img']
+    body_v = re.sub(r'images/([a-zA-Z0-9_\-./]+\.(?:jpg|jpeg|png|webp|svg))', r'images/\1?v=' + img_v, body)
     return f'''<!DOCTYPE html>
 <html lang="{lang}">
 <head>
@@ -259,7 +262,7 @@ def page(fname, title, en_sub, body, lang, extra='', banner=True, scripts=''):
 
 {nav(fname, lang, subpage=banner)}
 {banner_html}
-{body}
+{body_v}
 {footer(lang)}
 {extra}
 </body>
