@@ -683,8 +683,6 @@ MP_NOTES = {
                 ('2025–至今', '厦门大学 海洋与地球学院', '博士研究生（在读）'),
                 ('2022.09–2025.06', '中国科学院海洋研究所', '物理海洋学 硕士（保研）｜学位论文《热带太平洋淡水通量对海洋碳循环的影响及其气候效应》'),
                 ('2018.09–2022.06', '中国地质大学（武汉）', '海洋工程与技术 学士｜学位论文《热带太平洋海表二氧化碳分压的时空特征及其与物理场间的联系》（优秀毕业论文，前 5%）'),
-                ('2023.11', '中国科学院南海海洋研究所', '海洋环流与气候变化讲习班 结业'),
-                ('2021.07', '华东师范大学', '河口海岸人地系统相互作用暑期学校 结业'),
             ],
             'pubs': [
                 ('2023', '姜正, 张荣华, 宫勋. 热带太平洋海表二氧化碳分压的时空特征及其与物理场间的联系 [J]. 海洋与湖沼.'),
@@ -718,8 +716,6 @@ MP_NOTES = {
                 ('2025\u2013present', 'Xiamen University, School of Ocean and Earth Sciences', 'PhD student'),
                 ('2022.09\u20132025.06', 'Institute of Oceanology, Chinese Academy of Sciences', 'M.S. in Physical Oceanography (recommended admission). Thesis: "The impact of freshwater flux on the ocean carbon cycle in the tropical Pacific and its climatic effects"'),
                 ('2018.09\u20132022.06', 'China University of Geosciences (Wuhan)', 'B.S. in Ocean Engineering and Technology. Thesis: "Spatiotemporal characteristics of sea surface CO\u2082 partial pressure in the tropical Pacific and its relationship with physical fields" (Outstanding Thesis, top 5%)'),
-                ('2023.11', 'South China Sea Institute of Oceanology, CAS', 'Workshop on Ocean Circulation and Climate Change (certificate)'),
-                ('2021.07', 'East China Normal University', 'Summer School on Human\u2013Land System Interactions in Estuaries and Coasts (certificate)'),
             ],
             'pubs': [
                 ('2023', 'Jiang, Z., Zhang, R.-H., Gong, X. Spatiotemporal characteristics of sea surface CO\u2082 partial pressure in the tropical Pacific and its relationship with physical fields. Oceanologia et Limnologia Sinica (in Chinese).'),
