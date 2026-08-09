@@ -329,13 +329,18 @@
   }
   if (nav) {
     nav.addEventListener('click', function (e) {
+      var a = e.target.closest('a');
+      if (a && a.closest('.sub')) {
+        closeMenu();
+        return;
+      }
       var subLi = e.target.closest('.has-sub');
       if (subLi && mqNarrow.matches) {
         e.preventDefault();
         var wasOpen = subLi.classList.contains('open');
         closeSubs();
         if (!wasOpen) subLi.classList.add('open');
-      } else if (e.target.closest('a')) {
+      } else if (a) {
         closeMenu();
       }
     });
