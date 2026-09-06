@@ -46,7 +46,56 @@ body {
 .g-head.subpage .lang-switch:hover { background: rgba(8,26,44,.06); border-color: var(--navy); }
 .g-head.subpage .nav-toggle { color: var(--navy); }
 
-.g-head .inner.main { max-width: 1400px; margin: 0 auto; height: 44px; display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; padding: 0 28px; gap: 16px; }
+.g-head .inner.main { max-width: 1400px; margin: 0 auto; height: 44px; display: grid; grid-template-columns: auto 1fr auto auto auto; align-items: center; padding: 0 28px; gap: 16px; }
+
+/* ===== 站内搜索（头部 + 搜索页） ===== */
+.g-search {
+  justify-self: end; display: flex; align-items: center;
+  border: 1px solid rgba(255,255,255,.4); border-radius: 980px;
+  padding: 6px 10px 6px 14px; transition: border-color .25s;
+}
+.g-search input {
+  width: 110px; background: transparent; border: none; outline: none;
+  font-size: 12px; color: #fff; letter-spacing: .03em; transition: width .3s, color .25s;
+}
+.g-search input::placeholder { color: rgba(255,255,255,.55); transition: color .25s; }
+.g-search button {
+  background: none; border: none; color: #fff; font-size: 16px;
+  cursor: pointer; line-height: 1; padding: 0 0 0 6px; transition: color .25s;
+}
+.g-head.scrolled .g-search, .g-head.subpage .g-search { border-color: rgba(8,26,44,.35); }
+.g-head.scrolled .g-search input, .g-head.subpage .g-search input { color: var(--navy); }
+.g-head.scrolled .g-search input::placeholder, .g-head.subpage .g-search input::placeholder { color: rgba(8,26,44,.45); }
+.g-head.scrolled .g-search button, .g-head.subpage .g-search button { color: var(--navy); }
+.g-search:focus-within { border-color: #fff; }
+.g-search input:focus { width: 150px; }
+.g-head.scrolled .g-search:focus-within, .g-head.subpage .g-search:focus-within { border-color: var(--navy); }
+.g-nav .m-search { display: none; }
+.search-sec { max-width: 860px; margin: 0 auto; padding: 64px 28px 96px; }
+.search-box { display: flex; gap: 12px; }
+.search-box input {
+  flex: 1; min-width: 0; font-size: 16px; padding: 14px 18px;
+  border: 1px solid var(--line-2); border-radius: 10px; outline: none;
+  background: var(--paper); color: var(--ink); transition: border-color .2s;
+}
+.search-box input:focus { border-color: var(--navy); }
+.search-box button {
+  padding: 0 30px; border: none; border-radius: 10px; background: var(--navy);
+  color: #fff; font-size: 15px; letter-spacing: .2em; cursor: pointer; transition: background .25s; white-space: nowrap;
+}
+.search-box button:hover { background: #0e3a5e; }
+.search-count { margin: 20px 2px 8px; font-size: 13px; color: var(--ink-3); }
+.search-results { border-top: 1px solid var(--line); }
+.sr-item { display: block; padding: 20px 6px; border-bottom: 1px solid var(--line); text-decoration: none; transition: background .2s; }
+.sr-item:hover { background: var(--paper-2); }
+.sr-tag {
+  display: inline-block; font-size: 11px; color: var(--gold); letter-spacing: .1em;
+  border: 1px solid var(--line-2); border-radius: 980px; padding: 2px 10px; margin-bottom: 8px;
+}
+.sr-item h3 { font-size: 16px; color: var(--navy); margin: 0 0 6px; letter-spacing: .02em; }
+.sr-item p { font-size: 13px; color: var(--ink-2); line-height: 1.7; margin: 0; }
+mark { background: #fdeeb8; color: inherit; padding: 0 1px; }
+.sr-empty { padding: 40px 0; text-align: center; color: var(--ink-3); font-size: 14px; }
 .logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; min-width: 0; }
 .logo .logo-marks {
   display: flex; align-items: center; flex-shrink: 0;
@@ -673,6 +722,8 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
 @media (max-width: 1100px) {
   body { font-size: 15px; }
   .g-head .inner.main { grid-template-columns: auto 1fr auto auto; }
+  .g-search { display: none; }
+  .g-nav .m-search { display: flex; }
   .nav-toggle { display: block; }
   .g-nav {
     display: none; position: absolute; top: 44px; left: auto; right: 96px;
@@ -838,6 +889,7 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
   }
   .g-nav .has-sub:hover .sub { opacity: 1; visibility: visible; transform: none; }
   .g-nav .has-sub.open .sub { display: block; }
+  .g-nav .m-search { display: block; }
   .g-nav .sub dd a { padding: 12px 36px; font-size: 13.5px; color: var(--ink-2); white-space: normal; }
   .g-nav .sub dd a:hover { color: var(--navy); background: none; }
   .hcap { bottom: 76px; }

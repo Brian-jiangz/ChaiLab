@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+<title>Search | Prof. Chai Group · Xiamen University</title>
+<link rel="stylesheet" href="../css/style.css?v=0bf09b4d">
+<script>document.documentElement.classList.add("anim");</script>
+<script src="../js/home.js?v=f985355e" defer></script>
+<script src="../js/search-index.js?v=001" defer></script>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<header class="g-head subpage" id="g-head">
+  <div class="inner main">
+    <a href="../index.html" class="logo">
+      <span class="logo-marks">
+        <img src="../images/xmu_logo.png" alt="Xiamen University" class="logo-xmu">
+        <img src="../images/mel_logo.png" alt="MEL" class="logo-mel">
+      </span>
+      <div class="txt">
+        <strong>Prof. Chai Group</strong>
+      </div>
+    </a>
+    <nav class="g-nav">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li class="has-sub"><a href="../about.html">Members</a>
+          <div class="sub"><dl>
+          <dd><a href="../about.html#about-group">About the Group</a></dd>
+          <dd><a href="../about.html#chai">Prof. Chai</a></dd>
+          <dd><a href="../about.html#members">Members</a></dd>
+          </dl></div>
+        </li>
+        <li class="has-sub"><a href="../research.html">Research</a>
+          <div class="sub"><dl>
+          <dd><a href="../research.html#r0">Ocean Carbon Cycle & Climate Modeling</a></dd>
+          <dd><a href="../research.html#r1">Ocean Digital Twin</a></dd>
+          <dd><a href="../research.html#r2">Paleoclimate & Paleoceanography</a></dd>
+          <dd><a href="../research.html#r3">Ocean Observations & Ecosystems</a></dd>
+          <dd><a href="../research.html#r4">Marine Heatwaves & Mode Water</a></dd>
+          <dd><a href="../research.html#r5">Model Development</a></dd>
+          </dl></div>
+        </li>
+        <li class="has-sub"><a href="../papers.html">Outputs</a>
+          <div class="sub"><dl>
+          <dd><a href="../papers.html#journal">Journal Papers</a></dd>
+          <dd><a href="../papers.html#digital-twin">Digital Twin</a></dd>
+          <dd><a href="../papers.html#data">Research Data</a></dd>
+          <dd><a href="../papers.html#model">Numerical Models</a></dd>
+          </dl></div>
+        </li>
+        <li><a href="../news.html">News</a></li>
+        <li class="has-sub"><a href="../links.html">Links</a>
+          <div class="sub"><dl>
+          <dd><a href="https://coeoa.xmu.edu.cn/t/CF/" target="_blank">Prof. Chai个人主页</a></dd>
+          <dd><a href="https://mel.xmu.edu.cn/" target="_blank">MEL 实验室官网</a></dd>
+          <dd><a href="../links.html">全部Links</a></dd>
+          </dl></div>
+        </li>
+        <li class="m-search"><a href="search.html">Search</a></li>
+        <li class="m-lang"><a href="../en/index.html">中文</a></li>
+      </ul>
+    </nav>
+    <form class="g-search" action="search.html" role="search">
+      <input type="text" name="q" placeholder="Search…" aria-label="Search" autocomplete="off">
+      <button type="submit" aria-label="Search">⌕</button>
+    </form>
+    <button class="nav-toggle" id="navToggle" aria-label="menu">☰</button>
+    <a class="lang-switch" href="../en/index.html">En</a>
+  </div>
+</header>
+
+<div class="page-banner">
+  <h1>Search</h1>
+  <p>SEARCH</p>
+</div>
+
+<div class="section search-sec">
+  <form class="search-box" id="searchForm" action="search.html" role="search">
+    <input type="text" id="searchInput" placeholder="Type keywords, e.g. carbon cycle, Wang Qian, heatwave, digital twin…" autocomplete="off">
+    <button type="submit">SEARCH</button>
+  </form>
+  <p class="search-count" id="searchCount"></p>
+  <div class="search-results" id="searchResults"></div>
+</div>
+
+<script>
+(function(){
+  var LANG = 'en';
+  var input = document.getElementById('searchInput');
+  var box = document.getElementById('searchResults');
+  var count = document.getElementById('searchCount');
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function hl(text, q){
+    var i = text.toLowerCase().indexOf(q.toLowerCase());
+    if(i < 0) return esc(text);
+    return esc(text.slice(0,i)) + '<mark>' + esc(text.slice(i,i+q.length)) + '</mark>' + esc(text.slice(i+q.length));
+  }
+  function run(q){
+    q = (q||'').trim();
+    var data = (window.SEARCH_INDEX||[]).filter(function(e){return e.l===LANG;});
+    var res = [];
+    if(q){
+      var kw = q.toLowerCase();
+      res = data.filter(function(e){
+        return (e.t+' '+e.x+' '+e.g).toLowerCase().indexOf(kw) >= 0;
+      });
+      res.sort(function(a,b){
+        var at=(a.t+' '+a.g).toLowerCase().indexOf(kw)>=0?0:1;
+        var bt=(b.t+' '+b.g).toLowerCase().indexOf(kw)>=0?0:1;
+        return at-bt;
+      });
+    }
+    count.textContent = q ? (res.length+' result(s) for &quot;'+q+'&quot;') : '';
+    if(!q){ box.innerHTML = '<p class="sr-empty">Type a keyword to search.</p>'; return; }
+    if(!res.length){ box.innerHTML = '<p class="sr-empty">No results for &quot;'+esc(q)+'&quot;. Try other keywords.</p>'; return; }
+    box.innerHTML = res.map(function(e){
+      return '<a class="sr-item" href="../'+e.u+'">'+
+        '<span class="sr-tag">'+esc(e.g)+'</span>'+
+        '<h3>'+hl(e.t,q)+'</h3>'+
+        '<p>'+hl(e.x,q)+'</p></a>';
+    }).join('');
+  }
+  document.getElementById('searchForm').addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var q = input.value.trim();
+    history.replaceState(null,'', q ? ('?q='+encodeURIComponent(q)) : 'search.html');
+    run(q);
+  });
+  input.addEventListener('input', function(){ run(input.value); });
+  var qs = new URLSearchParams(location.search).get('q')||'';
+  if(qs){ input.value = qs; }
+  run(qs);
+  if(qs) input.focus();
+})();
+</script>
+
+<!-- 页脚 -->
+<footer class="footer">
+  <div class="inner">
+    <div class="f-brand">
+      <h5>Chai Group</h5>
+      <p>State Key Laboratory of Marine Environmental Science (MEL), Xiamen University</p>
+      <p>Zhoulongquan Building, Xiang’an Campus, Xiamen University</p>
+    </div>
+    <div>
+      <h5>Quick Links</h5>
+      <div class="f-links"><a href="../about.html">About</a><a href="../members.html">Members</a><a href="../research.html">Research</a><a href="../papers.html">Research Outputs</a><a href="../news.html">Group News</a><a href="../links.html">Links</a></div>
+    </div>
+    <div>
+      <h5>Related Links</h5>
+      <div class="f-links"><a href="https://coeoa.xmu.edu.cn/t/CF/" target="_blank">Prof. Chai's Homepage</a><a href="https://mel.xmu.edu.cn/" target="_blank">MEL, Xiamen University</a><a href="https://www.xmu.edu.cn/" target="_blank">Xiamen University</a></div>
+    </div>
+    <div>
+      <h5>Contact</h5>
+      <p>Email: xywang@xmu.edu.cn</p>
+      <p>Postal code: 361102</p>
+    </div>
+    <div class="copy">© 2026 Chai Group · State Key Laboratory of Marine Environmental Science, Xiamen University</div>
+  </div>
+</footer>
+
+
+</body>
+</html>

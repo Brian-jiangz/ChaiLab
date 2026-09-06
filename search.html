@@ -4,10 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
-<title>数值模式 | 柴扉教授课题组 · Xiamen University</title>
+<title>站内搜索 | 柴扉教授课题组 · Xiamen University</title>
 <link rel="stylesheet" href="css/style.css?v=0bf09b4d">
 <script>document.documentElement.classList.add("anim");</script>
 <script src="js/home.js?v=f985355e" defer></script>
+<script src="js/search-index.js?v=001" defer></script>
 </head>
 <body>
 
@@ -67,72 +68,76 @@
       <input type="text" name="q" placeholder="搜索…" aria-label="站内搜索" autocomplete="off">
       <button type="submit" aria-label="搜索">⌕</button>
     </form>
-        <button class="nav-toggle" id="navToggle" aria-label="menu">☰</button>
+    <button class="nav-toggle" id="navToggle" aria-label="menu">☰</button>
     <a class="lang-switch" href="en/index.html">En</a>
   </div>
 </header>
 
 <div class="page-banner">
-  <h1>数值模式</h1>
-  <p>NUMERICAL MODELS</p>
+  <h1>站内搜索</h1>
+  <p>SEARCH</p>
 </div>
 
-<div class="page-wrap">
-<nav class="sub-nav" id="subNav" aria-label="sub navigation">
-      <a href="papers-journal.html">期刊论文</a>
-      <a href="papers-digital-twin.html">数字孪生</a>
-      <a href="papers-data.html">科研数据</a>
-      <a href="papers-model.html" class="active">数值模式</a>
-    </nav>
-  <div class="sub-content">
-<div class="section" id="model"><div class="project-box" style="margin-bottom:36px">
-    <div class="project-hero" style="background:linear-gradient(160deg,#0a2138 0%,#0d2f4f 60%,#123a61 100%)">
-      <div class="kicker">LOVECLIM-CoSiNE v1.4</div>
-      <h3>LOVECLIM-CoSiNE v1.4：古海洋气候—生态耦合模式</h3>
-      <p>在 LOVECLIM 地球系统模式中耦合 CoSiNE 海洋生态系统—生物地球化学模块，面向古气候与古海洋模拟，支持末次间冰期等关键时期与长期碳循环演化研究。</p>
-    </div>
-    <div class="project-body">
-      <img class="model-schema" src="images/loveclim_schema.jpg?v=ebba6701c0b1" alt="LOVECLIM-CoSiNE v1.4 schema" loading="lazy">
-      <h4>模式特色</h4>
-      <ul>
-        <li>LOVECLIM 气候模式与 CoSiNE 生态系统—生物地球化学模块耦合</li>
-        <li>面向古气候模拟与长期碳循环演化</li>
-        <li>支持末次间冰期等关键时期研究</li>
-        <li>全球海洋生物地球化学与生态系统动力学</li>
-      </ul>
-      <div class="project-links">
-        <a class="btn btn-solid" href="reports/CESM_CoSiNE16_Nature_style_draft_CN.html" target="_blank">使用说明 →</a>
-      </div>
-    </div>
-  </div>
-  <div class="project-box">
-    <div class="project-hero">
-            <div class="kicker">CESM-CoSiNE</div>
-      <h3>CESM-CoSiNE：嵌入 CESM 的海洋生态—生物地球化学模块</h3>
-      <p>CoSiNE（Carbon, Silicon, Nitrogen Ecosystem）由本课题组维护发展，已嵌入 CESM 地球系统模式（POP2 海洋分量），用于研究浮游生态系统与海洋碳循环在全球及区域尺度上的演变。</p>
-    </div>
-    <div class="project-body">
-
-      <h4>模式特色</h4>
-      <ul>
-        <li>包含 16 个 CoSiNE 示踪物（营养盐、浮游植物功能群、浮游动物、DOC 等）</li>
-        <li>V2 版本扩展至 22 个示踪物，加入碳同位素（¹³C / ¹⁴C）追踪能力</li>
-        <li>支持现代气候、短期强迫评估与古气候（如末次间冰期）模拟</li>
-        <li>输出全球及区域（北太平洋、南海）碳通量、营养盐与生态结构诊断</li>
-      </ul>
-      <h4>代表性工作</h4>
-      <ul>
-        <li>CESM-CoSiNE16：一个嵌入 CESM 的海洋生态—生物地球化学模块及其短期强迫评估</li>
-        <li>CESM CoSiNE16+5（CoSiNE22）耦合：碳同位素示踪物扩展与实现</li>
-      </ul>
-      <div class="project-links">
-        <a class="btn btn-solid" href="reports/CESM_CoSiNE16_Nature_style_draft_CN.html" target="_blank">📄 阅读项目报告（Nature 风格）</a>
-        <a class="btn btn-line" href="reports/CESM_CoSiNE16_v2_Process_Manual.html" target="_blank">🔧 V2 耦合说明书</a>
-      </div>
-    </div>
-  </div></div>
-  </div>
+<div class="section search-sec">
+  <form class="search-box" id="searchForm" action="search.html" role="search">
+    <input type="text" id="searchInput" placeholder="输入关键词，如：碳循环、王谦、热浪、digital twin…" autocomplete="off">
+    <button type="submit">搜 索</button>
+  </form>
+  <p class="search-count" id="searchCount"></p>
+  <div class="search-results" id="searchResults"></div>
 </div>
+
+<script>
+(function(){
+  var LANG = 'zh';
+  var input = document.getElementById('searchInput');
+  var box = document.getElementById('searchResults');
+  var count = document.getElementById('searchCount');
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function hl(text, q){
+    var i = text.toLowerCase().indexOf(q.toLowerCase());
+    if(i < 0) return esc(text);
+    return esc(text.slice(0,i)) + '<mark>' + esc(text.slice(i,i+q.length)) + '</mark>' + esc(text.slice(i+q.length));
+  }
+  function run(q){
+    q = (q||'').trim();
+    var data = (window.SEARCH_INDEX||[]).filter(function(e){return e.l===LANG;});
+    var res = [];
+    if(q){
+      var kw = q.toLowerCase();
+      res = data.filter(function(e){
+        return (e.t+' '+e.x+' '+e.g).toLowerCase().indexOf(kw) >= 0;
+      });
+      res.sort(function(a,b){
+        var at=(a.t+' '+a.g).toLowerCase().indexOf(kw)>=0?0:1;
+        var bt=(b.t+' '+b.g).toLowerCase().indexOf(kw)>=0?0:1;
+        return at-bt;
+      });
+    }
+    count.textContent = q ? ('共找到 '+res.length+' 条与“'+q+'”相关的结果') : '';
+    if(!q){ box.innerHTML = '<p class="sr-empty">请输入关键词进行搜索。</p>'; return; }
+    if(!res.length){ box.innerHTML = '<p class="sr-empty">未找到与“'+esc(q)+'”相关的内容，试试其他关键词。</p>'; return; }
+    box.innerHTML = res.map(function(e){
+      return '<a class="sr-item" href="'+e.u+'">'+
+        '<span class="sr-tag">'+esc(e.g)+'</span>'+
+        '<h3>'+hl(e.t,q)+'</h3>'+
+        '<p>'+hl(e.x,q)+'</p></a>';
+    }).join('');
+  }
+  document.getElementById('searchForm').addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var q = input.value.trim();
+    history.replaceState(null,'', q ? ('?q='+encodeURIComponent(q)) : 'search.html');
+    run(q);
+  });
+  input.addEventListener('input', function(){ run(input.value); });
+  var qs = new URLSearchParams(location.search).get('q')||'';
+  if(qs){ input.value = qs; }
+  run(qs);
+  if(qs) input.focus();
+})();
+</script>
+
 <!-- 页脚 -->
 <footer class="footer">
   <div class="inner">

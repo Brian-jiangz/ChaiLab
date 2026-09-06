@@ -59,10 +59,15 @@
           <dd><a href="links.html">全部相关链接</a></dd>
           </dl></div>
         </li>
+        <li class="m-search"><a href="search.html">站内搜索</a></li>
         <li class="m-lang"><a href="en/index.html">English</a></li>
       </ul>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="menu">☰</button>
+    <form class="g-search" action="search.html" role="search">
+      <input type="text" name="q" placeholder="搜索…" aria-label="站内搜索" autocomplete="off">
+      <button type="submit" aria-label="搜索">⌕</button>
+    </form>
+        <button class="nav-toggle" id="navToggle" aria-label="menu">☰</button>
     <a class="lang-switch" href="en/index.html">En</a>
   </div>
 </header>
