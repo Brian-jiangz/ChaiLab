@@ -529,7 +529,6 @@ def members_data(lang):
             ('Yang Kai', 'Postdoctoral Researcher', 'Member profile under construction', '\u2014', '', 'yang-kai'),
             ('Zhao Kewei', 'PhD Student', 'Member profile under construction', '\u2014', '', 'zhao-kewei'),
             ('Jiang Zheng', 'PhD Student (Class of 2025)', 'Earth system model development, paleoclimate simulation, and marine carbon cycle', 'jiangz@stu.xmu.edu.cn', 'jiang-zheng.jpg', 'jiang-zheng'),
-            ('Song Zhe', 'PhD Student', 'Member profile under construction', '\u2014', '', 'song-zhe'),
             ('Lin Jianchun', "Master's Student", 'Member profile under construction', '\u2014', '', 'lin-jianchun'),
             ('Xie Xianyu', "Master's Student", 'Member profile under construction', '\u2014', '', 'xie-xianyu'),
             ('Li Peimin', "Master's Student", 'Member profile under construction', '\u2014', '', 'li-peimin'),
@@ -543,7 +542,6 @@ def members_data(lang):
         ('杨凯', '博士后', '成员简介整理中……', '—', '', 'yang-kai'),
         ('赵柯崴', '博士研究生', '成员简介整理中……', '—', '', 'zhao-kewei'),
         ('姜正', '2025届博士研究生', '地球系统模式研发、古气候模拟与海洋碳循环', 'jiangz@stu.xmu.edu.cn', 'jiang-zheng.jpg', 'jiang-zheng'),
-        ('宋喆', '博士研究生', '成员简介整理中……', '—', '', 'song-zhe'),
         ('林剑纯', '硕士研究生', '成员简介整理中……', '—', '', 'lin-jianchun'),
         ('谢娴予', '硕士研究生', '成员简介整理中……', '—', '', 'xie-xianyu'),
         ('李沛珉', '硕士研究生', '成员简介整理中……', '—', '', 'li-peimin'),
@@ -592,14 +590,14 @@ def auto_stats(lang):
     if lang == EN:
         groups = {
             'faculty': ['fei-chai', 'xiaoyi-wang', 'wang-qian', 'yang-kai'],
-            'phd': ['zhao-kewei', 'jiang-zheng', 'song-zhe'],
+            'phd': ['zhao-kewei', 'jiang-zheng'],
             'master': ['lin-jianchun', 'xie-xianyu', 'li-peimin'],
             'alumni': ['wang-qian-alumni', 'wang-yin'],
         }
     else:
         groups = {
             'faculty': ['fei-chai', 'xiaoyi-wang', 'wang-qian', 'yang-kai'],
-            'phd': ['zhao-kewei', 'jiang-zheng', 'song-zhe'],
+            'phd': ['zhao-kewei', 'jiang-zheng'],
             'master': ['lin-jianchun', 'xie-xianyu', 'li-peimin'],
             'alumni': ['wang-qian-alumni', 'wang-yin'],
         }
@@ -629,12 +627,12 @@ MEMBER_CATS = [
 MEMBER_CAT_OF = {
     'fei-chai': 'faculty', 'xiaoyi-wang': 'staff',
     'wang-qian': 'postdoc', 'yang-kai': 'postdoc',
-    'zhao-kewei': 'phd', 'jiang-zheng': 'phd', 'song-zhe': 'phd',
+    'zhao-kewei': 'phd', 'jiang-zheng': 'phd',
     'lin-jianchun': 'master', 'xie-xianyu': 'master', 'li-peimin': 'master',
     'wang-qian-alumni': 'alumni', 'wang-yin': 'alumni',
 }
 
-MEMBER_ORDER = ['fei-chai', 'xiaoyi-wang', 'wang-qian', 'yang-kai', 'zhao-kewei', 'jiang-zheng', 'song-zhe',
+MEMBER_ORDER = ['fei-chai', 'xiaoyi-wang', 'wang-qian', 'yang-kai', 'zhao-kewei', 'jiang-zheng',
                 'lin-jianchun', 'xie-xianyu', 'li-peimin', 'wang-qian-alumni', 'wang-yin']
 
 def members_body(lang):
