@@ -319,15 +319,24 @@ html.anim .hslide.on .hcap .hero-ctas { opacity: 1; transform: none; transition-
 /* ===== 柴教授个人介绍页 ===== */
 .chai-sec { padding-top: 64px; }
 .chai-head {
-  display: grid; grid-template-columns: 260px 1fr; gap: 44px; align-items: center;
-  border: 1px solid var(--line); padding: 40px 44px; background: var(--paper);
+  display: grid; grid-template-columns: 320px 1fr; gap: 48px; align-items: stretch;
+  border: 1px solid var(--line); border-radius: 16px; padding: 40px 44px;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfcfe 100%);
+  box-shadow: 0 22px 55px rgba(8, 26, 44, .09);
   position: relative; overflow: hidden;
 }
 .chai-head::before {
   content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--gold);
 }
-.chai-photo { width: 260px; height: 320px; overflow: hidden; border: 1px solid var(--line); background: var(--paper-2); }
-.chai-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.chai-portrait {
+  display: flex; flex-direction: column; justify-content: center; gap: 18px;
+  background: var(--paper-2); border: 1px solid var(--line); border-radius: 14px; padding: 22px;
+}
+.chai-photo { width: 100%; aspect-ratio: 1182 / 1000; height: auto; overflow: hidden; border-radius: 10px; border: 1px solid var(--line); background: var(--paper-2); box-shadow: 0 14px 32px rgba(8, 26, 44, .16); }
+.chai-portrait-cap { text-align: center; }
+.chai-portrait-cap strong { display: block; color: var(--navy); font-size: 16px; font-weight: 600; letter-spacing: .06em; }
+.chai-portrait-cap span { display: block; margin-top: 5px; color: var(--gold); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; }
+.chai-photo img { width: 100%; height: 100%; object-fit: cover; }
 .chai-title {
   font-size: 17px; color: var(--gold); letter-spacing: .12em; margin-bottom: 16px;
   border-left: 3px solid var(--gold); padding-left: 12px;
@@ -806,7 +815,7 @@ html.anim [data-reveal].revealed { opacity: 1; transform: none; }
   .pi-wrap { grid-template-columns: 1fr; padding: 36px 28px; gap: 28px; }
   .pi-photo { width: 100%; max-width: 340px; margin: 0 auto; }
   .chai-head { grid-template-columns: 1fr; padding: 32px 24px; }
-  .chai-photo { width: 100%; max-width: 280px; height: 300px; margin: 0 auto; }
+  .chai-photo { width: 100%; max-width: 320px; aspect-ratio: 1182 / 1000; height: auto; margin: 0 auto; }
   .chai-grid { grid-template-columns: 1fr; }
   .chai-col + .chai-col { border-left: none; border-top: 1px solid var(--line); }
   .chai-col { padding: 28px 24px; }
@@ -956,6 +965,8 @@ a:focus-visible, button:focus-visible, .hdots span:focus-visible {
   background: var(--paper-2); display: flex; align-items: center; justify-content: center;
 }
 .mp-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.mp-photo.photo-wide { width: 340px; max-width: 100%; aspect-ratio: 1182 / 1000; height: auto; }
+.mp-photo.photo-wide img { object-fit: cover; }
 .mp-initial { font-size: 96px; font-weight: 300; color: var(--navy-3); opacity: .4; }
 .mp-meta .en { font-size: 11px; letter-spacing: .42em; color: var(--ink-3); display: block; margin-bottom: 14px; }
 .mp-meta h2 { font-size: 30px; color: var(--navy); letter-spacing: .1em; font-weight: 600; }
