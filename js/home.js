@@ -412,6 +412,70 @@
     });
   })();
 
+  /* ===== 成员卡片整卡可点击：跳转个人主页 ===== */
+  (function () {
+    document.addEventListener('click', function (e) {
+      var tile = e.target.closest ? e.target.closest('.person-tile') : null;
+      if (!tile) return;
+      if (e.target.closest('a, button')) return;
+      var a = tile.querySelector('.tile-links a[href]');
+      if (a) window.location.href = a.href;
+    });
+  })();
+
+  /* ===== 课题组动态：点击卡片弹出详情弹窗 ===== */
+  (function () {
+    var overlay = null;
+    function close() {
+      if (!overlay) return;
+      var o = overlay; overlay = null;
+      o.classList.remove('open');
+      document.body.classList.remove('modal-open');
+      setTimeout(function () { o.remove(); }, 300);
+    }
+    function open(card) {
+      var date = card.querySelector('.date');
+      var h3 = card.querySelector('h3');
+      if (!h3) return;
+      var ps = card.querySelectorAll('p');
+      var imgs = card.querySelectorAll('img');
+      var body = '';
+      ps.forEach(function (p) { body += '<p>' + p.innerHTML + '</p>'; });
+      if (!body) body = '<p>' + h3.textContent + '</p>';
+      var imgsHtml = '';
+      imgs.forEach(function (im) {
+        var src = im.getAttribute('src');
+        if (src) imgsHtml += '<img src="' + src + '" alt="' + (im.getAttribute('alt') || '') + '">';
+      });
+      overlay = document.createElement('div');
+      overlay.className = 'news-modal';
+      overlay.innerHTML =
+        '<div class="nm-backdrop"></div>' +
+        '<div class="nm-panel" role="dialog" aria-modal="true">' +
+          '<button class="nm-close" type="button" aria-label="close">×</button>' +
+          '<div class="nm-body">' +
+            (date ? '<span class="nm-date">' + date.textContent + '</span>' : '') +
+            '<h2 class="nm-title">' + h3.textContent + '</h2>' +
+            '<div class="nm-text">' + body + '</div>' +
+            (imgsHtml ? '<div class="nm-imgs">' + imgsHtml + '</div>' : '') +
+          '</div>' +
+        '</div>';
+      document.body.appendChild(overlay);
+      requestAnimationFrame(function () { overlay.classList.add('open'); });
+      document.body.classList.add('modal-open');
+      overlay.querySelector('.nm-backdrop').addEventListener('click', close);
+      overlay.querySelector('.nm-close').addEventListener('click', close);
+    }
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    document.addEventListener('click', function (e) {
+      if (e.target.closest('.news-modal')) return;
+      var card = e.target.closest ? e.target.closest('.news-item, .news-feat') : null;
+      if (!card) return;
+      if (e.target.closest('a, button')) return;
+      open(card);
+    });
+  })();
+
   /* bfcache 刷新后恢复整屏状态（head 已就绪） */
   restoreScreen();
 })();
